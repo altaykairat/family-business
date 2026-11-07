@@ -1,0 +1,80 @@
+{
+  "conversation_id": "p1-en-011",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "idx": 1,
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "Does the 1042-S form come in English?"
+    },
+    {
+      "idx": 2,
+      "timestamp": "00:04",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team."
+    },
+    {
+      "idx": 3,
+      "timestamp": "00:04",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy."
+    },
+    {
+      "idx": 4,
+      "timestamp": "00:10",
+      "speaker": "bot",
+      "text": "The 1042-S form is provided in English."
+    },
+    {
+      "idx": 5,
+      "timestamp": "00:22",
+      "speaker": "client",
+      "text": "I'd like an agent to confirm which language the form itself comes in, please."
+    },
+    {
+      "idx": 6,
+      "timestamp": "00:24",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?"
+    },
+    {
+      "idx": 7,
+      "timestamp": "00:39",
+      "speaker": "client",
+      "text": "Yes, please"
+    },
+    {
+      "idx": 8,
+      "timestamp": "00:40",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly."
+    },
+    {
+      "idx": 9,
+      "timestamp": "00:43",
+      "speaker": "system",
+      "text": "Chat transferred to an agent."
+    },
+    {
+      "idx": 10,
+      "timestamp": "02:18",
+      "speaker": "operator",
+      "text": "Hi, I'm Julia. Yes, the 1042-S form is provided in English."
+    },
+    {
+      "idx": 11,
+      "timestamp": "02:29",
+      "speaker": "client",
+      "text": "That's all I needed."
+    },
+    {
+      "idx": 12,
+      "timestamp": "03:03",
+      "speaker": "operator",
+      "text": "Happy to help. Goodbye!"
+    }
+  ],
+  "audio_url": null
+}

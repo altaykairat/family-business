@@ -1,0 +1,15 @@
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Original PDFs (text versions live in docs/*.md)
+docs/*.pdf

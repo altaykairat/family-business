@@ -1,0 +1,80 @@
+{
+  "conversation_id": "p1-en-007",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "idx": 1,
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "It won't let me withdraw. The app says I need to update my profile details."
+    },
+    {
+      "idx": 2,
+      "timestamp": "00:04",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team."
+    },
+    {
+      "idx": 3,
+      "timestamp": "00:05",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy."
+    },
+    {
+      "idx": 4,
+      "timestamp": "00:16",
+      "speaker": "bot",
+      "text": "Submit a request to change your personal details before trying again."
+    },
+    {
+      "idx": 5,
+      "timestamp": "01:08",
+      "speaker": "client",
+      "text": "Can you put me through to an agent? Where do I submit that and when can I retry?"
+    },
+    {
+      "idx": 6,
+      "timestamp": "01:11",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?"
+    },
+    {
+      "idx": 7,
+      "timestamp": "01:14",
+      "speaker": "client",
+      "text": "yes please"
+    },
+    {
+      "idx": 8,
+      "timestamp": "01:15",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly."
+    },
+    {
+      "idx": 9,
+      "timestamp": "01:17",
+      "speaker": "system",
+      "text": "Chat transferred to an agent."
+    },
+    {
+      "idx": 10,
+      "timestamp": "01:36",
+      "speaker": "operator",
+      "text": "Hi, I'm Chris. Go to Menu, Orders, Personal Details, then Change of Details."
+    },
+    {
+      "idx": 11,
+      "timestamp": "01:55",
+      "speaker": "client",
+      "text": "Okay, I found it. Can I submit the withdrawal right after this?"
+    },
+    {
+      "idx": 12,
+      "timestamp": "02:15",
+      "speaker": "operator",
+      "text": "That's where the profile request is. Thanks for contacting us. Bye."
+    }
+  ],
+  "audio_url": null
+}

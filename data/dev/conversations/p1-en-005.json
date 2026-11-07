@@ -1,0 +1,92 @@
+{
+  "conversation_id": "p1-en-005",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "idx": 1,
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "I'm going to a bank branch to fund the brokerage account. Where do I get the transfer details?"
+    },
+    {
+      "idx": 2,
+      "timestamp": "00:02",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team."
+    },
+    {
+      "idx": 3,
+      "timestamp": "00:02",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy."
+    },
+    {
+      "idx": 4,
+      "timestamp": "00:11",
+      "speaker": "bot",
+      "text": "You can download the bank transfer details in the app."
+    },
+    {
+      "idx": 5,
+      "timestamp": "00:37",
+      "speaker": "client",
+      "text": "Connect me with someone, please. I don't want to take the wrong details to the branch."
+    },
+    {
+      "idx": 6,
+      "timestamp": "00:38",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?"
+    },
+    {
+      "idx": 7,
+      "timestamp": "00:55",
+      "speaker": "client",
+      "text": "Yes, please"
+    },
+    {
+      "idx": 8,
+      "timestamp": "00:56",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly."
+    },
+    {
+      "idx": 9,
+      "timestamp": "00:59",
+      "speaker": "system",
+      "text": "Chat transferred to an agent."
+    },
+    {
+      "idx": 10,
+      "timestamp": "02:52",
+      "speaker": "operator",
+      "text": "Hi, I'm Lina. In the app, open Menu, then Add Funds, then the bank transfer details option."
+    },
+    {
+      "idx": 11,
+      "timestamp": "03:33",
+      "speaker": "client",
+      "text": "I'm sending euros. Is it the same page?"
+    },
+    {
+      "idx": 12,
+      "timestamp": "04:23",
+      "speaker": "operator",
+      "text": "Yes. Select the currency you need before downloading the details. Take those details to the branch."
+    },
+    {
+      "idx": 13,
+      "timestamp": "05:02",
+      "speaker": "client",
+      "text": "Got them, thanks."
+    },
+    {
+      "idx": 14,
+      "timestamp": "05:51",
+      "speaker": "operator",
+      "text": "You're welcome. Goodbye!"
+    }
+  ],
+  "audio_url": null
+}

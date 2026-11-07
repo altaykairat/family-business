@@ -1,0 +1,80 @@
+{
+  "conversation_id": "p1-en-003",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "idx": 1,
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "Where can I see my current pricing plan? I'm using the website."
+    },
+    {
+      "idx": 2,
+      "timestamp": "00:04",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team."
+    },
+    {
+      "idx": 3,
+      "timestamp": "00:04",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy."
+    },
+    {
+      "idx": 4,
+      "timestamp": "00:11",
+      "speaker": "bot",
+      "text": "The current plan is shown in the broker report."
+    },
+    {
+      "idx": 5,
+      "timestamp": "00:57",
+      "speaker": "client",
+      "text": "I don't want to download a report just for this. Can I speak to an agent?"
+    },
+    {
+      "idx": 6,
+      "timestamp": "01:01",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?"
+    },
+    {
+      "idx": 7,
+      "timestamp": "01:12",
+      "speaker": "client",
+      "text": "Yes"
+    },
+    {
+      "idx": 8,
+      "timestamp": "01:13",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly."
+    },
+    {
+      "idx": 9,
+      "timestamp": "01:14",
+      "speaker": "system",
+      "text": "Chat transferred to an agent."
+    },
+    {
+      "idx": 10,
+      "timestamp": "02:29",
+      "speaker": "operator",
+      "text": "Hi, I'm Eva. Open the account area, labelled «Кабинет» in the Russian interface. You'll see your plan under your name."
+    },
+    {
+      "idx": 11,
+      "timestamp": "02:56",
+      "speaker": "client",
+      "text": "Found it."
+    },
+    {
+      "idx": 12,
+      "timestamp": "03:39",
+      "speaker": "operator",
+      "text": "Great. Thanks for reaching out, and goodbye!"
+    }
+  ],
+  "audio_url": null
+}

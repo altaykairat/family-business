@@ -1,0 +1,128 @@
+{
+  "conversation_id": "p1-en-008",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "idx": 1,
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "There are several results for the company I'm looking up. How can I find the exact stock?"
+    },
+    {
+      "idx": 2,
+      "timestamp": "00:01",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team."
+    },
+    {
+      "idx": 3,
+      "timestamp": "00:01",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy."
+    },
+    {
+      "idx": 4,
+      "timestamp": "00:13",
+      "speaker": "bot",
+      "text": "Try searching by ticker in Quotes."
+    },
+    {
+      "idx": 5,
+      "timestamp": "00:32",
+      "speaker": "client",
+      "text": "I have the ticker but I'm still new to this. Can I talk to an agent?"
+    },
+    {
+      "idx": 6,
+      "timestamp": "00:36",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?"
+    },
+    {
+      "idx": 7,
+      "timestamp": "00:42",
+      "speaker": "client",
+      "text": "Yes, please"
+    },
+    {
+      "idx": 8,
+      "timestamp": "00:43",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly."
+    },
+    {
+      "idx": 9,
+      "timestamp": "00:46",
+      "speaker": "system",
+      "text": "Chat transferred to an agent."
+    },
+    {
+      "idx": 10,
+      "timestamp": "01:08",
+      "speaker": "client",
+      "text": "I have the app open already."
+    },
+    {
+      "idx": 11,
+      "timestamp": "01:47",
+      "speaker": "operator",
+      "text": "Hi, I'm Sofia. Enter the ticker in the search bar under Quotes. Check that the result shows the ticker you intended before opening an order."
+    },
+    {
+      "idx": 12,
+      "timestamp": "02:13",
+      "speaker": "client",
+      "text": "Now there's one result. Where do I go from there?"
+    },
+    {
+      "idx": 13,
+      "timestamp": "02:55",
+      "speaker": "operator",
+      "text": "Open that security, fill in the buy order parameters and review them before submitting the order."
+    },
+    {
+      "idx": 14,
+      "timestamp": "03:25",
+      "speaker": "client",
+      "text": "I'm just looking for now. Thank you."
+    },
+    {
+      "idx": 15,
+      "timestamp": "03:39",
+      "speaker": "client",
+      "text": "Hang on, I have another question. The order screen has a Use Margin checkbox. How do I turn that off?"
+    },
+    {
+      "idx": 16,
+      "timestamp": "04:26",
+      "speaker": "operator",
+      "text": "Before you submit, open Order Settings and untick Use Margin."
+    },
+    {
+      "idx": 17,
+      "timestamp": "04:44",
+      "speaker": "client",
+      "text": "Found it. Does that change a position I already own?"
+    },
+    {
+      "idx": 18,
+      "timestamp": "05:22",
+      "speaker": "operator",
+      "text": "That setting is for the order you're entering now. It doesn't answer what's happening with an existing position."
+    },
+    {
+      "idx": 19,
+      "timestamp": "05:44",
+      "speaker": "client",
+      "text": "Okay, I'll leave the order unsubmitted for now."
+    },
+    {
+      "idx": 20,
+      "timestamp": "06:13",
+      "speaker": "operator",
+      "text": "Of course. Have a good day!"
+    }
+  ],
+  "audio_url": null
+}

@@ -1,0 +1,188 @@
+{
+  "conversation_id": "p1-en-006",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "idx": 1,
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "I sent money to my brokerage account and it hasn't shown up. It's making me nervous."
+    },
+    {
+      "idx": 2,
+      "timestamp": "00:03",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team."
+    },
+    {
+      "idx": 3,
+      "timestamp": "00:03",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy."
+    },
+    {
+      "idx": 4,
+      "timestamp": "00:13",
+      "speaker": "bot",
+      "text": "Do you need help making a transfer, or have you already sent it?"
+    },
+    {
+      "idx": 5,
+      "timestamp": "00:52",
+      "speaker": "client",
+      "text": "I've already sent it. Please connect me to an agent who can check the transfer."
+    },
+    {
+      "idx": 6,
+      "timestamp": "00:54",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?"
+    },
+    {
+      "idx": 7,
+      "timestamp": "01:14",
+      "speaker": "client",
+      "text": "Yes"
+    },
+    {
+      "idx": 8,
+      "timestamp": "01:15",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly."
+    },
+    {
+      "idx": 9,
+      "timestamp": "01:16",
+      "speaker": "system",
+      "text": "Chat transferred to an agent."
+    },
+    {
+      "idx": 10,
+      "timestamp": "01:36",
+      "speaker": "client",
+      "text": "The bank app says the transfer was sent."
+    },
+    {
+      "idx": 11,
+      "timestamp": "02:43",
+      "speaker": "operator",
+      "text": "Hello, I'm Sam. I understand why you'd want to check. We'll need to verify your identity before we look at the account."
+    },
+    {
+      "idx": 12,
+      "timestamp": "02:55",
+      "speaker": "client",
+      "text": "Okay."
+    },
+    {
+      "idx": 13,
+      "timestamp": "03:13",
+      "speaker": "system",
+      "text": "Customer identity verified."
+    },
+    {
+      "idx": 14,
+      "timestamp": "03:40",
+      "speaker": "operator",
+      "text": "Thanks. What currency did you send?"
+    },
+    {
+      "idx": 15,
+      "timestamp": "04:10",
+      "speaker": "client",
+      "text": "US dollars."
+    },
+    {
+      "idx": 16,
+      "timestamp": "04:58",
+      "speaker": "operator",
+      "text": "I've sent the case for review with the currency you provided. We'll follow up in this chat once there's an update."
+    },
+    {
+      "idx": 17,
+      "timestamp": "05:04",
+      "speaker": "client",
+      "text": "Okay, thanks."
+    },
+    {
+      "idx": 18,
+      "timestamp": "05:16",
+      "speaker": "client",
+      "text": "Do you need me to send a screenshot of my bank app?"
+    },
+    {
+      "idx": 19,
+      "timestamp": "05:40",
+      "speaker": "operator",
+      "text": "Hold off on the screenshot for now. Can you tell me roughly when you sent the transfer?"
+    },
+    {
+      "idx": 20,
+      "timestamp": "06:04",
+      "speaker": "client",
+      "text": "Yesterday evening. It shows as sent on the bank side."
+    },
+    {
+      "idx": 21,
+      "timestamp": "06:49",
+      "speaker": "operator",
+      "text": "I've added that timing to the case. The team will check the brokerage side."
+    },
+    {
+      "idx": 22,
+      "timestamp": "07:25",
+      "speaker": "client",
+      "text": "Will I need to explain everything again if I come back later?"
+    },
+    {
+      "idx": 23,
+      "timestamp": "07:54",
+      "speaker": "operator",
+      "text": "You can return to this chat. The details you've given me are already in the case."
+    },
+    {
+      "idx": 24,
+      "timestamp": "08:06",
+      "speaker": "client",
+      "text": "Okay, that helps."
+    },
+    {
+      "idx": 25,
+      "timestamp": "09:11",
+      "speaker": "client",
+      "text": "One more thing while I'm here. Where can I download my broker report?"
+    },
+    {
+      "idx": 26,
+      "timestamp": "09:43",
+      "speaker": "operator",
+      "text": "In the app, open Reports and Documents, then Broker Report."
+    },
+    {
+      "idx": 27,
+      "timestamp": "10:00",
+      "speaker": "client",
+      "text": "I've got the dates on screen. Can I pick the whole month?"
+    },
+    {
+      "idx": 28,
+      "timestamp": "10:34",
+      "speaker": "operator",
+      "text": "Yes, select the start and end dates for the period you need, then download the report."
+    },
+    {
+      "idx": 29,
+      "timestamp": "10:53",
+      "speaker": "client",
+      "text": "That worked. I'll wait here for the transfer update."
+    },
+    {
+      "idx": 30,
+      "timestamp": "11:29",
+      "speaker": "operator",
+      "text": "You're welcome. We'll follow up here about the transfer. Goodbye!"
+    }
+  ],
+  "audio_url": null
+}
