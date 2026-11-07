@@ -316,9 +316,11 @@ def _params_set(actor, key, value, reason):
 @command("run.prepare", mc="MC.3", summary="«Оценить»: build prompts (S1–S3) for a set of conversations",
          params={"run_id": P(required=True), "dataset": P(default="dev"), "checklist": P(default="default"),
                  "variant": P(default="v1"), "ids": P("list"), "sample": P("int", default=0),
-                 "agents": P("list"), "template": P()})
+                 "agents": P("list"), "template": P(),
+                 "precedents": P("bool", default=True, help="insert selected precedents into {{PRECEDENTS}}"),
+                 "criteria": P("list", help="only these criteria (partial re-evaluation after a checklist change)")})
 def _prepare(actor, run_id, dataset="dev", checklist="default", variant="v1", ids=None, sample=0, agents=None,
-             template=None):
+             template=None, precedents=True, criteria=None):
     from . import access
 
     access.require(actor, "evaluation.run")
@@ -327,7 +329,8 @@ def _prepare(actor, run_id, dataset="dev", checklist="default", variant="v1", id
         cfg["agents"] = agents
     if template:
         cfg["template"] = template
-    run_dir = run.prepare(run_id, dataset, checklist, variant, cfg, ids=ids, sample=sample, author=actor)
+    run_dir = run.prepare(run_id, dataset, checklist, variant, cfg, ids=ids, sample=sample, author=actor,
+                          precedents=precedents, criteria=criteria)
     m = common.load_json(run_dir / "manifest.json")
     return {"run_id": run_id, "conversations": len(m["conversations"]), "agents": m["agents"],
             "checklist": m["checklist"], "versions": m["versions"], "projection": m["token_projection"]}
@@ -364,6 +367,34 @@ def _sim_appeals(actor, gold, source, split="tune", reviewers=None, noise=0.0, s
     from . import simulation
 
     return simulation.run(gold, source, actor, split, reviewers, noise, seed, limit, criteria)
+
+
+@command("jury.gross_errors", "GET", summary="Dialogs with a gross error: flag explanation, evidence turns, total",
+         params={"source": P(help="run:agent; default published"), "until": UNTIL})
+def _gross(actor, source=None, until=None):
+    from . import jury
+
+    return jury.gross_errors(source, until)
+
+
+@command("eval.rescore", summary="New checklist version → recompute published evaluations without LLM; new or "
+         "reworded criteria from fill_from (a run prepared with criteria=…)",
+         params={"ref": P(required=True, help="checklist version, e.g. default@v3"), "fill_from": P(),
+                 "publish": P("bool", default=False), "ids": P("list")})
+def _rescore(actor, ref, fill_from=None, publish=False, ids=None):
+    from . import jury
+
+    return jury.rescore(ref, actor, fill_from, publish, ids)
+
+
+@command("trace", "GET", summary="Where an answer came from: exact prompt and raw response files, all versions "
+         "(checklist, template, params, rule clarifications, precedents) and every human action",
+         params={"conversation_id": P(required=True), "evaluation_id": P(), "criterion_id": P(),
+                 "include_text": P("bool", default=False), "until": UNTIL})
+def _trace(actor, conversation_id, evaluation_id=None, criterion_id=None, include_text=False, until=None):
+    from . import jury
+
+    return jury.trace(conversation_id, evaluation_id, criterion_id, include_text, until)
 
 
 @command("results.export", mc="S8.4", summary="Write results/<dev|prod>/results.json in the organizers' format "

@@ -98,7 +98,7 @@ def parts(doc: dict, variant: str) -> list:
 
 
 def build(template_name: str, doc: dict, conv: dict, conv_facts: dict, variant: str,
-          include_facts: bool = True, precedents: list = None) -> list:
+          include_facts: bool = True, precedents: list = None, only: list = None) -> list:
     """Returns [{'part', 'criteria_ids', 'prompt_id', 'text', 'context'}] for one conversation.
 
     `context` = which rule clarifications (with revisions) and which precedents (decision ids) went into the
@@ -110,6 +110,10 @@ def build(template_name: str, doc: dict, conv: dict, conv_facts: dict, variant: 
     revs = clarification_revs(doc) if doc.get("clarifications") else {}
     out = []
     for part_id, crit in parts(doc, variant):
+        if only:  # partial re-evaluation: only new / changed criteria (scenario «добавить критерий»)
+            crit = [c for c in crit if c["id"] in only]
+            if not crit:
+                continue
         ids = [c["id"] for c in crit]
         rules = active_clarifications(doc, ids)
         global_rules = list(doc.get("global_rules", []))

@@ -343,6 +343,94 @@ class PatternsTest(Workspace):
         self.assertEqual(res["status"], "accumulating")
 
 
+class JuryScenariosTest(unittest.TestCase):
+    """Four jury scenarios + trace, only through api.call (what a frontend would do)."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = Path(tempfile.mkdtemp(prefix="cqa-jury-"))
+        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists")
+        common.use_workspace(cls.tmp)
+        state._CACHE.clear()
+
+    @classmethod
+    def tearDownClass(cls):
+        common.use_workspace(None)
+        state._CACHE.clear()
+        shutil.rmtree(cls.tmp, ignore_errors=True)
+
+    def test_end_to_end(self):
+        call = lambda cmd, actor="a-01", **p: api.call(cmd, actor, p)["data"]  # noqa: E731
+        call("people.seed_demo", dataset="dev")
+        call("people.confirm_suggestions")
+        call("run.prepare", run_id="j", ids=IDS, agents=["m"])
+        call("run.submit", run_id="j", agent="m", name="p1-ru-001", text=response(BASE))
+        gross = {**BASE, "c08": "yes", "c07": "no"}
+        call("run.submit", run_id="j", agent="m", name="p1-ru-012", text=response(gross))
+        call("run.ingest", run_id="j")
+        imp = call("eval.import", source="j:m")
+        call("eval.publish", evaluation_ids=imp["evaluation_ids"])
+
+        # 1. gross errors with the flag's explanation
+        g = call("jury.gross_errors")
+        self.assertEqual([i["conversation_id"] for i in g["items"]], ["p1-ru-012"])
+        self.assertEqual(g["items"][0]["explanation"], "t")
+        self.assertEqual(g["items"][0]["evidence"][0]["idx"], 1)
+
+        # 2. the operator appeals, a reviewer decides, the final changes, the original stays
+        st = state.load()
+        op = st.operator_of["p1-ru-012"]
+        eid = st.published["p1-ru-012"]
+        ap = call("appeal.file", op, evaluation_id=eid, criterion_id="c07", comment="клиент ушёл")["appeal_id"]
+        call("appeal.assign", appeal_id=ap, reviewer_id="r-01")
+        call("appeal.decide", "r-01", appeal_id=ap, action="change", new_answer="na", reason="обрыв", type="B")
+        card = call("conversation.card", conversation_id="p1-ru-012")
+        c07 = next(c for c in card["evaluation"]["criteria"] if c["criterion_id"] == "c07")
+        self.assertEqual((c07["original"]["answer"], c07["final"]["answer"]), ("no", "na"))
+
+        # 3. add a criterion and change a weight → new version → recompute (LLM only for the new criterion)
+        new_crit = {"id": "c09", "title": "Проверка понимания", "type": "binary", "weight": 5, "section": None,
+                    "description": "Да — оператор убедился, что клиент понял ответ."}
+        res = call("checklist.change", ops=[{"op": "add_criterion", "value": {k: v for k, v in new_crit.items()
+                                                                               if v is not None}},
+                                            {"op": "set_weight", "criterion_id": "c06", "value": 10}],
+                   reason="сценарий жюри", save=True)
+        ref = res["saved"]["ref"]
+        self.assertEqual(res["preview"]["prompt_affected_criteria"], ["c09"])
+        call("version.activate", ref=ref, reason="демо", force=True)
+        r1 = call("eval.rescore", ref=ref)
+        self.assertEqual(r1["needs_llm"]["criteria"], ["c09"])
+        call("run.prepare", run_id="j9", checklist=ref, ids=IDS, agents=["m"], criteria=["c09"])
+        text = (common.RUNS / "j9" / "prompts" / "p1-ru-001.md").read_text(encoding="utf-8")
+        self.assertIn("c09", text)
+        self.assertNotIn("### c01", text)
+        for cid in IDS:
+            call("run.submit", run_id="j9", agent="m", name=cid, text=response({"c09": "yes"}))
+        call("run.ingest", run_id="j9")
+        r2 = call("eval.rescore", ref=ref, fill_from="j9:m", publish=True)
+        self.assertEqual(r2["needs_llm"]["criteria"], [])
+        card = call("conversation.card", conversation_id="p1-ru-012")
+        self.assertEqual(card["evaluation"]["checklist"], ref)
+        c07 = next(c for c in card["evaluation"]["criteria"] if c["criterion_id"] == "c07")
+        self.assertEqual(c07["final"]["answer"], "na")  # the reviewer's decision survives the new version
+        self.assertIn("c09", [c["criterion_id"] for c in card["evaluation"]["criteria"]])
+        with self.assertRaises(common.CQAError):  # organizers' format has exactly their 8 criteria
+            call("results.export", set="dev", path=str(self.tmp / "r.json"))
+
+        # 4 + 7. card with rationale and evidence; trace down to the prompt, raw response and human actions
+        c01 = next(c for c in card["evaluation"]["criteria"] if c["criterion_id"] == "c01")
+        self.assertEqual(c01["original"]["explanation"], "t")
+        tr = call("trace", conversation_id="p1-ru-012", include_text=True)
+        self.assertEqual(len(tr["lineage"]), 2)  # rescored evaluation → the LLM original
+        self.assertTrue(any(p["prompt_file"] and "### c01" in p["prompt_text"] for p in tr["prompts"]))
+        self.assertTrue(any(p.get("response_text") for p in tr["prompts"]))
+        self.assertEqual(tr["answers"]["c07"]["decision"]["reason"], "обрыв")
+        self.assertEqual(tr["answers"]["c09"]["origin"], "llm:j9:m")
+        self.assertEqual(tr["answers"]["c01"]["origin"], "carried")
+        self.assertIn("decision_made", [h["type"] for h in tr["human_actions"]])
+        self.assertTrue(tr["versions"]["template"])
+
+
 class InsufficientDataTest(Workspace):
     def test_validator_and_queue(self):
         conv = cv.load("dev", "p1-ru-001")

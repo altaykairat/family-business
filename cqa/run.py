@@ -69,7 +69,7 @@ def _precedents_for(conv: dict, doc: dict, template: str, use: bool) -> list:
 
 def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: dict,
             ids: list = None, sample: int = 0, seed: int = 42, author: str = "system",
-            precedents: bool = True) -> Path:
+            precedents: bool = True, criteria: list = None) -> Path:
     run_dir = common.RUNS / run_id
     if run_dir.exists():
         raise CQAError(f"Прогон {run_id} уже существует: {rel(run_dir)}. Выберите другой --run.", "conflict")
@@ -86,6 +86,7 @@ def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: di
         "template": template, "variant": variant, "params": params, "params_hash": stable_hash(params),
         "agents": agents, "token_method": tokens.METHOD, "conversations": {}, "token_projection": {},
         "versions": versions.bundle(doc, cfg, template, author),
+        "criteria_only": criteria or None,
     }
     projection = {v: {"calls": 0, "tokens_in": 0} for v in pr.VARIANTS}
 
@@ -96,7 +97,7 @@ def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: di
                   {"conversation_id": cid, "operator_name_guess": cv.guess_operator_name(conv), **facts})
         prec = _precedents_for(conv, doc, template, precedents)
         for v in pr.VARIANTS:  # token projection for every decomposition, only `variant` is written
-            built = pr.build(template, doc, conv, facts, v, include_facts, prec)
+            built = pr.build(template, doc, conv, facts, v, include_facts, prec, criteria)
             projection[v]["calls"] += len(built)
             projection[v]["tokens_in"] += sum(tokens.count(b["text"]) for b in built)
             if v != variant:

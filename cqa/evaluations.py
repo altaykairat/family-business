@@ -213,6 +213,14 @@ def details(evaluation_id: str, st: Optional[state.State] = None) -> dict:
     return events.get_blob(ev["blob"])
 
 
+def _trace_links(ev: dict) -> dict:
+    """Openness (sprint 1, item 7): the card links to the exact prompt, raw response and versions."""
+    from . import jury
+
+    return {"command": f"trace conversation_id={ev['conversation_id']} evaluation_id={ev['evaluation_id']}",
+            "prompts": jury._prompt_files(ev), "rescored_from": (ev.get("versions") or {}).get("rescored_from")}
+
+
 def card(conversation_id: str, evaluation_id: Optional[str] = None, viewer: Optional[str] = None,
          until: Optional[str] = None) -> dict:
     """Everything the result card needs: transcript with idx and offsets, every criterion with answer, points,
@@ -269,6 +277,7 @@ def card(conversation_id: str, evaluation_id: Optional[str] = None, viewer: Opti
                           "effective_points": rows[c["id"]]["effective_points"]},
                 "appeals": [a["appeal_id"] for a in st.appeals.values()
                             if a["evaluation_id"] == evaluation_id and a["criterion_id"] == c["id"]],
+                "origin": ((ev.get("versions") or {}).get("answer_origin") or {}).get(c["id"], "llm"),
             })
         out["evaluation"] = {
             "evaluation_id": evaluation_id, "run_id": ev["run_id"], "agent": ev["agent"],
@@ -280,6 +289,7 @@ def card(conversation_id: str, evaluation_id: Optional[str] = None, viewer: Opti
             "sections": fin["final"]["score"]["sections"], "criteria": crit,
             "dialog_facts": None if blind else data.get("dialog_facts"),
             "issues": data.get("issues"),
+            "trace": None if blind else _trace_links(ev),
         }
     out["history"] = [state.feed_row(e) for e in st.events if e.get("conversation_id") == conversation_id]
     return out
