@@ -17,7 +17,7 @@
 ## Обновление и контрольный набор
 
 ```bash
-cp .env.example .env   # вписать CQA_API_URL из docs/task.md
+cp .env.example .env   # вписать CQA_API_URL из docs/organizers/task.md
 python3 scripts/fetch_dataset.py DEV
 python3 scripts/fetch_dataset.py <CONTROL_GROUP_ID>   # в +23 ч, сохранит в data/<group_id>/
 ```

@@ -1,21 +1,22 @@
-# Пайплайн — итерация 1 (ручной режим)
+# Пайплайн — итерация 1 (ручной режим) + платформа
 
-> База платформы: простые скрипты на Python (только стандартная библиотека, 3.9+), без бэкенда и фронтенда. LLM — облачные агенты (Claude Code, Codex, Antigravity), промпты вставляются вручную. Решения, на которых это основано, — в [discussion.md](discussion.md) (решения 1–21), параметры — в [design-space.md](design-space.md).
+> Python 3.9+, только стандартная библиотека. Поверх пайплайна итерации 1 — платформа: журнал событий, версии, апелляции, эталон и метрики, цикл обучения, аналитика, HTTP API. Подробно — [implementation.md](implementation.md). LLM — облачные агенты (Claude Code, Codex, Antigravity), промпты вставляются вручную. Решения, на которых это основано, — в [discussion.md](discussion.md) (решения 1–21), параметры — в [design-space.md](design-space.md).
 
 ## Этапы и где они в коде
 
 | Этап | Что делает | Модуль | Артефакт |
 |---|---|---|---|
-| **S0** Конфигурация | Версии чек-листа: неизменяемые снимки, diff, архив | [`cqa/checklist.py`](../cqa/checklist.py) | `data/checklists/<id>/v<N>.json` |
-| **S1** Нормализация | Номера реплик, время в секундах от начала, пометка повторов | [`cqa/conversation.py`](../cqa/conversation.py) | — (в памяти) |
-| **S2** Факты | Эскалация, первая реплика оператора, паузы, концовка, имя оператора | [`cqa/conversation.py`](../cqa/conversation.py) | `runs/<run>/features/<id>.json` |
-| **S3** Промпты | Шаблон + чек-лист + диалог + факты; варианты v1 / v2 / v3 | [`cqa/prompts.py`](../cqa/prompts.py), [`prompts/templates/v1.md`](../prompts/templates/v1.md) | `runs/<run>/prompts/*.md` |
+| **S0** Конфигурация | Версии чек-листа: неизменяемые снимки, diff, архив | [`cqa/checklist.py`](../../cqa/checklist.py) | `data/checklists/<id>/v<N>.json` |
+| **S1** Нормализация | Номера реплик, время в секундах от начала, пометка повторов | [`cqa/conversation.py`](../../cqa/conversation.py) | — (в памяти) |
+| **S2** Факты | Эскалация, первая реплика оператора, паузы, концовка, имя оператора | [`cqa/conversation.py`](../../cqa/conversation.py) | `runs/<run>/features/<id>.json` |
+| **S3** Промпты | Шаблон + чек-лист + диалог + факты; варианты v1 / v2 / v3 | [`cqa/prompts.py`](../../cqa/prompts.py), [`prompts/templates/v1.md`](../../prompts/templates/v1.md) | `runs/<run>/prompts/*.md` |
 | **S4** Суждение | **Вручную**: вставить промпт в чат агента, ответ — в файл | — | `runs/<run>/agents/<agent>/responses/*` |
-| **S5** Валидация | Разбор JSON, допустимость ответа и N/A, ступени шкалы, существование реплик, совпадение цитат | [`cqa/responses.py`](../cqa/responses.py) | `runs/<run>/validated/<agent>/<id>.json` |
-| **S6** Агрегация | Большинство по агентам, согласие, расхождения | [`cqa/report.py`](../cqa/report.py) | `reports/majority.csv` |
-| **S7** Баллы | Формула чек-листа: веса, N/A, шкалы, округление half-up, флаг грубой ошибки | [`cqa/scoring.py`](../cqa/scoring.py) | внутри `validated/…` |
-| **S8–S9** Отчёт | Сравнение агентов лоб в лоб, токены, стоимость, проекция вариантов декомпозиции | [`cqa/report.py`](../cqa/report.py) | `reports/summary.md`, `results.csv` |
-| **S10** История | Журнал событий (только добавление) | [`cqa/common.py`](../cqa/common.py) | `history/events.jsonl` |
+| **S5** Валидация | Разбор JSON, допустимость ответа и N/A, ступени шкалы, существование реплик, совпадение цитат | [`cqa/responses.py`](../../cqa/responses.py) | `runs/<run>/validated/<agent>/<id>.json` |
+| **S6** Агрегация | Большинство по агентам, согласие, расхождения; ансамбль как виртуальный агент `majority` | [`cqa/report.py`](../../cqa/report.py), [`cqa/evaluations.py`](../../cqa/evaluations.py) | `reports/majority.csv`, `validated/majority/` |
+| **S7** Баллы | Формула чек-листа: веса, N/A, шкалы, округление half-up, флаг грубой ошибки | [`cqa/scoring.py`](../../cqa/scoring.py) | внутри `validated/…` |
+| **S8** Вывод | Карточка: транскрипт, критерии с доказательствами, решения, итог, история | [`cqa/evaluations.py`](../../cqa/evaluations.py) | `conversation.card` |
+| **S9** Эталон и метрики | Эталон с версиями и разбиением tune/test, точность с ДИ, κ, «Нет»↔N/A, MAE итога, доказательства, Макнемар, стоимость; согласие без эталона | [`cqa/groundtruth.py`](../../cqa/groundtruth.py), [`cqa/metrics.py`](../../cqa/metrics.py), [`cqa/report.py`](../../cqa/report.py) | `data/ground_truth/`, `history/reports/` |
+| **S10** История и цикл | Журнал с цепочкой хешей, блобы, проекция «звезда»; апелляции A–D, прецеденты, выжимка, задачи оркестратора, предложения, регрессия, активация | [`cqa/events.py`](../../cqa/events.py), [`cqa/state.py`](../../cqa/state.py), [`cqa/db.py`](../../cqa/db.py), [`cqa/appeals.py`](../../cqa/appeals.py), [`cqa/loop.py`](../../cqa/loop.py), [`cqa/tasks.py`](../../cqa/tasks.py) | `history/` |
 
 ## Папка прогона
 
@@ -64,7 +65,7 @@ python3 -m cqa checklist diff default@1 default@2
 
 ## Параметры
 
-[`config/pipeline.json`](../config/pipeline.json): агенты, соответствие агент → модель для цен, шаблон, передавать ли факты (`include_facts`), порог пауз (`gap_threshold_s`), порог совпадения цитат (`quote_match_threshold`). Цены — [`config/pricing.json`](../config/pricing.json) (пока пустые).
+[`config/pipeline.json`](../../config/pipeline.json): агенты, соответствие агент → модель для цен, шаблон, передавать ли факты (`include_facts`), порог пауз (`gap_threshold_s`), порог совпадения цитат (`quote_match_threshold`). Цены — [`config/pricing.json`](../../config/pricing.json) (пока пустые).
 
 ## Токены
 
@@ -84,11 +85,25 @@ python3 -m cqa checklist diff default@1 default@2
 python3 -m unittest discover -s tests -v
 ```
 
-Покрыты: расчёт баллов (100, перераспределение N/A, шкалы, округление half-up, флаг, секции), разбор и нормализация ответов, проверка реплик и цитат, факты, извлечение имени оператора.
+`tests/test_pipeline.py` покрывает расчёт баллов (100, перераспределение N/A, шкалы, округление half-up, флаг, секции), разбор и нормализация ответов, проверка реплик и цитат, факты, извлечение имени оператора. `tests/test_platform.py` — платформу целиком во временном рабочем каталоге (реальная история не трогается).
 
-## Чего пока нет (следующие итерации)
+## Платформа: как пользоваться
 
-- Апелляции и решения проверяющих, прецеденты, оркестратор (S10.2–S10.6).
-- Эталон (ground truth) и метрики точности относительно него (S9).
-- Автоматическая отправка промптов (CLI / API) и рантайм-модель.
-- Интерфейс.
+```bash
+python3 -m cqa commands                                   # все команды (= GET /api/v1/commands)
+python3 -m cqa serve                                      # HTTP API для фронтенда
+python3 -m cqa eval.aggregate run_id=r001                 # S6: ансамбль агентов
+python3 -m cqa eval.import source=r001:majority           # оценки → история
+python3 -m cqa eval.publish source=r001:majority          # официальные оценки
+python3 -m cqa gt.draft 'sources=["r001:claude","r001:codex","r001:antigravity"]' set=dev-gold
+python3 -m cqa gt.import path=data/ground_truth/dev-gold/draft.json set=dev-gold reason="разметка"
+python3 -m cqa metrics.compare gold=dev-gold 'sources=["r001:claude","r001:majority"]' split=test
+python3 -m cqa history.verify                             # цепочка хешей цела?
+```
+
+Ответ модели можно вставить и без файлов: `run.prompt` отдаёт текст промпта, `run.submit` сохраняет ответ. Провайдеры (ручной / CLI / API) — `config/providers.json`, отправка — `run.dispatch` (по кнопке).
+
+## Чего пока нет
+
+- HTTP-провайдер (API или локальная модель) — только контракт.
+- Интерфейс (делает владелец проекта; контракт API — в [implementation.md](implementation.md)).

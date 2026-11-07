@@ -2,14 +2,14 @@
 
 Прототип для хакатона Freedom Broker: оценка работы операторов контакт-центра (чаты RU / KZ / EN и звонки) по настраиваемому чек-листу с объяснениями, цитатами-доказательствами и контуром апелляций.
 
-**Сейчас:** итерация 1 — база пайплайна в ручном режиме. Промпты генерируются из чек-листа, ответы облачных агентов (Claude Code, Codex, Antigravity) вставляются вручную, система проверяет их, считает баллы и сравнивает агентов лоб в лоб.
+**Сейчас:** итерация 1 — база пайплайна в ручном режиме. Промпты генерируются из чек-листа, ответы LLM вставляются вручную (новые чаты облачных моделей вместо API), система проверяет их, считает баллы и сравнивает модели лоб в лоб.
 
 ## Быстрый старт
 
 Нужен только Python 3.9+ (без зависимостей).
 
 ```bash
-python3 -m cqa prepare --run r001        # промпты для всех 65 диалогов DEV × 3 агента
+python3 -m cqa prepare --run r001        # промпты для всех 65 диалогов DEV × 3 модели
 # … вставить ответы в runs/r001/agents/<agent>/responses/ …
 python3 -m cqa ingest --run r001          # проверка ответов и подсчёт баллов
 python3 -m cqa report --run r001          # отчёт: runs/r001/reports/summary.md
@@ -22,25 +22,48 @@ python3 -m unittest discover -s tests     # тесты
 python3 scripts/fetch_dataset.py DEV
 ```
 
-## Документы
+## Откуда что: материалы организаторов и наши
 
-| Документ | Что внутри |
+### От организаторов — правила и данные, которые мы не меняем
+
+| Путь | Что это |
 |---|---|
-| [docs/pipeline.md](docs/pipeline.md) | Как устроен пайплайн, папки прогона, порядок работы |
-| [docs/discussion.md](docs/discussion.md) | Журнал обсуждений и принятые решения |
-| [docs/design-space.md](docs/design-space.md) | Каталог параметров, метрик и протоколов |
-| [plan.md](plan.md) | Исходный план и анализ задачи |
-| [docs/task.md](docs/task.md), [docs/checklist.md](docs/checklist.md) | Задание и чек-лист организаторов |
-| [data/README.md](data/README.md) | Данные и их формат |
+| [docs/organizers/task.md](docs/organizers/task.md) | Задание хакатона (текстовая версия PDF) |
+| [docs/organizers/checklist.md](docs/organizers/checklist.md) | Чек-лист: 8 критериев, шкалы, правила расчёта, памятка |
+| [docs/organizers/criteria.md](docs/organizers/criteria.md) | Критерии отбора топ-50 |
+| [docs/organizers/results-format.md](docs/organizers/results-format.md) | Как сдать результаты: `results/dev` и `results/prod`, формат JSON 1.0, коды критериев, контроль за 1 час до стоп-кода |
+| [docs/organizers/announcements.md](docs/organizers/announcements.md) | Сообщения организаторов по ходу хакатона: отбор по совокупности факторов, корпоративный стиль интерфейса, живая демонстрация, подход к оценке точности |
+| [docs/organizers/company.md](docs/organizers/company.md) | Презентация компании (фон) |
+| `docs/organizers/*.pdf` | Исходные PDF (локально, не в git) |
+| `data/dev/` | Набор DEV из API организаторов: `raw.json` — без изменений; `conversations/`, `transcripts/`, `index.*` — наша раскладка по файлам |
+| [data/checklists/default/v1.json](data/checklists/default/v1.json) | Чек-лист организаторов в машиночитаемом виде — версия v1, не меняется |
 
-## Структура
+### Наше — обсуждения, решения, планы, код
+
+| Путь | Что это |
+|---|---|
+| [docs/team/discussion.md](docs/team/discussion.md) | Журнал обсуждений и принятые решения (главный документ дизайна) |
+| [docs/team/design-space.md](docs/team/design-space.md) | Каталог параметров, метрик и протоколов |
+| [docs/team/pipeline.md](docs/team/pipeline.md) | Как устроен текущий пайплайн, папки прогона, порядок работы |
+| [docs/team/plan.md](docs/team/plan.md) | Исходный план и анализ задачи |
+| [docs/team/labeling/](docs/team/labeling/README.md) | Разметка нашего эталона DEV: промпт для чата-помощника, порции диалогов, свод спорных трактовок, метки |
+| [docs/team/agent-briefs/](docs/team/agent-briefs/README.md) | Кто что делает параллельно, задания для сессий и агентов |
+| `docs/team/variants/`, `variants/` | Альтернативные прототипы пайплайна (Antigravity, Codex) |
+| `data/checklists/<id>/v2+` | Наши версии чек-листа (появятся при изменениях) |
+| `cqa/`, `scripts/`, `tests/` | Код |
+| `prompts/templates/` | Шаблоны промптов |
+| `config/` | Параметры пайплайна и цены моделей |
+| `runs/` | Прогоны: промпты, ответы моделей, проверки, отчёты |
+| `history/` | Журнал событий (только добавление) |
+
+## Структура кода
 
 ```
 cqa/                 пайплайн: checklist, conversation, prompts, responses, scoring, run, report, cli
 prompts/templates/   шаблоны промптов
 config/              параметры пайплайна и цены моделей
 data/                чек-листы (версии) и наборы диалогов
-runs/                прогоны: промпты, ответы агентов, проверки, отчёты
-history/             журнал событий (только добавление)
+runs/                прогоны
+history/             журнал событий
 tests/               тесты
 ```
