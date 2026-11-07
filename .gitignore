@@ -13,3 +13,6 @@ __pycache__/
 
 # Original PDFs (text versions live in docs/*.md)
 docs/*.pdf
+
+# Python test/cache
+.pytest_cache/

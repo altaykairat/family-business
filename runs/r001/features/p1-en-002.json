@@ -1,0 +1,22 @@
+{
+  "conversation_id": "p1-en-002",
+  "operator_name_guess": "Noah",
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12
+  ],
+  "time_to_first_operator_reply_s": 56,
+  "operator_reply_gaps_s": [],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 12,
+    "speaker": "operator",
+    "text": "Glad you got in. Have a good day!"
+  },
+  "last_client_idx": 11,
+  "seconds_from_last_client_to_end": 21,
+  "last_operator_idx": 12,
+  "duplicate_turn_idxs": []
+}

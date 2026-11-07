@@ -1,0 +1,1 @@
+{"ts": "2026-11-07T16:24:54+05:00", "type": "run_prepared", "run_id": "r001", "dataset": "dev", "checklist": "default@v1", "variant": "v1", "template": "v1", "params_hash": "599d43ff8cb2", "conversations": 65, "agents": ["claude", "codex", "antigravity"]}

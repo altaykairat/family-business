@@ -1,0 +1,76 @@
+{
+  "conversation_id": "p1-ru-010",
+  "operator_name_guess": "Соня",
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 11,
+  "operator_turn_idxs": [
+    11,
+    13,
+    16,
+    19,
+    21,
+    23,
+    26,
+    28,
+    30,
+    32
+  ],
+  "time_to_first_operator_reply_s": 88,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 12,
+      "operator_idx": 13,
+      "seconds": 49
+    },
+    {
+      "client_idx": 14,
+      "operator_idx": 16,
+      "seconds": 74
+    },
+    {
+      "client_idx": 17,
+      "operator_idx": 19,
+      "seconds": 71
+    },
+    {
+      "client_idx": 20,
+      "operator_idx": 21,
+      "seconds": 41
+    },
+    {
+      "client_idx": 22,
+      "operator_idx": 23,
+      "seconds": 39
+    },
+    {
+      "client_idx": 24,
+      "operator_idx": 26,
+      "seconds": 84
+    },
+    {
+      "client_idx": 27,
+      "operator_idx": 28,
+      "seconds": 34
+    },
+    {
+      "client_idx": 29,
+      "operator_idx": 30,
+      "seconds": 36
+    },
+    {
+      "client_idx": 31,
+      "operator_idx": 32,
+      "seconds": 38
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 32,
+    "speaker": "operator",
+    "text": "Спасибо. Вопрос о позиции передан. Хорошего вечера!"
+  },
+  "last_client_idx": 31,
+  "seconds_from_last_client_to_end": 38,
+  "last_operator_idx": 32,
+  "duplicate_turn_idxs": []
+}

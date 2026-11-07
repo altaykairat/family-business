@@ -1,6 +1,6 @@
 # Чек-лист качества чатов
 
-> Источник: `CQA_Chat_Quality_Checklist 1.pdf` (Freedom Broker / Хакатон). Восемь критериев для оценки работы оператора по переписке. Машиночитаемая версия — [../data/checklists/default.json](../data/checklists/default.json).
+> Источник: `CQA_Chat_Quality_Checklist 1.pdf` (Freedom Broker / Хакатон). Восемь критериев для оценки работы оператора по переписке. Машиночитаемая версия — [../data/checklists/default/v1.json](../data/checklists/default/v1.json).
 
 ## Критерии
 

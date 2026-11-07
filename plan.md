@@ -56,7 +56,7 @@
 1. **Приоритет:** точность оценщика → стабильное демо → фичи.
 2. **LLM определяет ответы, код считает баллы.** Модель возвращает по каждому критерию ответ / ступень шкалы, обоснование и номера реплик-доказательств. Веса, перераспределение N/A, пересчёт шкалы, округление — детерминированный код с юнит-тестами.
 3. **Промпт полностью генерируется из чек-листа.** Ни одного упоминания конкретного критерия в коде. Новый / изменённый критерий работает без правок кода.
-4. **Схема чек-листа** — [data/checklists/default.json](data/checklists/default.json): секции, типы `binary` / `scale` / `flag`, `weight`, `scale[]`, `na_allowed` + `na_condition`, `global_rules[]`, `scoring`. Грубые ошибки — отдельный тип `flag` (без веса, выводится отдельно).
+4. **Схема чек-листа** — [data/checklists/default/v1.json](data/checklists/default/v1.json): секции, типы `binary` / `scale` / `flag`, `weight`, `scale[]`, `na_allowed` + `na_condition`, `global_rules[]`, `scoring`. Грубые ошибки — отдельный тип `flag` (без веса, выводится отдельно).
 5. **Общие правила (`global_rules`) редактируются в UI.** Туда же пишем наши трактовки спорных мест — они переживут замену критерия.
 6. **Данные в git — только текст:** документы в Markdown, датасет в JSON + MD, PDF игнорируются. Скрипт [scripts/fetch_dataset.py](scripts/fetch_dataset.py) скачивает любой `group_id`.
 
@@ -205,7 +205,7 @@
 ## 9. Что уже сделано
 
 - PDF переведены в Markdown: [docs/task.md](docs/task.md), [docs/checklist.md](docs/checklist.md), [docs/company.md](docs/company.md).
-- Чек-лист в JSON: [data/checklists/default.json](data/checklists/default.json).
+- Чек-лист в JSON: [data/checklists/default/v1.json](data/checklists/default/v1.json).
 - DEV-набор разложен по файлам: [data/dev/](data/dev/index.md) — `raw.json`, `conversations/*.json` (с `idx`), `transcripts/*.md`, `index.md` / `index.csv`.
 - Скрипт загрузки любого набора: [scripts/fetch_dataset.py](scripts/fetch_dataset.py) (`cp .env.example .env`, вписать `CQA_API_URL`).
 

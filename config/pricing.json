@@ -1,0 +1,6 @@
+{
+  "_comment": "Цены за 1 млн токенов в USD. Заполнить актуальными прайсами провайдеров перед расчётом стоимости; null — стоимость не считается.",
+  "claude": {"input_per_mtok": null, "output_per_mtok": null},
+  "codex": {"input_per_mtok": null, "output_per_mtok": null},
+  "gemini": {"input_per_mtok": null, "output_per_mtok": null}
+}
