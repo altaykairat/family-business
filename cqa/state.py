@@ -159,7 +159,7 @@ def _apply(s: State, e: dict) -> None:
     elif t == "appeal_filed":
         s.appeals[e["appeal_id"]] = {**{k: e.get(k) for k in ("appeal_id", "evaluation_id", "conversation_id",
                                                               "criterion_id", "operator_id", "comment", "turn_idx",
-                                                              "attachments")},
+                                                              "attachments", "simulated")},
                                      "filed_by": e["actor"], "filed_at": e["ts"], "status": "open",
                                      "assigned_to": None, "assigned_at": None, "opened_at": None,
                                      "decision_id": None}

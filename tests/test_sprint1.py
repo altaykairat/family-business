@@ -204,6 +204,88 @@ class SubmissionTest(Workspace):
         self.assertIn("c09", str(e.exception))
 
 
+class SimulationTest(unittest.TestCase):
+    """sim.appeals on a copy of the real gold sets; the 'model' answers are fixtures."""
+
+    @classmethod
+    def setUpClass(cls):
+        from cqa import groundtruth, people
+
+        cls.tmp = Path(tempfile.mkdtemp(prefix="cqa-sim-"))
+        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists")
+        shutil.copytree(common.ROOT / "data" / "ground_truth", cls.tmp / "data" / "ground_truth")
+        common.use_workspace(cls.tmp)
+        state._CACHE.clear()
+        cls.gold = groundtruth.gold("dev-gold@v1", "tune")
+        cls.ids = sorted(cls.gold["items"])[:4]
+        cfg = common.load_config()
+        cfg["agents"] = ["m"]
+        run.prepare("sim", "dev", "default", "v1", cfg, ids=cls.ids, author="a-01")
+        for n, cid in enumerate(cls.ids):  # gold answers with two deliberate errors per conversation
+            ans = {k: lab["answer"] for k, lab in cls.gold["items"][cid].items()}
+            ans["c05"] = "no" if ans["c05"] == "yes" else "yes"
+            ans["c07"] = "yes" if ans["c07"] != "yes" else "no"
+            run.submit_response("sim", "m", cid, response(ans), actor="a-01")
+        run.ingest("sim", cfg)
+        people.seed_demo("dev", "a-01")
+        people.confirm_suggestions("a-01")
+
+    @classmethod
+    def tearDownClass(cls):
+        common.use_workspace(None)
+        state._CACHE.clear()
+        shutil.rmtree(cls.tmp, ignore_errors=True)
+
+    def test_appeals_from_discrepancies(self):
+        from cqa import simulation
+
+        with self.assertRaises(common.CQAError):  # a reviewer may not press the simulation button
+            simulation.run("dev-gold@v1", "sim:m", "r-01")
+        res = simulation.run("dev-gold@v1", "sim:m", "a-01", reviewers=["r-01", "r-02", "r-03"])
+        s = res["stats"]
+        self.assertEqual(s["conversations"], 4)
+        self.assertEqual(s["discrepancies"], 8)
+        self.assertEqual(s["appeals"], 8)
+        self.assertEqual(s["by_criterion"], {"c05": 4, "c07": 4})
+        st = state.load()
+        d = st.decisions[res["items"][0]["decision_id"]]
+        self.assertEqual(d["simulated"]["batch"], res["batch"])
+        self.assertIn(d["type"], ("A", "B"))
+        self.assertEqual(d["reason"], self.gold["items"][d["conversation_id"]][d["criterion_id"]]["comment"])
+        ap = st.appeals[res["items"][0]["appeal_id"]]
+        self.assertEqual(ap["filed_by"], st.operator_of[ap["conversation_id"]])  # filed by the dialog's operator
+        self.assertTrue(ap["simulated"])
+        self.assertEqual({i["reviewer"] for i in res["items"]}, {"r-01", "r-02", "r-03"})
+        # final answers now equal the gold labels → a second run finds nothing to appeal
+        again = simulation.run("dev-gold@v1", "sim:m", "a-01", reviewers=["r-01"])
+        self.assertEqual(again["stats"]["discrepancies"], 0)
+
+    def test_noise(self):
+        from cqa import simulation
+
+        cfg = common.load_config()
+        cfg["agents"] = ["m"]
+        run.prepare("sim2", "dev", "default", "v1", cfg, ids=self.ids, author="a-01")
+        for cid in self.ids:
+            ans = {k: lab["answer"] for k, lab in self.gold["items"][cid].items()}
+            ans["c05"] = "no" if ans["c05"] == "yes" else "yes"
+            run.submit_response("sim2", "m", cid, response(ans), actor="a-01")
+        run.ingest("sim2", cfg)
+        res = simulation.run("dev-gold@v1", "sim2:m", "a-01", reviewers=["r-01"], noise=0.5, seed=1)
+        wrong = [i for i in res["items"] if i["wrong"]]
+        self.assertEqual(res["stats"]["noise_rejected"], len(wrong))
+        self.assertTrue(0 < len(wrong) < 4)
+        d = state.load().decisions[wrong[0]["decision_id"]]
+        self.assertEqual((d["type"], d["action"], d["simulated"]["wrong"]), ("D", "confirm", True))
+
+    def test_type_rule(self):
+        from cqa import simulation
+
+        self.assertEqual(simulation._type_for("[буквально по чек-листу] нет прощания"), "B")
+        self.assertEqual(simulation._type_for("по правилу R4 обрыв — N/A"), "B")
+        self.assertEqual(simulation._type_for("Оператор не поздоровался."), "A")
+
+
 class InsufficientDataTest(Workspace):
     def test_validator_and_queue(self):
         conv = cv.load("dev", "p1-ru-001")

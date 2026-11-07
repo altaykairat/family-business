@@ -22,8 +22,13 @@ def _next_id(prefix: str, existing) -> str:
     return f"{prefix}-{len(existing) + 1:04d}"
 
 
+def _sim(simulated: Optional[dict]) -> dict:
+    """Simulated actions (sim.appeals) carry the batch tag in every event; real ones carry nothing extra."""
+    return {"simulated": simulated} if simulated else {}
+
+
 def file(evaluation_id: str, criterion_id: str, comment: str, actor: str, operator_id: Optional[str] = None,
-         turn_idx: Optional[int] = None, attachments: Optional[list] = None) -> dict:
+         turn_idx: Optional[int] = None, attachments: Optional[list] = None, simulated: Optional[dict] = None) -> dict:
     st = state.load()
     role = access.require(actor, "appeal.file", st)
     ev = st.evaluation(evaluation_id)
@@ -45,11 +50,11 @@ def file(evaluation_id: str, criterion_id: str, comment: str, actor: str, operat
     events.append("appeal_filed", actor=actor, appeal_id=appeal_id, evaluation_id=evaluation_id,
                   conversation_id=ev["conversation_id"], criterion_id=criterion_id, operator_id=operator_id,
                   comment=comment, turn_idx=turn_idx, attachments=stored,
-                  disputed_answer=st.final(evaluation_id)["final"]["answers"].get(criterion_id))
+                  disputed_answer=st.final(evaluation_id)["final"]["answers"].get(criterion_id), **_sim(simulated))
     return {"appeal_id": appeal_id}
 
 
-def assign(appeal_id: str, reviewer_id: str, actor: str) -> dict:
+def assign(appeal_id: str, reviewer_id: str, actor: str, simulated: Optional[dict] = None) -> dict:
     st = state.load()
     access.require(actor, "appeal.assign", st)
     ap = st.appeal(appeal_id)
@@ -58,7 +63,7 @@ def assign(appeal_id: str, reviewer_id: str, actor: str) -> dict:
     if st.role_of(reviewer_id) not in ("reviewer", "admin"):
         raise CQAError(f"{reviewer_id} is not a reviewer")
     events.append("appeal_assigned", actor=actor, appeal_id=appeal_id, reviewer_id=reviewer_id,
-                  conversation_id=ap["conversation_id"], criterion_id=ap["criterion_id"])
+                  conversation_id=ap["conversation_id"], criterion_id=ap["criterion_id"], **_sim(simulated))
     return {"appeal_id": appeal_id, "assigned_to": reviewer_id}
 
 
@@ -129,7 +134,7 @@ def _turn(t: dict) -> dict:
 def decide(actor: str, action: str, reason: str, appeal_type: str, appeal_id: Optional[str] = None,
            evaluation_id: Optional[str] = None, criterion_id: Optional[str] = None, new_answer=None,
            overall_score: Optional[float] = None, time_spent_s: Optional[float] = None,
-           revise: bool = False) -> dict:
+           revise: bool = False, simulated: Optional[dict] = None) -> dict:
     """Reviewer decision — ground truth (decision 7). Without appeal_id it is an audit decision (AP.7)."""
     st = state.load()
     access.require(actor, "decision.make", st)
@@ -187,7 +192,7 @@ def decide(actor: str, action: str, reason: str, appeal_type: str, appeal_id: Op
                   blind=bool(st.reviewer_settings.get(actor, {}).get("blind")),
                   revealed=any(r["reviewer_id"] == actor and r.get("appeal_id") == appeal_id for r in st.reveals),
                   time_spent_s=time_spent_s, overall_score=overall_score, supersedes=previous and previous["decision_id"],
-                  total_delta=points_delta, agent=ev["agent"], run_id=ev["run_id"])
+                  total_delta=points_delta, agent=ev["agent"], run_id=ev["run_id"], **_sim(simulated))
     fin = state.load().final(evaluation_id)
     return {"decision_id": decision_id, "old_answer": old, "new_answer": new,
             "original_total": fin["original"]["total"], "final_total": fin["final"]["total"],

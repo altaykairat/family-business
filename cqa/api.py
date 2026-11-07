@@ -354,6 +354,18 @@ def _run_submit(actor, run_id, agent, name, text, usage=None):
     return run.submit_response(run_id, agent, name, text, usage, actor)
 
 
+@command("sim.appeals", summary="Simulated reviewer: every discrepancy of a source with the gold labels on a split "
+         "becomes an operator appeal + reviewer decision = gold label (marked simulated)",
+         params={"gold": P(required=True, help="gold set, e.g. dev-gold@v1"), "source": P(required=True, help="run:agent"),
+                 "split": P(default="tune"), "reviewers": P("list", help="default: first three reviewers"),
+                 "noise": P("float", default=0.0, help="share of deliberately wrong decisions"),
+                 "seed": P("int", default=7), "limit": P("int", default=0), "criteria": P("list")})
+def _sim_appeals(actor, gold, source, split="tune", reviewers=None, noise=0.0, seed=7, limit=0, criteria=None):
+    from . import simulation
+
+    return simulation.run(gold, source, actor, split, reviewers, noise, seed, limit, criteria)
+
+
 @command("results.export", mc="S8.4", summary="Write results/<dev|prod>/results.json in the organizers' format "
          "(schema 1.0) and check it", params={"set": P(default="dev", help="dev | prod"), "dataset": P(),
                                               "source": P(help="run:agent; default published + reviewer decisions"),

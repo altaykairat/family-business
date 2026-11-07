@@ -39,6 +39,7 @@ RULES = {
     "dataset.manage": {"admin", "supervisor"},
     "metrics.run": STAFF,
     "export": STAFF,
+    "simulation.run": {"admin"},
 }
 
 
