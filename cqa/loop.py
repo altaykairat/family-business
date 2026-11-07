@@ -120,9 +120,20 @@ def patterns(decisions: list, st: Optional[state.State] = None) -> dict:
             "ready": [g for g in out if g["ready"]], "accumulating": [g for g in out if not g["ready"]]}
 
 
+def gold_matches(d: dict, gold: str) -> bool:
+    """Real decisions always match; a simulated one only if it used `gold` (set id or set@vN)."""
+    sim = d.get("simulated")
+    if not sim:
+        return True
+    used = sim.get("gold") or ""
+    return used == gold or used.split("@")[0] == gold
+
+
 # --- digest (S10.2) -------------------------------------------------------------------------
 
-def build_digest(actor: str = "system", window: Optional[str] = None) -> dict:
+def build_digest(actor: str = "system", window: Optional[str] = None, gold: Optional[str] = None) -> dict:
+    """`gold` — only decisions of simulated reviewers that used this gold set (R-flip: dev-gold-strict) plus no
+    other simulated batches; real human decisions are always kept."""
     st = state.load()
     window = window or common.setting("loop.digest_window", "since_active_version")
     cid = "default"
@@ -132,6 +143,8 @@ def build_digest(actor: str = "system", window: Optional[str] = None) -> dict:
         acts = [e for e in st.checklist_events if e["type"] == "version_activated" and e.get("ref") == ref]
         since = acts[-1]["ts"] if acts else None
     decisions = [d for d in st.decisions.values() if since is None or d["decided_at"] >= since]
+    if gold:
+        decisions = [d for d in decisions if gold_matches(d, gold)]
     by_crit: dict = {}
     for d in decisions:
         b = by_crit.setdefault(d["criterion_id"], {"decisions": 0, "changed": 0, "types": Counter(), "cases": []})
@@ -160,6 +173,7 @@ def build_digest(actor: str = "system", window: Optional[str] = None) -> dict:
     pats = patterns(decisions, st)
     digest = {
         "digest_id": f"dg-{len(st.digests) + 1:04d}", "checklist": ref, "window": window, "since": since,
+        "gold_filter": gold,
         "rules": {"min_cases_for_rule": min_rule, "min_cases_for_weight": min_weight,
                   "weights_only_from_type": "C"},
         "totals": {"evaluations": len(evals), "appeals": len(st.appeals), "decisions": len(decisions),
@@ -194,12 +208,13 @@ def for_orchestrator(digest: dict) -> dict:
             "gaps_type_B": [c for c in digest["gaps_type_B"] if c["decision_id"] in ready]}
 
 
-def analyze(actor: str, digest_id: Optional[str] = None, provider: Optional[str] = None, force: bool = False) -> dict:
+def analyze(actor: str, digest_id: Optional[str] = None, provider: Optional[str] = None, force: bool = False,
+            gold: Optional[str] = None) -> dict:
     """«Проанализировать историю»: digest → orchestrator task, only when some pattern is above the thresholds
     (or type-C decisions are enough for a weight proposal). Otherwise nothing is sent: patterns keep accumulating."""
     from . import tasks
 
-    digest = load_digest(digest_id) if digest_id else build_digest(actor)
+    digest = load_digest(digest_id) if digest_id else build_digest(actor, gold=gold)
     ready_c = [c for c, b in digest["criteria"].items() if b.get("ready_for_weight")]
     if not digest["patterns"]["ready"] and not ready_c and not force:
         return {"task": None, "digest_id": digest["digest_id"], "status": "accumulating",

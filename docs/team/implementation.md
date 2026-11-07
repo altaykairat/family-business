@@ -7,7 +7,7 @@
 ## Запуск
 
 ```bash
-python3 -m unittest discover -s tests          # 46 тестов: база + платформа + Antigravity
+python3 -m unittest discover -s tests          # 66 тестов: база + платформа + спринт 1 + Antigravity
 python3 -m cqa commands                         # контракт: все команды (то же, что GET /api/v1/commands)
 python3 -m cqa serve                            # HTTP API на http://127.0.0.1:8765/api/v1/
 python3 -m cqa <команда> key=value …            # любая команда из CLI, например:
@@ -16,6 +16,53 @@ python3 -m cqa appeal.file evaluation_id=… criterion_id=c07 comment="…" acto
 ```
 
 Классические команды итерации 1 (`prepare`, `ingest`, `report`, `checklist …`) работают как раньше.
+
+## Спринт 1: что добавлено
+
+Задание — [agent-briefs/sprint-1.md](agent-briefs/sprint-1.md), раздел «Сессия реализации». Каждый пункт — команда API и тест в [tests/test_sprint1.py](../../tests/test_sprint1.py).
+
+| # | Что | Команды | Код |
+|---|---|---|---|
+| 0 | **Помощник ручной вставки.** Работает с любым прогоном, включая варианты (`variants/*/runs/…`). Текущий промпт — всегда первый без ответа, скрытого состояния нет. Ответ сразу проверяется парсером, а для прогонов платформы ещё и валидатором (все критерии, номера реплик). Если ответ не принят, файл не сохраняется: «перевставь». Если в буфере всё ещё промпт — это тоже ловится | `scripts/paste.py next / save / status / go`, `paste.*` | [manual.py](../../cqa/manual.py), [paste.py](../../scripts/paste.py) |
+| 4 | **Уточнения правил и прецеденты в промпте.** Уточнение (`u1`, `u2`…) — отдельная сущность версии чек-листа: текст, причина, критерий или «все», источник. У каждого своя ревизия (`u1@r2`), правка — через ops. `{{RULES}}` превращается в раздел «## Уточнения правил»; уточнение к критерию попадает только в промпты этого критерия. `{{PRECEDENTS}}` превращается в раздел «## Прецеденты»: ситуация, решение проверяющего, причина. Прецеденты отбираются при `run.prepare` и замораживаются в манифесте. Если подставлять нечего, раздела нет вовсе. Набор уточнений и прецедентов входит в `prompt_id` (`…\|ctx:<hash>`) и в версии оценки. Шаблон без `{{RULES}}` (v1) получает уточнения внутри критериев. `insufficient_data` проверяется валидатором и выводится в CSV, в карточке и в `review.queue` | `checklist.change` (`add_clarification` …), `run.prepare precedents=`, `review.queue` | [checklist.py](../../cqa/checklist.py), [prompts.py](../../cqa/prompts.py), [evaluations.py](../../cqa/evaluations.py) |
+| 1 | **Экспорт в формат организаторов** `results/<dev\|prod>/results.json`. Профиль соответствия кодов — `config/platform.json → submission`. Источник — опубликованные оценки с решениями проверяющих или любой `run:agent`. Диалог без валидного результата получает `status: "error"`, а не ноль. Проверка перед push: UTF-8, схема, уникальные ID, ровно 8 критериев, типы значений, `final_score` и пересчёт по формуле, `critical_flag`, число записей. Если чек-лист не соответствует 8 кодам, экспорт выдаёт понятную ошибку. Рядом пишется `provenance.json` — откуда каждая запись | `results.export`, `results.check` | [submission.py](../../cqa/submission.py) |
+| 2 | **Симулированный проверяющий.** Каждое расхождение с эталоном на части `tune` становится апелляцией от оператора диалога. Проверяющие назначаются по кругу, решение равно метке эталона, причина — комментарий эталона. Тип B, если комментарий ссылается на правило или трактовку (шаблоны в конфиге), иначе A. `noise` — доля намеренно отклонённых апелляций (тип D). Все события помечены `simulated: {batch, gold, split, noise}`. Кнопка доступна только админу | `sim.appeals` | [simulation.py](../../cqa/simulation.py) |
+| 3 | **Уверенность закономерности.** Группа — «критерий × было → стало», общая и в разрезе одного признака ситуации: концовка, канал, язык, недовольство, ожидания. По группе считаются случаи, разные проверяющие, противоречащие решения (тот же критерий, тот же ответ модели, та же ситуация, но другой ответ проверяющего) и нижняя граница Уилсона. Пороги — `loop.patterns`. Оркестратор видит только готовые группы. `loop.analyze` не создаёт задачу, пока всё «копится» (`force=true` — обойти) | `loop.patterns`, `loop.analyze` | [loop.py](../../cqa/loop.py) |
+| 5 | **«До и после» одной командой.** Два источника на отложенной части: макро- и микро-точность, MAE, «Нет»↔N/A, Макнемар, изменения по критериям и точные списки «исправлено / сломано / осталось» | `metrics.before_after` → `history/reports/before-after-*.md` | [metrics.py](../../cqa/metrics.py) |
+| 6 | **Сценарии жюри сквозняком.** Работают целиком через `api.call`, проверено приёмочным тестом. (1) `jury.gross_errors` — список с объяснением флага и репликами. (2) Апелляция от оператора, `appeal.decide`. (3) `checklist.change` (критерий + вес) → активация → `eval.rescore`: пересчёт без LLM, решения проверяющих сохраняются. Новый или переформулированный критерий — `run.prepare criteria=c09`: промпт только по нему. (4) Карточка с обоснованием и доказательствами | `jury.gross_errors`, `eval.rescore`, `run.prepare criteria=` | [jury.py](../../cqa/jury.py) |
+| 7 | **Открытость.** У карточки есть блок `trace` с файлами промпта и ответа. `trace`: точный текст промпта и сырой ответ (с `include_text=true`) с хешами, `prompt_id`, все версии (чек-лист, шаблон, параметры, признаки, модели, код, уточнения, прецеденты), происхождение каждого ответа (`llm` / `carried` / `carried:reviewer` / `llm:<run>`), цепочка пересчётов до исходной оценки LLM, все действия людей | `trace`, `conversation.card` | [jury.py](../../cqa/jury.py) |
+
+### Порядок прогонов (команды)
+
+Ручная вставка: `python3 scripts/paste.py go --run <прогон>`. Скрипт кладёт промпт в буфер. Вставь его в **новый** чат, скопируй ответ целиком и нажми Enter. Ответ проверится, сохранится, и в буфере окажется следующий промпт. `s` — пропустить, `q` — выйти; `status` — сколько осталось.
+
+```bash
+# R-base: шаблон v2, вариант V1, основная модель (агент sonnet → claude-sonnet-5-5; для Opus — agents=opus)
+python3 -m cqa run.prepare run_id=r-base template=v2 agents=sonnet
+python3 scripts/paste.py go --run r-base                       # 65 вставок
+python3 -m cqa run.ingest run_id=r-base
+python3 -m cqa eval.import source=r-base:sonnet
+python3 -m cqa eval.publish source=r-base:sonnet
+python3 -m cqa metrics.compare gold=dev-gold@v1 sources=r-base:sonnet
+python3 -m cqa results.export set=dev model_name="Claude Sonnet 5.5"   # → results/dev/results.json + проверка
+
+# Цикл на tune
+python3 -m cqa people.seed_demo dataset=dev && python3 -m cqa people.confirm_suggestions
+python3 -m cqa sim.appeals gold=dev-gold@v1 source=r-base:sonnet split=tune reviewers=r-01,r-02,r-03
+python3 -m cqa loop.patterns                                    # что готово, что копится
+python3 -m cqa loop.analyze                                     # задача оркестратору → task.prompt / task.submit
+python3 -m cqa proposal.list status=open                        # → proposal.preview → proposal.accept → default@vN
+python3 -m cqa run.prepare run_id=r-loop template=v2 agents=sonnet checklist=default@vN split=dev-gold@v1:test
+python3 scripts/paste.py go --run r-loop                        # 26 вставок
+python3 -m cqa run.ingest run_id=r-loop && python3 -m cqa eval.import source=r-loop:sonnet
+python3 -m cqa regression.run candidate=r-loop:sonnet baseline=r-base:sonnet gold=dev-gold@v1 split=test
+python3 -m cqa version.activate ref=default@vN reason="цикл: …"
+python3 -m cqa metrics.before_after gold=dev-gold@v1 before=r-base:sonnet after=r-loop:sonnet
+
+# Тест адаптивности (R-flip): sim.appeals gold=dev-gold-strict@v1 …, loop.analyze gold=dev-gold-strict, before_after gold=dev-gold-strict@v1
+```
+
+Перед R-flip нужна отдельная ветка версий от `default@v1`: предложения строгого эталона применяются к v1, а не к v3 (при принятии предложения правьте `base`, или откатите HEAD на v1 через `version.activate ref=default@v1`). Решения разных эталонов различаются полем `simulated.gold`, а `loop.patterns` / `loop.digest` / `loop.analyze` принимают `gold=dev-gold-strict`: в выжимку попадают только симулированные решения этого эталона и реальные решения людей.
 
 ## Архитектура
 
@@ -176,10 +223,21 @@ loop.digest (алгоритм, проверяемый digest.json)
 | `versions.diff` | GET |  |  | *kind, *name, *a, *b |
 | `params.get` | GET |  |  | — |
 | `params.set` | POST |  | Change one pipeline parameter (new params version, logged) | *key, *value, *reason |
-| `run.prepare` | POST | MC.3 | «Оценить»: build prompts (S1–S3) for a set of conversations | *run_id, dataset, checklist, variant, ids, sample, agents, template |
+| `run.prepare` | POST | MC.3 | «Оценить»: build prompts (S1–S3) for a set of conversations | *run_id, dataset, checklist, variant, ids, sample, agents, template, precedents, criteria, split |
 | `run.status` | GET |  |  | *run_id |
 | `run.prompt` | GET |  | Text of one prompt to paste into a chat | *run_id, *name |
 | `run.submit` | POST |  | Paste a model answer for one prompt (manual provider) | *run_id, *agent, *name, *text, usage |
+| `sim.appeals` | POST |  | Simulated reviewer: every discrepancy of a source with the gold labels on a split becomes an operator appeal + reviewer decision = gold label (marked simulated) | *gold, *source, split, reviewers, noise, seed, limit, criteria |
+| `jury.gross_errors` | GET |  | Dialogs with a gross error: flag explanation, evidence turns, total | source, until |
+| `eval.rescore` | POST |  | New checklist version → recompute published evaluations without LLM; new or reworded criteria from fill_from (a run prepared with criteria=…) | *ref, fill_from, publish, ids |
+| `trace` | GET |  | Where an answer came from: exact prompt and raw response files, all versions (checklist, template, params, rule clarifications, precedents) and every human action | *conversation_id, evaluation_id, criterion_id, include_text, until |
+| `results.export` | POST | S8.4 | Write results/<dev/prod>/results.json in the organizers' format (schema 1.0) and check it | set, dataset, source, profile, model_name, model_mode, path |
+| `results.check` | GET |  | Pre-push check of a results.json: UTF-8, schema, 8 criteria once, value types, unique ids, expected count | *path, set, profile, expected |
+| `metrics.before_after` | POST |  | Slide «до и после»: two sources on the held-out split — accuracy change, McNemar, labels fixed / broken / still wrong | *gold, *before, *after, split, save |
+| `review.queue` | GET |  | Answers to show a reviewer first: insufficient_data, ambiguities, low confidence, failed evidence check, models disagree | source, reasons, until |
+| `paste.status` | GET |  | Manual paste: done / waiting prompts of any run folder (also variants/*/runs) | *run, agent |
+| `paste.next` | GET |  | Manual paste: the next prompt without a response (text to paste into a fresh chat) | *run, agent |
+| `paste.save` | POST |  | Manual paste: check the model answer at once and save it to the current prompt | *run, *text, agent, name, force |
 | `run.dispatch` | POST | MC.3 | Send waiting prompts through the agent's provider (CLI/API when enabled) | *run_id, *agent, provider, limit |
 | `run.ingest` | POST |  | S5–S7: validate pasted answers and score | *run_id, agents |
 | `run.report` | POST |  | Agents head-to-head report of a run | *run_id |
@@ -201,8 +259,9 @@ loop.digest (алгоритм, проверяемый digest.json)
 | `precedent.mark` | POST | MC.7 | «Использовать как прецедент» (or on=false to withdraw) | *decision_id, note, on |
 | `precedent.list` | GET |  |  | criterion_id, until |
 | `precedent.render` | GET |  | Precedents block for a prompt (mechanism A, HX.6) | *conversation_id, criteria, dataset, k |
-| `loop.digest` | POST | MC.8 | Algorithmic extract of the history (S10.2) — what the orchestrator sees | — |
-| `loop.analyze` | POST | MC.8 | «Проанализировать историю»: digest → orchestrator task (proposals) | digest_id, provider |
+| `loop.digest` | POST | MC.8 | Algorithmic extract of the history (S10.2) — what the orchestrator sees | gold |
+| `loop.analyze` | POST | MC.8 | «Проанализировать историю»: digest → orchestrator task (proposals) | digest_id, provider, force, gold |
+| `loop.patterns` | GET |  | Patterns «criterion × was → became × situation» with confidence: ready (above thresholds) and accumulating | gold |
 | `checklist.request_edit` | POST |  | Change in plain words → orchestrator task → proposal (K.7) | *request, base |
 | `task.list` | GET |  |  | kind, status, until |
 | `task.prompt` | GET |  |  | *task_id |
@@ -299,7 +358,7 @@ loop.digest (алгоритм, проверяемый digest.json)
 - HTTP-провайдер (API, локальная модель) — только контракт; включить — дописать `HttpProvider.complete`.
 - Подразумеваемые веса регрессией (CL.E) — нет данных (общих оценок проверяющих); поле `overall_score` в решении уже собирается.
 - Калибратор уверенности (A.6), подвопросы и V4/V5 — зона вариантов Antigravity и Codex; платформа принимает их результаты как источники.
-- Прецеденты в промпт подставляются только если в шаблоне есть `{{PRECEDENTS}}` — см. предложения дизайну.
+- Прецеденты подставляются, только если в шаблоне есть `{{PRECEDENTS}}` (в v2 есть). Отбор прецедентов — по тому же критерию и пересечению слов (CL.A), без признаков ситуации.
 - Ид апелляций, решений, задач берутся по счётчику состояния: при одновременных POST от разных пользователей возможна гонка (для демо с одним пользователем не проявляется; лечится генерацией ид под блокировкой журнала).
 - Проекция пересобирается целиком при каждом изменении журнала — на объёмах хакатона это доли секунды.
 
@@ -310,10 +369,11 @@ loop.digest (алгоритм, проверяемый digest.json)
 3. **Профили (K.4):** активную версию можно держать отдельно для `chat` и `voice call` — нужен ли отдельный профиль для звонков?
 4. **Регрессия перед активацией обязательна** (можно обойти с причиной). Порог `max_macro_drop_pp = 0` — оставить?
 5. **Эталон:** утвердить формат метки и порядок «черновик агентов → люди разрешают расхождения», размер и разбиение (сейчас 40 % в test).
+6. **`team_name` и `model.name` для сдачи** — сейчас в профиле `family-business` и «Claude Sonnet 5.5» (`config/platform.json → submission.profiles.default`). Нужны точное название команды, переданное организаторам, и фактическая модель R-base.
 
 ## Предложения другим
 
-- **Дизайну (`prompts/templates/`):** (а) добавить в шаблон плейсхолдер `{{PRECEDENTS}}` — платформа уже умеет отбирать и рендерить прецеденты (`precedent.render`); (б) забрать шаблоны задач оркестратора из `config/task_templates/` в `prompts/templates/task_<вид>.md` (платформа возьмёт их автоматически); (в) по результатам эксперимента с субагентами — см. раздел выше.
+- **Дизайну (`prompts/templates/`):** (а) `{{RULES}}` и `{{PRECEDENTS}}` в v2 уже рендерятся (спринт 1, пункт 4); (б) забрать шаблоны задач оркестратора из `config/task_templates/` в `prompts/templates/task_<вид>.md` (платформа возьмёт их автоматически); (в) по результатам эксперимента с субагентами — см. раздел выше.
 - **README (корень):** добавить строки запуска платформы: `python3 -m cqa serve`, `python3 -m cqa commands`, ссылку на этот документ.
 - **`.gitignore`:** `history/cache/` уже игнорируется вложенным `history/.gitignore`; при желании перенести правило в корневой.
 - **Antigravity и Codex:** результаты в формате `validated/<agent>/<id>.json` уже сравниваются платформой — `metrics.compare` / `metrics.agreement`, источник `variant:run:agent` или `run:agent`. Поле `checklist` в каждом результате или `manifest.json` рядом обязательны; `usage[].tokens_in/out` — для стоимости. Импорт в историю — `eval.import`.

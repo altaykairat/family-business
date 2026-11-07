@@ -300,6 +300,11 @@ class SimulationTest(unittest.TestCase):
             else Path(rep["paths"]["md"]).read_text(encoding="utf-8")
         self.assertIn("Исправлено **8**, сломано **1**", md)
 
+    def test_prepare_by_split(self):
+        r = api.call("run.prepare", "a-01", {"run_id": "sp", "split": "dev-gold@v1:test", "agents": ["m"],
+                                             "template": "v2"})["data"]
+        self.assertEqual(r["conversations"], 26)
+
     def test_type_rule(self):
         from cqa import simulation
 
@@ -334,6 +339,16 @@ class PatternsTest(Workspace):
         self.assertTrue(all(g["signature"]["situation"] == {} or set(g["decision_ids"]) != set(base["decision_ids"])
                             or g["contradictions"] != base["contradictions"]
                             for g in pats["ready"] + pats["accumulating"] if g["signature"]["criterion_id"] == "c07"))
+
+    def test_gold_filter(self):
+        from cqa import loop
+
+        real = self.dec(1, "p1-ru-001", "no", "na", "r-01")
+        a = {**self.dec(2, "p1-ru-002", "no", "na", "r-01"), "simulated": {"gold": "dev-gold@v1"}}
+        b = {**self.dec(3, "p1-ru-003", "no", "na", "r-01"), "simulated": {"gold": "dev-gold-strict@v1"}}
+        self.assertEqual([d["decision_id"] for d in (real, a, b) if loop.gold_matches(d, "dev-gold-strict")],
+                         ["d-0001", "d-0003"])
+        self.assertTrue(loop.gold_matches(a, "dev-gold@v1"))
 
     def test_analyze_waits_for_patterns(self):
         from cqa import loop

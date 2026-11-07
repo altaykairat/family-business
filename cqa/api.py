@@ -318,12 +318,18 @@ def _params_set(actor, key, value, reason):
                  "variant": P(default="v1"), "ids": P("list"), "sample": P("int", default=0),
                  "agents": P("list"), "template": P(),
                  "precedents": P("bool", default=True, help="insert selected precedents into {{PRECEDENTS}}"),
-                 "criteria": P("list", help="only these criteria (partial re-evaluation after a checklist change)")})
+                 "criteria": P("list", help="only these criteria (partial re-evaluation after a checklist change)"),
+                 "split": P(help="conversations of a gold split instead of ids, e.g. dev-gold@v1:test")})
 def _prepare(actor, run_id, dataset="dev", checklist="default", variant="v1", ids=None, sample=0, agents=None,
-             template=None, precedents=True, criteria=None):
+             template=None, precedents=True, criteria=None, split=None):
     from . import access
 
     access.require(actor, "evaluation.run")
+    if split:
+        set_spec, _, part = split.rpartition(":")
+        if not set_spec:
+            raise CQAError("split must look like dev-gold@v1:test")
+        ids = sorted(groundtruth.gold(set_spec, part)["items"])
     cfg = common.load_config()
     if agents:
         cfg["agents"] = agents
@@ -618,22 +624,24 @@ def _precedent_render(actor, conversation_id, criteria=None, dataset="dev", k=No
 
 # =============================== learning loop ===============================
 
-@command("loop.digest", mc="MC.8", summary="Algorithmic extract of the history (S10.2) — what the orchestrator sees")
-def _digest(actor):
-    return loop.build_digest(actor)
+@command("loop.digest", mc="MC.8", summary="Algorithmic extract of the history (S10.2) — what the orchestrator sees",
+         params={"gold": P(help="only simulated decisions of this gold set + real ones")})
+def _digest(actor, gold=None):
+    return loop.build_digest(actor, gold=gold)
 
 
 @command("loop.analyze", mc="MC.8", summary="«Проанализировать историю»: digest → orchestrator task (proposals)",
          params={"digest_id": P(), "provider": P(),
-                 "force": P("bool", default=False, help="create the task even if no pattern is above the thresholds")})
-def _analyze(actor, digest_id=None, provider=None, force=False):
-    return loop.analyze(actor, digest_id, provider, force)
+                 "force": P("bool", default=False, help="create the task even if no pattern is above the thresholds"),
+                 "gold": P(help="only simulated decisions of this gold set (e.g. dev-gold-strict) + real ones")})
+def _analyze(actor, digest_id=None, provider=None, force=False, gold=None):
+    return loop.analyze(actor, digest_id, provider, force, gold)
 
 
 @command("loop.patterns", "GET", summary="Patterns «criterion × was → became × situation» with confidence: ready "
-         "(above thresholds) and accumulating")
-def _patterns(actor):
-    return loop.patterns(list(state.load().decisions.values()))
+         "(above thresholds) and accumulating", params={"gold": P(help="only simulated decisions of this gold set + real")})
+def _patterns(actor, gold=None):
+    return loop.patterns([d for d in state.load().decisions.values() if not gold or loop.gold_matches(d, gold)])
 
 
 @command("checklist.request_edit", summary="Change in plain words → orchestrator task → proposal (K.7)",
