@@ -7,7 +7,7 @@ from urllib.parse import quote
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-from engine import Invalid
+from engine import Invalid, blank_answers
 
 
 PROMPT_VERSION = "rubric-first-v1"
@@ -71,14 +71,7 @@ def draft(conversation, checklist):
     key = os.environ.get("CQA_LLM_API_KEY", "").strip()
     if provider == "mock":
         model = "mock-technical-demo"
-        evidence = next((m["idx"] for m in conversation["transcript"] if m["speaker"] == "operator"), 1)
-        answers = {}
-        for criterion in checklist["criteria"]:
-            value = (min(step["value"] for step in criterion["scale"]) if criterion["type"] == "scale"
-                     else "no")
-            answers[criterion["id"]] = {"applicability": "applicable", "na_reason": "",
-                                         "answer": value, "evidence_idx": [evidence],
-                                         "explanation": "MOCK: техническая заглушка; критерий не оценивался моделью."}
+        answers = blank_answers(checklist)
         return {"answers": answers, "model": model, "provider": "mock", "usage": None,
                 "raw": json.dumps(answers, ensure_ascii=False), "duration_seconds": 0, "cost_usd": None,
                 "prompt_version": PROMPT_VERSION, "request": None}

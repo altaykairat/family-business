@@ -65,7 +65,9 @@ class ApiTests(unittest.TestCase):
                 eid = client.post("/api/evaluations", json={"conversation_id": "p1-kz-001"}).json()["id"]
                 result = client.post(f"/api/evaluations/{eid}/ai").json()
                 self.assertEqual(result["source"], "mock-technical-demo")
-                self.assertEqual(result["score"]["total"], 0)
+                self.assertIsNone(result["score"])
+                self.assertTrue(result["validation_errors"])
+                self.assertTrue(all(answer["answer"] is None for answer in result["answers"].values()))
                 self.assertEqual(result["events"][-1]["detail"]["provider"], "mock")
                 metrics = compare([{"conversation_id": "p1-kz-001", "answers": result["answers"]}], server.store)
                 self.assertIsNone(metrics["exact_agreement"])
@@ -76,7 +78,7 @@ class ApiTests(unittest.TestCase):
                     time.sleep(.05)
                     job = client.get("/api/batch/" + job["id"]).json()
                 self.assertEqual(job["status"], "complete")
-                self.assertEqual([item["status"] for item in job["results"]], ["valid", "valid"])
+                self.assertEqual([item["status"] for item in job["results"]], ["needs_review", "needs_review"])
 
     def test_real_dev_import_manual_review_and_appeal(self):
         with TemporaryDirectory() as temp:
