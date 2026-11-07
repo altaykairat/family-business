@@ -67,6 +67,35 @@ class EngineTests(unittest.TestCase):
                            "evidence_idx": [1], "explanation": "Уточнения не требовались"}}
         self.assertIsNone(score(narrow, CONVERSATION, answers)["total"])
 
+    def test_all_no_multiple_na_and_manual_no_to_na(self):
+        answers = complete_answers()
+        for criterion in CHECKLIST["criteria"]:
+            answers[criterion["id"]]["answer"] = 0 if criterion["type"] == "scale" else "no"
+        self.assertEqual(score(CHECKLIST, CONVERSATION, answers)["total"], 0)
+        answers["c01"]["answer"] = "yes"
+        before = score(CHECKLIST, CONVERSATION, answers)["total"]
+        answers["c02"].update(applicability="na", answer=None, na_reason="Details already sufficient")
+        answers["c03"].update(applicability="na", answer=None, na_reason="No protected action")
+        answers["c07"].update(applicability="na", answer=None, na_reason="Conversation ended early")
+        after = score(CHECKLIST, CONVERSATION, answers)["total"]
+        self.assertEqual(before, 10)
+        self.assertEqual(after, 16.67)
+
+    def test_checked_range_and_named_violation_for_new_answers(self):
+        answers = complete_answers()
+        answers["c01"]["checked_turn_range"] = {"start_idx": 2, "end_idx": 1}
+        self.assertTrue(any("checked turn range" in e for e in
+                            validate_answers(CHECKLIST, CONVERSATION, answers)))
+        answers["c01"]["checked_turn_range"] = {"start_idx": 1, "end_idx": 1}
+        self.assertTrue(any("outside checked turn range" in e for e in
+                            validate_answers(CHECKLIST, CONVERSATION, answers)))
+        answers["c01"]["checked_turn_range"] = {"start_idx": 1, "end_idx": 2}
+        answers["c08"].update(answer="yes", violation_type="")
+        self.assertTrue(any("violation must be named" in e for e in
+                            validate_answers(CHECKLIST, CONVERSATION, answers)))
+        answers["c08"]["violation_type"] = "Confidential information disclosed"
+        self.assertEqual(score(CHECKLIST, CONVERSATION, answers)["total"], 100)
+
     def test_versioned_checklist_and_appeal_audit(self):
         from tempfile import TemporaryDirectory
         with TemporaryDirectory() as temp:

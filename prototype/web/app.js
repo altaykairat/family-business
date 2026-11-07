@@ -16,12 +16,28 @@ async function run(action) {
 async function reload() {
   state.bootstrap = await api("/api/bootstrap");
   $("#runBatch").textContent = state.bootstrap.provider === "mock" ? "Пакетный MOCK-прогон" : "Пакетная AI оценка";
+  $("#providerBadge").textContent = state.bootstrap.provider === "mock" ? "MOCK · технический режим" : state.bootstrap.provider.toUpperCase() + " · " + (state.bootstrap.model || "модель не выбрана");
+  $("#providerBadge").classList.toggle("mock", state.bootstrap.provider === "mock");
+  for (const [selector, field, title] of [["#languageFilter", "language", "Все языки"], ["#channelFilter", "channel", "Все каналы"]]) {
+    const control = $(selector);
+    const selected = control.value;
+    const values = [...new Set(state.bootstrap.conversations.map((item) => item[field]).filter(Boolean))].sort();
+    control.innerHTML = '<option value="">' + title + '</option>' + values.map((value) => '<option value="' + esc(value) + '">' + esc(value) + '</option>').join("");
+    control.value = values.includes(selected) ? selected : "";
+  }
   renderList();
+  if (!state.conversation && state.bootstrap.conversations.length) {
+    await openConversation(state.bootstrap.conversations[0].id);
+  }
 }
 function renderList() {
   const filter = $("#filter").value.toLowerCase();
-  const items = state.bootstrap.conversations.filter((item) => (item.id + " " + item.language + " " + item.channel).toLowerCase().includes(filter));
-  $("#conversationCount").textContent = "(" + state.bootstrap.conversations.length + ")";
+  const language = $("#languageFilter").value;
+  const channel = $("#channelFilter").value;
+  const items = state.bootstrap.conversations.filter((item) =>
+    (item.id + " " + item.language + " " + item.channel).toLowerCase().includes(filter) &&
+    (!language || item.language === language) && (!channel || item.channel === channel));
+  $("#conversationCount").textContent = "(" + items.length + " / " + state.bootstrap.conversations.length + ")";
   $("#conversationList").innerHTML = items.map((item) => '<button class="conversationItem ' + (state.conversation?.conversation_id === item.id ? "active" : "") + '" data-id="' + esc(item.id) + '"><b>' + esc(item.id) + '</b><small>' + esc(item.language) + " · " + esc(item.channel) + "</small></button>").join("");
   document.querySelectorAll(".conversationItem").forEach((button) => button.onclick = () => run(() => openConversation(button.dataset.id)));
 }
@@ -64,9 +80,10 @@ function renderEvaluation() {
   $("#newEvaluation").onclick = () => run(async () => { const [checklist_id, version] = $("#checklistVersion").value.split(":"); await api("/api/evaluations", "POST", {conversation_id: c.conversation_id, checklist_id, checklist_version:Number(version)}); await openConversation(c.conversation_id); });
   if (state.evaluations.length) $("#evaluationHistory").onchange = () => run(async () => { state.evaluation = await api("/api/evaluations/" + $("#evaluationHistory").value); renderEvaluation(); });
   if (e) $("#aiDraft").onclick = () => run(async () => { state.evaluation = await api("/api/evaluations/" + e.id + "/ai", "POST"); const item = state.evaluations.find((value) => value.id === e.id); if (item) item.source = state.evaluation.source; renderEvaluation(); });
-  if (!e) { $("#pipeline").innerHTML = ""; $("#evaluation").innerHTML = '<div class="card">Нажмите «Новая оценка». Без API-ключа ответы нужно выставить вручную: применимость, доказательство, ступень и объяснение по каждому критерию.</div>'; return; }
+  if (!e) { $("#pipeline").innerHTML = ""; $("#evaluation").innerHTML = '<div class="card summaryCard">Нажмите «Новая оценка». Без API-ключа ответы нужно выставить вручную: применимость, доказательство, ступень и объяснение по каждому критерию.</div>'; return; }
   const checklist = e.checklist_snapshot;
   const answers = e.answers;
+  const lastAiEvent = [...e.events].reverse().find((event) => event.kind === "ai_draft");
   const mockNeedsReview = e.source === "mock-technical-demo" && checklist.criteria.some((criterion) => !e.events.some((event) => event.kind === "answer_updated" && event.detail.criterion_id === criterion.id));
   const has = (field) => checklist.criteria.every((criterion) => {
     const a = answers[criterion.id];
@@ -80,31 +97,36 @@ function renderEvaluation() {
     ["7 Апелляции", e.appeals.length > 0], ["8 История", e.events.length > 0]
   ];
   $("#pipeline").innerHTML = steps.map(([title, done]) => '<span class="step ' + (done ? "done" : "warn") + '">' + title + "</span>").join("");
-  let html = '<div class="card"><b>Оценка ' + esc(e.id.slice(0, 8)) + '</b> · чек-лист ' + esc(e.checklist_id) + ' v' + e.checklist_version + ' · источник: ' + esc(e.source) + (e.source === "mock-technical-demo" ? '<p class="error"><b>' + (mockNeedsReview ? 'MOCK проверяет работу программы, но не оценивает диалог. Для настоящего балла заполните все критерии вручную или подключите AI API.' : 'Все критерии после MOCK изменены вручную. Итог основан на ручной разметке, а не на AI.') + '</b></p>' : "") + '<p class="muted">В каждом критерии ниже проверьте применимость, укажите реплику-доказательство, выберите официальную ступень и напишите причину.</p><button id="jumpCriteria">Перейти к критериям ↓</button> <button id="showPrompt">Показать запрос к модели</button><details id="promptPanel"><summary>Вход модели</summary><pre></pre></details></div>';
+  let html = '<div class="card summaryCard"><span class="eyebrow">Evaluation workspace</span><h3>Оценка ' + esc(e.id.slice(0, 8)) + '</h3><p>Чек-лист ' + esc(e.checklist_id) + ' v' + e.checklist_version + ' · источник: ' + esc(e.source) + '</p><p class="muted">Provider: ' + esc(lastAiEvent?.detail.provider || "ручная оценка") + ' · модель: ' + esc(lastAiEvent?.actor || "—") + ' · проверка: ' + (e.validation_errors.length ? 'требует исправления' : 'структурно пройдена') + '</p>' + (e.source === "mock-technical-demo" ? '<p class="error"><b>' + (mockNeedsReview ? 'MOCK проверяет работу программы, но не оценивает диалог. Для настоящего балла заполните все критерии вручную или подключите AI API.' : 'Все критерии после MOCK изменены вручную. Итог основан на ручной разметке, а не на AI.') + '</b></p>' : "") + '<p class="muted">Применимость, evidence и ступень возвращаются одним вызовом модели; проверка и пересчёт выполняются сервером после ручной правки.</p><div class="cardActions"><button id="jumpCriteria">Перейти к критериям ↓</button><button id="showPrompt">Показать запрос к модели</button></div><details id="promptPanel"><summary>Вход модели</summary><pre></pre></details></div>';
   if (e.last_provider_error) html += '<div class="card"><h3 class="error">Ошибка провайдера</h3><p>' + esc(e.last_provider_error.error) + '</p><details><summary>Сырой ответ</summary><pre>' + esc(e.last_provider_error.raw ?? "Ответ не получен") + '</pre></details></div>';
   if (mockNeedsReview) html += '<div class="card"><h3>Пока нет оценки качества</h3><p>В прежнем MOCK-режиме появлялось 0/100 из тестовых ответов «Нет». Этот балл не отражает работу оператора. Нажмите «Новая оценка» для чистой ручной разметки или заполните вручную все восемь карточек ниже.</p></div>';
   if (e.score && !mockNeedsReview) {
-    html += '<div class="card"><h3>6 · Детерминированный итог' + (e.source === "mock-technical-demo" ? " (ручная разметка)" : "") + '</h3><div class="score">' + (e.score.total === null ? "не рассчитывается" : e.score.total + " / 100") + '</div><p>Применимые веса нормируются до 100. N/A исключены. Грубые ошибки: ' + Object.entries(e.score.flags).map(([id, flag]) => id + " " + (flag ? "Да" : "Нет")).join(", ") + '</p><div class="scoreGrid">' + Object.entries(e.score.sections).map(([id, value]) => "<div>" + esc(checklist.sections.find((s) => s.id === id)?.title || id) + ": <b>" + (value === null ? "—" : value) + "</b></div>").join("") + '</div><p class="muted">Баллы по критериям и эффективный вес показаны ниже.</p></div>';
+    html += '<div class="card scoreCard"><span class="eyebrow">Verified score</span><h3>6 · Детерминированный итог' + (e.source === "mock-technical-demo" ? " (ручная разметка)" : "") + '</h3><div class="score">' + (e.score.total === null ? "не рассчитывается" : e.score.total + " / 100") + '</div><p>Применимые веса нормируются до 100. N/A исключены. Грубые ошибки: ' + Object.entries(e.score.flags).map(([id, flag]) => id + " " + (flag ? "Да" : "Нет")).join(", ") + '</p><div class="scoreGrid">' + Object.entries(e.score.sections).map(([id, value]) => "<div>" + esc(checklist.sections.find((s) => s.id === id)?.title || id) + ": <b>" + (value === null ? "—" : value) + "</b></div>").join("") + '</div><p class="muted">Баллы по критериям и эффективный вес показаны ниже.</p></div>';
   } else if (e.validation_errors.length) {
-    html += '<div class="card"><h3>5 · Строгая проверка</h3><p>Итог появится после заполнения всех критериев.</p><details><summary>Незаполненные или ошибочные поля: ' + e.validation_errors.length + '</summary><div class="error">' + e.validation_errors.map(esc).join("<br>") + "</div></details></div>";
+    html += '<div class="card validationCard"><h3>5 · Строгая проверка</h3><p>Итог появится после заполнения всех критериев.</p><details><summary>Незаполненные или ошибочные поля: ' + e.validation_errors.length + '</summary><div class="error">' + e.validation_errors.map(esc).join("<br>") + "</div></details></div>";
   }
-  if (e.source !== "mock-technical-demo" && (e.baseline_score || e.baseline_errors.length)) html += '<div class="card"><h3>8 · Рефлексия относительно последнего прохода</h3><p>Baseline: <b>' + (e.baseline_score?.total ?? "не прошёл проверку") + '</b> · текущий итог: <b>' + (e.score?.total ?? "не рассчитан") + '</b></p><p>Изменены критерии: ' + (e.changed_criteria.length ? e.changed_criteria.map(esc).join(", ") : "нет") + '</p>' + (e.baseline_errors.length ? '<p class="error">' + e.baseline_errors.map(esc).join("; ") + '</p>' : "") + '</div>';
+  if (e.source !== "mock-technical-demo" && (e.baseline_score || e.baseline_errors.length)) html += '<div class="card reflectionCard"><h3>8 · Исходная и финальная оценка</h3><p>Исходная: <b>' + (e.baseline_score?.total ?? "не прошла проверку") + '</b> · финальная: <b>' + (e.score?.total ?? "не рассчитана") + '</b></p><p>Изменены критерии: ' + (e.changed_criteria.length ? e.changed_criteria.map(esc).join(", ") : "нет") + '</p>' + (e.baseline_errors.length ? '<p class="error">' + e.baseline_errors.map(esc).join("; ") + '</p>' : "") + '</div>';
   checklist.criteria.forEach((criterion) => {
     const a = answers[criterion.id];
     const row = e.score?.rows.find((r) => r.criterion_id === criterion.id);
-    html += '<div class="card criterionCard" data-criterion="' + esc(criterion.id) + '"><div class="cardHead"><h3>' + esc(criterion.id) + " · " + esc(criterion.title) + '</h3><span class="chip">вес ' + criterion.weight + "</span></div><p>" + esc(criterion.description) + '</p><p class="muted">N/A: ' + (criterion.na_allowed ? esc(criterion.na_condition) : "запрещён") + "</p>";
+    const decision = a.applicability === "na" ? {label:"N/A", style:"na"} : a.answer === null ? {label:"Не оценено", style:"pending"} : criterion.type === "scale" ? {label:String(a.answer) + " / " + Math.max(...criterion.scale.map((step) => step.value)), style:"scale"} : a.answer === "yes" ? {label:"Да", style:"yes"} : {label:"Нет", style:"no"};
+    const manuallyUpdated = e.events.some((event) => event.kind === "answer_updated" && event.detail.criterion_id === criterion.id);
+    const sourceLabel = manuallyUpdated ? "Правка проверяющего" : e.source === "mock-technical-demo" ? "MOCK черновик" : lastAiEvent ? "Решение AI" : "Ручное решение";
+    html += '<div class="card criterionCard" data-criterion="' + esc(criterion.id) + '"><div class="cardHead"><h3>' + esc(criterion.id) + " · " + esc(criterion.title) + '</h3><div><span class="decisionBadge ' + decision.style + '">' + esc(decision.label) + '</span><span class="chip">вес ' + criterion.weight + '</span></div></div><p class="muted">' + sourceLabel + '</p><p>' + esc(criterion.description) + '</p><p class="muted">N/A: ' + (criterion.na_allowed ? esc(criterion.na_condition) : "запрещён") + "</p>";
     if (row && !mockNeedsReview) html += '<p><b>' + (row.raw_points === null ? "N/A" : row.raw_points + " баллов") + '</b> · эффективный вес ' + (row.effective_weight ?? "—") + "%</p>";
     html += '<div class="fields"><label>2 · Применимость<select class="applicability"><option value="" ' + (!a.applicability ? "selected" : "") + '>Не выбрана</option><option value="applicable" ' + (a.applicability === "applicable" ? "selected" : "") + '>Применим</option>' + (criterion.na_allowed ? '<option value="na" ' + (a.applicability === "na" ? "selected" : "") + '>N/A</option>' : "") + '</select></label>';
     html += '<label>4 · Точная ступень<select class="answer"><option value="" ' + (a.answer === null ? "selected" : "") + '>Не выбрана</option>' + answerOptions(criterion, a.answer) + "</select></label>";
     html += '<label class="wide">Причина N/A (если выбрано)<input class="naReason" value="' + esc(a.na_reason || "") + '"></label>';
-    html += '<label class="wide">3 · Индексы evidence / проверенный участок (через запятую)<input class="evidenceInput" value="' + esc(Array.isArray(a.evidence_idx) ? a.evidence_idx.join(", ") : "") + '"></label>';
+    html += '<label class="wide">3 · Индексы evidence (через запятую)<input class="evidenceInput" value="' + esc(Array.isArray(a.evidence_idx) ? a.evidence_idx.join(", ") : "") + '"></label>';
+    html += '<label>Проверенный диапазон: от #<input class="rangeStart" type="number" min="1" value="' + esc(a.checked_turn_range?.start_idx ?? "") + '"></label><label>до # включительно<input class="rangeEnd" type="number" min="1" value="' + esc(a.checked_turn_range?.end_idx ?? "") + '"></label>';
+    if (criterion.type === "flag") html += '<label class="wide">Обнаруженное нарушение (если Да)<input class="violationType" value="' + esc(a.violation_type || "") + '"></label>';
     html += '<label class="wide">4 · Обоснование<textarea class="explanation">' + esc(a.explanation || "") + "</textarea></label></div>";
     const openAppeal = e.appeals.some((appeal) => appeal.criterion_id === criterion.id && appeal.status === "open");
     html += '<div class="cardActions"><button class="saveAnswer primary" ' + (openAppeal ? "disabled" : "") + '>Сохранить и пересчитать</button><span class="muted">' + (openAppeal ? "Решение по апелляции читает эти поля без предварительного сохранения" : "Нажмите на реплику слева для добавления evidence") + '</span></div><div>' + evidenceLinks(a.evidence_idx) + "</div>";
     (Array.isArray(a.evidence_idx) ? a.evidence_idx : []).forEach((idx) => { const message = e.conversation.transcript[idx - 1]; if (message && message.idx === idx) html += '<p class="evidenceQuote">#' + esc(idx) + ' [' + esc(message.timestamp) + '] ' + esc(message.speaker) + ': ' + esc(message.text) + '</p>'; });
     html += "</div>";
   });
-  html += '<div class="card"><h3>7 · Апелляции</h3><select id="appealCriterion">' + checklist.criteria.map((criterion) => '<option value="' + esc(criterion.id) + '">' + esc(criterion.title) + "</option>").join("") + '</select><textarea id="appealComment" placeholder="Что оспаривается и почему?"></textarea><button id="sendAppeal">Подать апелляцию</button>';
+  html += '<div class="card appealsCard"><span class="eyebrow">Human review</span><h3>7 · Апелляции</h3><select id="appealCriterion">' + checklist.criteria.map((criterion) => '<option value="' + esc(criterion.id) + '">' + esc(criterion.title) + "</option>").join("") + '</select><textarea id="appealComment" placeholder="Что оспаривается и почему?"></textarea><button id="sendAppeal">Подать апелляцию</button>';
   e.appeals.forEach((appeal) => {
     const opening = e.events.find((event) => event.kind === "appeal_opened" && event.detail.appeal_id === appeal.id);
     html += '<div class="card"><b>' + esc(appeal.criterion_id) + " · " + esc(appeal.status) + '</b><p>Комментарий: ' + esc(appeal.comment) + '</p><p>Исходное решение: ' + esc(JSON.stringify(opening?.detail.original_answer || {})) + ' · исходный итог ' + esc(opening?.detail.original_total ?? "—") + '</p>';
@@ -112,7 +134,7 @@ function renderEvaluation() {
     else html += '<div class="cardActions"><button class="confirmAppeal" data-aid="' + appeal.id + '">Подтвердить</button><button class="changeAppeal" data-aid="' + appeal.id + '">Изменить на поля критерия выше</button></div>';
     html += "</div>";
   });
-  html += '</div><div class="card"><h3>8 · Журнал изменений</h3><div class="history">' + e.events.slice().reverse().map((event) => '<div>' + esc(event.created_at) + " · " + esc(event.kind) + " · " + esc(event.actor) + (event.detail.criterion_id ? " · " + esc(event.detail.criterion_id) : "") + (event.kind === "ai_draft" ? " · prompt " + esc(event.detail.prompt_version) + " · " + esc(event.detail.duration_seconds) + "s · tokens " + esc(JSON.stringify(event.detail.usage || {})) : "") + "</div>").join("") + "</div></div>";
+  html += '</div><div class="card traceCard"><span class="eyebrow">Evaluation trace</span><h3>8 · Журнал изменений</h3><div class="history">' + e.events.slice().reverse().map((event) => '<div>' + esc(event.created_at) + " · " + esc(event.kind) + " · " + esc(event.actor) + (event.detail.criterion_id ? " · " + esc(event.detail.criterion_id) : "") + (event.kind === "ai_draft" ? " · prompt " + esc(event.detail.prompt_version) + " · " + esc(event.detail.duration_seconds) + "s · tokens " + esc(JSON.stringify(event.detail.usage || {})) : "") + "</div>").join("") + "</div></div>";
   $("#evaluation").innerHTML = html;
   $("#jumpCriteria").onclick = () => document.querySelector(".criterionCard")?.scrollIntoView({behavior:"smooth", block:"start"});
   $("#showPrompt").onclick = () => run(async () => {
@@ -145,7 +167,12 @@ function readAnswerCard(card) {
   const rawAnswer = card.querySelector(".answer").value;
   const answer = applicability === "na" || !rawAnswer ? null : criterion.type === "scale" ? Number(rawAnswer) : rawAnswer;
   const evidence_idx = card.querySelector(".evidenceInput").value.split(",").map((value) => value.trim()).filter(Boolean).map(Number);
-  return {applicability, answer, na_reason: card.querySelector(".naReason").value, evidence_idx, explanation: card.querySelector(".explanation").value};
+  const start = card.querySelector(".rangeStart").value.trim();
+  const end = card.querySelector(".rangeEnd").value.trim();
+  const checked_turn_range = start || end ? {start_idx:Number(start), end_idx:Number(end)} : null;
+  return {applicability, answer, na_reason: card.querySelector(".naReason").value, evidence_idx,
+          checked_turn_range, explanation: card.querySelector(".explanation").value,
+          ...(criterion.type === "flag" ? {violation_type:card.querySelector(".violationType").value} : {})};
 }
 function decide(aid, action) {
   const reason = prompt("Причина решения проверяющего:");
@@ -186,20 +213,35 @@ $("#importFile").onchange = (event) => run(async () => {
   await reload();
 });
 $("#importGroup").onclick = () => run(async () => { await api("/api/import-group", "POST", {group_id:$("#groupId").value.trim()}); await reload(); });
+function watchBatch(job) {
+  $("#batchStatus").textContent = "0 / " + job.total;
+  $("#retryBatch").hidden = true;
+  const timer = setInterval(async () => {
+    try {
+      const progress = await api("/api/batch/" + job.id);
+      $("#batchStatus").textContent = progress.done + " / " + progress.total + " · " + progress.results.filter((item) => item.status === "valid").length + " прошли проверку схемы" + (progress.metadata.provider === "mock" ? " (MOCK)" : "") + " · " + progress.results.filter((item) => item.status === "skipped").length + " уже обработаны · " + progress.results.filter((item) => item.status === "needs_review").length + " требуют проверки · " + progress.results.filter((item) => item.status === "error").length + " ошибок";
+      if (progress.status === "complete") {
+        clearInterval(timer);
+        $("#retryBatch").hidden = !progress.results.some((item) => ["error", "needs_review"].includes(item.status));
+        $("#retryBatch").dataset.jobId = progress.id;
+        if (state.conversation) await openConversation(state.conversation.conversation_id);
+      }
+    } catch (error) { clearInterval(timer); $("#batchStatus").textContent = error.message; }
+  }, 1500);
+}
 $("#runBatch").onclick = () => run(async () => {
   const ids = state.bootstrap.conversations.filter((item) => (item.id + " " + item.language + " " + item.channel).toLowerCase().includes($("#filter").value.toLowerCase())).map((item) => item.id);
   if (!ids.length) throw new Error("Сначала загрузите диалоги");
   const job = await api("/api/batch", "POST", {conversation_ids:ids});
-  $("#batchStatus").textContent = "0 / " + job.total;
-  const timer = setInterval(async () => {
-    try {
-      const progress = await api("/api/batch/" + job.id);
-      $("#batchStatus").textContent = progress.done + " / " + progress.total + " · " + progress.results.filter((item) => item.status === "valid").length + " прошли проверку схемы" + (state.bootstrap.provider === "mock" ? " (MOCK)" : "") + " · " + progress.results.filter((item) => item.status === "needs_review").length + " требуют проверки · " + progress.results.filter((item) => item.status === "error").length + " ошибок";
-      if (progress.status === "complete") { clearInterval(timer); if (state.conversation) await openConversation(state.conversation.conversation_id); }
-    } catch (error) { clearInterval(timer); $("#batchStatus").textContent = error.message; }
-  }, 1500);
+  watchBatch(job);
+});
+$("#retryBatch").onclick = () => run(async () => {
+  const job = await api("/api/batch/" + $("#retryBatch").dataset.jobId + "/retry-failed", "POST");
+  watchBatch(job);
 });
 $("#filter").oninput = renderList;
+$("#languageFilter").onchange = renderList;
+$("#channelFilter").onchange = renderList;
 $("#openChecklist").onclick = () => { state.checklistDraft = structuredClone(state.bootstrap.checklist); renderChecklist(); $("#checklistDialog").showModal(); };
 $("#closeChecklist").onclick = () => $("#checklistDialog").close();
 $("#addCriterion").onclick = () => { readChecklist(); state.checklistDraft.criteria.push({id:"new-" + (state.checklistDraft.criteria.length+1), section:state.checklistDraft.sections[0].id, title:"Новый критерий", description:"", type:"binary", weight:10, na_allowed:false, na_condition:null}); renderChecklist(); };

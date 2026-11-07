@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
 
-from engine import blank_answers, normalize_conversation, validate_checklist, score, Invalid
+from engine import blank_answers, normalize_conversation, validate_checklist, validate_answers, score, Invalid
 
 
 def stamp():
@@ -167,7 +167,8 @@ class Store:
             appeal["criterion_id"] == cid and appeal["status"] == "open" for appeal in evaluation["appeals"]
         ):
             raise Invalid("Resolve the open appeal before editing this criterion")
-        allowed = {"applicability", "na_reason", "answer", "evidence_idx", "explanation"}
+        allowed = {"applicability", "na_reason", "answer", "evidence_idx", "checked_turn_range",
+                   "explanation", "violation_type"}
         if not isinstance(patch, dict) or not patch or set(patch) - allowed:
             raise Invalid("Unknown or empty answer fields")
         before = evaluation["answers"][cid].copy()
@@ -187,6 +188,12 @@ class Store:
         answers = response["answers"]
         if set(answers) != set(evaluation["answers"]):
             raise Invalid("AI draft does not match checklist criteria")
+        if response["provider"] != "mock":
+            errors = validate_answers(evaluation["checklist_snapshot"],
+                                      self.conversation(evaluation["conversation_id"]),
+                                      answers, require_checked_range=True)
+            if errors:
+                raise Invalid("AI draft failed validation: " + "; ".join(errors))
         with self.connect() as db:
             db.execute("UPDATE evaluations SET answers=?, source=? WHERE id=?",
                        (encode(answers), response["model"], eid))
@@ -198,6 +205,27 @@ class Store:
                          "duration_seconds": response["duration_seconds"],
                          "prompt_version": response["prompt_version"]})
         return self.evaluation(eid)
+
+    def completed_evaluation(self, cid, checklist_id, version, provider, model, prompt_version):
+        """Find a validated original AI result, even if later manually reviewed."""
+        if provider == "mock":
+            return None
+        with self.connect() as db:
+            rows = db.execute("SELECT id FROM evaluations WHERE conversation_id=? AND checklist_id=? "
+                              "AND checklist_version=? AND source=? ORDER BY created_at DESC",
+                              (cid, checklist_id, version, model)).fetchall()
+        conversation = self.conversation(cid)
+        for row in rows:
+            evaluation = self.evaluation(row["id"])
+            for event in reversed(evaluation["events"]):
+                if event["kind"] != "ai_draft":
+                    continue
+                detail = event["detail"]
+                if (detail.get("provider") == provider and detail.get("prompt_version") == prompt_version
+                        and not validate_answers(evaluation["checklist_snapshot"], conversation,
+                                                 detail["answers"], require_checked_range=True)):
+                    return evaluation["id"]
+        return None
 
     def log_ai_failure(self, eid, trace):
         self.evaluation(eid)

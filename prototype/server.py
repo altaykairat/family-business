@@ -3,8 +3,9 @@
 import json
 import os
 import sys
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+from threading import Lock
 from uuid import uuid4
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 from urllib.request import urlopen
@@ -16,7 +17,8 @@ from pydantic import BaseModel, Field
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from engine import Invalid, score, validate_answers
-from provider import draft, build_request, PROMPT_VERSION, ProviderFailure
+from provider import (draft, build_request, configured_key, configured_model, bounded_int,
+                      PROMPT_VERSION, ProviderFailure)
 from store import Store
 
 
@@ -35,6 +37,7 @@ store = Store(DATA_PATH, ROOT / "data" / "checklists" / "default.json")
 app = FastAPI(title="Transparent CQA prototype", version="0.1")
 batch_pool = ThreadPoolExecutor(max_workers=1)
 batch_jobs = {}
+batch_lock = Lock()
 
 
 @app.exception_handler(Invalid)
@@ -72,6 +75,8 @@ class GroupRequest(BaseModel):
 class BatchRequest(BaseModel):
     conversation_ids: list[str] = Field(min_length=1, max_length=100)
     checklist_id: str = "default"
+    checklist_version: int | None = None
+    force: bool = False
 
 
 @app.get("/")
@@ -91,11 +96,11 @@ def stylesheet():
 
 @app.get("/api/bootstrap")
 def bootstrap():
+    provider = os.environ.get("CQA_PROVIDER", "mock").strip().lower()
     return {"checklist": store.latest_checklist(), "versions": store.checklist_versions(),
             "conversations": store.conversations(),
-            "provider": os.environ.get("CQA_PROVIDER", "mock"),
-            "ai_configured": bool(os.environ.get("CQA_PROVIDER", "mock") == "mock" or
-                                  (os.environ.get("CQA_LLM_API_KEY") and os.environ.get("CQA_LLM_MODEL")))}
+            "provider": provider, "model": configured_model() if provider != "mock" else "mock-technical-demo",
+            "ai_configured": bool(provider == "mock" or (configured_key(provider) and configured_model()))}
 
 
 @app.post("/api/import")
@@ -191,7 +196,7 @@ def prompt_preview(eid: str):
     return {"prompt_version": PROMPT_VERSION, "sent": False,
             "provider": os.environ.get("CQA_PROVIDER", "mock"),
             "request": build_request(conversation, evaluation["checklist_snapshot"],
-                                     os.environ.get("CQA_LLM_MODEL", "<model-not-configured>"),
+                                     configured_model() or "<model-not-configured>",
                                      os.environ.get("CQA_PROVIDER", "mock"))}
 
 
@@ -213,43 +218,83 @@ def ai_evaluation(eid: str):
     return evaluation_view(eid)
 
 
-def run_batch(job_id, body):
-    job = batch_jobs[job_id]
-    for cid in body.conversation_ids:
-        try:
-            evaluation = store.create_evaluation(cid, body.checklist_id)
-            response = draft(store.conversation(cid), evaluation["checklist_snapshot"])
-            store.apply_ai_draft(evaluation["id"], response)
-            view = evaluation_view(evaluation["id"])
-            job["results"].append({"conversation_id": cid, "evaluation_id": evaluation["id"],
-                                   "status": "valid" if not view["validation_errors"] else "needs_review",
-                                   "score": view["score"]["total"] if view["score"] else None,
-                                   "errors": view["validation_errors"]})
-        except ProviderFailure as exc:
+def process_batch_item(cid, checklist_id, checklist_version):
+    evaluation = None
+    try:
+        evaluation = store.create_evaluation(cid, checklist_id, checklist_version=checklist_version)
+        response = draft(store.conversation(cid), evaluation["checklist_snapshot"])
+        store.apply_ai_draft(evaluation["id"], response)
+        view = evaluation_view(evaluation["id"])
+        return {"conversation_id": cid, "evaluation_id": evaluation["id"],
+                "status": "valid" if not view["validation_errors"] else "needs_review",
+                "score": view["score"]["total"] if view["score"] else None,
+                "errors": view["validation_errors"]}
+    except ProviderFailure as exc:
+        if evaluation:
             store.log_ai_failure(evaluation["id"], exc.trace)
-            job["results"].append({"conversation_id": cid, "evaluation_id": evaluation["id"],
-                                   "status": "error", "error": str(exc)})
-        except Exception as exc:
-            job["results"].append({"conversation_id": cid, "status": "error", "error": str(exc)})
-        job["done"] += 1
-    job["status"] = "complete"
+        return {"conversation_id": cid, "evaluation_id": evaluation["id"] if evaluation else None,
+                "status": "error", "error": str(exc)}
+    except Exception as exc:
+        return {"conversation_id": cid, "evaluation_id": evaluation["id"] if evaluation else None,
+                "status": "error", "error": str(exc)}
+
+
+def run_batch(job_id, body, pending):
+    workers = bounded_int("CQA_BATCH_CONCURRENCY", 2, 1, 4)
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {}
+        for cid in pending:
+            future = pool.submit(process_batch_item, cid, body.checklist_id,
+                                 batch_jobs[job_id]["metadata"]["checklist_version"])
+            futures[future] = cid
+        for future in as_completed(futures):
+            cid = futures[future]
+            result = future.result()
+            with batch_lock:
+                job = batch_jobs[job_id]
+                job["items"][cid] = result
+                job["results"].append(result)
+                job["done"] += 1
+    with batch_lock:
+        batch_jobs[job_id]["status"] = "complete"
 
 
 @app.post("/api/batch")
 def batch(body: BatchRequest):
-    if os.environ.get("CQA_PROVIDER", "mock") != "mock" and (
-        not os.environ.get("CQA_LLM_API_KEY") or not os.environ.get("CQA_LLM_MODEL")
-    ):
+    provider = os.environ.get("CQA_PROVIDER", "mock").strip().lower()
+    if provider != "mock" and (not configured_key(provider) or not configured_model()):
         raise Invalid("Configure AI before batch evaluation")
+    bounded_int("CQA_BATCH_CONCURRENCY", 2, 1, 4)
     if len(set(body.conversation_ids)) != len(body.conversation_ids):
         raise Invalid("Duplicate conversation IDs in batch")
     for cid in body.conversation_ids:
         store.conversation(cid)
-    store.latest_checklist(body.checklist_id)
+    checklist = (store.checklist(body.checklist_id, body.checklist_version)
+                 if body.checklist_version is not None else store.latest_checklist(body.checklist_id))
+    model = configured_model() if provider != "mock" else "mock-technical-demo"
+    metadata = {"provider": provider, "model": model, "prompt_version": PROMPT_VERSION,
+                "checklist_id": checklist["id"], "checklist_version": checklist["version"]}
+    items = {}
+    pending = []
+    for cid in body.conversation_ids:
+        prior = None if body.force else store.completed_evaluation(
+            cid, checklist["id"], checklist["version"], provider, model, PROMPT_VERSION)
+        if prior:
+            items[cid] = {"conversation_id": cid, "evaluation_id": prior, "status": "skipped",
+                          "reason": "validated evaluation already exists"}
+        else:
+            items[cid] = {"conversation_id": cid, "status": "pending"}
+            pending.append(cid)
     job_id = uuid4().hex
-    batch_jobs[job_id] = {"id": job_id, "status": "running", "total": len(body.conversation_ids),
-                          "done": 0, "results": []}
-    batch_pool.submit(run_batch, job_id, body)
+    with batch_lock:
+        if any(job["status"] == "running" for job in batch_jobs.values()):
+            raise Invalid("Another batch is running; wait for completion")
+        batch_jobs[job_id] = {"id": job_id, "status": "running" if pending else "complete",
+                              "total": len(body.conversation_ids), "done": len(items) - len(pending),
+                              "results": [item for item in items.values() if item["status"] == "skipped"],
+                              "items": items, "metadata": metadata}
+    if pending:
+        batch_pool.submit(run_batch, job_id, body, pending)
     return batch_jobs[job_id]
 
 
@@ -258,6 +303,19 @@ def batch_status(job_id: str):
     if job_id not in batch_jobs:
         raise Invalid("Batch job not found in this server session")
     return batch_jobs[job_id]
+
+
+@app.post("/api/batch/{job_id}/retry-failed")
+def retry_failed(job_id: str):
+    job = batch_status(job_id)
+    if job["status"] != "complete":
+        raise Invalid("Wait for batch completion before retry")
+    ids = [cid for cid, item in job["items"].items()
+           if item["status"] in {"error", "needs_review"}]
+    if not ids:
+        raise Invalid("No failed records to retry")
+    return batch(BatchRequest(conversation_ids=ids, checklist_id=job["metadata"]["checklist_id"],
+                              checklist_version=job["metadata"]["checklist_version"]))
 
 
 @app.post("/api/evaluations/{eid}/appeals")

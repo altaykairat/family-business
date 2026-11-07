@@ -3,42 +3,62 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Transparent CQA Lab</title>
+  <title>Transparent CQA Lab · Hackathon Prototype</title>
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-  <header>
-    <div><strong>Transparent CQA Lab</strong><span class="muted">Freedom Broker · экспериментальный прототип</span></div>
-    <div id="status">Загрузка…</div>
+  <header class="appHeader">
+    <div class="brandGroup">
+      <span class="brandMark" aria-hidden="true">F</span>
+      <div class="brandText"><strong>FREEDOM</strong><span>CQA Hackathon Prototype</span></div>
+    </div>
+    <nav class="primaryNav" aria-label="Разделы рабочего пространства">
+      <a href="#conversationList">Диалоги</a>
+      <a href="#transcript">Транскрипт</a>
+      <a href="#evaluation">Оценка</a>
+      <button id="openChecklist" type="button">Чек-лист</button>
+    </nav>
+    <div class="headerMeta"><span id="providerBadge" class="providerBadge">Режим оценки</span><span id="status" role="status">Загрузка…</span></div>
   </header>
-  <nav>
-    <button id="importDev">Загрузить DEV</button>
-    <label class="button">Импорт JSON<input id="importFile" type="file" accept=".json,application/json" hidden></label>
-    <input id="groupId" placeholder="group_id контрольного набора" aria-label="group_id">
-    <button id="importGroup">Загрузить group_id</button>
-    <button id="runBatch">Пакетная AI оценка</button>
-    <span id="batchStatus" class="muted"></span>
-    <button id="openChecklist">Редактор чек-листа</button>
-  </nav>
-  <main>
-    <aside>
-      <h2>Диалоги <small id="conversationCount"></small></h2>
-      <input id="filter" placeholder="Поиск по ID, языку" aria-label="Поиск диалогов">
+  <div class="actionBar" aria-label="Импорт и пакетная обработка">
+    <div class="actionGroup"><span class="actionLabel">Данные</span>
+      <button id="importDev" type="button">Загрузить DEV</button>
+      <label class="button">Импорт JSON<input id="importFile" type="file" accept=".json,application/json" hidden></label>
+      <input id="groupId" placeholder="group_id контрольного набора" aria-label="group_id">
+      <button id="importGroup" type="button">Загрузить group_id</button>
+    </div>
+    <div class="actionGroup batchGroup"><span class="actionLabel">Обработка</span>
+      <button id="runBatch" class="primary" type="button">Пакетная AI оценка</button>
+      <button id="retryBatch" type="button" hidden>Повторить ошибки</button>
+      <span id="batchStatus" class="muted" aria-live="polite"></span>
+    </div>
+  </div>
+  <main class="workspace">
+    <aside class="conversationPane" aria-label="Список диалогов">
+      <div class="paneHeading"><span class="eyebrow">Conversations</span><h2>Диалоги <small id="conversationCount"></small></h2><p>Выберите разговор для проверки качества.</p></div>
+      <div class="listControls">
+        <label class="searchLabel" for="filter">Поиск по диалогам</label>
+        <input id="filter" type="search" placeholder="ID, язык или канал" aria-label="Поиск диалогов">
+        <div class="filterRow">
+          <select id="languageFilter" aria-label="Фильтр по языку"><option value="">Все языки</option></select>
+          <select id="channelFilter" aria-label="Фильтр по каналу"><option value="">Все каналы</option></select>
+        </div>
+      </div>
       <div id="conversationList"></div>
     </aside>
     <section class="transcriptPane">
-      <h2>1 · Исходный диалог</h2>
-      <div id="conversationInfo" class="muted">Выберите диалог.</div>
+      <div class="paneHeading"><span class="eyebrow">01 / Source</span><h2>Исходный диалог</h2><p>Роли, время и реплики без изменений.</p></div>
+      <div id="conversationInfo" class="conversationInfo muted">Выберите диалог.</div>
       <div id="transcript"></div>
     </section>
     <section class="evaluationPane">
-      <div class="panelHead"><h2>Этапы оценки</h2><div id="evaluationActions"></div></div>
+      <div class="panelHead paneHeading"><div><span class="eyebrow">02 / Quality review</span><h2>Оценка качества</h2><p>Прозрачные этапы и проверяемые решения.</p></div><div id="evaluationActions"></div></div>
       <div id="pipeline" class="steps"></div>
       <div id="evaluation"></div>
     </section>
   </main>
   <dialog id="checklistDialog">
-    <div class="panelHead"><h2>Чек-лист</h2><button id="closeChecklist">Закрыть</button></div>
+    <div class="panelHead"><div><span class="eyebrow">Rubric studio</span><h2>Редактор чек-листа</h2></div><button id="closeChecklist" type="button">Закрыть</button></div>
     <p class="muted">Изменения публикуются новой версией. Старые оценки сохраняют свой чек-лист.</p>
     <div id="checklistEditor"></div>
     <div class="dialogActions"><button id="addCriterion">Добавить критерий</button><button id="saveChecklist" class="primary">Опубликовать версию</button></div>

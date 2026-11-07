@@ -69,11 +69,13 @@ def normalize_conversation(record: dict) -> dict:
 
 def blank_answers(checklist: dict) -> dict:
     return {c["id"]: {"applicability": None, "na_reason": "", "answer": None,
-                      "evidence_idx": [], "explanation": ""}
+                      "evidence_idx": [], "checked_turn_range": None,
+                      "explanation": "", "violation_type": ""}
             for c in checklist["criteria"]}
 
 
-def answer_errors(criterion: dict, answer: dict, message_count: int) -> list[str]:
+def answer_errors(criterion: dict, answer: dict, message_count: int,
+                  require_checked_range: bool = False) -> list[str]:
     cid = criterion["id"]
     errors = []
     applicability = answer.get("applicability")
@@ -101,12 +103,25 @@ def answer_errors(criterion: dict, answer: dict, message_count: int) -> list[str
         errors.append(f"{cid}: evidence index is outside transcript")
     elif len(set(evidence)) != len(evidence):
         errors.append(f"{cid}: evidence indices must be unique")
+    checked = answer.get("checked_turn_range")
+    if checked is not None or require_checked_range:
+        if (not isinstance(checked, dict) or set(checked) != {"start_idx", "end_idx"}
+                or type(checked.get("start_idx")) is not int or type(checked.get("end_idx")) is not int
+                or not 1 <= checked["start_idx"] <= checked["end_idx"] <= message_count):
+            errors.append(f"{cid}: checked turn range is invalid")
+        elif isinstance(evidence, list) and any(type(idx) is int and not
+                checked["start_idx"] <= idx <= checked["end_idx"] for idx in evidence):
+            errors.append(f"{cid}: evidence lies outside checked turn range")
+    if criterion["type"] == "flag" and value == "yes" and "violation_type" in answer:
+        if not isinstance(answer["violation_type"], str) or not answer["violation_type"].strip():
+            errors.append(f"{cid}: detected violation must be named")
     if not isinstance(answer.get("explanation"), str) or not answer["explanation"].strip():
         errors.append(f"{cid}: explanation is required")
     return errors
 
 
-def validate_answers(checklist: dict, conversation: dict, answers: dict) -> list[str]:
+def validate_answers(checklist: dict, conversation: dict, answers: dict,
+                     require_checked_range: bool = False) -> list[str]:
     expected = {c["id"] for c in checklist["criteria"]}
     errors = [f"unknown criterion: {cid}" for cid in answers if cid not in expected]
     for criterion in checklist["criteria"]:
@@ -114,7 +129,8 @@ def validate_answers(checklist: dict, conversation: dict, answers: dict) -> list
         if not isinstance(answer, dict):
             errors.append(f"{criterion['id']}: missing answer")
         else:
-            errors.extend(answer_errors(criterion, answer, len(conversation["transcript"])))
+            errors.extend(answer_errors(criterion, answer, len(conversation["transcript"]),
+                                        require_checked_range))
     return errors
 
 
