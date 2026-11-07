@@ -1,0 +1,95 @@
+{
+  "_comment": "Параметры платформы (решение 3: ничего не зашито в код). Все автоматические режимы — выключены (решение 11).",
+  "actors": {
+    "cli_default": "a-01"
+  },
+  "precedents": {
+    "k": 3,
+    "_comment": "CL.A: сколько прецедентов по критерию подставлять в промпт; отбор — тот же критерий + пересечение слов"
+  },
+  "metrics": {
+    "evidence_window": 1,
+    "total_tolerance": 5,
+    "bootstrap_samples": 1000,
+    "bootstrap_seed": 7,
+    "_comment": "M.9: доказательство совпадает, если |idx − эталон| ≤ evidence_window; M.6: итог в пределах ±total_tolerance"
+  },
+  "ground_truth": {
+    "test_share": 0.4,
+    "split_seed": 42,
+    "_comment": "G.4: доля отложенной тестовой части, стратификация по префиксу диалога (язык, канал)"
+  },
+  "regression": {
+    "max_macro_drop_pp": 0.0,
+    "require_no_broken_precedents": true,
+    "include_decisions": true,
+    "_comment": "RG.2: кандидат принимается, если макро-точность не упала больше чем на x п. п. и ни один прецедент не сломан"
+  },
+  "activation": {
+    "require_passed_regression": true,
+    "_comment": "MC.10–MC.11: активация версии чек-листа требует пройденного регрессионного прогона (можно обойти с force + причиной)"
+  },
+  "analytics": {
+    "min_n_for_comparison": 10,
+    "ci_z": 1.96,
+    "categories": [
+      {
+        "name": "отлично",
+        "min": 90
+      },
+      {
+        "name": "хорошо",
+        "min": 75
+      },
+      {
+        "name": "удовлетворительно",
+        "min": 50
+      },
+      {
+        "name": "плохо",
+        "min": 0
+      }
+    ],
+    "_comment": "SP.1–SP.4: n рядом с каждым показателем, доверительные интервалы Уилсона, сравнение только при n ≥ min; без автоматических ярлыков. R.9: категории — только для симуляций весов"
+  },
+  "loop": {
+    "digest_window": "since_active_version",
+    "min_cases_for_rule": 3,
+    "min_cases_for_weight": 5,
+    "auto_analyze_after_run": false,
+    "auto_precedent": false,
+    "auto_reevaluate_on_activation": false,
+    "_comment": "CL.B / CL.E пороги; автоматические режимы выключены (решение 11)"
+  },
+  "dimensions": {
+    "ending_patterns": {
+      "operator_closed": [
+        "оператор закрыл",
+        "agent closed",
+        "operator closed",
+        "оператор чатты жапты"
+      ],
+      "client_left": [
+        "клиент покинул",
+        "клиент завершил",
+        "client left",
+        "customer left",
+        "клиент чаттан шықты"
+      ],
+      "connection_lost": [
+        "соединение .*прервано",
+        "connection .*lost",
+        "байланыс үзілді"
+      ]
+    },
+    "_comment": "Тип концовки диалога для аналитики (измерение dim_conversation.ending)"
+  },
+  "api": {
+    "host": "127.0.0.1",
+    "port": 8765,
+    "cors_origins": [
+      "*"
+    ],
+    "_comment": "HTTP API для будущего фронтенда и HTML-компонента Dynamics 365 (CORS, без cookies)"
+  }
+}

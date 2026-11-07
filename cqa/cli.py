@@ -4,20 +4,21 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from . import checklist as ck
 from . import report, run
-from .common import load_config, rel
+from .common import CQAError, load_config, rel
 
 
 def cmd_checklist(args):
     if args.action == "list":
-        for cid in sorted(p.name for p in ck.CHECKLISTS.iterdir() if p.is_dir()):
+        for cid in ck.ids():
             for v in ck.versions(cid):
                 d = ck.load(f"{cid}@{v}")
                 m = d["meta"]
-                print(f"{cid}@v{v}  {m.get('created_at', '')}  {m.get('author', '')}  "
+                print(f"{cid}@v{v}  [{ck.status_of(cid, v)}]  {m.get('created_at', '')}  {m.get('author', '')}  "
                       f"критериев: {len(ck.active_criteria(d))}  hash: {m['content_hash']}  — {m.get('reason', '')}")
     elif args.action == "show":
         d = ck.load(args.ref)
@@ -61,8 +62,58 @@ def cmd_report(args):
     print(f"Отчёт: {out['summary']}  ·  расхождений: {out['disagreements']}  ·  ответов: {out['answered']}")
 
 
+def run_command(argv: list) -> int:
+    """`python3 -m cqa <command.name> key=value …` — any command of the API registry (cqa/api.py)."""
+    from . import api
+
+    name, rest = argv[0], argv[1:]
+    params = {}
+    for item in rest:
+        if item in ("-h", "--help"):
+            spec = api.COMMANDS[name]
+            print(f"{name} [{spec['method']}{', ' + spec['mc'] if spec['mc'] else ''}] — {spec['summary']}")
+            for k, v in spec["params"].items():
+                print(f"  {k}={v['type']}{' (обязательный)' if v['required'] else ''}  {v['help']}")
+            return 0
+        if "=" not in item:
+            print(f"ожидается key=value, получено {item!r}", file=sys.stderr)
+            return 2
+        k, v = item.split("=", 1)
+        params[k.lstrip("-")] = v
+    try:
+        res = api.call(name, params=params)
+    except CQAError as e:
+        print(json.dumps({"ok": False, "error": {"code": e.code, "message": e.message}}, ensure_ascii=False, indent=2))
+        return 1
+    print(json.dumps(res, ensure_ascii=False, indent=2, default=str))
+    return 0
+
+
 def main(argv=None):
-    p = argparse.ArgumentParser(prog="cqa", description="CQA pipeline (manual mode, iteration 1)")
+    from . import api
+
+    argv = list(sys.argv[1:] if argv is None else argv)
+    if argv and argv[0] in api.COMMANDS:
+        sys.exit(run_command(argv))
+    if argv and argv[0] == "serve":
+        from . import server
+
+        sp = argparse.ArgumentParser(prog="cqa serve")
+        sp.add_argument("--host")
+        sp.add_argument("--port", type=int)
+        a = sp.parse_args(argv[1:])
+        return server.serve(a.host, a.port)
+    try:
+        return _main(argv)
+    except CQAError as e:
+        print(f"Ошибка: {e.message}", file=sys.stderr)
+        sys.exit(1)
+
+
+def _main(argv=None):
+    p = argparse.ArgumentParser(prog="cqa", description="CQA platform. Классические команды ниже; "
+                                "любая команда API: python3 -m cqa <имя> key=value … (список: python3 -m cqa commands); "
+                                "HTTP API: python3 -m cqa serve")
     sub = p.add_subparsers(dest="command", required=True)
 
     c = sub.add_parser("checklist", help="версии чек-листа")

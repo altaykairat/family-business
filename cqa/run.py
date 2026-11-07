@@ -8,14 +8,15 @@ from __future__ import annotations
 
 import random
 import shutil
+from collections import Counter
 from pathlib import Path
 
 from . import checklist as ck
 from . import conversation as cv
 from . import prompts as pr
 from . import responses as rs
-from . import scoring, tokens
-from .common import RUNS, load_json, log_event, now_iso, rel, save_json, stable_hash
+from . import common, scoring, tokens, versions
+from .common import CQAError, load_json, log_event, now_iso, rel, save_json, stable_hash
 
 AGENT_INSTRUCTIONS = """# Инструкция для агента ({agent})
 
@@ -39,7 +40,7 @@ def _select(dataset: str, ids: list, sample: int, seed: int) -> list:
     if ids:
         missing = sorted(set(ids) - set(all_ids))
         if missing:
-            raise SystemExit(f"Нет таких диалогов: {missing}")
+            raise CQAError(f"Нет таких диалогов: {missing}", "not_found")
         return ids
     if sample:
         rng = random.Random(seed)
@@ -55,10 +56,10 @@ def _select(dataset: str, ids: list, sample: int, seed: int) -> list:
 
 
 def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: dict,
-            ids: list = None, sample: int = 0, seed: int = 42) -> Path:
-    run_dir = RUNS / run_id
+            ids: list = None, sample: int = 0, seed: int = 42, author: str = "system") -> Path:
+    run_dir = common.RUNS / run_id
     if run_dir.exists():
-        raise SystemExit(f"Прогон {run_id} уже существует: {rel(run_dir)}. Выберите другой --run.")
+        raise CQAError(f"Прогон {run_id} уже существует: {rel(run_dir)}. Выберите другой --run.", "conflict")
     doc = ck.load(checklist_ref)
     template = cfg["template"]
     include_facts = cfg.get("include_facts", True)
@@ -71,6 +72,7 @@ def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: di
         "checklist": ck.ref_of(doc), "checklist_hash": doc["meta"]["content_hash"],
         "template": template, "variant": variant, "params": params, "params_hash": stable_hash(params),
         "agents": agents, "token_method": tokens.METHOD, "conversations": {}, "token_projection": {},
+        "versions": versions.bundle(doc, cfg, template, author),
     }
     projection = {v: {"calls": 0, "tokens_in": 0} for v in pr.VARIANTS}
 
@@ -104,7 +106,8 @@ def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: di
         (box / "INSTRUCTIONS.md").write_text(AGENT_INSTRUCTIONS.format(agent=agent, run_id=run_id), encoding="utf-8")
 
     save_json(run_dir / "manifest.json", manifest)
-    log_event("run_prepared", run_id=run_id, dataset=dataset, checklist=manifest["checklist"],
+    log_event("run_prepared", actor=author, run_id=run_id, checklist_hash=manifest["checklist_hash"],
+              versions=manifest["versions"], dataset=dataset, checklist=manifest["checklist"],
               variant=variant, template=template, params_hash=manifest["params_hash"],
               conversations=len(selected), agents=agents)
     return run_dir
@@ -121,7 +124,7 @@ def _read_response(box: Path, name: str):
 
 
 def ingest(run_id: str, cfg: dict, agents: list = None) -> dict:
-    run_dir = RUNS / run_id
+    run_dir = common.RUNS / run_id
     manifest = load_json(run_dir / "manifest.json")
     doc = ck.load(manifest["checklist"].replace("@v", "@"))
     threshold = manifest["params"]["quote_match_threshold"]
@@ -174,3 +177,102 @@ def ingest(run_id: str, cfg: dict, agents: list = None) -> dict:
         summary[agent] = stats
         log_event("responses_ingested", run_id=run_id, agent=agent, **stats)
     return summary
+
+
+# --- platform helpers: prompts and responses through the API, providers, dataset import ------------
+
+def _manifest(run_id: str) -> dict:
+    path = common.RUNS / run_id / "manifest.json"
+    if not path.exists():
+        raise CQAError(f"run {run_id} not found", "not_found")
+    return load_json(path)
+
+
+def status(run_id: str) -> dict:
+    """Which prompts of a run still wait for a response, per agent."""
+    m = _manifest(run_id)
+    out = {"run_id": run_id, "checklist": m["checklist"], "variant": m["variant"], "agents": {}}
+    for agent in m["agents"]:
+        box = common.RUNS / run_id / "agents" / agent
+        waiting, done = [], 0
+        for cid, info in m["conversations"].items():
+            for part in info["parts"]:
+                name = Path(part["file"]).stem
+                if _read_response(box, name)[0] is None:
+                    waiting.append(name)
+                else:
+                    done += 1
+        out["agents"][agent] = {"done": done, "waiting": len(waiting), "next": waiting[:10]}
+    return out
+
+
+def prompt_text(run_id: str, name: str) -> dict:
+    m = _manifest(run_id)
+    p = common.RUNS / run_id / "prompts" / f"{name}.md"
+    if not p.exists():
+        raise CQAError(f"prompt {name} not in run {run_id}", "not_found")
+    return {"run_id": run_id, "name": name, "text": p.read_text(encoding="utf-8"), "agents": m["agents"]}
+
+
+def submit_response(run_id: str, agent: str, name: str, text: str, usage: dict = None, actor: str = "system") -> dict:
+    """Save a pasted model answer (what the frontend does instead of writing files by hand)."""
+    m = _manifest(run_id)
+    if agent not in m["agents"]:
+        raise CQAError(f"agent {agent} is not part of run {run_id}")
+    if not (common.RUNS / run_id / "prompts" / f"{name}.md").exists():
+        raise CQAError(f"prompt {name} not in run {run_id}", "not_found")
+    if not (text or "").strip():
+        raise CQAError("empty response")
+    box = common.RUNS / run_id / "agents" / agent / "responses"
+    box.mkdir(parents=True, exist_ok=True)
+    (box / f"{name}.md").write_text(text, encoding="utf-8")
+    if usage:
+        save_json(box / f"{name}.usage.json", usage)
+    log_event("response_submitted", actor=actor, run_id=run_id, agent=agent, prompt=name,
+              conversation_id=name.split("__")[0])
+    return {"saved": rel(box / f"{name}.md")}
+
+
+def dispatch(run_id: str, agent: str, provider: str = None, limit: int = 0, actor: str = "system") -> dict:
+    """Button «Оценить» for a non-manual provider: send every waiting prompt of `agent` through the provider."""
+    from . import providers
+
+    m = _manifest(run_id)
+    prov = providers.get(provider, agent=agent)
+    box = common.RUNS / run_id / "agents" / agent
+    results = Counter()
+    sent = 0
+    for cid, info in m["conversations"].items():
+        for part in info["parts"]:
+            name = Path(part["file"]).stem
+            if _read_response(box, name)[0] is not None:
+                continue
+            if limit and sent >= limit:
+                break
+            res = prov.complete(box / "prompts" / f"{name}.md", box / "responses" / f"{name}.md")
+            results[res["status"]] += 1
+            sent += 1
+            if prov.manual:
+                break
+    log_event("run_dispatched", actor=actor, run_id=run_id, agent=agent, provider=prov.name, results=dict(results))
+    return {"provider": prov.describe(), "results": dict(results),
+            "note": "manual provider: paste responses (run.submit) — nothing was sent" if prov.manual else None}
+
+
+def import_dataset(dataset: str, records: list, actor: str = "system", source: str = "upload") -> dict:
+    """MC.1 «Загрузить»: records in the organizers' API format → data/<dataset>/conversations/<id>.json."""
+    folder = common.DATA / dataset.lower() / "conversations"
+    ids = []
+    for rec in records:
+        if not rec.get("conversation_id") or not isinstance(rec.get("transcript"), list):
+            raise CQAError("each record needs conversation_id and a transcript list")
+        for k, t in enumerate(rec["transcript"], 1):
+            if not {"timestamp", "speaker", "text"} <= set(t):
+                raise CQAError(f"{rec['conversation_id']}: turn {k} needs timestamp, speaker, text")
+            t.setdefault("idx", k)
+        rec.setdefault("channel", "agent chat")
+        rec.setdefault("audio_url", None)
+        save_json(folder / f"{rec['conversation_id']}.json", rec)
+        ids.append(rec["conversation_id"])
+    log_event("dataset_imported", actor=actor, dataset=dataset, conversation_ids=ids, source=source)
+    return {"dataset": dataset, "imported": ids}

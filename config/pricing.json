@@ -1,6 +1,27 @@
 {
-  "_comment": "Цены за 1 млн токенов в USD. Заполнить актуальными прайсами провайдеров перед расчётом стоимости; null — стоимость не считается.",
-  "claude": {"input_per_mtok": null, "output_per_mtok": null},
-  "codex": {"input_per_mtok": null, "output_per_mtok": null},
-  "gemini": {"input_per_mtok": null, "output_per_mtok": null}
+  "_comment": "Цены за 1 млн токенов в USD (API Anthropic, первая сторона, кэш 2026-10-06). null — стоимость не считается. Токены размышлений (thinking) тарифицируются как выходные и в ручном режиме не видны — стоимость занижена на их объём.",
+  "claude": {
+    "input_per_mtok": null,
+    "output_per_mtok": null
+  },
+  "codex": {
+    "input_per_mtok": null,
+    "output_per_mtok": null
+  },
+  "gemini": {
+    "input_per_mtok": null,
+    "output_per_mtok": null
+  },
+  "claude-opus-5-5": {
+    "input_per_mtok": 4.0,
+    "output_per_mtok": 20.0
+  },
+  "claude-sonnet-5-5": {
+    "input_per_mtok": 2.0,
+    "output_per_mtok": 10.0
+  },
+  "claude-haiku-5-5": {
+    "input_per_mtok": 0.1,
+    "output_per_mtok": 0.5
+  }
 }

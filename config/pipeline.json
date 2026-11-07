@@ -1,9 +1,17 @@
 {
-  "agents": ["claude", "codex", "antigravity"],
+  "agents": [
+    "claude",
+    "codex",
+    "antigravity"
+  ],
   "agent_models": {
     "claude": "claude",
     "codex": "codex",
-    "antigravity": "gemini"
+    "antigravity": "gemini",
+    "opus": "claude-opus-5-5",
+    "sonnet": "claude-sonnet-5-5",
+    "sonnet2": "claude-sonnet-5-5",
+    "haiku": "claude-haiku-5-5"
   },
   "template": "v1",
   "include_facts": true,

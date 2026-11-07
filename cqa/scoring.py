@@ -1,6 +1,6 @@
 """S7. Deterministic scoring by the checklist rules. No LLM involved.
 
-Rules (docs/checklist.md, «Порядок расчёта»):
+Rules (docs/organizers/checklist.md, «Порядок расчёта»):
   1. N/A only where allowed (checked earlier, in validation).
   2. Yes = full weight, No = 0; scale step → weight × step / top step.
   3. Criteria with N/A are excluded; weights of applicable criteria are scaled so the max stays 100.

@@ -9,7 +9,8 @@ from statistics import median
 
 from . import checklist as ck
 from . import scoring, tokens
-from .common import RUNS, load_json, log_event, rel
+from . import common
+from .common import load_json, log_event, rel
 
 
 def _load(run_dir, agents):
@@ -42,7 +43,7 @@ def majority(values: list, c: dict):
 
 
 def build(run_id: str, cfg: dict) -> dict:
-    run_dir = RUNS / run_id
+    run_dir = common.RUNS / run_id
     manifest = load_json(run_dir / "manifest.json")
     doc = ck.load(manifest["checklist"].replace("@v", "@"))
     crit = ck.active_criteria(doc)

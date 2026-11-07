@@ -7,13 +7,19 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional
 
-from .common import DATA, load_json
+from . import common
+from .common import CQAError, load_json
 
 ROLE_RU = {"client": "client", "operator": "operator", "bot": "bot", "system": "system"}
 
 
 def dataset_dir(dataset: str) -> Path:
-    return DATA / dataset.lower()
+    """Workspace dataset folder; falls back to the repository copy (organizer data is read-only)."""
+    for base in (common.DATA, common.ROOT / "data"):
+        d = base / dataset.lower()
+        if (d / "conversations").exists():
+            return d
+    return common.DATA / dataset.lower()
 
 
 def list_ids(dataset: str) -> list:
@@ -21,7 +27,10 @@ def list_ids(dataset: str) -> list:
 
 
 def load(dataset: str, conversation_id: str) -> dict:
-    rec = load_json(dataset_dir(dataset) / "conversations" / f"{conversation_id}.json")
+    path = dataset_dir(dataset) / "conversations" / f"{conversation_id}.json"
+    if not path.exists():
+        raise CQAError(f"conversation {conversation_id} not found in dataset {dataset}", "not_found")
+    rec = load_json(path)
     return normalize(rec)
 
 
