@@ -55,10 +55,51 @@
 
 Подробно — [implementation.md → Субагенты вместо API](implementation.md#субагенты-вместо-api-сколько-вызовов-llm-на-подзадачу). Полный отчёт с расхождениями по каждому решению — [runs/sa_v1/reports/experiment_calls.md](../../runs/sa_v1/reports/experiment_calls.md). Скрипт для повторения и для перезапуска с эталоном — [scripts/experiment_calls.py](../../scripts/experiment_calls.py). Прогоны — `runs/sa_v1`, `runs/sa_v2`, `runs/sa_v3`.
 
+## Спринт 1: бэкенд, цикл, открытость
+
+> Задание — [agent-briefs/sprint-1.md](agent-briefs/sprint-1.md), раздел «Сессия реализации». Подробности и точная последовательность команд для прогонов — [implementation.md → Спринт 1](implementation.md#спринт-1-что-добавлено). Тесты — [tests/test_sprint1.py](../../tests/test_sprint1.py).
+
+| # | Пункт | Что сделано | Команды | Код | Коммит |
+|---|---|---|---|---|---|
+| 0 | Помощник ручной вставки | Работает с любым прогоном, включая `variants/*/runs/…`. Следующий промпт копируется в буфер. Ответ сразу проверяется парсером и валидатором; если он не принят, файл не сохраняется, а скрипт просит «перевставь». Режим `go` — непрерывный цикл: Enter — сохранить и взять следующий промпт | `scripts/paste.py next / save / status / go`, `paste.*` | [manual.py](../../cqa/manual.py), [paste.py](../../scripts/paste.py) | `22e89b0` |
+| 4 | Правила и прецеденты в промпт | **Уточнения правил** — новая сущность версии чек-листа: `u1`, `u2`… с ревизиями (`u1@r2`), правятся через ops. `{{RULES}}` → раздел «## Уточнения правил», `{{PRECEDENTS}}` → раздел «## Прецеденты». Если подставлять нечего, раздела нет. Прецеденты отбираются при подготовке прогона и фиксируются в манифесте. Набор уточнений и прецедентов входит в `prompt_id` и в версии оценки. Поле `insufficient_data` принимает валидатор и использует очередь проверяющего | `checklist.change` (`add_clarification`), `review.queue` | [checklist.py](../../cqa/checklist.py), [prompts.py](../../cqa/prompts.py) | `afd96b8` |
+| 1 | Экспорт в формат организаторов | `results/<dev\|prod>/results.json`, схема 1.0. Соответствие наших критериев кодам организаторов — в конфиге. Диалог без валидного результата выгружается как `status: "error"`, а не как ноль. Перед push есть проверка файла; эталонный [labels/results.json](labeling/labels/results.json) её проходит без замечаний | `results.export`, `results.check` | [submission.py](../../cqa/submission.py) | `5fce738` |
+| 2 | Симулированный проверяющий | Каждое расхождение с эталоном на части `tune` превращается в апелляцию от оператора. Решение проверяющего = метка эталона, причина = комментарий эталона. Тип A или B определяется по комментарию. `noise` — доля намеренно ошибочных решений (тип D). Все события помечены `simulated` | `sim.appeals` | [simulation.py](../../cqa/simulation.py) | `8ac0b2c` |
+| 3 | Уверенность закономерностей | Решения группируются по «критерий × было → стало × признак ситуации»: концовка, канал, язык, недовольство, ожидания. По группе считаются случаи, проверяющие, противоречия и нижняя граница Уилсона. Оркестратор видит только группы выше порогов; пока всё копится, задача ему не создаётся. Фильтр `gold=` отделяет решения разных эталонов (для R-flip) | `loop.patterns`, `loop.analyze` | [loop.py](../../cqa/loop.py) | `08aeaf4`, `a8e2458` |
+| 5 | «До и после» | Два источника на отложенной части: точность до и после, Макнемар, изменения по критериям и списки «исправлено / сломано / осталось» | `metrics.before_after` | [metrics.py](../../cqa/metrics.py) | `b615929` |
+| 6 | Сценарии жюри | Все четыре проходят приёмочный тест через API: (1) список грубых ошибок с объяснением; (2) апелляция от оператора; (3) новый критерий и вес → версия → пересчёт без LLM, решения проверяющих сохраняются, промпт строится только по новому критерию; (4) карточка с обоснованием | `jury.gross_errors`, `eval.rescore`, `run.prepare criteria=` | [jury.py](../../cqa/jury.py) | `6f870e0` |
+| 7 | Открытость | `trace` показывает по любому ответу: точный промпт и сырой ответ с хешами, все версии (чек-лист, шаблон, параметры, уточнения, прецеденты), происхождение ответа, цепочку пересчётов и действия людей. Ссылка на него есть в карточке | `trace`, `conversation.card` | [jury.py](../../cqa/jury.py) | `6f870e0` |
+
+Кроме пунктов задания: в `run.prepare` добавлен `split=dev-gold@v1:test`, чтобы взять 26 отложенных диалогов одной командой.
+
+**Порядок прогонов (коротко):**
+
+1. **R-base:**
+   - `run.prepare run_id=r-base template=v2 agents=sonnet`;
+   - `paste.py go --run r-base` (65 вставок);
+   - `run.ingest` → `eval.import` → `eval.publish`;
+   - `metrics.compare` против `dev-gold@v1`;
+   - `results.export set=dev`.
+2. **Цикл на части `tune`:**
+   - `people.seed_demo` и `people.confirm_suggestions` (сейчас справочник людей пуст);
+   - `sim.appeals`;
+   - `loop.patterns` → `loop.analyze` → предложение → `proposal.accept`;
+   - R-loop на части `test` (26 вставок);
+   - `regression.run` → `version.activate` → `metrics.before_after`.
+3. **R-flip:** то же с `gold=dev-gold-strict`.
+
+Полные команды — в [implementation.md](implementation.md#порядок-прогонов-команды).
+
+**Открыто:**
+
+- **Профиль экспорта.** В `config/platform.json → submission` пока временные `team_name` и `model.name` — до сдачи их нужно заменить.
+- **Лишняя запись в журнале.** При проверке экспорта в реальный журнал попала одна тестовая запись `results_exported`. Журнал только дописывается, на результаты она не влияет.
+- **Прогоны не запускались.** Ни ручные прогоны, ни push не делались.
+
 ## Как проверить
 
 ```bash
-python3 -m unittest discover -s tests       # 46 тестов
+python3 -m unittest discover -s tests       # 66 тестов
 python3 -m cqa commands                     # контракт API
 python3 -m cqa serve                        # HTTP API: http://127.0.0.1:8765/api/v1/commands
 python3 -m cqa history.verify               # цепочка хешей истории
@@ -78,7 +119,6 @@ python3 -m cqa conversation.card conversation_id=p1-ru-012
 
 - **HTTP-провайдер** (API или локальная модель) пока только описан контрактом.
 - **Подразумеваемые веса регрессией** не сделаны: нет данных. Общая оценка проверяющего уже собирается в поле `overall_score`.
-- **Прецеденты в промпт** попадут, только когда в шаблоне появится `{{PRECEDENTS}}` (это зона сессии дизайна).
 - **Ид апелляций и решений** выдаются по счётчику. Одновременные запросы нескольких пользователей могут конфликтовать; для демо это не проявляется.
 - **Интерфейс** не делался — по заданию, у владельца проекта свои идеи.
 
@@ -101,8 +141,9 @@ python3 -m cqa conversation.card conversation_id=p1-ru-012
 - **Новое в `cqa/`:** `access`, `analytics`, `api`, `appeals`, `db`, `evaluations`, `events`, `groundtruth`, `loop`, `metrics`, `people`, `providers`, `server`, `sources`, `state`, `stats`, `tasks`, `versions`.
 - **Изменено в `cqa/`:** `common`, `checklist`, `run`, `cli`, `conversation`, `report`. Совместимость с вариантами сохранена.
 - **Конфигурация:** новые [config/platform.json](../../config/platform.json), [config/providers.json](../../config/providers.json), [config/task_templates/](../../config/task_templates/); обновлены цены и соответствие агент → модель.
-- **Скрипты:** [scripts/experiment_calls.py](../../scripts/experiment_calls.py).
-- **Тесты:** [tests/test_platform.py](../../tests/test_platform.py).
+- **Скрипты:** [scripts/experiment_calls.py](../../scripts/experiment_calls.py), [scripts/paste.py](../../scripts/paste.py).
+- **Тесты:** [tests/test_platform.py](../../tests/test_platform.py), [tests/test_sprint1.py](../../tests/test_sprint1.py).
 - **Документы:** [implementation.md](implementation.md), [pipeline.md](pipeline.md), этот отчёт.
 - **Вне моей зоны:** только `history/.gitignore` — игнорирует кеш проекции.
-- **Коммитов не было.**
+- **Спринт 1, новое в `cqa/`:** `manual`, `submission`, `simulation`, `jury`.
+- **Коммиты:** `22e89b0` … `a8e2458` (по пункту на коммит, только свои пути); push не делался.
