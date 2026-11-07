@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transparent CQA Lab</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <div><strong>Transparent CQA Lab</strong><span class="muted">Freedom Broker · экспериментальный прототип</span></div>
+    <div id="status">Загрузка…</div>
+  </header>
+  <nav>
+    <button id="importDev">Загрузить DEV</button>
+    <label class="button">Импорт JSON<input id="importFile" type="file" accept=".json,application/json" hidden></label>
+    <input id="groupId" placeholder="group_id контрольного набора" aria-label="group_id">
+    <button id="importGroup">Загрузить group_id</button>
+    <button id="runBatch">Пакетная AI оценка</button>
+    <span id="batchStatus" class="muted"></span>
+    <button id="openChecklist">Редактор чек-листа</button>
+  </nav>
+  <main>
+    <aside>
+      <h2>Диалоги <small id="conversationCount"></small></h2>
+      <input id="filter" placeholder="Поиск по ID, языку" aria-label="Поиск диалогов">
+      <div id="conversationList"></div>
+    </aside>
+    <section class="transcriptPane">
+      <h2>1 · Исходный диалог</h2>
+      <div id="conversationInfo" class="muted">Выберите диалог.</div>
+      <div id="transcript"></div>
+    </section>
+    <section class="evaluationPane">
+      <div class="panelHead"><h2>Этапы оценки</h2><div id="evaluationActions"></div></div>
+      <div id="pipeline" class="steps"></div>
+      <div id="evaluation"></div>
+    </section>
+  </main>
+  <dialog id="checklistDialog">
+    <div class="panelHead"><h2>Чек-лист</h2><button id="closeChecklist">Закрыть</button></div>
+    <p class="muted">Изменения публикуются новой версией. Старые оценки сохраняют свой чек-лист.</p>
+    <div id="checklistEditor"></div>
+    <div class="dialogActions"><button id="addCriterion">Добавить критерий</button><button id="saveChecklist" class="primary">Опубликовать версию</button></div>
+  </dialog>
+  <script src="/app.js" defer></script>
+</body>
+</html>
