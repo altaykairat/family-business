@@ -60,7 +60,21 @@
     "auto_analyze_after_run": false,
     "auto_precedent": false,
     "auto_reevaluate_on_activation": false,
-    "_comment": "CL.B / CL.E пороги; автоматические режимы выключены (решение 11)"
+    "_comment": "CL.B / CL.E пороги; автоматические режимы выключены (решение 11)",
+    "patterns": {
+      "min_cases": 3,
+      "min_reviewers": 2,
+      "max_contradiction_share": 0.2,
+      "min_wilson_lower": 0.4,
+      "features": [
+        "ending",
+        "channel",
+        "language",
+        "dissatisfaction",
+        "waits"
+      ],
+      "_comment": "Уверенность закономерности: группа решений «критерий × было → стало × признак ситуации (S2)». Готова к предложению, если случаев ≥ min_cases, разных проверяющих ≥ min_reviewers, доля противоречащих решений ≤ max_contradiction_share и нижняя граница Уилсона доли согласных ≥ min_wilson_lower. Остальные — «копятся», оркестратору не показываются."
+    }
   },
   "dimensions": {
     "ending_patterns": {

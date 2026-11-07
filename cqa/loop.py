@@ -21,6 +21,105 @@ from . import common, events, groundtruth, metrics, scoring, sources, state, sta
 from .common import CQAError, load_json, save_json
 
 
+# --- patterns with confidence (sprint 1, item 3) ---------------------------------------------------
+
+def _situation(st: state.State, d: dict, cache: dict) -> dict:
+    """S2 features of the decision's conversation: ending, channel, language, client dissatisfaction, waits."""
+    from . import conversation as cv
+    from . import db
+
+    key = d["evaluation_id"]
+    if key in cache:
+        return cache[key]
+    ev = st.evaluations.get(key) or {}
+    feats = {}
+    try:
+        conv = cv.load(ev.get("dataset") or "dev", d["conversation_id"])
+    except CQAError:
+        conv = None
+    blob = {}
+    if ev.get("blob"):
+        try:
+            blob = events.get_blob(ev["blob"]) or {}
+        except Exception:  # noqa: BLE001 — a missing blob only hides the model-derived feature
+            blob = {}
+    dis = ((blob.get("dialog_facts") or {}).get("client_dissatisfaction") or {}).get("present")
+    if conv:
+        facts = cv.facts(conv, int(common.load_config().get("gap_threshold_s", 30)))
+        feats = {"ending": db.ending_of(conv), "channel": conv.get("channel"), "language": conv.get("language"),
+                 "waits": "yes" if facts["operator_reply_gaps_s"] else "no"}
+    feats["dissatisfaction"] = "unknown" if dis is None else ("yes" if dis else "no")
+    cache[key] = feats
+    return feats
+
+
+def patterns(decisions: list, st: Optional[state.State] = None) -> dict:
+    """Group reviewer decisions by «criterion × was → became × situation feature» and measure how sure the
+    pattern is: cases, distinct reviewers, contradicting decisions (same criterion, same model answer, same
+    situation, different reviewer answer — incl. confirmations) and the Wilson lower bound of the agreeing share.
+    Groups above the thresholds (config loop.patterns) are «ready» for a proposal; the rest «accumulate»."""
+    st = st or state.load()
+    cfg = common.setting("loop.patterns", {}) or {}
+    feats = cfg.get("features", ["ending", "channel", "language", "dissatisfaction", "waits"])
+    min_cases = int(cfg.get("min_cases", 3))
+    min_rev = int(cfg.get("min_reviewers", 2))
+    max_contra = float(cfg.get("max_contradiction_share", 0.2))
+    min_low = float(cfg.get("min_wilson_lower", 0.4))
+    cache: dict = {}
+    rows = []
+    for d in decisions:
+        if d.get("model_answer") is None:
+            continue
+        rows.append({"d": d, "crit": d["criterion_id"], "was": metrics.key(d.get("model_answer")),
+                     "became": metrics.key(d.get("new_answer")), "sit": _situation(st, d, cache)})
+    groups = {}
+    for r in rows:
+        if r["was"] == r["became"]:
+            continue  # confirmations are not patterns of change — they count as contradictions below
+        keys = [()] + [((f, r["sit"].get(f)),) for f in feats if r["sit"].get(f) is not None]
+        for fk in keys:
+            groups.setdefault((r["crit"], r["was"], r["became"], fk), []).append(r)
+    out = []
+    for (crit, was, became, fk), members in groups.items():
+        cond = dict(fk)
+        same = [r for r in rows if r["crit"] == crit and r["was"] == was
+                and all(r["sit"].get(f) == v for f, v in cond.items())]
+        contra = [r for r in same if r["became"] != became]
+        n, c = len(members), len(contra)
+        reviewers = sorted({r["d"]["reviewer_id"] for r in members})
+        share = n / (n + c) if n + c else None
+        low = (stats.wilson(n, n + c) or (None,))[0]
+        reasons = []
+        if n < min_cases:
+            reasons.append(f"случаев {n} < {min_cases}")
+        if len(reviewers) < min_rev:
+            reasons.append(f"проверяющих {len(reviewers)} < {min_rev}")
+        if c / (n + c) > max_contra:
+            reasons.append(f"противоречий {c}/{n + c} > {max_contra:.0%}")
+        if low is not None and low < min_low:
+            reasons.append(f"нижняя граница {low} < {min_low}")
+        out.append({
+            "signature": {"criterion_id": crit, "was": was, "became": became, "situation": cond},
+            "label": f"{crit}: {was} → {became}" + "".join(f" · {f}={v}" for f, v in cond.items()),
+            "cases": n, "reviewers": reviewers, "contradictions": c, "agree_share": round(share, 4),
+            "wilson_lower": low, "types": dict(Counter(r["d"]["type"] for r in members)),
+            "simulated": sum(1 for r in members if r["d"].get("simulated")),
+            "decision_ids": [r["d"]["decision_id"] for r in members],
+            "contradicting_decision_ids": [r["d"]["decision_id"] for r in contra],
+            "reasons_sample": [r["d"]["reason"] for r in members[:3]],
+            "ready": not reasons, "not_ready_because": reasons})
+    # a situation-specific group that holds exactly the same decisions as its base group adds nothing
+    base = {(g["signature"]["criterion_id"], g["signature"]["was"], g["signature"]["became"]):
+            (set(g["decision_ids"]), g["contradictions"]) for g in out if not g["signature"]["situation"]}
+    out = [g for g in out if not g["signature"]["situation"] or
+           base.get((g["signature"]["criterion_id"], g["signature"]["was"], g["signature"]["became"]))
+           != (set(g["decision_ids"]), g["contradictions"])]
+    out.sort(key=lambda g: (not g["ready"], -(g["wilson_lower"] or 0), -g["cases"], g["label"]))
+    return {"thresholds": {"min_cases": min_cases, "min_reviewers": min_rev,
+                           "max_contradiction_share": max_contra, "min_wilson_lower": min_low, "features": feats},
+            "ready": [g for g in out if g["ready"]], "accumulating": [g for g in out if not g["ready"]]}
+
+
 # --- digest (S10.2) -------------------------------------------------------------------------
 
 def build_digest(actor: str = "system", window: Optional[str] = None) -> dict:
@@ -58,6 +157,7 @@ def build_digest(actor: str = "system", window: Optional[str] = None) -> dict:
             "cases": b["cases"],
         }
     last_metrics = list(st.metric_reports.values())[-1:] or []
+    pats = patterns(decisions, st)
     digest = {
         "digest_id": f"dg-{len(st.digests) + 1:04d}", "checklist": ref, "window": window, "since": since,
         "rules": {"min_cases_for_rule": min_rule, "min_cases_for_weight": min_weight,
@@ -65,6 +165,7 @@ def build_digest(actor: str = "system", window: Optional[str] = None) -> dict:
         "totals": {"evaluations": len(evals), "appeals": len(st.appeals), "decisions": len(decisions),
                    "types": dict(Counter(d["type"] for d in decisions))},
         "criteria": criteria,
+        "patterns": pats,
         "gaps_type_B": [c for b in by_crit.values() for c in b["cases"] if c["type"] == "B"],
         "conflicts": appeals.conflicts(),
         "precedents": len(st.precedent),
@@ -74,8 +175,39 @@ def build_digest(actor: str = "system", window: Optional[str] = None) -> dict:
     path = common.HISTORY_DIR / "digests" / f"{digest['digest_id']}.json"
     save_json(path, digest)
     events.append("digest_built", actor=actor, digest_id=digest["digest_id"], path=common.rel(path),
-                  checklist=ref, decisions=len(decisions))
+                  checklist=ref, decisions=len(decisions), patterns_ready=len(pats["ready"]),
+                  patterns_accumulating=len(pats["accumulating"]))
     return digest
+
+
+def for_orchestrator(digest: dict) -> dict:
+    """What the orchestrator sees: only patterns above the thresholds; accumulating ones are counted, not shown,
+    so a proposal is never built from a single or contested case."""
+    ready = {d for g in digest["patterns"]["ready"] for d in g["decision_ids"]}
+    crit = {}
+    for cid, b in digest["criteria"].items():
+        crit[cid] = {**{k: v for k, v in b.items() if k != "cases"},
+                     "cases": [c for c in b["cases"] if c["decision_id"] in ready or c["type"] == "C"]}
+    return {**digest, "criteria": crit,
+            "patterns": {"thresholds": digest["patterns"]["thresholds"], "ready": digest["patterns"]["ready"],
+                         "accumulating_count": len(digest["patterns"]["accumulating"])},
+            "gaps_type_B": [c for c in digest["gaps_type_B"] if c["decision_id"] in ready]}
+
+
+def analyze(actor: str, digest_id: Optional[str] = None, provider: Optional[str] = None, force: bool = False) -> dict:
+    """«Проанализировать историю»: digest → orchestrator task, only when some pattern is above the thresholds
+    (or type-C decisions are enough for a weight proposal). Otherwise nothing is sent: patterns keep accumulating."""
+    from . import tasks
+
+    digest = load_digest(digest_id) if digest_id else build_digest(actor)
+    ready_c = [c for c, b in digest["criteria"].items() if b.get("ready_for_weight")]
+    if not digest["patterns"]["ready"] and not ready_c and not force:
+        return {"task": None, "digest_id": digest["digest_id"], "status": "accumulating",
+                "message": "нет закономерностей выше порогов — предложение не готовится; см. patterns.accumulating",
+                "patterns": digest["patterns"]}
+    task = tasks.create("analyze_history", actor, {"digest_id": digest["digest_id"]}, provider)
+    return {"task": task, "digest_id": digest["digest_id"], "status": "task_created",
+            "ready_patterns": [g["label"] for g in digest["patterns"]["ready"]]}
 
 
 def load_digest(digest_id: str) -> dict:

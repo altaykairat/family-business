@@ -286,6 +286,41 @@ class SimulationTest(unittest.TestCase):
         self.assertEqual(simulation._type_for("Оператор не поздоровался."), "A")
 
 
+class PatternsTest(Workspace):
+    @staticmethod
+    def dec(n, conv, was, became, reviewer, crit="c07", typ="B"):
+        return {"decision_id": f"d-{n:04d}", "evaluation_id": f"e{n}", "conversation_id": conv, "criterion_id": crit,
+                "model_answer": was, "new_answer": became, "reviewer_id": reviewer, "type": typ,
+                "action": "change" if was != became else "confirm", "reason": f"r{n}"}
+
+    def test_confidence_and_thresholds(self):
+        from cqa import loop
+
+        convs = ["p1-ru-001", "p1-ru-002", "p1-ru-003", "p1-ru-004", "p1-ru-005", "p1-ru-006"]
+        ds = [self.dec(i + 1, c, "no", "na", ["r-01", "r-02", "r-03"][i % 3]) for i, c in enumerate(convs[:5])]
+        ds.append(self.dec(6, convs[5], "no", "no", "r-01", typ="D"))          # contradiction: kept «no»
+        ds += [self.dec(7 + i, c, 15, 20, "r-01", crit="c04", typ="A") for i, c in enumerate(convs[:3])]
+        pats = loop.patterns(ds, state.load())
+        base = next(g for g in pats["ready"] if g["label"] == "c07: no → na")
+        self.assertEqual((base["cases"], base["contradictions"], len(base["reviewers"])), (5, 1, 3))
+        self.assertAlmostEqual(base["agree_share"], 5 / 6, places=3)
+        self.assertGreaterEqual(base["wilson_lower"], 0.4)
+        self.assertEqual(base["contradicting_decision_ids"], ["d-0006"])
+        c04 = next(g for g in pats["accumulating"] if g["label"] == "c04: 15 → 20")
+        self.assertIn("проверяющих 1 < 2", c04["not_ready_because"])
+        # situation-specific groups only when they split the base group
+        self.assertTrue(all(g["signature"]["situation"] == {} or set(g["decision_ids"]) != set(base["decision_ids"])
+                            or g["contradictions"] != base["contradictions"]
+                            for g in pats["ready"] + pats["accumulating"] if g["signature"]["criterion_id"] == "c07"))
+
+    def test_analyze_waits_for_patterns(self):
+        from cqa import loop
+
+        res = loop.analyze("a-01")
+        self.assertIsNone(res["task"])
+        self.assertEqual(res["status"], "accumulating")
+
+
 class InsufficientDataTest(Workspace):
     def test_validator_and_queue(self):
         conv = cv.load("dev", "p1-ru-001")

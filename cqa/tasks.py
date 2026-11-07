@@ -64,7 +64,8 @@ def create(kind: str, actor: str, subject: dict, provider: Optional[str] = None)
         subject["digest_id"] = digest["digest_id"]
         doc = ck.load(digest["checklist"])
         subject["base"] = ck.ref_of(doc)
-        values = {"DIGEST": digest, "CHECKLIST": _checklist_brief(doc), "OPS": ck.apply_ops.__doc__,
+        values = {"DIGEST": loop.for_orchestrator(digest) if "patterns" in digest else digest,
+                  "CHECKLIST": _checklist_brief(doc), "OPS": ck.apply_ops.__doc__,
                   "APPEAL_TYPES": state.APPEAL_TYPES}
     elif kind == "checklist_edit":
         if not subject.get("request"):

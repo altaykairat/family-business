@@ -584,9 +584,16 @@ def _digest(actor):
 
 
 @command("loop.analyze", mc="MC.8", summary="«Проанализировать историю»: digest → orchestrator task (proposals)",
-         params={"digest_id": P(), "provider": P()})
-def _analyze(actor, digest_id=None, provider=None):
-    return tasks.create("analyze_history", actor, {"digest_id": digest_id} if digest_id else {}, provider)
+         params={"digest_id": P(), "provider": P(),
+                 "force": P("bool", default=False, help="create the task even if no pattern is above the thresholds")})
+def _analyze(actor, digest_id=None, provider=None, force=False):
+    return loop.analyze(actor, digest_id, provider, force)
+
+
+@command("loop.patterns", "GET", summary="Patterns «criterion × was → became × situation» with confidence: ready "
+         "(above thresholds) and accumulating")
+def _patterns(actor):
+    return loop.patterns(list(state.load().decisions.values()))
 
 
 @command("checklist.request_edit", summary="Change in plain words → orchestrator task → proposal (K.7)",
