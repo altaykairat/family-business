@@ -96,5 +96,71 @@
   "routing": {
     "min_confidence": 0.7,
     "_comment": "review.queue: ответ попадает в очередь проверяющего при insufficient_data, ambiguities, confidence ниже порога, непрошедшей проверке цитаты или расхождении моделей. Только сигнал — решает человек."
+  },
+  "submission": {
+    "_comment": "S8.4: экспорт в формат организаторов (results/<dev|prod>/results.json, схема 1.0). Соответствие наших id критериев кодам организаторов — только здесь. model.name — фактически использованная модель, перед сдачей уточнить (или передать model_name в results.export).",
+    "default_profile": "default",
+    "profiles": {
+      "default": {
+        "team_name": "family-business",
+        "model": {
+          "mode": "external_api",
+          "name": "Claude Sonnet 5.5"
+        },
+        "criteria_map": {
+          "c01": "contact",
+          "c02": "discovery",
+          "c03": "identification",
+          "c04": "consultation",
+          "c05": "empathy",
+          "c06": "dialogue",
+          "c07": "closure",
+          "c08": "critical"
+        },
+        "flag_code": "critical",
+        "value_types": {
+          "contact": [
+            "bool"
+          ],
+          "discovery": [
+            "bool",
+            null
+          ],
+          "identification": [
+            "bool",
+            null
+          ],
+          "consultation": [
+            0,
+            5,
+            10,
+            15,
+            20,
+            null
+          ],
+          "empathy": [
+            "bool"
+          ],
+          "dialogue": [
+            0,
+            4,
+            7,
+            10
+          ],
+          "closure": [
+            "bool",
+            null
+          ],
+          "critical": [
+            "bool"
+          ]
+        },
+        "expected_counts": {
+          "dev": 65,
+          "prod": 10
+        },
+        "checklist": "default@1"
+      }
+    }
   }
 }

@@ -354,6 +354,27 @@ def _run_submit(actor, run_id, agent, name, text, usage=None):
     return run.submit_response(run_id, agent, name, text, usage, actor)
 
 
+@command("results.export", mc="S8.4", summary="Write results/<dev|prod>/results.json in the organizers' format "
+         "(schema 1.0) and check it", params={"set": P(default="dev", help="dev | prod"), "dataset": P(),
+                                              "source": P(help="run:agent; default published + reviewer decisions"),
+                                              "profile": P(), "model_name": P(), "model_mode": P(), "path": P()})
+def _results_export(actor, set="dev", dataset=None, source=None, profile=None, model_name=None,  # noqa: A002
+                    model_mode=None, path=None):
+    from . import access, submission
+
+    access.require(actor, "export")
+    return submission.export(set, dataset, source, profile, actor, path, model_name, model_mode)
+
+
+@command("results.check", "GET", summary="Pre-push check of a results.json: UTF-8, schema, 8 criteria once, value "
+         "types, unique ids, expected count", params={"path": P(required=True), "set": P(), "profile": P(),
+                                                       "expected": P("int")})
+def _results_check(actor, path, set=None, profile=None, expected=None):  # noqa: A002
+    from . import submission
+
+    return submission.check(path, set, profile, expected)
+
+
 @command("review.queue", "GET", summary="Answers to show a reviewer first: insufficient_data, ambiguities, low "
          "confidence, failed evidence check, models disagree", params={"source": P(help="run:agent; default published"),
                                                                       "reasons": P("list"), "until": UNTIL})

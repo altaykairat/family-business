@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from cqa import api, checklist as ck, common, evaluations, manual, prompts, responses, run, state
+from cqa import api, checklist as ck, common, evaluations, manual, prompts, responses, run, state, submission
 from cqa import conversation as cv
 
 IDS = ["p1-ru-001", "p1-ru-012"]
@@ -147,6 +147,61 @@ class RulesInPromptTest(Workspace):
         self.assertEqual(parts["c07"]["context"]["precedents"], ["d-0007"])
         self.assertNotIn("## Прецеденты", parts["c01"]["text"])
         self.assertNotEqual(parts["c07"]["prompt_id"], parts["c04"]["prompt_id"])
+
+
+class SubmissionTest(Workspace):
+    def test_export_and_check(self):
+        cfg = common.load_config()
+        cfg["agents"] = ["e1"]
+        run.prepare("ex", "dev", "default", "v1", cfg, ids=IDS, author="a-01")
+        run.submit_response("ex", "e1", "p1-ru-001", response({**BASE, "c04": 15, "c06": 7}), actor="a-01")
+        broken = {k: v for k, v in BASE.items() if k != "c05"}
+        run.submit_response("ex", "e1", "p1-ru-012", response(broken), actor="a-01")
+        run.ingest("ex", cfg)
+        out = self.tmp / "results" / "dev" / "results.json"
+        res = submission.export("dev", source="ex:e1", actor="a-01", path=str(out))
+        self.assertTrue(res["check"]["ok"], res["check"])
+        doc = json.loads(out.read_text(encoding="utf-8"))
+        self.assertEqual(len(doc["results"]), 65)  # every DEV conversation, missing ones as errors
+        rec = {r["conversation_id"]: r for r in doc["results"]}
+        ok = rec["p1-ru-001"]
+        self.assertEqual([c["criterion_id"] for c in ok["criteria"]],
+                         ["contact", "discovery", "identification", "consultation", "empathy", "dialogue",
+                          "closure", "critical"])
+        vals = {c["criterion_id"]: c["value"] for c in ok["criteria"]}
+        self.assertEqual(vals, {"contact": True, "discovery": None, "identification": None, "consultation": 15,
+                                "empathy": True, "dialogue": 7, "closure": True, "critical": False})
+        # weights 10/15/20/20/15/15/5, N/A on discovery and identification → 65 applicable
+        self.assertEqual(ok["score"], {"final_score": round((10 + 15 + 15 + 7 / 10 * 15 + 5) / 65 * 100, 2),
+                                       "critical_flag": False})
+        self.assertEqual(ok["criteria"][0]["evidence_turns"], [1])
+        self.assertEqual(rec["p1-ru-012"]["status"], "error")  # a missing criterion is an error, never a zero
+        self.assertIn("c05", rec["p1-ru-012"]["error"])
+        self.assertEqual(rec["p1-en-001"], {"conversation_id": "p1-en-001", "status": "error", "criteria": [],
+                                            "score": None, "error": "Нет результата оценки для диалога."})
+
+        # the check catches what the organizers forbid
+        bad = json.loads(out.read_text(encoding="utf-8"))
+        bad["results"][0] = dict(bad["results"][1])          # duplicate id
+        r = bad["results"][[x["conversation_id"] for x in bad["results"]].index("p1-ru-001")]
+        r["criteria"][5]["value"] = 5                         # dialogue has no step 5
+        r["criteria"].pop()                                   # critical missing
+        bad_path = self.tmp / "bad.json"
+        bad_path.write_text(json.dumps(bad, ensure_ascii=False), encoding="utf-8")
+        chk = submission.check(str(bad_path), "dev")
+        self.assertFalse(chk["ok"])
+        text = " ".join(chk["errors"])
+        self.assertIn("повторяющиеся", text)
+        self.assertIn("dialogue: значение 5", text)
+        self.assertIn("ровно по разу", text)
+        self.assertFalse(submission.check(str(out), "prod")["ok"])  # prod expects exactly 10 records
+
+    def test_changed_checklist_is_a_clear_error(self):
+        doc = ck.apply_ops(ck.load("default@1"), [{"op": "add_criterion", "value": {
+            "id": "c09", "title": "Новый", "type": "binary", "weight": 5, "description": "x"}}])
+        with self.assertRaises(common.CQAError) as e:
+            submission._mapping(doc, submission.profile())
+        self.assertIn("c09", str(e.exception))
 
 
 class InsufficientDataTest(Workspace):
