@@ -278,6 +278,28 @@ class SimulationTest(unittest.TestCase):
         d = state.load().decisions[wrong[0]["decision_id"]]
         self.assertEqual((d["type"], d["action"], d["simulated"]["wrong"]), ("D", "confirm", True))
 
+    def test_before_after(self):
+        from cqa import metrics
+
+        cfg = common.load_config()
+        cfg["agents"] = ["m"]
+        run.prepare("good", "dev", "default", "v1", cfg, ids=self.ids, author="a-01")
+        for n, cid in enumerate(self.ids):  # «after»: c05/c07 fixed; c01 broken in the first conversation
+            ans = {k: lab["answer"] for k, lab in self.gold["items"][cid].items()}
+            if n == 0:
+                ans["c01"] = "no" if ans["c01"] == "yes" else "yes"
+            run.submit_response("good", "m", cid, response(ans), actor="a-01")
+        run.ingest("good", cfg)
+        rep = metrics.before_after("dev-gold@v1", "sim:m", "good:m", split="tune", actor="a-01")
+        s = rep["summary"]
+        self.assertEqual((s["fixed"], s["broken"], s["still_wrong"]), (8, 1, 0))
+        self.assertEqual(rep["broken"][0]["criterion_id"], "c01")
+        self.assertGreater(s["macro"]["delta_pp"], 0)
+        self.assertEqual(rep["criteria"]["c05"]["fixed"], 4)
+        md = (self.tmp / rep["paths"]["md"]).read_text(encoding="utf-8") if not Path(rep["paths"]["md"]).is_absolute() \
+            else Path(rep["paths"]["md"]).read_text(encoding="utf-8")
+        self.assertIn("Исправлено **8**, сломано **1**", md)
+
     def test_type_rule(self):
         from cqa import simulation
 

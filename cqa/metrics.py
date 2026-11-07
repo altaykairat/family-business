@@ -242,6 +242,96 @@ def compare(gold_spec: str, pred_specs: list, split: str = "all", actor: str = "
     return clean
 
 
+# --- «до и после» for a slide (sprint 1, item 5) ----------------------------------------------------
+
+def before_after(gold_spec: str, before: str, after: str, split: str = "test", actor: str = "system",
+                 save: bool = True) -> dict:
+    """Two sources on the same held-out labels: accuracy before → after, McNemar, per-criterion change and the
+    exact list of labels fixed / broken / still wrong."""
+    gold = groundtruth.gold(gold_spec, split)
+    doc = ck.load(gold["checklist"])
+    cfg = common.load_config()
+    rb, ra = evaluate(gold, before, doc, cfg), evaluate(gold, after, doc, cfg)
+    db = {(d[0], d[1]): d for d in rb["_decisions"]}
+    da = {(d[0], d[1]): d for d in ra["_decisions"]}
+    both = sorted(set(db) & set(da))
+    row = lambda k: {"conversation_id": k[0], "criterion_id": k[1], "gold": db[k][2],  # noqa: E731
+                     "before": db[k][3], "after": da[k][3]}
+    fixed = [row(k) for k in both if not db[k][4] and da[k][4]]
+    broken = [row(k) for k in both if db[k][4] and not da[k][4]]
+    still = [row(k) for k in both if not db[k][4] and not da[k][4]]
+    changed_ok = [row(k) for k in both if db[k][4] and da[k][4] and db[k][3] != da[k][3]]
+    per_crit = {}
+    for cid, c in rb["criteria"].items():
+        a = ra["criteria"].get(cid, {})
+        per_crit[cid] = {"title": c["title"], "before": c["share"], "after": a.get("share"), "n": c["n"],
+                         "fixed": sum(1 for f in fixed if f["criterion_id"] == cid),
+                         "broken": sum(1 for f in broken if f["criterion_id"] == cid)}
+    delta = lambda x, y: None if x is None or y is None else round(y - x, 4)  # noqa: E731
+    rep = {
+        "gold": gold["label"], "split": split, "checklist": ck.ref_of(doc), "before": before, "after": after,
+        "decisions_compared": len(both), "conversations": len({k[0] for k in both}),
+        "summary": {
+            "macro": {"before": rb["macro_accuracy"], "after": ra["macro_accuracy"],
+                      "delta_pp": None if delta(rb["macro_accuracy"], ra["macro_accuracy"]) is None
+                      else round(delta(rb["macro_accuracy"], ra["macro_accuracy"]) * 100, 1),
+                      "ci95_before": rb["macro_accuracy_ci95"], "ci95_after": ra["macro_accuracy_ci95"]},
+            "micro": {"before": rb["micro_accuracy"]["share"], "after": ra["micro_accuracy"]["share"]},
+            "mae_total": {"before": rb["totals"]["mae"], "after": ra["totals"]["mae"]},
+            "within_tolerance": {"before": rb["totals"]["within_tolerance"]["share"],
+                                 "after": ra["totals"]["within_tolerance"]["share"]},
+            "no_na_confusion": {"before": rb["no_na_confusion"], "after": ra["no_na_confusion"]},
+            "fixed": len(fixed), "broken": len(broken), "still_wrong": len(still),
+            "mcnemar_p": stats.mcnemar(len(fixed), len(broken)),
+            "cost_per_dialog": {"before": rb["cost"]["usd_per_dialog"], "after": ra["cost"]["usd_per_dialog"]},
+        },
+        "criteria": per_crit, "fixed": fixed, "broken": broken, "still_wrong": still,
+        "changed_but_still_right": changed_ok,
+        "coverage": {"before": rb["coverage"], "after": ra["coverage"]},
+    }
+    if not save:
+        return rep
+    existing = list(common.REPORTS.glob("before-after-*.json")) if common.REPORTS.exists() else []
+    rid = f"ba-{len(existing) + 1:04d}"
+    jp, mp = common.REPORTS / f"before-after-{rid}.json", common.REPORTS / f"before-after-{rid}.md"
+    save_json(jp, rep)
+    mp.write_text(render_before_after(rep), encoding="utf-8")
+    events.append("before_after_computed", actor=actor, report_id=rid, gold=gold["label"], split=split,
+                  before=before, after=after, path=common.rel(mp), summary=rep["summary"])
+    rep["report_id"] = rid
+    rep["paths"] = {"json": common.rel(jp), "md": common.rel(mp)}
+    return rep
+
+
+def render_before_after(rep: dict) -> str:
+    s = rep["summary"]
+    m = s["macro"]
+    sign = lambda x: "—" if x is None else f"{x:+.1f} п. п."  # noqa: E731
+    L = [f"# До и после: {rep['before']} → {rep['after']}", "",
+         f"- Эталон `{rep['gold']}`, часть `{rep['split']}` (не использовалась для настройки) · "
+         f"{rep['conversations']} диалогов, {rep['decisions_compared']} решений",
+         f"- Макро-точность: **{_pct(m['before'])} → {_pct(m['after'])}** ({sign(m['delta_pp'])})",
+         f"- Исправлено **{s['fixed']}**, сломано **{s['broken']}**, осталось ошибок {s['still_wrong']} · "
+         f"Макнемар p = {s['mcnemar_p'] if s['mcnemar_p'] is not None else '—'}",
+         f"- MAE итога: {s['mae_total']['before']} → {s['mae_total']['after']} · "
+         f"«Нет»↔N/A: {sum(s['no_na_confusion']['before'].values())} → {sum(s['no_na_confusion']['after'].values())}",
+         "", "## По критериям", "", "| Критерий | До | После | Исправлено | Сломано |", "|---|---|---|---|---|"]
+    for cid, c in rep["criteria"].items():
+        L.append(f"| {cid} {c['title']} | {_pct(c['before'])} | {_pct(c['after'])} | {c['fixed']} | {c['broken']} |")
+    for title, key in (("Исправлено", "fixed"), ("Сломано", "broken"), ("Осталось ошибок", "still_wrong")):
+        rows = rep[key]
+        L += ["", f"## {title} ({len(rows)})", ""]
+        if rows:
+            L += ["| Диалог | Критерий | Эталон | До | После |", "|---|---|---|---|---|"]
+            L += [f"| {r['conversation_id']} | {r['criterion_id']} | {r['gold']} | {r['before']} | {r['after']} |"
+                  for r in rows]
+        else:
+            L.append("—")
+    L += ["", "На 26 диалогах одно решение — около 0,5 п. п.; смотрите число исправленных и сломанных и p, "
+              "а не только разницу процентов."]
+    return "\n".join(L) + "\n"
+
+
 def _pct(x) -> str:
     return "—" if x is None else f"{x * 100:.1f}%"
 

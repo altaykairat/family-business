@@ -387,6 +387,15 @@ def _results_check(actor, path, set=None, profile=None, expected=None):  # noqa:
     return submission.check(path, set, profile, expected)
 
 
+@command("metrics.before_after", summary="Slide «до и после»: two sources on the held-out split — accuracy "
+         "change, McNemar, labels fixed / broken / still wrong", params={
+             "gold": P(required=True), "before": P(required=True, help="run:agent before the loop"),
+             "after": P(required=True, help="run:agent after the loop"), "split": P(default="test"),
+             "save": P("bool", default=True)})
+def _before_after(actor, gold, before, after, split="test", save=True):
+    return metrics.before_after(gold, before, after, split, actor, save)
+
+
 @command("review.queue", "GET", summary="Answers to show a reviewer first: insufficient_data, ambiguities, low "
          "confidence, failed evidence check, models disagree", params={"source": P(help="run:agent; default published"),
                                                                       "reasons": P("list"), "until": UNTIL})
