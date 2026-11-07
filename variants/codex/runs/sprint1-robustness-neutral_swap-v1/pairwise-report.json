@@ -1,0 +1,14 @@
+{
+  "kind": "robustness",
+  "completed_valid_dialogs": 0,
+  "comparable_pairs": 0,
+  "errors": 0,
+  "pending_control": 0,
+  "expected_dialogs": 2,
+  "rows": [],
+  "changed_answers": 0,
+  "compared_answers": 0,
+  "changed_answer_share": null,
+  "changed_dialog_share": null,
+  "note": "No ground truth; change is not proof of error. Robustness compares only to the same-template fresh control run, never to old V1 results."
+}

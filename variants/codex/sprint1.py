@@ -137,6 +137,26 @@ def recall_at(c, budget):
     return None
 
 
+def fixed_policy(summary, rows):
+    """Freeze a threshold on tune at the configured budget, then evaluate unchanged on test."""
+    signal=summary['best_common_cohort_signal_selected_on_tune']
+    tune=summary['common_cohort_curves']['tune'][signal]
+    budget=summary['config']['routing_budget_fraction']
+    eligible=[p for p in tune['points'] if 'threshold' in p and p['review_share']<=budget]
+    threshold=max(eligible,key=lambda p:p['review_share'])['threshold'] if eligible else None
+    out={'signal':signal,'threshold':threshold,'selected_on':'tune','budget':budget,'splits':{}}
+    for split in ('tune','test'):
+        cohort=[r for r in rows if r['split']==split and all(r['availability'].get(k,True)
+                  for k in SIGNALS if k!='insufficient_data')]
+        selected=[r for r in cohort if threshold is not None and r['signals'][signal]>=threshold]
+        errors=sum(r['error_count'] for r in cohort)
+        caught=sum(r['error_count'] for r in selected)
+        out['splits'][split]={'evaluations':len(cohort),'reviewed':len(selected),
+            'review_share':len(selected)/len(cohort) if cohort else None,
+            'errors':errors,'caught_errors':caught,'error_recall':caught/errors if errors else None}
+    return out
+
+
 def build_rows(catalog, gold, cfg, mode='judgment'):
     peers = peer_index(catalog,cfg)
     out=[]
@@ -189,6 +209,7 @@ def analyze(out, cfg):
              'pipeline_error_view':build_rows(catalog,gold,cfg,mode='pipeline')}
     save_json(out/'analysis.json',summary)
     save_json(out/'rows.json',rows)
+    save_json(out/'fixed-policy.json',fixed_policy(summary,rows))
     with (out/'curves.csv').open('w',encoding='utf-8',newline='') as f:
         fields=['split','signal','n','errors','threshold','reviewed','review_share','caught_errors','error_recall']
         w=csv.DictWriter(f,fieldnames=fields,extrasaction='ignore');w.writeheader()

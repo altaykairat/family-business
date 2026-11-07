@@ -1,0 +1,10 @@
+{
+  "status": "awaiting_R-base_results",
+  "prepared_preview": "variants/codex/runs/sprint1-recheck-preview-v1",
+  "preview_source": "sa_v1:sonnet",
+  "preview_calls": 4,
+  "target_max_calls": 10,
+  "requirement": "Only disputed c04/c06 from completed R-base, selected without GT labels",
+  "command": "python3 -m variants.codex.packets recheck --base-source R-base:claude --run variants/codex/runs/sprint1-R-recheck-v1",
+  "note": "Replace R-base:claude with the actual source name. Do not treat preview as R-base."
+}

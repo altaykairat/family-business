@@ -1,0 +1,24 @@
+{
+  "signal": "ambiguities",
+  "threshold": 6.0,
+  "selected_on": "tune",
+  "budget": 0.5,
+  "splits": {
+    "tune": {
+      "evaluations": 10,
+      "reviewed": 4,
+      "review_share": 0.4,
+      "errors": 9,
+      "caught_errors": 4,
+      "error_recall": 0.4444444444444444
+    },
+    "test": {
+      "evaluations": 42,
+      "reviewed": 23,
+      "review_share": 0.5476190476190477,
+      "errors": 71,
+      "caught_errors": 50,
+      "error_recall": 0.704225352112676
+    }
+  }
+}

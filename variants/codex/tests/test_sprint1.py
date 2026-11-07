@@ -1,6 +1,6 @@
 import copy
 import unittest
-from variants.codex.sprint1 import curve, recall_at, extract, build_rows, peer_index
+from variants.codex.sprint1 import curve, recall_at, extract, build_rows, peer_index, fixed_policy
 from cqa import conversation as cv
 from cqa.common import load_json
 from variants.codex.sprint1 import DEFAULT_CONFIG
@@ -42,6 +42,16 @@ class RoutingTests(unittest.TestCase):
         self.assertFalse(x['availability']['model_disagreement'])
         y=extract('s',a,[('m',a),('n',b)],conv,cfg)
         self.assertEqual(y['signals']['model_disagreement'],1)
+
+    def test_fixed_policy_does_not_select_on_test(self):
+        summary={'best_common_cohort_signal_selected_on_tune':'s',
+                 'config':{'routing_budget_fraction':.5},
+                 'common_cohort_curves':{'tune':{'s':curve([self.row(2,1),self.row(1,1)],'s')}}}
+        rows=[dict(self.row(2,0),split='test')]
+        a=fixed_policy(summary,rows)
+        rows[0]['error_count']=8
+        b=fixed_policy(summary,rows)
+        self.assertEqual(a['threshold'],b['threshold'])
 
 
 if __name__=='__main__':unittest.main()
