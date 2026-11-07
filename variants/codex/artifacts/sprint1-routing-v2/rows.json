@@ -1,0 +1,2703 @@
+[
+  {
+    "source": "runs/sa_v1/validated/haiku",
+    "conversation_id": "p1-en-015",
+    "split": "test",
+    "status": "ok",
+    "error_count": 3,
+    "error_criteria": [
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 5.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 48.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/haiku",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c02"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 3.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/haiku",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 4.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/haiku",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.5,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/haiku",
+    "conversation_id": "p4-ru-001",
+    "split": "test",
+    "status": "ok",
+    "error_count": 5,
+    "error_criteria": [
+      "c02",
+      "c04",
+      "c05",
+      "c06",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 5.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 7.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 5.0,
+      "confidence_risk": 0.5,
+      "s2_call": 1.0,
+      "s2_length": 45.0,
+      "s2_gap": 33.0,
+      "s2_duplicates": 1.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c04",
+      "c05",
+      "c06",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/opus",
+    "conversation_id": "p1-en-015",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 2.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 48.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/opus",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 2.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.35,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/opus",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 3.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/opus",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 2.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/opus",
+    "conversation_id": "p4-ru-001",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 5.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 5.0,
+      "confidence_risk": 0.5,
+      "s2_call": 1.0,
+      "s2_length": 45.0,
+      "s2_gap": 33.0,
+      "s2_duplicates": 1.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c04",
+      "c05",
+      "c06",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet",
+    "conversation_id": "p1-en-015",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 5.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.35,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 48.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 2.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.35,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 2.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 2.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.35,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet",
+    "conversation_id": "p4-ru-001",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 5.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 4.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 1.0,
+      "s2_length": 45.0,
+      "s2_gap": 33.0,
+      "s2_duplicates": 1.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c04",
+      "c05",
+      "c06",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet2",
+    "conversation_id": "p1-en-015",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 5.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 48.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet2",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 3.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet2",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 4.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet2",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 3.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v1/validated/sonnet2",
+    "conversation_id": "p4-ru-001",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 5.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 4.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 1.0,
+      "s2_length": 45.0,
+      "s2_gap": 33.0,
+      "s2_duplicates": 1.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c04",
+      "c05",
+      "c06",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/haiku",
+    "conversation_id": "p1-en-015",
+    "split": "test",
+    "status": "ok",
+    "error_count": 3,
+    "error_criteria": [
+      "c03",
+      "c05",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 4.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 7.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 48.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c03",
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/haiku",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c05"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 3.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c05"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/haiku",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 3,
+    "error_criteria": [
+      "c04",
+      "c06",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 4.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/haiku",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.30000000000000004,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 2
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/haiku",
+    "conversation_id": "p4-ru-001",
+    "split": "test",
+    "status": "ok",
+    "error_count": 4,
+    "error_criteria": [
+      "c02",
+      "c04",
+      "c06",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 5.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 1.0,
+      "s2_length": 45.0,
+      "s2_gap": 33.0,
+      "s2_duplicates": 1.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c04",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/sonnet",
+    "conversation_id": "p1-en-015",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c04"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 4.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 48.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c03",
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/sonnet",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c05"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/sonnet",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 3,
+    "error_criteria": [
+      "c02",
+      "c04",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/sonnet",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 3.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v2/validated/sonnet",
+    "conversation_id": "p4-ru-001",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 5.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 1.0,
+      "s2_length": 45.0,
+      "s2_gap": 33.0,
+      "s2_duplicates": 1.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c04",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/haiku",
+    "conversation_id": "p1-en-015",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c05",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 48.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/haiku",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c05"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c05"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/haiku",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 4,
+    "error_criteria": [
+      "c04",
+      "c05",
+      "c06",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 3.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/haiku",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/haiku",
+    "conversation_id": "p4-ru-001",
+    "split": "test",
+    "status": "ok",
+    "error_count": 3,
+    "error_criteria": [
+      "c02",
+      "c04",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 6.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 1.0,
+      "s2_length": 45.0,
+      "s2_gap": 33.0,
+      "s2_duplicates": 1.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/sonnet",
+    "conversation_id": "p1-en-015",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c04"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 7.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.35,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 48.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c04",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/sonnet",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 7.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 2.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c05"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/sonnet",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 3,
+    "error_criteria": [
+      "c02",
+      "c04",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 3.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 7.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 3.0,
+      "confidence_risk": 0.4,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c05",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/sonnet",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 6.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.30000000000000004,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 2
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/sa_v3/validated/sonnet",
+    "conversation_id": "p4-ru-001",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c04",
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 8.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 4.0,
+      "confidence_risk": 0.44999999999999996,
+      "s2_call": 1.0,
+      "s2_length": 45.0,
+      "s2_gap": 33.0,
+      "s2_duplicates": 1.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_v1/validated/flash",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": false,
+      "insufficient_data": false,
+      "low_confidence": false,
+      "confidence_risk": false,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 0,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_v1/validated/flash",
+    "conversation_id": "p1-ru-001",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 36.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": false,
+      "insufficient_data": false,
+      "low_confidence": false,
+      "confidence_risk": false,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02"
+    ],
+    "confidence_fields": 0,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_v1/validated/flash",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": false,
+      "insufficient_data": false,
+      "low_confidence": false,
+      "confidence_risk": false,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 0,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_v1/validated/flash",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": false,
+      "insufficient_data": false,
+      "low_confidence": false,
+      "confidence_risk": false,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 0,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_v1/validated/flash_lite",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c02"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_v1/validated/flash_lite",
+    "conversation_id": "p1-ru-001",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c02"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 36.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_v1/validated/flash_lite",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 2,
+    "error_criteria": [
+      "c02",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_v1/validated/flash_lite",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 1.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 1.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.09999999999999998,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 2
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_vsubq/validated/subq_flash",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 0.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 0
+    },
+    "availability": {
+      "model_disagreement": false,
+      "invalid_quote": true,
+      "ambiguities": false,
+      "insufficient_data": false,
+      "low_confidence": false,
+      "confidence_risk": false,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [],
+    "confidence_fields": 0,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_vsubq/validated/subq_flash",
+    "conversation_id": "p1-ru-001",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 0.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 36.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 0
+    },
+    "availability": {
+      "model_disagreement": false,
+      "invalid_quote": true,
+      "ambiguities": false,
+      "insufficient_data": false,
+      "low_confidence": false,
+      "confidence_risk": false,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [],
+    "confidence_fields": 0,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_vsubq/validated/subq_flash",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 0.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 0
+    },
+    "availability": {
+      "model_disagreement": false,
+      "invalid_quote": true,
+      "ambiguities": false,
+      "insufficient_data": false,
+      "low_confidence": false,
+      "confidence_risk": false,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [],
+    "confidence_fields": 0,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "runs/exp_vsubq/validated/subq_flash",
+    "conversation_id": "p1-ru-022",
+    "split": "tune",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c06"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 0.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 0.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.0,
+      "s2_call": 0.0,
+      "s2_length": 14.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 0
+    },
+    "availability": {
+      "model_disagreement": false,
+      "invalid_quote": true,
+      "ambiguities": false,
+      "insufficient_data": false,
+      "low_confidence": false,
+      "confidence_risk": false,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [],
+    "confidence_fields": 0,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "variants/codex/runs/isolated-20261107-review/validated/luna",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "error",
+    "error_count": 1,
+    "error_criteria": [
+      "c05"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 3.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.20999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 2
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c05",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "variants/codex/runs/isolated-20261107-review/validated/luna",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "error",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 0.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 4.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.21999999999999997,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "variants/codex/runs/isolated-20261107-review/validated/terra",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 1,
+    "error_criteria": [
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 4.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 1.0,
+      "confidence_risk": 0.31999999999999995,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 3
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c05",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "variants/codex/runs/isolated-20261107-review/validated/terra",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 0.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 2.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.15000000000000002,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 1
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "variants/codex/runs/isolated-20261107-sections/validated/luna",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "error",
+    "error_count": 1,
+    "error_criteria": [
+      "c05"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 5.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.18000000000000005,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 2
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "variants/codex/runs/isolated-20261107-sections/validated/luna",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "error",
+    "error_count": 2,
+    "error_criteria": [
+      "c06",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 4.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.26,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 2
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "variants/codex/runs/isolated-20261107-sections/validated/terra",
+    "conversation_id": "p1-kz-008",
+    "split": "test",
+    "status": "ok",
+    "error_count": 3,
+    "error_criteria": [
+      "c02",
+      "c05",
+      "c07"
+    ],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 4.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.25,
+      "s2_call": 0.0,
+      "s2_length": 13.0,
+      "s2_gap": 42.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 0.0,
+      "combined": 2
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c02",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  },
+  {
+    "source": "variants/codex/runs/isolated-20261107-sections/validated/terra",
+    "conversation_id": "p1-ru-012",
+    "split": "test",
+    "status": "ok",
+    "error_count": 0,
+    "error_criteria": [],
+    "label_count": 8,
+    "signals": {
+      "model_disagreement": 2.0,
+      "invalid_quote": 0.0,
+      "ambiguities": 3.0,
+      "insufficient_data": 0.0,
+      "low_confidence": 0.0,
+      "confidence_risk": 0.20999999999999996,
+      "s2_call": 0.0,
+      "s2_length": 12.0,
+      "s2_gap": 0.0,
+      "s2_duplicates": 0.0,
+      "s2_system_ending": 1.0,
+      "combined": 2
+    },
+    "availability": {
+      "model_disagreement": true,
+      "invalid_quote": true,
+      "ambiguities": true,
+      "insufficient_data": false,
+      "low_confidence": true,
+      "confidence_risk": true,
+      "s2_call": true,
+      "s2_length": true,
+      "s2_gap": true,
+      "s2_duplicates": true,
+      "s2_system_ending": true,
+      "combined": true
+    },
+    "disputed_criteria": [
+      "c06",
+      "c07"
+    ],
+    "confidence_fields": 8,
+    "insufficient_data_fields": 0
+  }
+]

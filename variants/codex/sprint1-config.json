@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "gold": "dev-gold@v1",
+  "confidence_threshold": 0.7,
+  "gap_threshold_s": 30,
+  "target_criteria": ["c04", "c06"],
+  "max_recheck_dialogs": 10,
+  "primary_model_aliases": {"sonnet2": "sonnet"},
+  "source_patterns": ["runs/sa_*/validated/*", "runs/exp_*/validated/*", "variants/codex/runs/isolated-*/validated/*"],
+  "reserved_minutes": 15,
+  "manual_minutes_per_call": [2, 4],
+  "routing_budget_fraction": 0.5
+}
