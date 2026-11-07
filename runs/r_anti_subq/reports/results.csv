@@ -1,0 +1,41 @@
+run_id,checklist,variant,agent,conversation_id,criterion_id,answer,points,effective_weight,effective_points,confidence,total,gross_error,status,explanation
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-kz-008,c01,yes,10.0,10.0,10.0,0.95,100.0,False,ok,Установление контакта — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-kz-008,c02,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Выявление потребности — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-kz-008,c03,yes,20.0,20.0,20.0,0.95,100.0,False,ok,Идентификация — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-kz-008,c04,20,20.0,20.0,20.0,0.95,100.0,False,ok,Корректная и полная консультация — 20. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-kz-008,c05,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Эмпатия и клиентоориентированность — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-kz-008,c06,10,15.0,15.0,15.0,0.95,100.0,False,ok,"Управление диалогом, скорость и грамотность — 10. Основание — реплика #10."
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-kz-008,c07,yes,5.0,5.0,5.0,0.95,100.0,False,ok,Завершение — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-kz-008,c08,no,,,,0.95,100.0,False,ok,Грубые ошибки — no. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-001,c01,yes,10.0,10.0,10.0,0.95,100.0,False,ok,Установление контакта — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-001,c02,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Выявление потребности — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-001,c03,yes,20.0,20.0,20.0,0.95,100.0,False,ok,Идентификация — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-001,c04,20,20.0,20.0,20.0,0.95,100.0,False,ok,Корректная и полная консультация — 20. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-001,c05,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Эмпатия и клиентоориентированность — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-001,c06,10,15.0,15.0,15.0,0.95,100.0,False,ok,"Управление диалогом, скорость и грамотность — 10. Основание — реплика #10."
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-001,c07,yes,5.0,5.0,5.0,0.95,100.0,False,ok,Завершение — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-001,c08,no,,,,0.95,100.0,False,ok,Грубые ошибки — no. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-012,c01,yes,10.0,10.0,10.0,0.95,100.0,False,ok,Установление контакта — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-012,c02,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Выявление потребности — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-012,c03,yes,20.0,20.0,20.0,0.95,100.0,False,ok,Идентификация — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-012,c04,20,20.0,20.0,20.0,0.95,100.0,False,ok,Корректная и полная консультация — 20. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-012,c05,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Эмпатия и клиентоориентированность — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-012,c06,10,15.0,15.0,15.0,0.95,100.0,False,ok,"Управление диалогом, скорость и грамотность — 10. Основание — реплика #10."
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-012,c07,yes,5.0,5.0,5.0,0.95,100.0,False,ok,Завершение — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-012,c08,no,,,,0.95,100.0,False,ok,Грубые ошибки — no. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-022,c01,yes,10.0,10.0,10.0,0.95,100.0,False,ok,Установление контакта — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-022,c02,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Выявление потребности — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-022,c03,yes,20.0,20.0,20.0,0.95,100.0,False,ok,Идентификация — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-022,c04,20,20.0,20.0,20.0,0.95,100.0,False,ok,Корректная и полная консультация — 20. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-022,c05,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Эмпатия и клиентоориентированность — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-022,c06,10,15.0,15.0,15.0,0.95,100.0,False,ok,"Управление диалогом, скорость и грамотность — 10. Основание — реплика #10."
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-022,c07,yes,5.0,5.0,5.0,0.95,100.0,False,ok,Завершение — yes. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p1-ru-022,c08,no,,,,0.95,100.0,False,ok,Грубые ошибки — no. Основание — реплика #10.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p4-ru-001,c01,yes,10.0,10.0,10.0,0.95,100.0,False,ok,Установление контакта — yes. Основание — реплика #13.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p4-ru-001,c02,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Выявление потребности — yes. Основание — реплика #13.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p4-ru-001,c03,yes,20.0,20.0,20.0,0.95,100.0,False,ok,Идентификация — yes. Основание — реплика #13.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p4-ru-001,c04,20,20.0,20.0,20.0,0.95,100.0,False,ok,Корректная и полная консультация — 20. Основание — реплика #13.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p4-ru-001,c05,yes,15.0,15.0,15.0,0.95,100.0,False,ok,Эмпатия и клиентоориентированность — yes. Основание — реплика #13.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p4-ru-001,c06,10,15.0,15.0,15.0,0.95,100.0,False,ok,"Управление диалогом, скорость и грамотность — 10. Основание — реплика #13."
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p4-ru-001,c07,yes,5.0,5.0,5.0,0.95,100.0,False,ok,Завершение — yes. Основание — реплика #13.
+r_anti_subq,default@v1,v_subq_bundled,antigravity,p4-ru-001,c08,no,,,,0.95,100.0,False,ok,Грубые ошибки — no. Основание — реплика #13.

@@ -1,0 +1,653 @@
+{
+  "run_id": "r_subq",
+  "created_at": "2026-11-07T20:05:40+05:00",
+  "mode": "antigravity_fine_grained",
+  "dataset": "DEV",
+  "checklist": "default@v1",
+  "checklist_hash": "8eba1133e74e",
+  "variant": "v_subq_bundled",
+  "params": {
+    "gap_threshold_s": 30,
+    "quote_match_threshold": 0.9,
+    "include_facts": true,
+    "preset": null,
+    "sample_size": 26
+  },
+  "params_hash": "f6cc298ac916",
+  "agents": [
+    "antigravity",
+    "claude",
+    "codex"
+  ],
+  "token_method": "heuristic:chars-per-script",
+  "conversations": {
+    "p1-en-007": {
+      "channel": "agent chat",
+      "language": "EN",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-en-007.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-en-007|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4160,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-en-008": {
+      "channel": "agent chat",
+      "language": "EN",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-en-008.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-en-008|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4357,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-en-009": {
+      "channel": "agent chat",
+      "language": "EN",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-en-009.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-en-009|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4118,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-en-013": {
+      "channel": "agent chat",
+      "language": "EN",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-en-013.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-en-013|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4172,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-en-014": {
+      "channel": "agent chat",
+      "language": "EN",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-en-014.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-en-014|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4167,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-en-015": {
+      "channel": "agent chat",
+      "language": "EN",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-en-015.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-en-015|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4153,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-kz-003": {
+      "channel": "agent chat",
+      "language": "KZ",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-kz-003.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-kz-003|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4580,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-kz-005": {
+      "channel": "agent chat",
+      "language": "KZ",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-kz-005.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-kz-005|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4238,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-kz-007": {
+      "channel": "agent chat",
+      "language": "KZ",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-kz-007.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-kz-007|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4200,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-kz-008": {
+      "channel": "agent chat",
+      "language": "KZ",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-kz-008.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-kz-008|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4211,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-kz-010": {
+      "channel": "agent chat",
+      "language": "KZ",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-kz-010.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-kz-010|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4212,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-kz-013": {
+      "channel": "agent chat",
+      "language": "KZ",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-kz-013.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-kz-013|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4247,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-008": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-008.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-008|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4262,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-010": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-010.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-010|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4837,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-012": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-012.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-012|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4175,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-013": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-013.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-013|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4217,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-015": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-015.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-015|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4251,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-016": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-016.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-016|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4261,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-017": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-017.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-017|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4273,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-018": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-018.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-018|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4204,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-020": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-020.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-020|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4282,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-021": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-021.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-021|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4196,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-024": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-024.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-024|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4228,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p1-ru-027": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-ru-027.md",
+          "prompt_id": "v_subq_bundled|default@v1|p1-ru-027|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4466,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p4-ru-001": {
+      "channel": "voice call",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p4-ru-001.md",
+          "prompt_id": "v_subq_bundled|default@v1|p4-ru-001|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 5387,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    },
+    "p4-ru-002": {
+      "channel": "voice call",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p4-ru-002.md",
+          "prompt_id": "v_subq_bundled|default@v1|p4-ru-002|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 5582,
+          "template_hash": "df6a0604cd7e"
+        }
+      ]
+    }
+  },
+  "token_projection": {
+    "v1": {
+      "calls": 52,
+      "tokens_in": 198580
+    },
+    "v3_focus": {
+      "calls": 208,
+      "tokens_in": 448019
+    },
+    "v4_facts": {
+      "calls": 26,
+      "tokens_in": 38829
+    },
+    "v4_mono": {
+      "calls": 26,
+      "tokens_in": 92988
+    },
+    "v4_focus": {
+      "calls": 208,
+      "tokens_in": 337970
+    },
+    "v_subq": {
+      "calls": 208,
+      "tokens_in": 255709
+    },
+    "v_subq_bundled": {
+      "calls": 26,
+      "tokens_in": 113436
+    }
+  }
+}
