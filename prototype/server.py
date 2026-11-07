@@ -16,7 +16,7 @@ from pydantic import BaseModel, Field
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from engine import Invalid, score, validate_answers
-from provider import draft, build_request, PROMPT_VERSION
+from provider import draft, build_request, PROMPT_VERSION, ProviderFailure
 from store import Store
 
 
@@ -155,9 +155,13 @@ def evaluation_view(eid: str):
                        if baseline_answers else [])
     baseline_score = (score(evaluation["checklist_snapshot"], conversation, baseline_answers)
                       if baseline_answers and not baseline_errors else None)
+    last_attempt = next((event for event in reversed(evaluation["events"])
+                         if event["kind"] in {"ai_error", "ai_draft"}), None)
+    last_error = last_attempt["detail"] if last_attempt and last_attempt["kind"] == "ai_error" else None
     return {**evaluation, "conversation": conversation, "validation_errors": errors,
             "score": None if errors else score(evaluation["checklist_snapshot"], conversation, evaluation["answers"]),
             "baseline_score": baseline_score, "baseline_errors": baseline_errors,
+            "last_provider_error": last_error,
             "changed_criteria": ([cid for cid in evaluation["answers"]
                                   if evaluation["answers"][cid] != baseline_answers.get(cid)]
                                  if baseline_answers else [])}
@@ -180,7 +184,7 @@ def prompt_preview(eid: str):
     evaluation = store.evaluation(eid)
     conversation = store.conversation(evaluation["conversation_id"])
     actual = next((event["detail"] for event in reversed(evaluation["events"])
-                   if event["kind"] == "ai_draft" and event["detail"].get("request")), None)
+                   if event["kind"] in {"ai_draft", "ai_error"} and event["detail"].get("request")), None)
     if actual:
         return {"prompt_version": actual["prompt_version"], "sent": True,
                 "provider": actual["provider"], "request": actual["request"]}
@@ -201,8 +205,11 @@ def patch_answer(eid: str, cid: str, body: dict):
 def ai_evaluation(eid: str):
     evaluation = store.evaluation(eid)
     conversation = store.conversation(evaluation["conversation_id"])
-    response = draft(conversation, evaluation["checklist_snapshot"])
-    store.apply_ai_draft(eid, response)
+    try:
+        response = draft(conversation, evaluation["checklist_snapshot"])
+        store.apply_ai_draft(eid, response)
+    except ProviderFailure as exc:
+        store.log_ai_failure(eid, exc.trace)
     return evaluation_view(eid)
 
 
@@ -218,6 +225,10 @@ def run_batch(job_id, body):
                                    "status": "valid" if not view["validation_errors"] else "needs_review",
                                    "score": view["score"]["total"] if view["score"] else None,
                                    "errors": view["validation_errors"]})
+        except ProviderFailure as exc:
+            store.log_ai_failure(evaluation["id"], exc.trace)
+            job["results"].append({"conversation_id": cid, "evaluation_id": evaluation["id"],
+                                   "status": "error", "error": str(exc)})
         except Exception as exc:
             job["results"].append({"conversation_id": cid, "status": "error", "error": str(exc)})
         job["done"] += 1

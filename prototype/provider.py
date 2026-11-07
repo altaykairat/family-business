@@ -13,6 +13,12 @@ from engine import Invalid
 PROMPT_VERSION = "rubric-first-v1"
 
 
+class ProviderFailure(Invalid):
+    def __init__(self, message, trace):
+        super().__init__(message)
+        self.trace = trace
+
+
 def estimate_cost(usage, provider):
     input_price = os.environ.get("CQA_INPUT_USD_PER_MILLION", "")
     output_price = os.environ.get("CQA_OUTPUT_USD_PER_MILLION", "")
@@ -91,34 +97,42 @@ def draft(conversation, checklist):
         headers["x-goog-api-key"] = key
     request = Request(url, data=json.dumps(payload).encode("utf-8"), headers=headers, method="POST")
     started = perf_counter()
+    text = None
+    usage = None
+    def failure(message):
+        return ProviderFailure(message, {"provider": provider, "model": model,
+                                         "prompt_version": PROMPT_VERSION, "request": payload,
+                                         "raw": text, "usage": usage,
+                                         "duration_seconds": round(perf_counter() - started, 3),
+                                         "error": message})
     try:
         with urlopen(request, timeout=120) as response:
             raw = json.loads(response.read().decode("utf-8"))
         text = (raw["choices"][0]["message"]["content"] if provider == "openai"
                 else "".join(part.get("text", "") for part in raw["candidates"][0]["content"]["parts"]))
         if not isinstance(text, str):
-            raise Invalid("AI returned non-text content")
+            raise failure("AI returned non-text content")
         parsed = json.loads(text)
         candidates = parsed["answers"]
         if not isinstance(candidates, list):
-            raise Invalid("AI answers must be a list")
+            raise failure("AI answers must be a list")
         known = {c["id"] for c in checklist["criteria"]}
         answers = {}
         for item in candidates:
             cid = item.get("criterion_id")
             if cid not in known or cid in answers:
-                raise Invalid("AI returned unknown or duplicate criterion")
+                raise failure("AI returned unknown or duplicate criterion")
             answers[cid] = {field: item.get(field) for field in
                             ("applicability", "na_reason", "answer", "evidence_idx", "explanation")}
         if set(answers) != known:
-            raise Invalid("AI omitted a criterion")
+            raise failure("AI omitted a criterion")
         usage = raw.get("usage") if provider == "openai" else raw.get("usageMetadata")
         return {"answers": answers, "model": model, "provider": provider, "request": payload,
                 "usage": usage, "cost_usd": estimate_cost(usage, provider), "raw": text,
                 "duration_seconds": round(perf_counter() - started, 3), "prompt_version": PROMPT_VERSION}
     except HTTPError as exc:
-        raise Invalid(f"Provider HTTP {exc.code}") from exc
+        raise failure(f"Provider HTTP {exc.code}") from exc
     except (URLError, TimeoutError) as exc:
-        raise Invalid(f"Provider connection failed: {type(exc).__name__}") from exc
-    except (KeyError, IndexError, json.JSONDecodeError) as exc:
-        raise Invalid(f"AI response is not valid evaluation JSON: {exc}") from exc
+        raise failure(f"Provider connection failed: {type(exc).__name__}") from exc
+    except (KeyError, IndexError, TypeError, json.JSONDecodeError) as exc:
+        raise failure(f"AI response is not valid evaluation JSON: {exc}") from exc

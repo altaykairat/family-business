@@ -14,6 +14,7 @@ try:
     from fastapi.testclient import TestClient
     import server
     from compare import compare
+    from provider import ProviderFailure
     from store import Store
 except ImportError:
     TestClient = None
@@ -21,6 +22,21 @@ except ImportError:
 
 @unittest.skipIf(TestClient is None, "Install prototype/requirements-dev.txt")
 class ApiTests(unittest.TestCase):
+    def test_provider_failure_is_visible_in_trace(self):
+        with TemporaryDirectory() as temp:
+            server.store = Store(Path(temp) / "api.db", ROOT / "data/checklists/default.json")
+            client = TestClient(server.app)
+            client.post("/api/import-dev")
+            eid = client.post("/api/evaluations", json={"conversation_id": "p1-ru-001"}).json()["id"]
+            trace = {"provider": "openai", "model": "test", "prompt_version": "test",
+                     "request": {"model": "test"}, "raw": "{broken", "usage": None,
+                     "duration_seconds": .1, "error": "invalid JSON"}
+            with patch("server.draft", side_effect=ProviderFailure("invalid JSON", trace)):
+                result = client.post(f"/api/evaluations/{eid}/ai").json()
+            self.assertEqual(result["last_provider_error"]["raw"], "{broken")
+            self.assertEqual(result["events"][-1]["kind"], "ai_error")
+            self.assertTrue(client.get(f"/api/evaluations/{eid}/prompt").json()["sent"])
+
     def test_checklist_change_reaches_prompt_without_code_change(self):
         with TemporaryDirectory() as temp:
             server.store = Store(Path(temp) / "api.db", ROOT / "data/checklists/default.json")

@@ -199,6 +199,11 @@ class Store:
                          "prompt_version": response["prompt_version"]})
         return self.evaluation(eid)
 
+    def log_ai_failure(self, eid, trace):
+        self.evaluation(eid)
+        with self.connect() as db:
+            self._event(db, eid, "ai_error", trace.get("model", "provider"), trace)
+
     def appeal(self, eid, cid, comment):
         evaluation = self.evaluation(eid)
         if cid not in evaluation["answers"] or not str(comment).strip():
