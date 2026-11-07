@@ -354,6 +354,13 @@ def _run_submit(actor, run_id, agent, name, text, usage=None):
     return run.submit_response(run_id, agent, name, text, usage, actor)
 
 
+@command("review.queue", "GET", summary="Answers to show a reviewer first: insufficient_data, ambiguities, low "
+         "confidence, failed evidence check, models disagree", params={"source": P(help="run:agent; default published"),
+                                                                      "reasons": P("list"), "until": UNTIL})
+def _review_queue(actor, source=None, reasons=None, until=None):
+    return evaluations.review_queue(source, reasons, until)
+
+
 @command("paste.status", "GET", summary="Manual paste: done / waiting prompts of any run folder (also variants/*/runs)",
          params={"run": P(required=True), "agent": P()})
 def _paste_status(actor, run, agent=None):

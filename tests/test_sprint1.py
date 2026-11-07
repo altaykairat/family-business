@@ -6,7 +6,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from cqa import api, common, manual, run, state
+from cqa import api, checklist as ck, common, evaluations, manual, prompts, responses, run, state
+from cqa import conversation as cv
 
 IDS = ["p1-ru-001", "p1-ru-012"]
 BASE = {"c01": "yes", "c02": "na", "c03": "na", "c04": 20, "c05": "yes", "c06": 10, "c07": "yes", "c08": "no"}
@@ -86,6 +87,84 @@ class PasteTest(Workspace):
         self.assertEqual(r["data"]["name"], "p1-ru-001")
         with self.assertRaises(common.CQAError):  # operators cannot submit evaluations
             api.call("paste.save", "op-01", {"run": "p1", "agent": "a2", "text": response(BASE)})
+
+
+class RulesInPromptTest(Workspace):
+    def build(self, doc, template="v2", variant="v1", precedents=None):
+        conv = cv.load("dev", "p1-ru-012")
+        return prompts.build(template, doc, conv, cv.facts(conv, 30), variant, True, precedents)
+
+    def test_empty_placeholders_vanish(self):
+        b = self.build(ck.load("default@1"))[0]
+        self.assertNotIn("{{", b["text"])
+        self.assertNotIn("## Уточнения правил", b["text"])
+        self.assertNotIn("## Прецеденты", b["text"])
+        self.assertNotIn("\n\n\n", b["text"])
+        self.assertNotIn("ctx:", b["prompt_id"])
+        self.assertEqual(b["context"], {"rules": {}, "precedents": []})
+
+    def test_clarifications_are_versioned_and_rendered(self):
+        doc = ck.apply_ops(ck.load("default@1"), [
+            {"op": "add_clarification", "value": {"criterion_id": "c07", "text": "Обрыв связи клиентом — N/A.",
+                                                  "reason": "решения d-0001, d-0004"}},
+            {"op": "add_clarification", "value": {"text": "Ответ бота оператору не засчитывается."}}])
+        saved = ck.save_doc(doc, "default", "a-01", "test clarifications")
+        doc2 = ck.load(saved["ref"])
+        self.assertEqual(ck.clarification_revs(doc2), {"u1": "u1@r1", "u2": "u2@r1"})
+        b = self.build(doc2)[0]
+        self.assertIn("## Уточнения правил", b["text"])
+        self.assertIn("1. **c07** — Обрыв связи клиентом — N/A. *Причина:* решения d-0001, d-0004", b["text"])
+        self.assertIn("2. **Все критерии** — Ответ бота", b["text"])
+        self.assertEqual(b["context"]["rules"], {"u1": "u1@r1", "u2": "u2@r1"})
+        self.assertIn("|ctx:", b["prompt_id"])
+        # per-criterion prompts: the c07 clarification is only in the c07 prompt, the global one everywhere
+        parts = {p["part"]: p for p in self.build(doc2, variant="v3")}
+        self.assertEqual(set(parts["c07"]["context"]["rules"]), {"u1", "u2"})
+        self.assertEqual(set(parts["c01"]["context"]["rules"]), {"u2"})
+        # template without {{RULES}}: clarifications are not lost
+        v1 = self.build(doc2, template="v1")[0]["text"]
+        self.assertIn("Уточнение (u1): Обрыв связи клиентом", v1)
+        self.assertIn("Ответ бота оператору не засчитывается.", v1)
+        # editing bumps the revision, archiving removes it from prompts, ids are never reused
+        doc3 = ck.apply_ops(doc2, [{"op": "edit_clarification", "id": "u1", "value": {"text": "Обрыв — N/A, если ..."}},
+                                   {"op": "archive_clarification", "id": "u2"},
+                                   {"op": "add_clarification", "value": {"text": "третье"}}])
+        saved3 = ck.save_doc(doc3, "default", "a-01", "edit")
+        doc3 = ck.load(saved3["ref"])
+        self.assertEqual(ck.clarification_revs(doc3), {"u1": "u1@r2", "u3": "u3@r1"})
+        self.assertTrue(any("уточнение u1" in line for line in ck.diff(doc2, doc3)))
+        with self.assertRaises(common.CQAError):
+            ck.apply_ops(doc3, [{"op": "add_clarification", "value": {"criterion_id": "c99", "text": "x"}}])
+
+    def test_precedents_section(self):
+        prec = [{"decision_id": "d-0007", "criterion_id": "c07", "model_answer": "no", "reviewer_answer": "na",
+                 "reason": "клиент перестал отвечать", "fragment": [{"idx": 3, "speaker": "client", "text": "алло"}]},
+                {"decision_id": "d-0008", "criterion_id": "c04", "model_answer": 20, "reviewer_answer": 15,
+                 "reason": "не уточнил детали", "fragment": []}]
+        parts = {p["part"]: p for p in self.build(ck.load("default@1"), variant="v3", precedents=prec)}
+        self.assertIn("## Прецеденты", parts["c07"]["text"])
+        self.assertIn("#3 client: алло", parts["c07"]["text"])
+        self.assertEqual(parts["c07"]["context"]["precedents"], ["d-0007"])
+        self.assertNotIn("## Прецеденты", parts["c01"]["text"])
+        self.assertNotEqual(parts["c07"]["prompt_id"], parts["c04"]["prompt_id"])
+
+
+class InsufficientDataTest(Workspace):
+    def test_validator_and_queue(self):
+        conv = cv.load("dev", "p1-ru-001")
+        doc = ck.load("default@1")
+        data = json.loads(response(BASE).strip("`json\n"))
+        data["criteria"][0]["insufficient_data"] = True
+        data["criteria"][1]["insufficient_data"] = "false"
+        data["criteria"][2]["insufficient_data"] = "maybe"
+        data["criteria"][3]["confidence"] = 0.4
+        v = responses.validate(conv, doc, data)
+        self.assertEqual(v["insufficient_data"], ["c01"])
+        self.assertFalse(v["criteria"]["c02"]["insufficient_data"])
+        self.assertTrue(any("insufficient_data не bool" in i["msg"] for i in v["issues"]))
+        sig = evaluations.review_signals({"criteria": v["criteria"]}, 0.7)
+        self.assertIn("insufficient_data", sig["c01"])
+        self.assertIn("confidence<0.7", sig["c04"])
 
 
 if __name__ == "__main__":

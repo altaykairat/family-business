@@ -43,6 +43,10 @@ def import_source(spec: str, actor: str = "system", ids: Optional[list] = None) 
                                                              "criteria_revs": ck.criterion_revs(doc)},
                                                 "template": manifest.get("template"),
                                                 "params": {"hash": manifest.get("params_hash")}}
+        parts = ((manifest.get("conversations") or {}).get(conv_id) or {}).get("parts") or []
+        if parts:  # what exactly went into the prompt of this conversation: rules, precedents, prompt ids
+            versions = {**versions, "prompts": [{k: p.get(k) for k in ("part", "file", "prompt_id", "context")}
+                                                for p in parts]}
         events.append("evaluation_imported", actor=actor, evaluation_id=evaluation_id, run_id=run_id,
                       agent=src["agent"], conversation_id=conv_id, dataset=sources.dataset_of(src),
                       checklist=ref, variant=data.get("variant") or manifest.get("variant"),
@@ -120,6 +124,61 @@ def aggregate(run_id: str, agents: Optional[list] = None, name: str = "majority"
     events.append("evaluations_aggregated", actor=actor, run_id=run_id, agents=agents, name=name,
                   conversations=written)
     return {"run_id": run_id, "name": name, "conversations": written, "source": f"{run_id}:{name}"}
+
+
+# --- routing to a reviewer (sprint 1, item 4: insufficient_data is used here) -------------------
+
+def review_signals(data: dict, min_confidence: float) -> dict:
+    """{criterion_id: [reasons]} — why a human should look at this answer. Signals only, nothing is decided."""
+    out = {}
+    agreement = data.get("agreement") or {}
+    for cid, item in (data.get("criteria") or {}).items():
+        why = []
+        if item.get("insufficient_data"):
+            why.append("insufficient_data")
+        if item.get("ambiguities"):
+            why.append("ambiguities")
+        conf = item.get("confidence")
+        if isinstance(conf, (int, float)) and conf < min_confidence:
+            why.append(f"confidence<{min_confidence}")
+        if any(c.get("exists") is False or c.get("quote_ok") is False for c in item.get("evidence_checks") or []):
+            why.append("evidence_check_failed")
+        share = (agreement.get(cid) or {}).get("share")
+        if share is not None and share < 1:
+            why.append("models_disagree")
+        if why:
+            out[cid] = why
+    for cid, a in agreement.items():  # no majority at all → the criterion has no item
+        if cid not in (data.get("criteria") or {}):
+            out[cid] = ["no_majority"]
+    return out
+
+
+def review_queue(source: Optional[str] = None, reasons: Optional[list] = None, until: Optional[str] = None) -> dict:
+    """Which conversation × criterion answers to show a reviewer first: of a source (`run:agent`) or, by default,
+    of the published evaluations. Ordered by the number of signals."""
+    min_conf = float(common.setting("routing.min_confidence", 0.7))
+    if source:
+        _, results = sources.load_results(source)
+        items = [(conv, data, None) for conv, data in results.items()]
+    else:
+        st = state.load(until)
+        items = []
+        for conv, eid in st.published.items():
+            ev = st.evaluations[eid]
+            items.append((conv, events.get_blob(ev["blob"]) if ev.get("blob") else {}, eid))
+    queue = []
+    for conv, data, eid in items:
+        for cid, why in review_signals(data, min_conf).items():
+            if reasons and not set(reasons) & {w.split("<")[0] for w in why}:
+                continue
+            queue.append({"conversation_id": conv, "criterion_id": cid, "evaluation_id": eid,
+                          "answer": (data.get("answers") or {}).get(cid), "reasons": why})
+    queue.sort(key=lambda q: (-len(q["reasons"]), q["conversation_id"], q["criterion_id"]))
+    convs = {q["conversation_id"] for q in queue}
+    return {"source": source or "published", "min_confidence": min_conf, "items": queue,
+            "conversations": len(convs), "of": len(items),
+            "by_reason": dict(Counter(w.split("<")[0] for q in queue for w in q["reasons"]))}
 
 
 # --- publication ----------------------------------------------------------------------------
@@ -201,7 +260,8 @@ def card(conversation_id: str, evaluation_id: Optional[str] = None, viewer: Opti
                     "explanation": item.get("explanation"), "evidence": item.get("evidence"),
                     "evidence_checks": item.get("evidence_checks"), "checked_range": item.get("checked_range"),
                     "confidence": item.get("confidence"), "agreement": item.get("agreement"),
-                    "reasoning": item.get("reasoning")},
+                    "reasoning": item.get("reasoning"), "insufficient_data": bool(item.get("insufficient_data")),
+                    "ambiguities": item.get("ambiguities") or []},
                 "decision": d and {k: d.get(k) for k in ("decision_id", "action", "new_answer", "reason", "type",
                                                          "reviewer_id", "decided_at", "appeal_id")},
                 "final": {"answer": fin["final"]["answers"].get(c["id"]), "points": rows[c["id"]]["points"],

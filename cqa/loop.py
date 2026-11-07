@@ -172,6 +172,12 @@ def preview(old: dict, new: dict) -> dict:
     semantic = set(d["added"]) | {c for c, f in d["changed"].items() if set(f) - ck.PLACEMENT_FIELDS}
     weight_only = {c for c, f in d["changed"].items() if not (set(f) - ck.PLACEMENT_FIELDS)}
     gone = set(d["removed"]) | set(d["archived"])
+    labels_outdated = sorted(semantic - gone - set(d["added"]))
+    cl = d.get("clarifications") or {}
+    if cl.get("criteria"):  # a rule clarification changes the prompt of its criterion («*» = every criterion)
+        semantic |= ({c["id"] for c in ck.active_criteria(new)} if "*" in cl["criteria"]
+                     else set(cl["criteria"]) - {"*"})
+        weight_only -= semantic
     semantic -= gone
     titles = {c["id"]: c.get("title", "") for c in old["criteria"]}
     rules_mentioning = [r for r in new.get("global_rules", [])
@@ -191,7 +197,8 @@ def preview(old: dict, new: dict) -> dict:
         "global_rules_mentioning_removed": rules_mentioning,
         "nominal_weight_total": {"old": sum(c["weight"] for c in old_active), "new": sum(c["weight"] for c in new_active)},
         "effective_weights_without_na": {c["id"]: round(c["weight"] / tw_new * max_total, 2) for c in new_active},
-        "ground_truth_labels_outdated": sorted(semantic - set(d["added"])),
+        "ground_truth_labels_outdated": labels_outdated,
+        "prompt_affected_criteria": sorted(semantic),
         "ground_truth_labels_missing": sorted(d["added"]),
         "reevaluation_llm_calls": {
             "weights_only": 0 if not semantic else None,

@@ -55,8 +55,21 @@ def _select(dataset: str, ids: list, sample: int, seed: int) -> list:
     return all_ids
 
 
+def _precedents_for(conv: dict, doc: dict, template: str, use: bool) -> list:
+    """Precedents for {{PRECEDENTS}} — selected once, at prepare time (the button), and frozen in the manifest."""
+    if not use or "{{PRECEDENTS}}" not in (common.TEMPLATES / f"{template}.md").read_text(encoding="utf-8"):
+        return []
+    from . import appeals
+
+    k = int(common.setting("precedents.k", 3))
+    cap = int(common.setting("precedents.max_per_prompt", 6))
+    picked = appeals.select_precedents(conv, [c["id"] for c in ck.active_criteria(doc)], k)
+    return picked[:cap] if cap else picked
+
+
 def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: dict,
-            ids: list = None, sample: int = 0, seed: int = 42, author: str = "system") -> Path:
+            ids: list = None, sample: int = 0, seed: int = 42, author: str = "system",
+            precedents: bool = True) -> Path:
     run_dir = common.RUNS / run_id
     if run_dir.exists():
         raise CQAError(f"Прогон {run_id} уже существует: {rel(run_dir)}. Выберите другой --run.", "conflict")
@@ -81,8 +94,9 @@ def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: di
         facts = cv.facts(conv, cfg["gap_threshold_s"])
         save_json(run_dir / "features" / f"{cid}.json",
                   {"conversation_id": cid, "operator_name_guess": cv.guess_operator_name(conv), **facts})
+        prec = _precedents_for(conv, doc, template, precedents)
         for v in pr.VARIANTS:  # token projection for every decomposition, only `variant` is written
-            built = pr.build(template, doc, conv, facts, v, include_facts)
+            built = pr.build(template, doc, conv, facts, v, include_facts, prec)
             projection[v]["calls"] += len(built)
             projection[v]["tokens_in"] += sum(tokens.count(b["text"]) for b in built)
             if v != variant:
@@ -94,7 +108,7 @@ def prepare(run_id: str, dataset: str, checklist_ref: str, variant: str, cfg: di
                 (run_dir / "prompts" / f"{name}.md").write_text(b["text"], encoding="utf-8")
                 entries.append({"part": b["part"], "file": f"{name}.md", "prompt_id": b["prompt_id"],
                                 "criteria_ids": b["criteria_ids"], "tokens_in": tokens.count(b["text"]),
-                                "template_hash": b["template_hash"]})
+                                "template_hash": b["template_hash"], "context": b["context"]})
             manifest["conversations"][cid] = {"channel": conv["channel"], "language": conv["language"],
                                               "parts": entries}
     manifest["token_projection"] = projection

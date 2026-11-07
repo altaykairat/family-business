@@ -117,6 +117,22 @@ class PlatformTest(unittest.TestCase):
         self.assertFalse(rg["passed"])
         rg3 = loop.regression("t1:a3", "a-01", include_decisions=True)
         self.assertTrue(rg3["passed"])
+        # sprint 1 item 4: the precedent goes into a v2 prompt of another conversation as a whole section,
+        # and the precedent set is part of prompt_id and of the evaluation's versions
+        cfg = common.load_config()
+        cfg["template"], cfg["agents"] = "v2", ["x"]
+        run.prepare("t1-prec", "dev", "default", "v1", cfg, ids=["p1-ru-001"], author="a-01")
+        m = common.load_json(common.RUNS / "t1-prec" / "manifest.json")
+        part = m["conversations"]["p1-ru-001"]["parts"][0]
+        self.assertEqual(part["context"]["precedents"], [res["decision_id"]])
+        self.assertIn("|ctx:", part["prompt_id"])
+        text = (common.RUNS / "t1-prec" / "prompts" / "p1-ru-001.md").read_text(encoding="utf-8")
+        self.assertIn("## Прецеденты", text)
+        self.assertIn("решение проверяющего: `na`", text)
+        self.assertNotIn("{{", text)
+        run.prepare("t1-noprec", "dev", "default", "v1", cfg, ids=["p1-ru-001"], author="a-01", precedents=False)
+        text = (common.RUNS / "t1-noprec" / "prompts" / "p1-ru-001.md").read_text(encoding="utf-8")
+        self.assertNotIn("## Прецеденты", text)
 
     def test_blind_mode_hides_model_answer(self):
         eid = self.eid("majority", "p1-en-009")

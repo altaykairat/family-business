@@ -131,6 +131,7 @@ def ref_of(doc: dict) -> str:
 
 def validate(doc: dict) -> None:
     sections = {s["id"] for s in doc.get("sections", [])}
+    _validate_clarifications(doc)
     seen = set()
     for c in doc.get("criteria", []):
         cid = c.get("id")
@@ -150,6 +151,61 @@ def validate(doc: dict) -> None:
             raise CQAError(f"{cid}: weight must be a non-negative number, got {w!r}")
         if c.get("section") and sections and c["section"] not in sections:
             raise CQAError(f"{cid}: unknown section {c['section']!r}")
+
+
+def _validate_clarifications(doc: dict) -> None:
+    crit_ids = {c.get("id") for c in doc.get("criteria", [])}
+    seen = set()
+    for u in doc.get("clarifications", []) or []:
+        uid = u.get("id")
+        if not uid or uid in seen:
+            raise CQAError(f"Clarification id missing or duplicated: {uid!r}")
+        seen.add(uid)
+        if not (u.get("text") or "").strip():
+            raise CQAError(f"{uid}: clarification text is empty")
+        if u.get("criterion_id") and u["criterion_id"] not in crit_ids:
+            raise CQAError(f"{uid}: unknown criterion {u['criterion_id']!r}")
+
+
+def active_clarifications(doc: dict, criterion_ids: Optional[list] = None) -> list:
+    """Rule clarifications of a version that take part in prompts (sprint 1, item 4). A clarification bound to a
+    criterion goes only into prompts that evaluate that criterion; one without criterion_id goes everywhere."""
+    out = []
+    for u in doc.get("clarifications", []) or []:
+        if u.get("status", "active") == "archived":
+            continue
+        if criterion_ids is not None and u.get("criterion_id") and u["criterion_id"] not in criterion_ids:
+            continue
+        out.append(u)
+    return out
+
+
+def clarification_hash(u: dict) -> str:
+    return stable_hash({k: u.get(k) for k in ("text", "reason", "criterion_id")}, 10)
+
+
+def clarification_revs(doc: dict) -> dict:
+    """{'u1': 'u1@r2'} — revision numbers follow the content across all versions of the checklist."""
+    cid, ver = doc["meta"].get("checklist_id"), doc["meta"].get("version")
+    table: dict = {}
+    for v in (versions(cid) if cid and ver else []):
+        for u in load_json(path_for(cid, v)).get("clarifications", []) or []:
+            revs = table.setdefault(u["id"], [])
+            h = clarification_hash(u)
+            if h not in revs:
+                revs.append(h)
+    out = {}
+    for u in active_clarifications(doc):
+        h = clarification_hash(u)
+        revs = table.get(u["id"], [])
+        out[u["id"]] = f"{u['id']}@r{revs.index(h) + 1}" if h in revs else f"{u['id']}@{h}"
+    return out
+
+
+def _next_clarification_id(doc: dict) -> str:
+    nums = [int(u["id"][1:]) for u in doc.get("clarifications", []) or [] if str(u.get("id", "")).startswith("u")
+            and u["id"][1:].isdigit()]
+    return f"u{max(nums, default=0) + 1}"
 
 
 def active_criteria(doc: dict) -> list:
@@ -263,6 +319,11 @@ def apply_ops(doc: dict, ops: list) -> dict:
          {"op": "restore_criterion", "criterion_id": "c03"}
          {"op": "replace_criterion", "criterion_id": "c03", "value": {new criterion with a NEW id}}
          {"op": "add_section", "value": {"id": …, "title": …}}
+         {"op": "add_clarification", "value": {"text": "…", "reason": "…", "criterion_id": "c07" | null,
+                                               "source": {"proposal_id": …, "decisions": […]}}}
+         {"op": "edit_clarification", "id": "u1", "value": {"text"?: …, "reason"?: …, "criterion_id"?: …}}
+         {"op": "archive_clarification", "id": "u1"}   /   {"op": "restore_clarification", "id": "u1"}
+    Clarifications are rendered as the «Уточнения правил» section of the prompt ({{RULES}}); ids are never reused.
     """
     new = copy.deepcopy(_content(doc))
     new["meta"] = copy.deepcopy(doc.get("meta", {}))
@@ -308,6 +369,22 @@ def apply_ops(doc: dict, ops: list) -> dict:
                 new["criteria"].insert(pos, c)
             elif kind == "add_section":
                 new.setdefault("sections", []).append(copy.deepcopy(op["value"]))
+            elif kind == "add_clarification":
+                u = {k: v for k, v in copy.deepcopy(op["value"]).items() if k in ("text", "reason", "criterion_id",
+                                                                                  "source")}
+                u = {"id": _next_clarification_id(new), **u}
+                new.setdefault("clarifications", []).append(u)
+            elif kind in ("edit_clarification", "archive_clarification", "restore_clarification"):
+                u = next((x for x in new.get("clarifications", []) or [] if x["id"] == op["id"]), None)
+                if u is None:
+                    raise CQAError(f"clarification {op['id']} not in this version")
+                if kind == "edit_clarification":
+                    u.update({k: v for k, v in op["value"].items() if k in ("text", "reason", "criterion_id",
+                                                                            "source")})
+                elif kind == "archive_clarification":
+                    u["status"] = "archived"
+                else:
+                    u.pop("status", None)
             else:
                 raise CQAError(f"unknown op {kind!r}")
         except (KeyError, IndexError, ValueError, TypeError) as e:
@@ -350,8 +427,19 @@ def diff_struct(a: dict, b: dict) -> dict:
                            if cb[c].get("status") == "archived" and ca[c].get("status") != "archived"),
         "changed": changed,
         "global_rules": {"added": [r for r in rb if r not in ra], "removed": [r for r in ra if r not in rb]},
+        "clarifications": _diff_clarifications(a, b),
         "top_level": sorted(k for k in ("sections", "scoring", "title") if a.get(k) != b.get(k)),
     }
+
+
+def _diff_clarifications(a: dict, b: dict) -> dict:
+    ua = {u["id"]: u for u in active_clarifications(a)}
+    ub = {u["id"]: u for u in active_clarifications(b)}
+    return {"added": sorted(set(ub) - set(ua)), "removed": sorted(set(ua) - set(ub)),
+            "changed": sorted(i for i in set(ua) & set(ub) if clarification_hash(ua[i]) != clarification_hash(ub[i])),
+            "criteria": sorted({(ub.get(i) or ua.get(i)).get("criterion_id") or "*"
+                                for i in (set(ua) ^ set(ub)) | {i for i in set(ua) & set(ub)
+                                                                 if clarification_hash(ua[i]) != clarification_hash(ub[i])}})}
 
 
 def diff(a: dict, b: dict) -> list:
@@ -366,5 +454,10 @@ def diff(a: dict, b: dict) -> list:
             lines.append(f"~ {cid}.{key}: {ch['from']!r} → {ch['to']!r}")
     lines += [f"+ правило: {r}" for r in d["global_rules"]["added"]]
     lines += [f"- правило: {r}" for r in d["global_rules"]["removed"]]
+    ub = {u["id"]: u for u in b.get("clarifications", []) or []}
+    ua = {u["id"]: u for u in a.get("clarifications", []) or []}
+    lines += [f"+ уточнение {i} [{ub[i].get('criterion_id') or 'все'}]: {ub[i]['text']}" for i in d["clarifications"]["added"]]
+    lines += [f"- уточнение {i}: {ua[i]['text']}" for i in d["clarifications"]["removed"]]
+    lines += [f"~ уточнение {i}: {ua[i]['text']!r} → {ub[i]['text']!r}" for i in d["clarifications"]["changed"]]
     lines += [f"~ {key} изменён" for key in d["top_level"]]
     return lines or ["(различий нет)"]

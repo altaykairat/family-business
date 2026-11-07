@@ -45,7 +45,9 @@ def _checklist_brief(doc: dict) -> dict:
     return {"ref": ck.ref_of(doc), "sections": doc.get("sections"), "global_rules": doc.get("global_rules"),
             "criteria": [{k: c.get(k) for k in ("id", "title", "section", "type", "weight", "description",
                                                   "na_allowed", "na_condition", "scale", "notes", "status")}
-                         for c in doc["criteria"]]}
+                         for c in doc["criteria"]],
+            "clarifications": [{k: u.get(k) for k in ("id", "criterion_id", "text", "reason")}
+                               for u in ck.active_clarifications(doc)]}
 
 
 def create(kind: str, actor: str, subject: dict, provider: Optional[str] = None) -> dict:

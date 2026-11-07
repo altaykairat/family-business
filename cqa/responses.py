@@ -72,6 +72,17 @@ def quote_coverage(quote: str, text: str) -> float:
     return sum(b.size for b in blocks) / len(q)
 
 
+def _flag(value) -> Optional[bool]:
+    """Template v2 field `insufficient_data`: bool, tolerant to "true"/"false"/0/1; None when unreadable."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)) and value in (0, 1):
+        return bool(value)
+    if isinstance(value, str) and value.strip().lower() in ("true", "false", "да", "нет", "yes", "no"):
+        return value.strip().lower() in ("true", "да", "yes")
+    return None
+
+
 def validate(conv: dict, doc: dict, data: dict, quote_threshold: float = 0.9,
              expected_ids: Optional[list] = None) -> dict:
     """Checks answers, N/A, scale steps, evidence idx/quotes. Never changes the model's reasoning."""
@@ -117,12 +128,18 @@ def validate(conv: dict, doc: dict, data: dict, quote_threshold: float = 0.9,
                               "quote_ok": ok})
         if not item.get("evidence") and ans not in (None, "na"):
             issues.append({"level": "warn", "criterion_id": cid, "msg": "нет доказательства"})
-        criteria_out[cid] = {**item, "answer_normalized": ans, "evidence_checks": ev_checks}
+        insufficient = _flag(item.get("insufficient_data"))
+        if insufficient is None and item.get("insufficient_data") is not None:
+            issues.append({"level": "warn", "criterion_id": cid,
+                           "msg": f"insufficient_data не bool: {item.get('insufficient_data')!r}"})
+        criteria_out[cid] = {**item, "answer_normalized": ans, "evidence_checks": ev_checks,
+                             "insufficient_data": bool(insufficient)}
 
     for cid in set(items) - set(expected):
         issues.append({"level": "warn", "criterion_id": cid, "msg": "лишний критерий в ответе — проигнорирован"})
 
     status = "error" if any(i["level"] == "error" for i in issues) else ("warn" if issues else "ok")
     return {"status": status, "issues": issues, "answers": answers, "criteria": criteria_out,
+            "insufficient_data": sorted(c for c, it in criteria_out.items() if it.get("insufficient_data")),
             "dialog_facts": data.get("dialog_facts"), "model_total_estimate": data.get("model_total_estimate"),
             "overall_comment": data.get("overall_comment"), "meta": data.get("meta")}

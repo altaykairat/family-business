@@ -57,7 +57,7 @@ def build(run_id: str, cfg: dict) -> dict:
     with open(rep / "results.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["run_id", "checklist", "variant", "agent", "conversation_id", "criterion_id", "answer",
-                    "points", "effective_weight", "effective_points", "confidence", "evidence_idx",
+                    "points", "effective_weight", "effective_points", "confidence", "insufficient_data", "evidence_idx",
                     "total", "gross_error", "status", "explanation"])
         for agent in agents:
             for cid, r in res[agent].items():
@@ -65,7 +65,7 @@ def build(run_id: str, cfg: dict) -> dict:
                     item = r["criteria"].get(row["criterion_id"], {})
                     w.writerow([run_id, manifest["checklist"], manifest["variant"], agent, cid, row["criterion_id"],
                                 row["answer"], row["points"], row["effective_weight"], row["effective_points"],
-                                item.get("confidence"), " ".join(str(e.get("idx")) for e in item.get("evidence") or []),
+                                item.get("confidence"), bool(item.get("insufficient_data")), " ".join(str(e.get("idx")) for e in item.get("evidence") or []),
                                 r["score"]["total"], r["score"]["gross_error"], r["status"], item.get("explanation")])
 
     # --- majority vote + per-conversation comparison -----------------------------------------

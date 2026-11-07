@@ -37,7 +37,7 @@
       "criterion_id": "c07",
       "title": "кратко, что предлагается",
       "rationale": "почему: какие ошибки модели или пробелы правил это закрывает",
-      "ops": [{"op": "add_note", "criterion_id": "c07", "value": "…"}],
+      "ops": [{"op": "add_clarification", "value": {"criterion_id": "c07", "text": "…", "reason": "решения d-0001, d-0004"}}],
       "evidence_decisions": ["d-0001"],
       "expected_effect": "какие случаи станут оцениваться иначе"
     }

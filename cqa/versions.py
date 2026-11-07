@@ -102,7 +102,7 @@ def bundle(doc: dict, cfg: dict, template_name: str, author: str = "system") -> 
     mod = register("models", "agent_models", cfg.get("agent_models", {}), author, "used by a run")
     return {
         "checklist": {"ref": ck.ref_of(doc), "hash": doc["meta"]["content_hash"],
-                      "criteria_revs": ck.criterion_revs(doc)},
+                      "criteria_revs": ck.criterion_revs(doc), "clarification_revs": ck.clarification_revs(doc)},
         "template": {"name": template_name, "version": tpl["version"], "hash": tpl["hash"]},
         "params": {"version": par["version"], "hash": par["hash"]},
         "features": {"version": fea["version"], "hash": fea["hash"]},
