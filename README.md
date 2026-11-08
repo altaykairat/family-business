@@ -1,5 +1,7 @@
 # Freedom Quality — CQA (Conversation Quality Analytics)
 
+> **Результаты на контрольном наборе (FBroker, 10 чатов): [`results/prod/results.json`](results/prod/results.json)** · DEV (65 диалогов): [`results/dev/results.json`](results/dev/results.json)
+
 Платформа контроля качества диалогов контакт-центра Freedom Broker, сделанная на хакатоне CQA командой **family-business**. Она оценивает работу оператора в чатах (RU / KZ / EN) и звонках по редактируемому чек-листу:
 - ответ по каждому критерию с объяснением и дословными цитатами;
 - баллы, которые считает код: веса, перераспределение при N/A, флаг грубой ошибки отдельно;
