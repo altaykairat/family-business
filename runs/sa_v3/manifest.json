@@ -1,0 +1,514 @@
+{
+  "run_id": "sa_v3",
+  "created_at": "2026-11-07T17:01:50+05:00",
+  "mode": "manual",
+  "dataset": "dev",
+  "checklist": "default@v1",
+  "checklist_hash": "8eba1133e74e",
+  "template": "v1",
+  "variant": "v3",
+  "params": {
+    "gap_threshold_s": 30,
+    "quote_match_threshold": 0.9,
+    "include_facts": true,
+    "template": "v1"
+  },
+  "params_hash": "599d43ff8cb2",
+  "agents": [
+    "haiku",
+    "sonnet"
+  ],
+  "token_method": "heuristic:chars-per-script",
+  "conversations": {
+    "p1-ru-012": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "c01",
+          "file": "p1-ru-012__c01.md",
+          "prompt_id": "v1|default@v1|v3|c01",
+          "criteria_ids": [
+            "c01"
+          ],
+          "tokens_in": 2760,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c02",
+          "file": "p1-ru-012__c02.md",
+          "prompt_id": "v1|default@v1|v3|c02",
+          "criteria_ids": [
+            "c02"
+          ],
+          "tokens_in": 2776,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c03",
+          "file": "p1-ru-012__c03.md",
+          "prompt_id": "v1|default@v1|v3|c03",
+          "criteria_ids": [
+            "c03"
+          ],
+          "tokens_in": 2774,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c04",
+          "file": "p1-ru-012__c04.md",
+          "prompt_id": "v1|default@v1|v3|c04",
+          "criteria_ids": [
+            "c04"
+          ],
+          "tokens_in": 2901,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c05",
+          "file": "p1-ru-012__c05.md",
+          "prompt_id": "v1|default@v1|v3|c05",
+          "criteria_ids": [
+            "c05"
+          ],
+          "tokens_in": 2778,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c06",
+          "file": "p1-ru-012__c06.md",
+          "prompt_id": "v1|default@v1|v3|c06",
+          "criteria_ids": [
+            "c06"
+          ],
+          "tokens_in": 2875,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c07",
+          "file": "p1-ru-012__c07.md",
+          "prompt_id": "v1|default@v1|v3|c07",
+          "criteria_ids": [
+            "c07"
+          ],
+          "tokens_in": 2774,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c08",
+          "file": "p1-ru-012__c08.md",
+          "prompt_id": "v1|default@v1|v3|c08",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2796,
+          "template_hash": "3a5c3f90cc77"
+        }
+      ]
+    },
+    "p1-ru-022": {
+      "channel": "agent chat",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "c01",
+          "file": "p1-ru-022__c01.md",
+          "prompt_id": "v1|default@v1|v3|c01",
+          "criteria_ids": [
+            "c01"
+          ],
+          "tokens_in": 2812,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c02",
+          "file": "p1-ru-022__c02.md",
+          "prompt_id": "v1|default@v1|v3|c02",
+          "criteria_ids": [
+            "c02"
+          ],
+          "tokens_in": 2828,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c03",
+          "file": "p1-ru-022__c03.md",
+          "prompt_id": "v1|default@v1|v3|c03",
+          "criteria_ids": [
+            "c03"
+          ],
+          "tokens_in": 2826,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c04",
+          "file": "p1-ru-022__c04.md",
+          "prompt_id": "v1|default@v1|v3|c04",
+          "criteria_ids": [
+            "c04"
+          ],
+          "tokens_in": 2953,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c05",
+          "file": "p1-ru-022__c05.md",
+          "prompt_id": "v1|default@v1|v3|c05",
+          "criteria_ids": [
+            "c05"
+          ],
+          "tokens_in": 2830,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c06",
+          "file": "p1-ru-022__c06.md",
+          "prompt_id": "v1|default@v1|v3|c06",
+          "criteria_ids": [
+            "c06"
+          ],
+          "tokens_in": 2927,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c07",
+          "file": "p1-ru-022__c07.md",
+          "prompt_id": "v1|default@v1|v3|c07",
+          "criteria_ids": [
+            "c07"
+          ],
+          "tokens_in": 2826,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c08",
+          "file": "p1-ru-022__c08.md",
+          "prompt_id": "v1|default@v1|v3|c08",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2848,
+          "template_hash": "3a5c3f90cc77"
+        }
+      ]
+    },
+    "p1-kz-008": {
+      "channel": "agent chat",
+      "language": "KZ",
+      "parts": [
+        {
+          "part": "c01",
+          "file": "p1-kz-008__c01.md",
+          "prompt_id": "v1|default@v1|v3|c01",
+          "criteria_ids": [
+            "c01"
+          ],
+          "tokens_in": 2796,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c02",
+          "file": "p1-kz-008__c02.md",
+          "prompt_id": "v1|default@v1|v3|c02",
+          "criteria_ids": [
+            "c02"
+          ],
+          "tokens_in": 2812,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c03",
+          "file": "p1-kz-008__c03.md",
+          "prompt_id": "v1|default@v1|v3|c03",
+          "criteria_ids": [
+            "c03"
+          ],
+          "tokens_in": 2810,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c04",
+          "file": "p1-kz-008__c04.md",
+          "prompt_id": "v1|default@v1|v3|c04",
+          "criteria_ids": [
+            "c04"
+          ],
+          "tokens_in": 2937,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c05",
+          "file": "p1-kz-008__c05.md",
+          "prompt_id": "v1|default@v1|v3|c05",
+          "criteria_ids": [
+            "c05"
+          ],
+          "tokens_in": 2814,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c06",
+          "file": "p1-kz-008__c06.md",
+          "prompt_id": "v1|default@v1|v3|c06",
+          "criteria_ids": [
+            "c06"
+          ],
+          "tokens_in": 2911,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c07",
+          "file": "p1-kz-008__c07.md",
+          "prompt_id": "v1|default@v1|v3|c07",
+          "criteria_ids": [
+            "c07"
+          ],
+          "tokens_in": 2810,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c08",
+          "file": "p1-kz-008__c08.md",
+          "prompt_id": "v1|default@v1|v3|c08",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2832,
+          "template_hash": "3a5c3f90cc77"
+        }
+      ]
+    },
+    "p1-en-015": {
+      "channel": "agent chat",
+      "language": "EN",
+      "parts": [
+        {
+          "part": "c01",
+          "file": "p1-en-015__c01.md",
+          "prompt_id": "v1|default@v1|v3|c01",
+          "criteria_ids": [
+            "c01"
+          ],
+          "tokens_in": 2739,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c02",
+          "file": "p1-en-015__c02.md",
+          "prompt_id": "v1|default@v1|v3|c02",
+          "criteria_ids": [
+            "c02"
+          ],
+          "tokens_in": 2754,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c03",
+          "file": "p1-en-015__c03.md",
+          "prompt_id": "v1|default@v1|v3|c03",
+          "criteria_ids": [
+            "c03"
+          ],
+          "tokens_in": 2753,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c04",
+          "file": "p1-en-015__c04.md",
+          "prompt_id": "v1|default@v1|v3|c04",
+          "criteria_ids": [
+            "c04"
+          ],
+          "tokens_in": 2879,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c05",
+          "file": "p1-en-015__c05.md",
+          "prompt_id": "v1|default@v1|v3|c05",
+          "criteria_ids": [
+            "c05"
+          ],
+          "tokens_in": 2757,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c06",
+          "file": "p1-en-015__c06.md",
+          "prompt_id": "v1|default@v1|v3|c06",
+          "criteria_ids": [
+            "c06"
+          ],
+          "tokens_in": 2854,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c07",
+          "file": "p1-en-015__c07.md",
+          "prompt_id": "v1|default@v1|v3|c07",
+          "criteria_ids": [
+            "c07"
+          ],
+          "tokens_in": 2753,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c08",
+          "file": "p1-en-015__c08.md",
+          "prompt_id": "v1|default@v1|v3|c08",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2775,
+          "template_hash": "3a5c3f90cc77"
+        }
+      ]
+    },
+    "p4-ru-001": {
+      "channel": "voice call",
+      "language": "RU",
+      "parts": [
+        {
+          "part": "c01",
+          "file": "p4-ru-001__c01.md",
+          "prompt_id": "v1|default@v1|v3|c01",
+          "criteria_ids": [
+            "c01"
+          ],
+          "tokens_in": 3973,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c02",
+          "file": "p4-ru-001__c02.md",
+          "prompt_id": "v1|default@v1|v3|c02",
+          "criteria_ids": [
+            "c02"
+          ],
+          "tokens_in": 3988,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c03",
+          "file": "p4-ru-001__c03.md",
+          "prompt_id": "v1|default@v1|v3|c03",
+          "criteria_ids": [
+            "c03"
+          ],
+          "tokens_in": 3987,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c04",
+          "file": "p4-ru-001__c04.md",
+          "prompt_id": "v1|default@v1|v3|c04",
+          "criteria_ids": [
+            "c04"
+          ],
+          "tokens_in": 4113,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c05",
+          "file": "p4-ru-001__c05.md",
+          "prompt_id": "v1|default@v1|v3|c05",
+          "criteria_ids": [
+            "c05"
+          ],
+          "tokens_in": 3990,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c06",
+          "file": "p4-ru-001__c06.md",
+          "prompt_id": "v1|default@v1|v3|c06",
+          "criteria_ids": [
+            "c06"
+          ],
+          "tokens_in": 4087,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c07",
+          "file": "p4-ru-001__c07.md",
+          "prompt_id": "v1|default@v1|v3|c07",
+          "criteria_ids": [
+            "c07"
+          ],
+          "tokens_in": 3987,
+          "template_hash": "3a5c3f90cc77"
+        },
+        {
+          "part": "c08",
+          "file": "p4-ru-001__c08.md",
+          "prompt_id": "v1|default@v1|v3|c08",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 4009,
+          "template_hash": "3a5c3f90cc77"
+        }
+      ]
+    }
+  },
+  "token_projection": {
+    "v1": {
+      "calls": 5,
+      "tokens_in": 19433
+    },
+    "v2": {
+      "calls": 20,
+      "tokens_in": 63711
+    },
+    "v3": {
+      "calls": 40,
+      "tokens_in": 122404
+    }
+  },
+  "versions": {
+    "checklist": {
+      "ref": "default@v1",
+      "hash": "8eba1133e74e",
+      "criteria_revs": {
+        "c01": "c01@r1",
+        "c02": "c02@r1",
+        "c03": "c03@r1",
+        "c04": "c04@r1",
+        "c05": "c05@r1",
+        "c06": "c06@r1",
+        "c07": "c07@r1",
+        "c08": "c08@r1"
+      }
+    },
+    "template": {
+      "name": "v1",
+      "version": 1,
+      "hash": "3a5c3f90cc77"
+    },
+    "params": {
+      "version": 2,
+      "hash": "03ab69c17087"
+    },
+    "features": {
+      "version": 1,
+      "hash": "b6e01a97fa8e"
+    },
+    "models": {
+      "version": 1,
+      "mapping": {
+        "claude": "claude",
+        "codex": "codex",
+        "antigravity": "gemini",
+        "opus": "claude-opus-5-5",
+        "sonnet": "claude-sonnet-5-5",
+        "sonnet2": "claude-sonnet-5-5",
+        "haiku": "claude-haiku-5-5"
+      }
+    },
+    "code": {
+      "scoring": "81fb79aad847",
+      "validation": "096e152fb13b",
+      "prompts": "5c0c607ed1b4"
+    }
+  }
+}

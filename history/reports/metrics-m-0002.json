@@ -1,0 +1,1195 @@
+{
+  "gold": "dev-gold-strict@v1",
+  "split": "all",
+  "checklist": "default@v1",
+  "sources": [
+    {
+      "source": "r-base:codex-cli",
+      "gold": "dev-gold-strict@v1",
+      "checklist": "default@v1",
+      "coverage": {
+        "gold_conversations": 65,
+        "predicted": 65,
+        "missing": []
+      },
+      "macro_accuracy": 0.8596,
+      "macro_accuracy_ci95": [
+        0.825,
+        0.8904
+      ],
+      "micro_accuracy": {
+        "k": 447,
+        "n": 520,
+        "share": 0.8596,
+        "ci95": [
+          0.8271,
+          0.8868
+        ]
+      },
+      "criteria": {
+        "c01": {
+          "title": "Установление контакта",
+          "type": "binary",
+          "k": 65,
+          "n": 65,
+          "share": 1.0,
+          "ci95": [
+            0.9442,
+            1.0
+          ],
+          "kappa": 1.0,
+          "confusion": {
+            "no→no": 5,
+            "yes→yes": 60
+          },
+          "no_na": {
+            "gold_no_pred_na": 0,
+            "gold_na_pred_no": 0
+          }
+        },
+        "c02": {
+          "title": "Выявление потребности",
+          "type": "binary",
+          "k": 56,
+          "n": 65,
+          "share": 0.8615,
+          "ci95": [
+            0.7573,
+            0.9254
+          ],
+          "kappa": 0.7263,
+          "confusion": {
+            "na→na": 40,
+            "no→na": 4,
+            "no→no": 5,
+            "yes→na": 2,
+            "yes→no": 3,
+            "yes→yes": 11
+          },
+          "no_na": {
+            "gold_no_pred_na": 4,
+            "gold_na_pred_no": 0
+          }
+        },
+        "c03": {
+          "title": "Идентификация",
+          "type": "binary",
+          "k": 63,
+          "n": 65,
+          "share": 0.9692,
+          "ci95": [
+            0.8946,
+            0.9915
+          ],
+          "kappa": 0.8914,
+          "confusion": {
+            "na→na": 54,
+            "na→no": 1,
+            "no→no": 3,
+            "no→yes": 1,
+            "yes→yes": 6
+          },
+          "no_na": {
+            "gold_no_pred_na": 0,
+            "gold_na_pred_no": 1
+          }
+        },
+        "c04": {
+          "title": "Корректная и полная консультация",
+          "type": "scale",
+          "k": 56,
+          "n": 65,
+          "share": 0.8615,
+          "ci95": [
+            0.7573,
+            0.9254
+          ],
+          "kappa": 0.6387,
+          "confusion": {
+            "0→0": 2,
+            "10→10": 6,
+            "10→20": 2,
+            "15→10": 1,
+            "20→10": 6,
+            "20→20": 46,
+            "5→5": 1,
+            "na→na": 1
+          },
+          "no_na": {
+            "gold_no_pred_na": 0,
+            "gold_na_pred_no": 0
+          },
+          "mae_points_on_scale": 1.3281,
+          "within_one_step": 0.875
+        },
+        "c05": {
+          "title": "Эмпатия и клиентоориентированность",
+          "type": "binary",
+          "k": 54,
+          "n": 65,
+          "share": 0.8308,
+          "ci95": [
+            0.7218,
+            0.9028
+          ],
+          "kappa": 0.5249,
+          "confusion": {
+            "no→no": 9,
+            "no→yes": 10,
+            "yes→no": 1,
+            "yes→yes": 45
+          },
+          "no_na": {
+            "gold_no_pred_na": 0,
+            "gold_na_pred_no": 0
+          }
+        },
+        "c06": {
+          "title": "Управление диалогом, скорость и грамотность",
+          "type": "scale",
+          "k": 45,
+          "n": 65,
+          "share": 0.6923,
+          "ci95": [
+            0.572,
+            0.7911
+          ],
+          "kappa": 0.4039,
+          "confusion": {
+            "10→10": 34,
+            "10→4": 1,
+            "10→7": 17,
+            "4→4": 8,
+            "7→10": 2,
+            "7→7": 3
+          },
+          "no_na": {
+            "gold_no_pred_na": 0,
+            "gold_na_pred_no": 0
+          },
+          "mae_points_on_scale": 0.9692,
+          "within_one_step": 0.9846
+        },
+        "c07": {
+          "title": "Завершение",
+          "type": "binary",
+          "k": 44,
+          "n": 65,
+          "share": 0.6769,
+          "ci95": [
+            0.5561,
+            0.778
+          ],
+          "kappa": 0.2529,
+          "confusion": {
+            "na→na": 6,
+            "na→no": 2,
+            "no→na": 1,
+            "no→no": 38,
+            "no→yes": 16,
+            "yes→no": 2
+          },
+          "no_na": {
+            "gold_no_pred_na": 1,
+            "gold_na_pred_no": 2
+          }
+        },
+        "c08": {
+          "title": "Грубые ошибки",
+          "type": "flag",
+          "k": 64,
+          "n": 65,
+          "share": 0.9846,
+          "ci95": [
+            0.9179,
+            0.9973
+          ],
+          "kappa": 0.9324,
+          "confusion": {
+            "no→no": 56,
+            "yes→no": 1,
+            "yes→yes": 8
+          },
+          "no_na": {
+            "gold_no_pred_na": 0,
+            "gold_na_pred_no": 0
+          },
+          "flag": {
+            "tp": 8,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1.0,
+            "recall": 0.8889,
+            "f1": 0.9412
+          }
+        }
+      },
+      "no_na_confusion": {
+        "gold_no_pred_na": 5,
+        "gold_na_pred_no": 3
+      },
+      "totals": {
+        "n": 65,
+        "mae": 8.5229,
+        "rmse": 12.8149,
+        "bias": 1.7029,
+        "within_tolerance": {
+          "k": 28,
+          "n": 65,
+          "share": 0.4308,
+          "ci95": [
+            0.3176,
+            0.5517
+          ]
+        },
+        "tolerance": 5.0,
+        "rows": [
+          {
+            "conversation_id": "p1-en-001",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-002",
+            "gold": 92.31,
+            "pred": 100.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-003",
+            "gold": 92.31,
+            "pred": 85.38,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-004",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-005",
+            "gold": 92.31,
+            "pred": 85.38,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-006",
+            "gold": 95.0,
+            "pred": 85.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-007",
+            "gold": 53.85,
+            "pred": 84.62,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-008",
+            "gold": 92.31,
+            "pred": 76.92,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-009",
+            "gold": 100.0,
+            "pred": 100.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-010",
+            "gold": 92.31,
+            "pred": 85.38,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-011",
+            "gold": 100.0,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-012",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-013",
+            "gold": 69.23,
+            "pred": 62.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-014",
+            "gold": 41.18,
+            "pred": 35.88,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-en-015",
+            "gold": 32.5,
+            "pred": 51.25,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-001",
+            "gold": 92.31,
+            "pred": 85.38,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-002",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-003",
+            "gold": 95.0,
+            "pred": 95.5,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-004",
+            "gold": 69.23,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-005",
+            "gold": 78.46,
+            "pred": 78.46,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-006",
+            "gold": 92.31,
+            "pred": 100.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-007",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-008",
+            "gold": 38.13,
+            "pred": 75.83,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-009",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-010",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-011",
+            "gold": 100.0,
+            "pred": 92.5,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-012",
+            "gold": 75.0,
+            "pred": 100.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-013",
+            "gold": 69.23,
+            "pred": 85.38,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-014",
+            "gold": 70.0,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-kz-015",
+            "gold": 41.18,
+            "pred": 41.76,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-001",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-002",
+            "gold": 93.75,
+            "pred": 94.38,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-003",
+            "gold": 81.25,
+            "pred": 70.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-004",
+            "gold": 93.75,
+            "pred": 85.38,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-005",
+            "gold": 63.08,
+            "pred": 70.77,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-006",
+            "gold": 95.0,
+            "pred": 80.5,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-007",
+            "gold": 53.85,
+            "pred": 61.54,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-008",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-009",
+            "gold": 41.0,
+            "pred": 56.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-010",
+            "gold": 95.0,
+            "pred": 75.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-011",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-012",
+            "gold": 100.0,
+            "pred": 100.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-013",
+            "gold": 92.31,
+            "pred": 100.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-014",
+            "gold": 38.13,
+            "pred": 70.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-015",
+            "gold": 92.31,
+            "pred": 93.08,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-016",
+            "gold": 51.25,
+            "pred": 63.75,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-017",
+            "gold": 93.75,
+            "pred": 93.75,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-018",
+            "gold": 25.63,
+            "pred": 25.63,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-019",
+            "gold": 93.75,
+            "pred": 93.75,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-020",
+            "gold": 92.31,
+            "pred": 76.92,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-021",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-022",
+            "gold": 31.25,
+            "pred": 31.25,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-023",
+            "gold": 69.23,
+            "pred": 70.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-024",
+            "gold": 92.31,
+            "pred": 76.92,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-025",
+            "gold": 100.0,
+            "pred": 100.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-026",
+            "gold": 26.25,
+            "pred": 32.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-027",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-028",
+            "gold": 92.31,
+            "pred": 92.31,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-029",
+            "gold": 56.25,
+            "pred": 69.23,
+            "complete": true
+          },
+          {
+            "conversation_id": "p1-ru-030",
+            "gold": 93.75,
+            "pred": 93.75,
+            "complete": true
+          },
+          {
+            "conversation_id": "p4-ru-001",
+            "gold": 75.0,
+            "pred": 92.5,
+            "complete": true
+          },
+          {
+            "conversation_id": "p4-ru-002",
+            "gold": 55.5,
+            "pred": 76.47,
+            "complete": true
+          },
+          {
+            "conversation_id": "p4-ru-003",
+            "gold": 74.74,
+            "pred": 71.0,
+            "complete": true
+          },
+          {
+            "conversation_id": "p4-ru-004",
+            "gold": 90.53,
+            "pred": 64.21,
+            "complete": true
+          },
+          {
+            "conversation_id": "p4-ru-005",
+            "gold": 86.67,
+            "pred": 60.5,
+            "complete": true
+          }
+        ],
+        "mae_ci95": [
+          6.2646,
+          11.0014
+        ]
+      },
+      "evidence": {
+        "items": 879,
+        "idx_exists": {
+          "k": 879,
+          "n": 879,
+          "share": 1.0,
+          "ci95": [
+            0.9956,
+            1.0
+          ]
+        },
+        "quote_ok": {
+          "k": 879,
+          "n": 879,
+          "share": 1.0,
+          "ci95": [
+            0.9956,
+            1.0
+          ]
+        },
+        "match_gold_window": {
+          "k": 410,
+          "n": 416,
+          "share": 0.9856,
+          "ci95": [
+            0.9689,
+            0.9934
+          ]
+        },
+        "match_gold_exact": {
+          "k": 408,
+          "n": 416,
+          "share": 0.9808,
+          "ci95": [
+            0.9625,
+            0.9902
+          ]
+        },
+        "window": 1
+      },
+      "validity": {
+        "invalid_results": {
+          "k": 0,
+          "n": 65,
+          "share": 0.0,
+          "ci95": [
+            0.0,
+            0.0558
+          ]
+        },
+        "missing_answers": 0
+      },
+      "cost": {
+        "calls": 65,
+        "tokens_in": 279186,
+        "tokens_out": 435740,
+        "tokens_per_dialog": 10999,
+        "model": null,
+        "usd": null,
+        "usd_per_dialog": null,
+        "token_method": "estimate"
+      },
+      "breakdown": {
+        "channel:agent chat": {
+          "k": 421,
+          "n": 480,
+          "share": 0.8771,
+          "ci95": [
+            0.8447,
+            0.9035
+          ]
+        },
+        "channel:voice call": {
+          "k": 26,
+          "n": 40,
+          "share": 0.65,
+          "ci95": [
+            0.4951,
+            0.7787
+          ]
+        },
+        "language:EN": {
+          "k": 107,
+          "n": 120,
+          "share": 0.8917,
+          "ci95": [
+            0.8234,
+            0.9356
+          ]
+        },
+        "language:KZ": {
+          "k": 103,
+          "n": 120,
+          "share": 0.8583,
+          "ci95": [
+            0.7848,
+            0.9096
+          ]
+        },
+        "language:RU": {
+          "k": 237,
+          "n": 280,
+          "share": 0.8464,
+          "ci95": [
+            0.7995,
+            0.8839
+          ]
+        }
+      },
+      "errors": [
+        {
+          "conversation_id": "p1-en-002",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-en-003",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-en-005",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-en-006",
+          "criterion_id": "c02",
+          "gold": "yes",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p1-en-006",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-en-007",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-en-007",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-en-008",
+          "criterion_id": "c04",
+          "gold": "20",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p1-en-010",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-en-011",
+          "criterion_id": "c07",
+          "gold": "yes",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p1-en-013",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-en-014",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-en-015",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-kz-001",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-kz-003",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-kz-003",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-kz-004",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-kz-006",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-kz-008",
+          "criterion_id": "c02",
+          "gold": "no",
+          "pred": "na"
+        },
+        {
+          "conversation_id": "p1-kz-008",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-kz-008",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "na"
+        },
+        {
+          "conversation_id": "p1-kz-011",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-kz-012",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-kz-012",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-kz-013",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-kz-013",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-kz-014",
+          "criterion_id": "c04",
+          "gold": "10",
+          "pred": "20"
+        },
+        {
+          "conversation_id": "p1-kz-014",
+          "criterion_id": "c06",
+          "gold": "7",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p1-kz-015",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-kz-015",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-002",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-ru-002",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-003",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "4"
+        },
+        {
+          "conversation_id": "p1-ru-004",
+          "criterion_id": "c02",
+          "gold": "yes",
+          "pred": "na"
+        },
+        {
+          "conversation_id": "p1-ru-004",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-ru-005",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-006",
+          "criterion_id": "c02",
+          "gold": "yes",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p1-ru-006",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-ru-006",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-007",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-009",
+          "criterion_id": "c04",
+          "gold": "10",
+          "pred": "20"
+        },
+        {
+          "conversation_id": "p1-ru-009",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-010",
+          "criterion_id": "c02",
+          "gold": "yes",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p1-ru-010",
+          "criterion_id": "c04",
+          "gold": "20",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p1-ru-010",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-013",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-014",
+          "criterion_id": "c02",
+          "gold": "no",
+          "pred": "na"
+        },
+        {
+          "conversation_id": "p1-ru-014",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-015",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-ru-015",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-016",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-016",
+          "criterion_id": "c07",
+          "gold": "yes",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p1-ru-020",
+          "criterion_id": "c04",
+          "gold": "20",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p1-ru-023",
+          "criterion_id": "c04",
+          "gold": "20",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p1-ru-023",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p1-ru-023",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p1-ru-024",
+          "criterion_id": "c04",
+          "gold": "20",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p1-ru-026",
+          "criterion_id": "c02",
+          "gold": "no",
+          "pred": "na"
+        },
+        {
+          "conversation_id": "p1-ru-029",
+          "criterion_id": "c02",
+          "gold": "no",
+          "pred": "na"
+        },
+        {
+          "conversation_id": "p4-ru-001",
+          "criterion_id": "c05",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p4-ru-001",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p4-ru-002",
+          "criterion_id": "c02",
+          "gold": "yes",
+          "pred": "na"
+        },
+        {
+          "conversation_id": "p4-ru-002",
+          "criterion_id": "c03",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p4-ru-002",
+          "criterion_id": "c04",
+          "gold": "15",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p4-ru-002",
+          "criterion_id": "c06",
+          "gold": "7",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p4-ru-002",
+          "criterion_id": "c07",
+          "gold": "no",
+          "pred": "yes"
+        },
+        {
+          "conversation_id": "p4-ru-002",
+          "criterion_id": "c08",
+          "gold": "yes",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p4-ru-003",
+          "criterion_id": "c07",
+          "gold": "na",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p4-ru-004",
+          "criterion_id": "c04",
+          "gold": "20",
+          "pred": "10"
+        },
+        {
+          "conversation_id": "p4-ru-004",
+          "criterion_id": "c05",
+          "gold": "yes",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p4-ru-005",
+          "criterion_id": "c03",
+          "gold": "na",
+          "pred": "no"
+        },
+        {
+          "conversation_id": "p4-ru-005",
+          "criterion_id": "c06",
+          "gold": "10",
+          "pred": "7"
+        },
+        {
+          "conversation_id": "p4-ru-005",
+          "criterion_id": "c07",
+          "gold": "na",
+          "pred": "no"
+        }
+      ]
+    }
+  ],
+  "pairwise": []
+}

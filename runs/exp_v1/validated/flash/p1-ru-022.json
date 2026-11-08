@@ -1,0 +1,348 @@
+{
+  "run_id": "exp_v1",
+  "agent": "flash",
+  "conversation_id": "p1-ru-022",
+  "checklist": "default@v1",
+  "variant": "v1",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "file": "p1-ru-022.md",
+      "tokens_in": 3683,
+      "tokens_out": 709,
+      "exact": false,
+      "model": null
+    }
+  ],
+  "score": {
+    "total": 12.5,
+    "gross_error": true,
+    "gross_error_criteria": [
+      "c08"
+    ],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 80.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 10,
+        "applicable": true,
+        "points": 10.0,
+        "effective_weight": 12.5,
+        "effective_points": 12.5
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "no",
+        "weight": 15,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 18.75,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 0,
+        "weight": 20,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 25.0,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 15,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 18.75,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 0,
+        "weight": 15,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 18.75,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 5,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 6.25,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "yes",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": true
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 40.0,
+        "contribution": 12.5,
+        "max_contribution": 31.25
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 0.0,
+        "contribution": 0.0,
+        "max_contribution": 25.0
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 0.0,
+        "contribution": 0.0,
+        "max_contribution": 43.75
+      }
+    ]
+  },
+  "answers": {
+    "c01": "yes",
+    "c02": "no",
+    "c03": "na",
+    "c04": 0,
+    "c05": "no",
+    "c06": 0,
+    "c07": "no",
+    "c08": "yes"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте, я Кирилл."
+        }
+      ],
+      "explanation": "Оператор поздоровался и представился в первом сообщении на языке клиента.",
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."
+        }
+      ],
+      "explanation": "Оператор проигнорировал запрос клиента о выборе облигаций и не выявил потребности.",
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "Хочу выбрать облигации. Можете подсказать, что купить, чтобы деньги выросли?"
+        }
+      ],
+      "explanation": "Запрос носил общий консультационный характер и не требовал идентификации клиента.",
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "answer": 0,
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Да, это я лично предлагаю, через компанию оформлять не надо."
+        }
+      ],
+      "explanation": "Консультация по вопросу не предоставлена, предложена сделка в обход компании.",
+      "answer_normalized": 0,
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 11,
+          "quote": "Вы серьёзно? Я про консультацию в приложении спрашивал."
+        },
+        {
+          "idx": 12,
+          "quote": "Да, это я лично предлагаю, через компанию оформлять не надо."
+        }
+      ],
+      "explanation": "Оператор не отреагировал на удивление и недовольство клиента, продолжив настаивать на личном предложении.",
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 11,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "answer": 0,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."
+        }
+      ],
+      "explanation": "Логика ведения диалога полностью нарушена, оператор увёл диалог в мошеннические действия.",
+      "answer_normalized": 0,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 14,
+          "quote": "Оператор закрыл чат."
+        }
+      ],
+      "explanation": "Оператор закрыл чат без подведения итогов, предложения дальнейшей помощи и прощания.",
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 14,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."
+        },
+        {
+          "idx": 12,
+          "quote": "Да, это я лично предлагаю, через компанию оформлять не надо."
+        }
+      ],
+      "explanation": "Грубая ошибка: предложение совершить операцию в обход компании и перевод на личную карту.",
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    }
+  },
+  "issues": [],
+  "dialog_facts": null,
+  "overall_comment": null,
+  "meta": {
+    "conversation_id": "p1-ru-022"
+  }
+}

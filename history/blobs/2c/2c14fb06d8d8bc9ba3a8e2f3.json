@@ -1,0 +1,22 @@
+{
+  "kind": "params",
+  "name": "pipeline",
+  "content": {
+    "agents": [
+      "codex-cli"
+    ],
+    "agent_models": {
+      "claude": "claude",
+      "codex": "codex",
+      "antigravity": "gemini",
+      "opus": "claude-opus-5-5",
+      "sonnet": "claude-sonnet-5-5",
+      "sonnet2": "claude-sonnet-5-5",
+      "haiku": "claude-haiku-5-5"
+    },
+    "template": "v2",
+    "include_facts": true,
+    "gap_threshold_s": 30,
+    "quote_match_threshold": 0.9
+  }
+}

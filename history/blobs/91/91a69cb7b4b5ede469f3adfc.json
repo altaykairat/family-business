@@ -1,0 +1,10 @@
+{
+  "kind": "features",
+  "name": "s2",
+  "content": {
+    "params": {
+      "gap_threshold_s": 30
+    },
+    "code": "faeb0f9d0f0f"
+  }
+}

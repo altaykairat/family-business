@@ -1,0 +1,15 @@
+{
+  "task_id": "t-0001",
+  "kind": "analyze_history",
+  "subject": {
+    "digest_id": "dg-0001",
+    "base": "default@v1"
+  },
+  "provider": "codex-cli",
+  "template": {
+    "name": "analyze_history",
+    "version": 1,
+    "hash": "895f73d7295a",
+    "path": "config/task_templates/analyze_history.md"
+  }
+}

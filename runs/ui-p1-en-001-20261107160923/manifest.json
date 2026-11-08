@@ -1,0 +1,112 @@
+{
+  "run_id": "ui-p1-en-001-20261107160923",
+  "created_at": "2026-11-07T21:09:23+05:00",
+  "mode": "manual",
+  "dataset": "dev",
+  "checklist": "default@v1",
+  "checklist_hash": "8eba1133e74e",
+  "template": "v2",
+  "variant": "v1",
+  "params": {
+    "gap_threshold_s": 30,
+    "quote_match_threshold": 0.9,
+    "include_facts": true,
+    "template": "v2"
+  },
+  "params_hash": "43cb710e8219",
+  "agents": [
+    "sonnet"
+  ],
+  "token_method": "heuristic:chars-per-script",
+  "conversations": {
+    "p1-en-001": {
+      "channel": "agent chat",
+      "language": "EN",
+      "parts": [
+        {
+          "part": "all",
+          "file": "p1-en-001.md",
+          "prompt_id": "v2|default@v1|v1|all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4073,
+          "template_hash": "0c3516db73dd",
+          "context": {
+            "rules": {},
+            "precedents": []
+          }
+        }
+      ]
+    }
+  },
+  "token_projection": {
+    "v1": {
+      "calls": 1,
+      "tokens_in": 4073
+    },
+    "v2": {
+      "calls": 4,
+      "tokens_in": 13488
+    },
+    "v3": {
+      "calls": 8,
+      "tokens_in": 25970
+    }
+  },
+  "versions": {
+    "checklist": {
+      "ref": "default@v1",
+      "hash": "8eba1133e74e",
+      "criteria_revs": {
+        "c01": "c01@r1",
+        "c02": "c02@r1",
+        "c03": "c03@r1",
+        "c04": "c04@r1",
+        "c05": "c05@r1",
+        "c06": "c06@r1",
+        "c07": "c07@r1",
+        "c08": "c08@r1"
+      },
+      "clarification_revs": {}
+    },
+    "template": {
+      "name": "v2",
+      "version": 1,
+      "hash": "0c3516db73dd"
+    },
+    "params": {
+      "version": 3,
+      "hash": "2ab607bfcf4d"
+    },
+    "features": {
+      "version": 1,
+      "hash": "b6e01a97fa8e"
+    },
+    "models": {
+      "version": 1,
+      "mapping": {
+        "claude": "claude",
+        "codex": "codex",
+        "antigravity": "gemini",
+        "opus": "claude-opus-5-5",
+        "sonnet": "claude-sonnet-5-5",
+        "sonnet2": "claude-sonnet-5-5",
+        "haiku": "claude-haiku-5-5"
+      }
+    },
+    "code": {
+      "scoring": "81fb79aad847",
+      "validation": "85f2acf9a48a",
+      "prompts": "61ea9a981a3c"
+    }
+  },
+  "criteria_only": null
+}

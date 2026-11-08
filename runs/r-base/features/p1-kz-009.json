@@ -1,0 +1,36 @@
+{
+  "conversation_id": "p1-kz-009",
+  "operator_name_guess": "Айсұлу",
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 11,
+  "operator_turn_idxs": [
+    11,
+    13,
+    16,
+    18,
+    20
+  ],
+  "time_to_first_operator_reply_s": 70,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 14,
+      "operator_idx": 16,
+      "seconds": 34
+    },
+    {
+      "client_idx": 17,
+      "operator_idx": 18,
+      "seconds": 41
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 20,
+    "speaker": "operator",
+    "text": "Оқасы жоқ. Сау болыңыз!"
+  },
+  "last_client_idx": 19,
+  "seconds_from_last_client_to_end": 17,
+  "last_operator_idx": 20,
+  "duplicate_turn_idxs": []
+}

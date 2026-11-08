@@ -1,0 +1,568 @@
+{
+  "run_id": "exp_vsubq",
+  "agent": "subq_flash",
+  "conversation_id": "p1-ru-001",
+  "checklist": "default@v1",
+  "variant": "v_subq_bundled",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "file": "p1-ru-001.md",
+      "tokens_in": 3507,
+      "tokens_out": 1645,
+      "exact": false,
+      "model": null
+    }
+  ],
+  "score": {
+    "total": 92.31,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 65.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 10,
+        "applicable": true,
+        "points": 10.0,
+        "effective_weight": 15.38,
+        "effective_points": 15.38
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "na",
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 30.77,
+        "effective_points": 30.77
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 10,
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 5,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 7.69,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "no",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 100.0,
+        "contribution": 15.38,
+        "max_contribution": 15.38
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 30.77,
+        "max_contribution": 30.77
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 85.71,
+        "contribution": 46.15,
+        "max_contribution": 53.85
+      }
+    ]
+  },
+  "answers": {
+    "c01": "yes",
+    "c02": "na",
+    "c03": "na",
+    "c04": 20,
+    "c05": "yes",
+    "c06": 10,
+    "c07": "no",
+    "c08": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "sub_questions": [
+        {
+          "id": "c01_greet",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Здравствуйте!"
+        },
+        {
+          "id": "c01_lang",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Здравствуйте!"
+        },
+        {
+          "id": "c01_intro",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Меня зовут Алина."
+        },
+        {
+          "id": "c01_first_turn",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Здравствуйте! Меня зовут Алина."
+        }
+      ],
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте! Меня зовут Алина."
+        }
+      ],
+      "explanation": "Оператор поздоровалась, представилась по имени и обратилась на языке клиента в своем первом сообщении.",
+      "reduction_meta": {
+        "subquestions_evaluated": 4,
+        "steps_checked": {
+          "c01_greet": true,
+          "c01_lang": true,
+          "c01_intro": true,
+          "c01_first_turn": true
+        },
+        "failed_clauses": []
+      },
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "sub_questions": [
+        {
+          "id": "c02_na",
+          "value": true,
+          "evidence_idx": 5,
+          "quote": "Я сейчас с ноутбука, отчёт качать не хочу. Можно оператора?"
+        },
+        {
+          "id": "c02_known_details",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "В веб-версии откройте вкладку «Кабинет». Название тарифа будет под вашим ФИО."
+        },
+        {
+          "id": "c02_clarify_missing",
+          "value": false
+        }
+      ],
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 5,
+          "quote": "Я сейчас с ноутбука, отчёт качать не хочу. Можно оператора?"
+        },
+        {
+          "idx": 10,
+          "quote": "В веб-версии откройте вкладку «Кабинет». Название тарифа будет под вашим ФИО."
+        }
+      ],
+      "explanation": "Клиент предоставил всю необходимую информацию для ответа в контексте обращения (ноутбук, нежелание скачивать отчет). Оператор учла эти детали, уточнение не требовалось.",
+      "reduction_meta": {
+        "subquestions_evaluated": 3,
+        "steps_checked": {},
+        "na_gate_result": true
+      },
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 5,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "sub_questions": [
+        {
+          "id": "c03_na",
+          "value": true,
+          "evidence_idx": 1,
+          "quote": "Где посмотреть мой тариф? В приложении не нахожу."
+        },
+        {
+          "id": "c03_action_needed",
+          "value": false
+        },
+        {
+          "id": "c03_verified_prior",
+          "value": false
+        }
+      ],
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "Где посмотреть мой тариф? В приложении не нахожу."
+        }
+      ],
+      "explanation": "Запрос клиента носит общий справочно-навигационный характер (где найти тариф в личном кабинете) и не требует идентификации.",
+      "reduction_meta": {
+        "subquestions_evaluated": 3,
+        "steps_checked": {},
+        "na_gate_result": true
+      },
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "sub_questions": [
+        {
+          "id": "c04_na",
+          "value": false
+        },
+        {
+          "id": "c04_step_20",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "В веб-версии откройте вкладку «Кабинет». Название тарифа будет под вашим ФИО."
+        },
+        {
+          "id": "c04_step_15",
+          "value": false
+        },
+        {
+          "id": "c04_step_10",
+          "value": false
+        },
+        {
+          "id": "c04_step_5",
+          "value": false
+        },
+        {
+          "id": "c04_step_0",
+          "value": false
+        }
+      ],
+      "answer": "20",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "В веб-версии откройте вкладку «Кабинет». Название тарифа будет под вашим ФИО."
+        },
+        {
+          "idx": 11,
+          "quote": "Нашла, спасибо."
+        }
+      ],
+      "explanation": "Оператор предоставила точную, полную и корректную инструкцию для веб-версии. Вопрос был решен быстро и успешно, клиент подтвердила результат.",
+      "reduction_meta": {
+        "subquestions_evaluated": 6,
+        "steps_checked": {
+          "c04_step_20": true
+        },
+        "na_gate_result": false
+      },
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 11,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "sub_questions": [
+        {
+          "id": "c05_polite",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Здравствуйте! Меня зовут Алина."
+        },
+        {
+          "id": "c05_dissatisfaction_handled",
+          "value": true,
+          "evidence_idx": 12,
+          "quote": "Пожалуйста. Хорошего вечера!"
+        }
+      ],
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте! Меня зовут Алина."
+        },
+        {
+          "idx": 12,
+          "quote": "Пожалуйста. Хорошего вечера!"
+        }
+      ],
+      "explanation": "Оператор вежлива, доброжелательна, соблюдает деловой этикет. Негатива со стороны клиента зафиксировано не было.",
+      "reduction_meta": {
+        "subquestions_evaluated": 2,
+        "steps_checked": {
+          "c05_polite": true,
+          "c05_dissatisfaction_handled": true
+        },
+        "failed_clauses": []
+      },
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "sub_questions": [
+        {
+          "id": "c06_step_10",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "В веб-версии откройте вкладку «Кабинет». Название тарифа будет под вашим ФИО."
+        },
+        {
+          "id": "c06_step_7",
+          "value": false
+        },
+        {
+          "id": "c06_step_4",
+          "value": false
+        },
+        {
+          "id": "c06_step_0",
+          "value": false
+        }
+      ],
+      "answer": "10",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "В веб-версии откройте вкладку «Кабинет». Название тарифа будет под вашим ФИО."
+        },
+        {
+          "idx": 12,
+          "quote": "Пожалуйста. Хорошего вечера!"
+        }
+      ],
+      "explanation": "Сообщения написаны грамотно, пунктуация и орфография соблюдены, оформление текста корректное.",
+      "reduction_meta": {
+        "subquestions_evaluated": 4,
+        "steps_checked": {
+          "c06_step_10": true
+        }
+      },
+      "answer_normalized": 10,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "sub_questions": [
+        {
+          "id": "c07_na",
+          "value": false
+        },
+        {
+          "id": "c07_summary_or_help",
+          "value": false
+        },
+        {
+          "id": "c07_goodbye",
+          "value": true,
+          "evidence_idx": 12,
+          "quote": "Пожалуйста. Хорошего вечера!"
+        }
+      ],
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Пожалуйста. Хорошего вечера!"
+        }
+      ],
+      "explanation": "Оператор попрощалась («Хорошего вечера!»), но не уточнила, остались ли у клиента другие вопросы, и не предложила дополнительную помощь перед завершением диалога.",
+      "reduction_meta": {
+        "subquestions_evaluated": 3,
+        "steps_checked": {
+          "c07_summary_or_help": false,
+          "c07_goodbye": true
+        },
+        "na_gate_result": false,
+        "failed_clauses": [
+          "c07_summary_or_help"
+        ]
+      },
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "sub_questions": [
+        {
+          "id": "c08_insult",
+          "value": false
+        },
+        {
+          "id": "c08_bypass",
+          "value": false
+        },
+        {
+          "id": "c08_leak",
+          "value": false
+        }
+      ],
+      "answer": "no",
+      "evidence": [],
+      "explanation": "Грубых нарушений (оскорбления клиента, обход процедур безопасности, утечка персональных данных) нет.",
+      "reduction_meta": {
+        "subquestions_evaluated": 3,
+        "steps_checked": {
+          "c08_insult": false,
+          "c08_bypass": false,
+          "c08_leak": false
+        },
+        "violations": []
+      },
+      "answer_normalized": "no",
+      "evidence_checks": []
+    }
+  },
+  "issues": [],
+  "dialog_facts": null,
+  "overall_comment": "Оператор Алина оперативно и точно ответила на вопрос клиента о расположении тарифа в веб-версии кабинета, сразу учтя контекст входа с ноутбука. Вопрос был полностью решен в одно сообщение. Недочетом является завершение диалога без уточнения наличия дополнительных вопросов.",
+  "meta": {
+    "conversation_id": "p1-ru-001",
+    "prompt_id": "v_subq_bundled|default@v1|p1-ru-001|all"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "meta": {
+    "conversation_id": "p1-ru-012",
+    "prompt_id": "v_subq_bundled|default@v1|p1-ru-012|all"
+  },
+  "criteria": [
+    {
+      "criterion_id": "c01",
+      "sub_questions": [
+        {"id": "c01_greet", "value": true, "evidence_idx": 10, "quote": "Здравствуйте."},
+        {"id": "c01_lang", "value": true, "evidence_idx": 10, "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."},
+        {"id": "c01_intro", "value": true, "evidence_idx": 10, "quote": "Я Илья."},
+        {"id": "c01_first_turn", "value": true, "evidence_idx": 10, "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."}
+      ],
+      "answer": "yes",
+      "evidence": [
+        {"idx": 10, "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."}
+      ],
+      "explanation": "Оператор поздоровался, представился по имени и ответил на языке клиента в своей первой реплике (#10)."
+    },
+    {
+      "criterion_id": "c02",
+      "sub_questions": [
+        {"id": "c02_na", "value": true, "evidence_idx": 5, "quote": "А на русском есть именно эта форма? Можно оператора?"},
+        {"id": "c02_known_details", "value": true, "evidence_idx": 10, "quote": "Форма 1042-S предоставляется на английском языке."},
+        {"id": "c02_clarify_missing", "value": false, "evidence_idx": null, "quote": null}
+      ],
+      "answer": "na",
+      "evidence": [
+        {"idx": 5, "quote": "А на русском есть именно эта форма? Можно оператора?"}
+      ],
+      "explanation": "Вопрос клиента был ясен из контекста диалога с ботом, данных для ответа было достаточно изначально, уточнение деталей не требовалось."
+    },
+    {
+      "criterion_id": "c03",
+      "sub_questions": [
+        {"id": "c03_na", "value": true, "evidence_idx": 5, "quote": "А на русском есть именно эта форма? Можно оператора?"},
+        {"id": "c03_action_needed", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c03_verified_prior", "value": false, "evidence_idx": null, "quote": null}
+      ],
+      "answer": "na",
+      "evidence": [
+        {"idx": 5, "quote": "А на русском есть именно эта форма? Можно оператора?"}
+      ],
+      "explanation": "Запрос носил общий справочный характер о языке формы 1042-S, идентификация клиента не требовалась."
+    },
+    {
+      "criterion_id": "c04",
+      "sub_questions": [
+        {"id": "c04_na", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c04_step_20", "value": true, "evidence_idx": 10, "quote": "Форма 1042-S предоставляется на английском языке."},
+        {"id": "c04_step_15", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c04_step_10", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c04_step_5", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c04_step_0", "value": false, "evidence_idx": null, "quote": null}
+      ],
+      "answer": "20",
+      "evidence": [
+        {"idx": 10, "quote": "Форма 1042-S предоставляется на английском языке."}
+      ],
+      "explanation": "Оператор предоставил верную и исчерпывающую информацию о языке формы 1042-S, полностью решив вопрос клиента."
+    },
+    {
+      "criterion_id": "c05",
+      "sub_questions": [
+        {"id": "c05_polite", "value": true, "evidence_idx": 10, "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."},
+        {"id": "c05_dissatisfaction_handled", "value": true, "evidence_idx": 11, "quote": "Ок, это всё что хотел узнать."}
+      ],
+      "answer": "yes",
+      "evidence": [
+        {"idx": 10, "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."}
+      ],
+      "explanation": "Оператор общался вежливо и нейтрально-деловом тоне, негатива со стороны клиента не поступало."
+    },
+    {
+      "criterion_id": "c06",
+      "sub_questions": [
+        {"id": "c06_step_10", "value": true, "evidence_idx": 10, "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."},
+        {"id": "c06_step_7", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c06_step_4", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c06_step_0", "value": false, "evidence_idx": null, "quote": null}
+      ],
+      "answer": "10",
+      "evidence": [
+        {"idx": 10, "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."}
+      ],
+      "explanation": "Сообщение оператора написано грамотно, орфографические, пунктуационные и грамматические ошибки отсутствуют."
+    },
+    {
+      "criterion_id": "c07",
+      "sub_questions": [
+        {"id": "c07_na", "value": true, "evidence_idx": 12, "quote": "Соединение с клиентом прервано."},
+        {"id": "c07_summary_or_help", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c07_goodbye", "value": false, "evidence_idx": null, "quote": null}
+      ],
+      "answer": "na",
+      "evidence": [
+        {"idx": 11, "quote": "Ок, это всё что хотел узнать."},
+        {"idx": 12, "quote": "Соединение с клиентом прервано."}
+      ],
+      "explanation": "Чат оборвался системным сообщением (#12) через 18 секунд после реплики клиента (#11), оператор объективно не имел возможности завершить диалог по стандарту."
+    },
+    {
+      "criterion_id": "c08",
+      "sub_questions": [
+        {"id": "c08_insult", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c08_bypass", "value": false, "evidence_idx": null, "quote": null},
+        {"id": "c08_leak", "value": false, "evidence_idx": null, "quote": null}
+      ],
+      "answer": "no",
+      "evidence": [],
+      "explanation": "Критических нарушений не зафиксировано: грубости, обхода процедур и утечки персональных данных нет."
+    }
+  ],
+  "overall_comment": "Оператор оперативно подключился, поздоровался, представился и корректно ответил на вопрос о языке формы 1042-S. Клиент подтвердил получение необходимой информации. Завершить диалог оператор не успел из-за разрыва соединения через 18 секунд. Нарушений нет."
+}

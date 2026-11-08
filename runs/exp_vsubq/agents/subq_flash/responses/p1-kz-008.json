@@ -1,0 +1,297 @@
+{
+  "meta": {
+    "conversation_id": "p1-kz-008",
+    "prompt_id": "v_subq_bundled|default@v1|p1-kz-008|all"
+  },
+  "criteria": [
+    {
+      "criterion_id": "c01",
+      "sub_questions": [
+        {
+          "id": "c01_greet",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c01_lang",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c01_intro",
+          "value": false,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c01_first_turn",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "explanation": "Оператор поприветствовал клиента на казахском языке в первой реплике («Сәлем»), но не назвал своего имени, нарушив стандарт приветствия и знакомства."
+    },
+    {
+      "criterion_id": "c02",
+      "sub_questions": [
+        {
+          "id": "c02_na",
+          "value": true,
+          "evidence_idx": 5,
+          "quote": "Freedom Finance Global сайты. Операторға қосыңызшы."
+        },
+        {
+          "id": "c02_known_details",
+          "value": false,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c02_clarify_missing",
+          "value": false,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты."
+        }
+      ],
+      "explanation": "Данных в контексте чата было достаточно (клиент ранее указал «Freedom Finance Global сайты»), однако оператор проигнорировал историю переписки и задал дублирующий вопрос, вызвав замечание клиента («Жоғарыда жаздым ғой, Global сайты»)."
+    },
+    {
+      "criterion_id": "c03",
+      "sub_questions": [
+        {
+          "id": "c03_na",
+          "value": true,
+          "evidence_idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым."
+        },
+        {
+          "id": "c03_action_needed",
+          "value": false,
+          "evidence_idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым."
+        },
+        {
+          "id": "c03_verified_prior",
+          "value": false,
+          "evidence_idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым."
+        }
+      ],
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым."
+        }
+      ],
+      "explanation": "Вопрос клиента носит общий консультационный характер по навигации на сайте и не требует проведения идентификации."
+    },
+    {
+      "criterion_id": "c04",
+      "sub_questions": [
+        {
+          "id": "c04_na",
+          "value": false,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "id": "c04_step_20",
+          "value": true,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "id": "c04_step_15",
+          "value": false,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "id": "c04_step_10",
+          "value": false,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "id": "c04_step_5",
+          "value": false,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "id": "c04_step_0",
+          "value": false,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "answer": "20",
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "idx": 13,
+          "quote": "Ашылды, рақмет."
+        }
+      ],
+      "explanation": "Оператор предоставил исчерпывающий и корректный ответ, пояснив характер сайта и предоставив способы входа в торговый счет (tradernet.global и мобильное приложение Freedom Broker), после чего клиент успешно вошел."
+    },
+    {
+      "criterion_id": "c05",
+      "sub_questions": [
+        {
+          "id": "c05_polite",
+          "value": false,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c05_dissatisfaction_handled",
+          "value": false,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "explanation": "Оператор использовал неформальное приветствие «Сәлем» вместо делового «Сәлеметсіз бе» и полностью проигнорировал замечание клиента о повторном вопросе, не принеся извинений за невнимательность."
+    },
+    {
+      "criterion_id": "c06",
+      "sub_questions": [
+        {
+          "id": "c06_step_10",
+          "value": false,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c06_step_7",
+          "value": true,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c06_step_4",
+          "value": false,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c06_step_0",
+          "value": false,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "answer": "7",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "explanation": "Грубых орфографических и грамматических ошибок нет, однако допущено стилистическое нарушение стандартов деловой речи (неформальное приветствие «Сәлем»)."
+    },
+    {
+      "criterion_id": "c07",
+      "sub_questions": [
+        {
+          "id": "c07_na",
+          "value": true,
+          "evidence_idx": 13,
+          "quote": "Ашылды, рақмет."
+        },
+        {
+          "id": "c07_summary_or_help",
+          "value": false,
+          "evidence_idx": 13,
+          "quote": "Ашылды, рақмет."
+        },
+        {
+          "id": "c07_goodbye",
+          "value": false,
+          "evidence_idx": 13,
+          "quote": "Ашылды, рақмет."
+        }
+      ],
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 13,
+          "quote": "Ашылды, рақмет."
+        }
+      ],
+      "explanation": "Диалог завершился на реплике клиента (#13 «Ашылды, рақмет»), оператор не имел возможности подвести итоги и попрощаться."
+    },
+    {
+      "criterion_id": "c08",
+      "sub_questions": [
+        {
+          "id": "c08_insult",
+          "value": false,
+          "evidence_idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "id": "c08_bypass",
+          "value": false,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "id": "c08_leak",
+          "value": false,
+          "evidence_idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "explanation": "Критических нарушений, оскорблений клиентов, утечек конфиденциальных данных или обхода процедур безопасности не зафиксировано."
+    }
+  ],
+  "overall_comment": "Оператор верно и быстро решил технический вопрос клиента, объяснив специфику сайта Freedom Finance Global и указав корректные каналы для входа в торговый аккаунт (tradernet.global и мобильное приложение Freedom Broker). Вместе с тем допущен ряд существенных процедурных нарушений: оператор не представился по имени, применил неформальное приветствие («Сәлем»), проигнорировал историю сообщений с ботом и переспросил уже названный сайт, а также проигнорировал последующее замечание и недовольство клиента, не принеся извинений."
+}

@@ -1,0 +1,454 @@
+{
+  "gold": "dev-gold@v1[test]",
+  "split": "test",
+  "checklist": "default@v1",
+  "before": "r-base:codex-cli",
+  "after": "r-loop:codex-cli",
+  "decisions_compared": 208,
+  "conversations": 26,
+  "summary": {
+    "macro": {
+      "before": 0.8461,
+      "after": 0.8461,
+      "delta_pp": 0.0,
+      "ci95_before": [
+        0.774,
+        0.899
+      ],
+      "ci95_after": [
+        0.7644,
+        0.9038
+      ]
+    },
+    "micro": {
+      "before": 0.8462,
+      "after": 0.8462
+    },
+    "mae_total": {
+      "before": 11.5423,
+      "after": 13.7292
+    },
+    "within_tolerance": {
+      "before": 0.3077,
+      "after": 0.2692
+    },
+    "no_na_confusion": {
+      "before": {
+        "gold_no_pred_na": 2,
+        "gold_na_pred_no": 0
+      },
+      "after": {
+        "gold_no_pred_na": 2,
+        "gold_na_pred_no": 0
+      }
+    },
+    "fixed": 13,
+    "broken": 13,
+    "still_wrong": 19,
+    "mcnemar_p": 1.0,
+    "cost_per_dialog": {
+      "before": null,
+      "after": null
+    }
+  },
+  "criteria": {
+    "c01": {
+      "title": "Установление контакта",
+      "before": 1.0,
+      "after": 1.0,
+      "n": 26,
+      "fixed": 0,
+      "broken": 0
+    },
+    "c02": {
+      "title": "Выявление потребности",
+      "before": 0.8846,
+      "after": 0.8846,
+      "n": 26,
+      "fixed": 0,
+      "broken": 0
+    },
+    "c03": {
+      "title": "Идентификация",
+      "before": 0.9615,
+      "after": 0.9615,
+      "n": 26,
+      "fixed": 0,
+      "broken": 0
+    },
+    "c04": {
+      "title": "Корректная и полная консультация",
+      "before": 0.8077,
+      "after": 0.7692,
+      "n": 26,
+      "fixed": 0,
+      "broken": 1
+    },
+    "c05": {
+      "title": "Эмпатия и клиентоориентированность",
+      "before": 0.7692,
+      "after": 0.6154,
+      "n": 26,
+      "fixed": 5,
+      "broken": 9
+    },
+    "c06": {
+      "title": "Управление диалогом, скорость и грамотность",
+      "before": 0.7308,
+      "after": 0.8462,
+      "n": 26,
+      "fixed": 4,
+      "broken": 1
+    },
+    "c07": {
+      "title": "Завершение",
+      "before": 0.6538,
+      "after": 0.7308,
+      "n": 26,
+      "fixed": 4,
+      "broken": 2
+    },
+    "c08": {
+      "title": "Грубые ошибки",
+      "before": 0.9615,
+      "after": 0.9615,
+      "n": 26,
+      "fixed": 0,
+      "broken": 0
+    }
+  },
+  "fixed": [
+    {
+      "conversation_id": "p1-en-007",
+      "criterion_id": "c05",
+      "gold": "no",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-en-015",
+      "criterion_id": "c05",
+      "gold": "no",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-kz-003",
+      "criterion_id": "c06",
+      "gold": "10",
+      "before": "7",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p1-kz-008",
+      "criterion_id": "c05",
+      "gold": "no",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-kz-010",
+      "criterion_id": "c07",
+      "gold": "yes",
+      "before": "no",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p1-kz-013",
+      "criterion_id": "c05",
+      "gold": "no",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-kz-013",
+      "criterion_id": "c06",
+      "gold": "10",
+      "before": "7",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p1-ru-008",
+      "criterion_id": "c07",
+      "gold": "yes",
+      "before": "no",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p1-ru-015",
+      "criterion_id": "c06",
+      "gold": "10",
+      "before": "7",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p1-ru-016",
+      "criterion_id": "c05",
+      "gold": "no",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-021",
+      "criterion_id": "c07",
+      "gold": "yes",
+      "before": "no",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p1-ru-024",
+      "criterion_id": "c07",
+      "gold": "yes",
+      "before": "no",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p4-ru-001",
+      "criterion_id": "c06",
+      "gold": "10",
+      "before": "7",
+      "after": "10"
+    }
+  ],
+  "broken": [
+    {
+      "conversation_id": "p1-en-008",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-en-015",
+      "criterion_id": "c07",
+      "gold": "no",
+      "before": "no",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p1-kz-005",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-kz-007",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-008",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-013",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-015",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-016",
+      "criterion_id": "c07",
+      "gold": "no",
+      "before": "no",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p1-ru-017",
+      "criterion_id": "c04",
+      "gold": "20",
+      "before": "20",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p1-ru-017",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-018",
+      "criterion_id": "c06",
+      "gold": "7",
+      "before": "7",
+      "after": "4"
+    },
+    {
+      "conversation_id": "p1-ru-027",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "criterion_id": "c05",
+      "gold": "yes",
+      "before": "yes",
+      "after": "no"
+    }
+  ],
+  "still_wrong": [
+    {
+      "conversation_id": "p1-en-007",
+      "criterion_id": "c07",
+      "gold": "no",
+      "before": "yes",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p1-en-008",
+      "criterion_id": "c04",
+      "gold": "20",
+      "before": "10",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p1-en-013",
+      "criterion_id": "c06",
+      "gold": "10",
+      "before": "7",
+      "after": "7"
+    },
+    {
+      "conversation_id": "p1-en-014",
+      "criterion_id": "c06",
+      "gold": "10",
+      "before": "7",
+      "after": "7"
+    },
+    {
+      "conversation_id": "p1-kz-008",
+      "criterion_id": "c02",
+      "gold": "no",
+      "before": "na",
+      "after": "na"
+    },
+    {
+      "conversation_id": "p1-kz-008",
+      "criterion_id": "c07",
+      "gold": "no",
+      "before": "na",
+      "after": "na"
+    },
+    {
+      "conversation_id": "p1-ru-010",
+      "criterion_id": "c02",
+      "gold": "yes",
+      "before": "no",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-010",
+      "criterion_id": "c04",
+      "gold": "20",
+      "before": "10",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p1-ru-017",
+      "criterion_id": "c07",
+      "gold": "yes",
+      "before": "no",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-020",
+      "criterion_id": "c04",
+      "gold": "20",
+      "before": "10",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p1-ru-020",
+      "criterion_id": "c07",
+      "gold": "yes",
+      "before": "no",
+      "after": "no"
+    },
+    {
+      "conversation_id": "p1-ru-024",
+      "criterion_id": "c04",
+      "gold": "20",
+      "before": "10",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p4-ru-001",
+      "criterion_id": "c05",
+      "gold": "no",
+      "before": "yes",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "criterion_id": "c02",
+      "gold": "yes",
+      "before": "na",
+      "after": "na"
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "criterion_id": "c03",
+      "gold": "no",
+      "before": "yes",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "criterion_id": "c04",
+      "gold": "15",
+      "before": "10",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "criterion_id": "c06",
+      "gold": "7",
+      "before": "10",
+      "after": "10"
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "criterion_id": "c07",
+      "gold": "no",
+      "before": "yes",
+      "after": "yes"
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "criterion_id": "c08",
+      "gold": "yes",
+      "before": "no",
+      "after": "no"
+    }
+  ],
+  "changed_but_still_right": [],
+  "coverage": {
+    "before": {
+      "gold_conversations": 26,
+      "predicted": 26,
+      "missing": []
+    },
+    "after": {
+      "gold_conversations": 26,
+      "predicted": 26,
+      "missing": []
+    }
+  }
+}

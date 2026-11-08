@@ -1,0 +1,860 @@
+{
+  "run_id": "r-base",
+  "agent": "codex-cli",
+  "conversation_id": "p1-kz-010",
+  "checklist": "default@v1",
+  "variant": "v1",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "tokens_in": 4138,
+      "tokens_out": 5876,
+      "exact": false,
+      "model": null,
+      "response_file": "runs/r-base/agents/codex-cli/responses/p1-kz-010.md"
+    }
+  ],
+  "score": {
+    "total": 92.31,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 65.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 10,
+        "applicable": true,
+        "points": 10.0,
+        "effective_weight": 15.38,
+        "effective_points": 15.38
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "na",
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 30.77,
+        "effective_points": 30.77
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 10,
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 5,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 7.69,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "no",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 100.0,
+        "contribution": 15.38,
+        "max_contribution": 15.38
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 30.77,
+        "max_contribution": 30.77
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 85.71,
+        "contribution": 46.15,
+        "max_contribution": 53.85
+      }
+    ]
+  },
+  "answers": {
+    "c01": "yes",
+    "c02": "na",
+    "c03": "na",
+    "c04": 20,
+    "c05": "yes",
+    "c06": 10,
+    "c07": "no",
+    "c08": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий обязателен для первого ответа оператора."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор поздоровался на языке клиента в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            10
+          ],
+          "note": "Клиент пишет на казахском, приветствие оператора также на казахском."
+        },
+        {
+          "question": "Оператор представился в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Оператор назвал имя Алма."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сатып алу өтінімінде «Использовать маржу» тұр. Оны алып тастауға бола ма?",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Устанавливает язык клиента."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Алма.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "В первом ответе есть приветствие на казахском и представление."
+        }
+      ],
+      "rule_applied": "Да — оператор поздоровался на языке клиента и представился в первом ответе.",
+      "alternatives_rejected": "Нет не подходит: оба условия выполнены в #10. N/A не разрешён.",
+      "ambiguities": [],
+      "reasoning": "Язык клиента определён по #1. В первом ответе #10 оператор поздоровался на этом языке и назвал себя.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Алма."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Установление контакта — Да. Оператор поздоровался на казахском и представился в первом ответе #10.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "К моменту подключения оператора известны настройка, которую клиент хочет отключить, и необходимость указать конкретный пункт меню."
+      },
+      "sub_questions": [
+        {
+          "question": "Данных для ответа хватало с самого начала работы оператора?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            5
+          ],
+          "note": "Запрос и требуемое уточнение уже сформулированы."
+        },
+        {
+          "question": "Были ли недостающие сведения, которые требовалось уточнить до ответа?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            5,
+            11
+          ],
+          "note": "Текст не показывает необходимости дополнительных данных; клиент успешно выполнил инструкцию."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сатып алу өтінімінде «Использовать маржу» тұр. Оны алып тастауға бола ма?",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Указаны операция и конкретная настройка."
+        },
+        {
+          "idx": 5,
+          "quote": "Қай жерін басамын? Операторды қосыңызшы.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Клиенту нужна конкретная инструкция по нажатию."
+        },
+        {
+          "idx": 11,
+          "quote": "Өшірдім, рақмет.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Подтверждает достаточность инструкции без дополнительных уточнений."
+        }
+      ],
+      "rule_applied": "N/A — данных для ответа хватало с самого начала.",
+      "alternatives_rejected": "Да и Нет не применяются: выполнено прямо предусмотренное условие N/A.",
+      "ambiguities": [],
+      "reasoning": "Реплики #1 и #5 полностью задают потребность. Необходимость уточнять приложение, счёт или другие сведения из диалога не следует.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "Сатып алу өтінімінде «Использовать маржу» тұр. Оны алып тастауға бола ма?"
+        },
+        {
+          "idx": 5,
+          "quote": "Қай жерін басамын? Операторды қосыңызшы."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Выявление потребности — N/A. Запрос был достаточно конкретным до ответа оператора: #1 и #5.",
+      "insufficient_data": false,
+      "confidence": 0.99,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 5,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Запрос касается общей инструкции по интерфейсу и не требует проверки личности."
+      },
+      "sub_questions": [
+        {
+          "question": "Требовалось раскрытие защищённых данных или выполнение защищённого действия оператором?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            5,
+            10
+          ],
+          "note": "Оператор лишь объяснил, как клиенту самостоятельно снять отметку."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 5,
+          "quote": "Қай жерін басамын? Операторды қосыңызшы.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Запрошена инструкция, а не действие оператора по счёту."
+        },
+        {
+          "idx": 10,
+          "quote": "Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз.",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Дана общая последовательность действий без раскрытия данных клиента."
+        }
+      ],
+      "rule_applied": "N/A — запрос не требовал идентификации.",
+      "alternatives_rejected": "Нет не ставится за отсутствие ненужной проверки. Для Да нет подтверждённой проверки, но она здесь и не требуется.",
+      "ambiguities": [],
+      "reasoning": "Оператор не обращается к персональным данным и не изменяет заявку самостоятельно. Условие неприменимости выполнено.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Идентификация — N/A. Для общей инструкции по отключению отметки в #10 проверка личности не требовалась.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент сформулировал запрос в #1 и конкретизировал его в #5."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор объяснил, где и как отключить использование маржи?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Назван пункт меню и действие с отметкой до отправки заявки."
+        },
+        {
+          "question": "Все существенные вопросы закрыты?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            11
+          ],
+          "note": "Клиент подтвердил, что отключил настройку."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сатып алу өтінімінде «Использовать маржу» тұр. Оны алып тастауға бола ма?",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Первоначальная цель — отключить использование маржи."
+        },
+        {
+          "idx": 5,
+          "quote": "Қай жерін басамын? Операторды қосыңызшы.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Существенный вопрос — конкретное место настройки."
+        },
+        {
+          "idx": 10,
+          "quote": "Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Оператор даёт конкретную инструкцию."
+        },
+        {
+          "idx": 11,
+          "quote": "Өшірдім, рақмет.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Клиент подтверждает достижение результата."
+        }
+      ],
+      "rule_applied": "20 — все существенные вопросы закрыты или дан корректный следующий шаг.",
+      "alternatives_rejected": "Верхняя ступень 20 выполнена; оснований спускаться к 15 и ниже нет: открытого вопроса или пропущенной детали в тексте не выявлено. N/A исключён сформулированным запросом.",
+      "ambiguities": [],
+      "reasoning": "Проверка начинается с 20: инструкция #10 отвечает на вопрос #5, а #11 подтверждает её успешное выполнение. Нарушений условия верхней ступени нет.",
+      "answer": 20,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз."
+        },
+        {
+          "idx": 11,
+          "quote": "Өшірдім, рақмет."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Корректная и полная консультация — 20. Оператор дал конкретную инструкцию в #10, клиент подтвердил выполнение в #11.",
+      "insufficient_data": false,
+      "confidence": 0.99,
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 11,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий применяется ко всему общению оператора."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор общался вежливо?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Использованы вежливые приветствие, обращение и прощание."
+        },
+        {
+          "question": "Оператор отреагировал на конкретное затруднение клиента?",
+          "answer": "да",
+          "evidence_idx": [
+            5,
+            10
+          ],
+          "note": "В ответ на вопрос, куда нажать, назван конкретный пункт меню."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 5,
+          "quote": "Қай жерін басамын? Операторды қосыңызшы.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиенту непонятно место отключения настройки."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Алма. Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Вежливый ответ непосредственно на затруднение клиента."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Вежливое прощание."
+        }
+      ],
+      "rule_applied": "Да — оператор вежлив и отреагировал на конкретную проблему клиента.",
+      "alternatives_rejected": "Нет не подходит: затруднение не проигнорировано, невежливых реплик нет. Отдельная фраза сочувствия формулировкой не требуется. N/A не разрешён.",
+      "ambiguities": [],
+      "reasoning": "В #5 описано затруднение с интерфейсом. Оператор в #10 вежливо указывает нужное действие, тем самым реагируя на конкретную проблему.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Алма. Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Эмпатия и клиентоориентированность — Да. Оператор вежливо ответил на конкретное затруднение клиента в #10.",
+      "insufficient_data": false,
+      "confidence": 0.98,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Ясность и порядок ответов оцениваются независимо от полноты завершения."
+      },
+      "sub_questions": [
+        {
+          "question": "Ответы оператора ясные и связные?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            11,
+            12
+          ],
+          "note": "Инструкция последовательна, клиент её выполнил, затем следует прощание."
+        },
+        {
+          "question": "Было ли явное ожидание, требовавшее предупреждения оператора?",
+          "answer": "нет",
+          "evidence_idx": [
+            11,
+            12
+          ],
+          "note": "Между благодарностью и прощанием прошло 49 секунд, но незавершённого вопроса или объявленной проверки не было."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Понятный порядок действий."
+        },
+        {
+          "idx": 11,
+          "quote": "Өшірдім, рақмет.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Клиент понял инструкцию и завершил действие."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Прощание через 49 секунд после подтверждения результата."
+        }
+      ],
+      "rule_applied": "10 — ответы ясные и связные; явного ожидания дополнительного ответа по существу не было.",
+      "alternatives_rejected": "Ступень 10 выполнена. Для 7 нет конкретного сбоя ясности, порядка или предупреждения о необходимом ожидании; для 4 и 0 тем более нет оснований. Недостаток завершения оценивается в c07.",
+      "ambiguities": [
+        "Чек-лист не определяет длительность «явного ожидания». Пауза 49 секунд после благодарности трактуется как пауза перед прощанием, а не ожидание решения или проверки; сама отметка о паузе ≥ 30 секунд не устанавливает нарушение."
+      ],
+      "reasoning": "На верхней ступени проверены ясность инструкции #10 и последовательность #10–#12. Клиент не переспрашивал, а подтвердил результат. Пауза после #11 не сопровождалась незакрытым запросом, поэтому оснований снижать ступень нет.",
+      "answer": 10,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз."
+        },
+        {
+          "idx": 11,
+          "quote": "Өшірдім, рақмет."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Управление диалогом, скорость и грамотность — 10. Инструкция #10 ясна, клиент подтвердил выполнение в #11. Пауза перед прощанием не свидетельствует об ожидании решения.",
+      "insufficient_data": false,
+      "confidence": 0.9,
+      "answer_normalized": 10,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 11,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент подтвердил решение, оператор имел возможность завершить диалог и попрощался."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор подвёл итог или предложил дальнейшую помощь?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            11,
+            12
+          ],
+          "note": "После подтверждения результата есть только прощание; инструкция до результата не является итогом."
+        },
+        {
+          "question": "Оператор попрощался?",
+          "answer": "да",
+          "evidence_idx": [
+            12
+          ],
+          "note": "Прощание выражено прямо."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Алма. Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Содержит приветствие и инструкцию, но не итог или предложение дальнейшей помощи."
+        },
+        {
+          "idx": 11,
+          "quote": "Өшірдім, рақмет.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "После подтверждения решения наступила возможность корректно завершить диалог."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Есть только прощание, без второй обязательной составляющей завершения."
+        }
+      ],
+      "rule_applied": "Да требует сочетания: итог или предложение дальнейшей помощи, а также прощание. Одного прощания недостаточно.",
+      "alternatives_rejected": "Да исключено отсутствием итога или предложения помощи. N/A не подходит: диалог не оборвался, оператор сам произнёс заключительную реплику.",
+      "ambiguities": [],
+      "reasoning": "После #11 ожидалось завершение с итогом либо предложением помощи и прощанием. В #12 выполнено только прощание.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 11,
+          "quote": "Өшірдім, рақмет."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!"
+        }
+      ],
+      "checked_range": [
+        10,
+        12
+      ],
+      "explanation": "Завершение — Нет. После подтверждения результата #11 оператор только попрощался в #12, не подведя итог и не предложив дальнейшую помощь.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 11,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Проверка грубых нарушений обязательна."
+      },
+      "sub_questions": [
+        {
+          "question": "Выявлено оскорбление клиента?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Обе реплики оператора вежливы."
+        },
+        {
+          "question": "Выявлено предложение платной услуги в обход компании?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Оператор дал инструкцию и попрощался."
+        },
+        {
+          "question": "Выявлено раскрытие конфиденциальной информации?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Персональные сведения и данные счёта не раскрываются."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Алма. Өтінімді жібермей тұрып, «Настройки приказа» тармағын ашып, «Использовать маржу» белгісін алып тастаңыз.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Приветствие и общая инструкция не содержат перечисленных нарушений."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Последняя реплика — вежливое прощание."
+        }
+      ],
+      "rule_applied": "Нет — ни одно из трёх перечисленных грубых нарушений не выявлено.",
+      "alternatives_rejected": "Для Да нет ни одного подтверждающего фрагмента. N/A не разрешён.",
+      "ambiguities": [],
+      "reasoning": "Проверены обе реплики оператора, #10 и #12. Оскорблений, предложения частных платных услуг и раскрытия конфиденциальной информации нет.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!"
+        }
+      ],
+      "checked_range": [
+        10,
+        12
+      ],
+      "explanation": "Грубые ошибки — Нет. В репликах оператора #10–#12 ни одно из трёх нарушений не выявлено; последняя реплика #12 — вежливое прощание.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    }
+  },
+  "issues": [],
+  "dialog_facts": {
+    "client_language": "KZ",
+    "operator_language_first_reply": "KZ",
+    "client_request_summary": "Клиент просит объяснить, где отключить использование маржи в заявке на покупку.",
+    "client_questions": [
+      "Можно ли убрать отметку «Использовать маржу» в заявке на покупку?",
+      "Куда нажать для отключения этой отметки?"
+    ],
+    "bot_answer_before_operator": "Бот сообщил, что параметр можно отключить в настройках заявки, затем передал чат оператору.",
+    "first_operator_turn_idx": 10,
+    "protected_action_or_data_requested": {
+      "value": false,
+      "evidence_idx": [
+        1,
+        5,
+        10
+      ],
+      "note": "Запрошена инструкция по настройке заявки; оператор не совершает действие по счёту и не раскрывает персональные данные."
+    },
+    "identity_verification": {
+      "performed": false,
+      "evidence_idx": [],
+      "note": "Проверка личности в тексте отсутствует, но для этой инструкции не требуется."
+    },
+    "client_dissatisfaction": {
+      "present": true,
+      "evidence_idx": [
+        5
+      ],
+      "note": "Клиент описывает затруднение: после общей подсказки бота ему непонятно, куда нажать. Прямого выражения недовольства нет."
+    },
+    "explicit_waits": [],
+    "ending": {
+      "type": "operator_goodbye",
+      "evidence_idx": [
+        12
+      ],
+      "operator_offered_help_or_summary": false,
+      "operator_said_goodbye": true
+    },
+    "dialog_summary": "После общей инструкции бота клиент попросил уточнить, куда нажать, и подключить оператора. Оператор представился и дал конкретную инструкцию; клиент подтвердил отключение отметки. Оператор попрощался без итога или предложения дальнейшей помощи."
+  },
+  "model_total_estimate": {
+    "total": 92.31,
+    "calculation": "При исключении N/A из знаменателя: применимый вес = 100 − 15 (c02) − 20 (c03) = 65. Набрано: 10 (c01) + 20 × 20/20 (c04) + 15 (c05) + 15 × 10/10 (c06) + 0 (c07) = 60. Итог = 60/65 × 100 = 92,31%. Правило нормирования N/A явно не задано; использован расчёт по применимым весам. c08 — отдельный флаг без баллов."
+  },
+  "overall_comment": "Оператор вежливо представился на языке клиента и дал понятную инструкцию, которую клиент успешно выполнил. Недочёт — при завершении было только прощание без итога или предложения дальнейшей помощи. Грубых нарушений не выявлено.",
+  "meta": {
+    "model": "GPT-6",
+    "conversation_id": "p1-kz-010",
+    "prompt_id": "v2|default@v1|v1|all"
+  }
+}

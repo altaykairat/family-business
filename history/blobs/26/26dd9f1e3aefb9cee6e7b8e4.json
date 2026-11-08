@@ -1,0 +1,897 @@
+{
+  "run_id": "r-base",
+  "agent": "codex-cli",
+  "conversation_id": "p1-kz-014",
+  "checklist": "default@v1",
+  "variant": "v1",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "tokens_in": 4094,
+      "tokens_out": 5937,
+      "exact": false,
+      "model": null,
+      "response_file": "runs/r-base/agents/codex-cli/responses/p1-kz-014.md"
+    }
+  ],
+  "score": {
+    "total": 92.31,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 65.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 10,
+        "applicable": true,
+        "points": 10.0,
+        "effective_weight": 15.38,
+        "effective_points": 15.38
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "na",
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 30.77,
+        "effective_points": 30.77
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 10,
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 5,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 7.69,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "no",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 100.0,
+        "contribution": 15.38,
+        "max_contribution": 15.38
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 30.77,
+        "max_contribution": 30.77
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 85.71,
+        "contribution": 46.15,
+        "max_contribution": 53.85
+      }
+    ]
+  },
+  "answers": {
+    "c01": "yes",
+    "c02": "na",
+    "c03": "na",
+    "c04": 20,
+    "c05": "yes",
+    "c06": 10,
+    "c07": "no",
+    "c08": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий применяется к первому ответу оператора; N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор поздоровался на языке клиента в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            10
+          ],
+          "note": "Запрос и приветствие даны на казахском языке."
+        },
+        {
+          "question": "Оператор представился в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Оператор назвал своё имя."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "1042-S нысанын қазақ тілінде алуға бола ма?",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Определяет язык клиента."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Ләззатпын. Иә, 1042-S нысаны ағылшын тілінде беріледі.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Первый ответ содержит приветствие и представление на казахском языке."
+        }
+      ],
+      "rule_applied": "Да — оператор поздоровался на языке клиента и представился в первом ответе.",
+      "alternatives_rejected": "«Нет» не подходит: оба условия выполнены в #10. N/A не разрешён.",
+      "ambiguities": [],
+      "reasoning": "Язык клиента определяется по #1. В первом ответе #10 оператор использовал казахское приветствие и назвал имя.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Ләззатпын."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Установление контакта — Да. Оператор поздоровался на казахском языке и представился в первом ответе #10.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "С самого начала указаны форма и интересующий клиента язык; дополнительных деталей для ответа не требовалось."
+      },
+      "sub_questions": [
+        {
+          "question": "Данных для ответа хватало с самого начала?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            5
+          ],
+          "note": "Клиент задал конкретный вопрос и затем попросил уточнить его у оператора."
+        },
+        {
+          "question": "Были недостающие сведения, которые следовало уточнить до ответа?",
+          "answer": "нет",
+          "evidence_idx": [
+            1
+          ],
+          "note": "Предмет запроса и желаемый язык указаны."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "1042-S нысанын қазақ тілінде алуға бола ма?",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Содержит все необходимые параметры общего вопроса."
+        },
+        {
+          "idx": 5,
+          "quote": "Соны оператордан нақтылайыншы.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент просит подтверждение того же вопроса у оператора."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Ләззатпын. Иә, 1042-S нысаны ағылшын тілінде беріледі.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Оператор отвечает по указанной форме и языку."
+        }
+      ],
+      "rule_applied": "N/A — данных для ответа хватало с самого начала.",
+      "alternatives_rejected": "«Нет» не требуется: уточнять было нечего. «Да» не выбирается, поскольку выполнено прямое условие N/A.",
+      "ambiguities": [],
+      "reasoning": "В #1 сформулирован полный общий вопрос. Просьба #5 не добавляет нового запроса или недостающих параметров.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "1042-S нысанын қазақ тілінде алуға бола ма?"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Выявление потребности — N/A. В #1 уже указаны форма 1042-S и интересующий клиента казахский язык.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Общий вопрос о языке формы не требует идентификации."
+      },
+      "sub_questions": [
+        {
+          "question": "Запрос требовал раскрытия защищённых данных или защищённого действия?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            10
+          ],
+          "note": "Клиент не запрашивал свою форму или сведения по счёту; оператор сообщил общий язык выдачи."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "1042-S нысанын қазақ тілінде алуға бола ма?",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Вопрос касается возможности получения формы на определённом языке."
+        },
+        {
+          "idx": 10,
+          "quote": "Иә, 1042-S нысаны ағылшын тілінде беріледі.",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Дана общая информация без персональных данных."
+        }
+      ],
+      "rule_applied": "N/A — запрос не требовал идентификации.",
+      "alternatives_rejected": "«Нет» не ставится за отсутствие необязательной проверки. «Да» не применяется: условие необходимости идентификации отсутствует.",
+      "ambiguities": [],
+      "reasoning": "Запрос #1 и ответ #10 касаются языка формы в целом. Защищённого действия нет.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "1042-S нысанын қазақ тілінде алуға бола ма?"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Идентификация — N/A. Для общего вопроса о языке формы в #1 проверка личности не требовалась.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент сформулировал запрос в #1, оператор дал содержательный ответ."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор ответил на существенный вопрос о языке формы?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            10
+          ],
+          "note": "Указал, что форма предоставляется на английском языке."
+        },
+        {
+          "question": "Остались существенные вопросы без ответа?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            5,
+            10,
+            11
+          ],
+          "note": "В диалоге один вопрос; клиент принял ответ и поблагодарил."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "1042-S нысанын қазақ тілінде алуға бола ма?",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Единственный существенный вопрос клиента."
+        },
+        {
+          "idx": 5,
+          "quote": "Соны оператордан нақтылайыншы.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Требуется подтверждение ответа оператором."
+        },
+        {
+          "idx": 10,
+          "quote": "Иә, 1042-S нысаны ағылшын тілінде беріледі.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Оператор прямо указал язык предоставления формы."
+        },
+        {
+          "idx": 11,
+          "quote": "Жақсы, рақмет.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент принял ответ без дополнительного вопроса."
+        }
+      ],
+      "rule_applied": "20 — все существенные вопросы закрыты.",
+      "alternatives_rejected": "Выбрана верхняя ступень 20: указан язык выдачи формы. Для 15 и ниже нет конкретного пропущенного вопроса или установленной ошибки. N/A исключён сформулированным запросом #1.",
+      "ambiguities": [
+        "Начальное «Иә» в #10 может читаться как согласие с возможностью выдачи на казахском, но последующее предложение прямо указывает английский язык. В контексте просьбы #5 оно трактуется как подтверждение ранее данного ответа."
+      ],
+      "reasoning": "Проверка начинается со ступени 20. В #10 дан ответ по единственному существенному вопросу; оснований спускаться по шкале содержания нет.",
+      "answer": 20,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Иә, 1042-S нысаны ағылшын тілінде беріледі."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Корректная и полная консультация — 20. В #10 оператор подтвердил, что форма предоставляется на английском языке, закрыв единственный вопрос клиента.",
+      "insufficient_data": false,
+      "confidence": 0.94,
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Вежливость оценивается обязательно; реакция на недовольство нужна только при его наличии."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор общался вежливо?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Использованы вежливое приветствие и прощание."
+        },
+        {
+          "question": "Клиент выразил недовольство или описал неудобство, требующее отдельной реакции?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            5,
+            7,
+            11
+          ],
+          "note": "Клиент просил уточнение и благодарил, конкретной жалобы не было."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "1042-S нысанын қазақ тілінде алуға бола ма?",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Нейтральный вопрос."
+        },
+        {
+          "idx": 5,
+          "quote": "Соны оператордан нақтылайыншы.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Просьба уточнить у оператора без выраженного недовольства."
+        },
+        {
+          "idx": 7,
+          "quote": "Иә, рақмет",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Вежливое согласие на подключение."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Ләззатпын. Иә, 1042-S нысаны ағылшын тілінде беріледі.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Вежливый ответ по запросу."
+        },
+        {
+          "idx": 11,
+          "quote": "Жақсы, рақмет.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Благодарность без жалобы."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Вежливое прощание."
+        }
+      ],
+      "rule_applied": "Да — оператор вежлив; условие отдельной реакции на неудобство не возникло.",
+      "alternatives_rejected": "Для «Нет» нет невежливой реплики или проигнорированной конкретной жалобы. N/A не разрешён.",
+      "ambiguities": [],
+      "reasoning": "Обе реплики оператора вежливы. Просьба проверить информацию у человека сама по себе не означает недовольства.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Ләззатпын."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Эмпатия и клиентоориентированность — Да. Оператор вежлив в #10 и #12; клиент не описывал проблему, требующую отдельной эмпатической реакции.",
+      "insufficient_data": false,
+      "confidence": 0.99,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Ясность и последовательность ответов оцениваются обязательно."
+      },
+      "sub_questions": [
+        {
+          "question": "Ответы оператора ясные и связные?",
+          "answer": "да",
+          "evidence_idx": [
+            5,
+            10,
+            11,
+            12
+          ],
+          "note": "Оператор подтвердил язык формы, затем попрощался после благодарности клиента."
+        },
+        {
+          "question": "Было явное ожидание, о котором оператор должен был предупредить?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            11,
+            12
+          ],
+          "note": "Оператор не брал паузу на проверку; после благодарности клиента прошло 26 секунд."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 5,
+          "quote": "Соны оператордан нақтылайыншы.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Объясняет подтверждающее начало ответа оператора."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Ләззатпын. Иә, 1042-S нысаны ағылшын тілінде беріледі.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Краткий и понятный ответ с указанием английского языка."
+        },
+        {
+          "idx": 11,
+          "quote": "Жақсы, рақмет.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент понял ответ, переспрашивать не потребовалось."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Последовательное прощание после благодарности."
+        }
+      ],
+      "rule_applied": "10 — ответы ясные и связные; явного ожидания, требующего предупреждения, не было.",
+      "alternatives_rejected": "Верхняя ступень выполнена. Для 7 нет заметного сбоя с учётом контекста #5; для 4 нет переспроса из-за формулировки; для 0 нет непонятного хода диалога.",
+      "ambiguities": [
+        "Слово «Иә» в #10 допускает двоякое прочтение отдельно от контекста. Выбрана трактовка подтверждения предыдущего ответа, поскольку далее явно указан английский язык, а клиент в #11 не переспрашивает."
+      ],
+      "reasoning": "Проверена ступень 10: ответ #10 связно продолжает просьбу об уточнении #5, а #12 следует за благодарностью. Конкретного нарушения верхней ступени не установлено.",
+      "answer": 10,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Иә, 1042-S нысаны ағылшын тілінде беріледі."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Управление диалогом, скорость и грамотность — 10. Ответ #10 понятен в контексте уточнения, завершение #12 последовательно; явного ожидания не было.",
+      "insufficient_data": false,
+      "confidence": 0.93,
+      "answer_normalized": 10,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "После благодарности клиента оператор имел возможность завершить диалог и отправил прощание."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор подвёл итог или предложил дальнейшую помощь?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            11,
+            12
+          ],
+          "note": "В #10 дан основной ответ, а после благодарности клиента в #12 есть только прощание."
+        },
+        {
+          "question": "Оператор попрощался?",
+          "answer": "да",
+          "evidence_idx": [
+            12
+          ],
+          "note": "Присутствует прямое прощание."
+        },
+        {
+          "question": "Чат оборвался до возможности завершить его?",
+          "answer": "нет",
+          "evidence_idx": [
+            11,
+            12
+          ],
+          "note": "Оператор ответил на заключительную благодарность клиента."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Ләззатпын. Иә, 1042-S нысаны ағылшын тілінде беріледі.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Основная консультация; отдельного итога или предложения дальнейшей помощи нет."
+        },
+        {
+          "idx": 11,
+          "quote": "Жақсы, рақмет.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Создаёт возможность корректного завершения."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "В завершении есть только прощание."
+        }
+      ],
+      "rule_applied": "Нет — выполнено прощание, но отсутствует обязательный итог или предложение дальнейшей помощи.",
+      "alternatives_rejected": "«Да» требует сочетания итога либо предложения помощи с прощанием. N/A неприменим: оператор получил возможность завершить чат и воспользовался ею в #12.",
+      "ambiguities": [
+        "Основной короткий ответ #10 можно широко трактовать как итог. По буквальному разделению консультации и завершения он засчитан как ответ на запрос, а не как подведение итога."
+      ],
+      "reasoning": "Критерий требует двух компонентов. Прощание в #12 есть, но итог или дальнейшая помощь в проверенном участке отсутствуют.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 11,
+          "quote": "Жақсы, рақмет."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!"
+        }
+      ],
+      "checked_range": [
+        10,
+        12
+      ],
+      "explanation": "Завершение — Нет. После благодарности #11 оператор только попрощался в #12, не подвёл итог и не предложил дальнейшую помощь.",
+      "insufficient_data": false,
+      "confidence": 0.97,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 11,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Флаг грубых ошибок проверяется во всех диалогах."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор оскорбил клиента?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Обе реплики вежливы."
+        },
+        {
+          "question": "Оператор предложил платную услугу в обход компании?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Таких предложений нет."
+        },
+        {
+          "question": "Оператор раскрыл конфиденциальную информацию?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Сообщён только общий язык предоставления формы."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлеметсіз бе, мен Ләззатпын. Иә, 1042-S нысаны ағылшын тілінде беріледі.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Приветствие, имя оператора и общая консультация; запрещённых действий нет."
+        },
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Вежливое прощание без нарушений."
+        }
+      ],
+      "rule_applied": "Нет — ни одно из трёх грубых нарушений не выявлено.",
+      "alternatives_rejected": "Для «Да» необходимо хотя бы одно из перечисленных нарушений; в #10 и #12 их нет. N/A не разрешён.",
+      "ambiguities": [],
+      "reasoning": "Проверены все реплики оператора от #10 до #12 на каждое из трёх нарушений. Оснований установить флаг нет.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Сау болыңыз!"
+        }
+      ],
+      "checked_range": [
+        10,
+        12
+      ],
+      "explanation": "Грубые ошибки — Нет. В репликах оператора #10–#12 не выявлены оскорбления, предложения платных услуг в обход компании или раскрытие конфиденциальной информации. Последняя реплика — #12.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    }
+  },
+  "issues": [],
+  "dialog_facts": {
+    "client_language": "KZ",
+    "operator_language_first_reply": "KZ",
+    "client_request_summary": "Клиент хотел уточнить у оператора, можно ли получить форму 1042-S на казахском языке.",
+    "client_questions": [
+      "Можно ли получить форму 1042-S на казахском языке?"
+    ],
+    "bot_answer_before_operator": "Бот сообщил, что форма 1042-S предоставляется на английском языке.",
+    "first_operator_turn_idx": 10,
+    "protected_action_or_data_requested": {
+      "value": false,
+      "evidence_idx": [
+        1,
+        5
+      ],
+      "note": "Запрошена общая информация о языке формы, без раскрытия персональных данных или защищённого действия."
+    },
+    "identity_verification": {
+      "performed": false,
+      "evidence_idx": [
+        10,
+        12
+      ],
+      "note": "В репликах оператора проверки личности нет; для этого запроса она не требовалась."
+    },
+    "client_dissatisfaction": {
+      "present": false,
+      "evidence_idx": [
+        5,
+        11
+      ],
+      "note": "Желание уточнить ответ у оператора не сопровождается жалобой или описанием неудобства. После ответа клиент поблагодарил."
+    },
+    "explicit_waits": [],
+    "ending": {
+      "type": "operator_goodbye",
+      "evidence_idx": [
+        11,
+        12
+      ],
+      "operator_offered_help_or_summary": false,
+      "operator_said_goodbye": true
+    },
+    "dialog_summary": "Клиент спросил о возможности получить форму 1042-S на казахском языке и попросил подтвердить ответ бота у оператора. Оператор поздоровался, представился и сообщил, что форма предоставляется на английском языке. После благодарности клиента оператор попрощался, но не подвёл итог и не предложил дальнейшую помощь."
+  },
+  "model_total_estimate": {
+    "total": 92.31,
+    "calculation": "При исключении N/A из знаменателя: c01 — 10, c04 — 20, c05 — 15, c06 — 15 × 10/10 = 15, c07 — 0. Получено 60 из 65 применимых баллов: 60/65 × 100 = 92,31%. c02 и c03 исключены как N/A; c08 — флаг без баллов. Правило нормирования в чек-листе прямо не задано, поэтому это собственная оценка."
+  },
+  "overall_comment": "Оператор поздоровался и представился на казахском языке, ответил на вопрос и общался вежливо. Недочёт по буквальной формулировке чек-листа — завершение содержит только прощание, без итога или предложения дальнейшей помощи. Грубых нарушений нет.",
+  "meta": {
+    "model": "GPT-6",
+    "conversation_id": "p1-kz-014",
+    "prompt_id": "v2|default@v1|v1|all"
+  }
+}

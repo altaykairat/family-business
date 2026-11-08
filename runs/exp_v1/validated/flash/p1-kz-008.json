@@ -1,0 +1,301 @@
+{
+  "run_id": "exp_v1",
+  "agent": "flash",
+  "conversation_id": "p1-kz-008",
+  "checklist": "default@v1",
+  "variant": "v1",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "file": "p1-kz-008.md",
+      "tokens_in": 3667,
+      "tokens_out": 770,
+      "exact": false,
+      "model": null
+    }
+  ],
+  "score": {
+    "total": 40.67,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 75.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "no",
+        "weight": 10,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 13.33,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "no",
+        "weight": 15,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 20.0,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 26.67,
+        "effective_points": 26.67
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 15,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 20.0,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 7,
+        "weight": 15,
+        "applicable": true,
+        "points": 10.5,
+        "effective_weight": 20.0,
+        "effective_points": 14.0
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "na",
+        "weight": 5,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "no",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 0.0,
+        "contribution": 0.0,
+        "max_contribution": 33.33
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 26.67,
+        "max_contribution": 26.67
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 35.0,
+        "contribution": 14.0,
+        "max_contribution": 40.0
+      }
+    ]
+  },
+  "answers": {
+    "c01": "no",
+    "c02": "no",
+    "c03": "na",
+    "c04": 20,
+    "c05": "no",
+    "c06": 7,
+    "c07": "na",
+    "c08": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "explanation": "Оператор клиент тілінде амандасқанымен (\"Сәлем\"), бірінші жауабында өзін таныстырмады (атын атамады).",
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "explanation": "Клиент #5 хабарламасында сайттың атын көрсеткеніне қарамастан (\"Freedom Finance Global сайты\"), оператор бұл мәліметті ескермей, белгілі ақпаратты қайта сұрады.",
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "answer": "na",
+      "evidence": [],
+      "explanation": "Клиенттің сұрағы жалпы сипатта (сауда шотына/жеке кабинетке кіру жолы), сәйкестендіруді (идентификацияны) жүргізу талап етілмейді.",
+      "answer_normalized": "na",
+      "evidence_checks": []
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "answer": 20,
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "explanation": "Оператор сұрақты толық әрі дұрыс шешті: сайттың ақпараттық екенін түсіндіріп, кіру үшін tradernet.global веб-нұсқасы мен Freedom Broker қосымшасын ұсынды. Мәселе толық шешілді.",
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты."
+        }
+      ],
+      "explanation": "Клиент қайта сұрауға байланысты реніш білдіргенде (\"Жоғарыда жаздым ғой...\"), оператор кешірім сұрамады және эмпатия танытпады. Сондай-ақ амандасуы тым бейресми (\"Сәлем\").",
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 11,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "answer": 7,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "explanation": "Диалог жалпы түсінікті жүргізілгенімен, оператор чат тарихын оқымай бір сәтсіздікке (сбой) жол беріп, белгілі ақпаратты қайта сұрады.",
+      "answer_normalized": 7,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "answer": "na",
+      "evidence": [],
+      "explanation": "Клиенттің ризашылық білдірген соңғы хабарламасынан кейін (\"Ашылды, рақмет\") чат аяқталды, оператордың қорытынды жасап қоштасуына мүмкіндік болмай үзілді.",
+      "answer_normalized": "na",
+      "evidence_checks": []
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "answer": "no",
+      "evidence": [],
+      "explanation": "Дөрекі қателіктер, компанияны айналып өту немесе құпия деректердің таралуы анықталған жоқ.",
+      "answer_normalized": "no",
+      "evidence_checks": []
+    }
+  },
+  "issues": [],
+  "dialog_facts": null,
+  "overall_comment": null,
+  "meta": {
+    "conversation_id": "p1-kz-008",
+    "prompt_id": "v1|default@v1|v1|all"
+  }
+}

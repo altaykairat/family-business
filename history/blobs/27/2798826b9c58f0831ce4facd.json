@@ -1,0 +1,13 @@
+{
+  "kind": "models",
+  "name": "agent_models",
+  "content": {
+    "claude": "claude",
+    "codex": "codex",
+    "antigravity": "gemini",
+    "opus": "claude-opus-5-5",
+    "sonnet": "claude-sonnet-5-5",
+    "sonnet2": "claude-sonnet-5-5",
+    "haiku": "claude-haiku-5-5"
+  }
+}

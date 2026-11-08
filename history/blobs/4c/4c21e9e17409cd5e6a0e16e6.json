@@ -1,0 +1,809 @@
+{
+  "schema_version": "1.0",
+  "team_name": "family-business",
+  "model": {
+    "mode": "external_api",
+    "name": "Claude Sonnet 5.5"
+  },
+  "results": [
+    {
+      "conversation_id": "p1-en-001",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-002",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-003",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-004",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-005",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-006",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-007",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-008",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-009",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-010",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-011",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-012",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-013",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-014",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-en-015",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": false,
+          "rationale": "Установление контакта — Нет. Оператор не поздоровался и не представился в первом ответе. Основание — реплика #10.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": false,
+          "rationale": "Выявление потребности — Нет. Оператор не уточнил платформу и дал подсказку наугад. Основание — реплика #10, неверный результат виден в #11.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация — N/A. Запрос не требовал проверки личности, оператор не раскрывал данные. Основание — реплики #10 и #12.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 15,
+          "rationale": "Консультация — 15. Итоговый шаг в #12 решил проблему (#13), но первая подсказка #10 была неверной. Основание — реплики #10, #12, #13.",
+          "evidence_turns": [
+            12,
+            13
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Эмпатия и клиентоориентированность — Нет. Оператор не признал неудобство клиента, не извинился и ответил сухо. Основание — реплики #10, #12, #14.",
+          "evidence_turns": [
+            12,
+            14
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Управление диалогом — 7. Первая инструкция #10 не подошла клиенту, он переспросил в #11, но после #12 всё стало понятно. Основание — реплики #10, #11, #12.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Завершение — Нет. Оператор ограничился «Bye.» без итога и предложения дальнейшей помощи. Основание — реплика #14 после подтверждения клиента в #13.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Грубые ошибки — Нет. Оскорблений, услуг в обход компании и раскрытия конфиденциальных данных нет. Основание — реплики оператора #10, #12, #14.",
+          "evidence_turns": [
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 31.88,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-001",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-002",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-003",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-004",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-005",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-006",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-007",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-008",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": false,
+          "rationale": "Установление контакта — Нет. Оператор поздоровался, но не представился в первом ответе. Основание — реплика оператора #10.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": false,
+          "rationale": "Выявление потребности — Нет. Оператор не учёл уже названный клиентом сайт и спросил повторно. Основание — реплики #5, #10, #11.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация — N/A. Запрос о навигации по сайту не требовал проверки личности. Основание — реплики #1, #12.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 20,
+          "rationale": "Корректная и полная консультация — 20. Оператор объяснил, что Global — информационный сайт, и указал, где входить в кабинет; клиент подтвердил результат. Основание — реплики #12, #13.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Эмпатия и клиентоориентированность — Нет. Клиент выразил неудобство от повторного вопроса, оператор не отреагировал и не извинился. Основание — реплики #11, #12.",
+          "evidence_turns": [
+            11,
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Управление диалогом, скорость и грамотность — 7. Оператор повторно спросил уже известное, но итоговый ответ понятен. Основание — реплики #10, #11, #12.",
+          "evidence_turns": [
+            10,
+            11
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Завершение — Нет. Оператор не предложил дальнейшую помощь и не попрощался. Основание — последняя реплика оператора #12 и благодарность клиента #13 без ответа.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Грубые ошибки — Нет. Оскорблений, предложений услуг в обход компании и раскрытия конфиденциальных данных нет. Основание — реплики оператора #10, #12.",
+          "evidence_turns": [
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 38.13,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-kz-009",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-010",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-011",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-012",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-013",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-014",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-kz-015",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-001",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-002",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-003",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-004",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-005",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-006",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-007",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-008",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-009",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-010",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-011",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-012",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Установление контакта — Да. Оператор поздоровался по-русски и представился в первом ответе. Основание — реплика оператора #10.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "Выявление потребности — N/A. Запрос клиента был полным с самого начала. Основание — реплики клиента #1 и #5.",
+          "evidence_turns": [
+            5
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация — N/A. Запрос общий, данные клиента не раскрывались. Основание — реплики #1, #5, #10.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 15,
+          "rationale": "Корректная и полная консультация — 15. Оператор подтвердил английский язык, но не ответил явно на вопрос о русской версии. Основание — реплики #5 и #10.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": true,
+          "rationale": "Эмпатия и клиентоориентированность — Да. Оператор вежлив, недовольства клиента не было. Основание — реплики #10 и #11.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 10,
+          "rationale": "Управление диалогом, скорость и грамотность — 10. Ответ ясный, клиент не переспрашивал. Основание — реплики #10 и #11.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Завершение — Нет. После реплики клиента оператор не предложил помощь и не попрощался. Основание — реплика клиента #11 и системное сообщение #12.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Грубые ошибки — Нет. Оскорблений, предложений в обход компании и раскрытия конфиденциальной информации нет. Основание — реплика оператора #10.",
+          "evidence_turns": [
+            10
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 84.62,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p1-ru-013",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-014",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-015",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-016",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-017",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-018",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-019",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-020",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-021",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-022",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Установление контакта — Да. Оператор поздоровался по-русски и представился в первом ответе. Основание — реплика #10.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": false,
+          "rationale": "Выявление потребности — Нет. Оператор не уточнил параметры инвестирования и не учёл интерес к облигациям. Основание — реплики #10 и #12.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация — N/A. Запрос общий и не требовал проверки личности. Основание — реплика #1.",
+          "evidence_turns": [
+            1
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 0,
+          "rationale": "Корректная и полная консультация — 0. Ответа по существу нет, ключевая рекомендация ошибочна: оператор предложил перевести деньги ему лично. Основание — реплики #10 и #12.",
+          "evidence_turns": [
+            10
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Эмпатия и клиентоориентированность — Нет. Клиент выразил недоумение и напомнил о своём запросе, оператор настоял на личном предложении. Основание — реплики #11 и #12.",
+          "evidence_turns": [
+            12
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 4,
+          "rationale": "Управление диалогом, скорость и грамотность — 4. Ответы оператора не соответствовали запросу, клиенту пришлось переспрашивать. Основание — реплики #10, #11 и #12.",
+          "evidence_turns": [
+            11
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": false,
+          "rationale": "Завершение — Нет. После отказа клиента оператор закрыл чат без итога, предложения помощи и прощания. Основание — реплика #13 и системное сообщение #14.",
+          "evidence_turns": [
+            14
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": true,
+          "rationale": "Грубые ошибки — Да. Оператор предложил перевести деньги ему лично и оформлять вне компании. Основание — реплики #10 и #12.",
+          "evidence_turns": [
+            10,
+            12
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 20.0,
+        "critical_flag": true
+      }
+    },
+    {
+      "conversation_id": "p1-ru-023",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-024",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-025",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-026",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-027",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-028",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-029",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p1-ru-030",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p4-ru-001",
+      "status": "ok",
+      "criteria": [
+        {
+          "criterion_id": "contact",
+          "value": true,
+          "rationale": "Установление контакта — Да. Оператор поздоровался по-русски и представился в первом ответе. Основание — реплика #13.",
+          "evidence_turns": [
+            13
+          ]
+        },
+        {
+          "criterion_id": "discovery",
+          "value": null,
+          "rationale": "Выявление потребности — N/A. Клиентка ясно изложила запрос в #20-#25, данных хватало с самого начала.",
+          "evidence_turns": [
+            25
+          ]
+        },
+        {
+          "criterion_id": "identification",
+          "value": null,
+          "rationale": "Идентификация — N/A. Запрос общий (формат обслуживания), защищённых данных или действий не было. Основание — реплики #25-#28.",
+          "evidence_turns": [
+            28
+          ]
+        },
+        {
+          "criterion_id": "consultation",
+          "value": 15,
+          "rationale": "Консультация — 15. Основной вопрос решён, но не указан порог активов и альтернативные шаги. Основание — реплики #26, #27, #30, #36.",
+          "evidence_turns": [
+            26,
+            30
+          ]
+        },
+        {
+          "criterion_id": "empathy",
+          "value": false,
+          "rationale": "Эмпатия — Нет. Клиентка выразила недовольство тем, что её отфутболили, а оператор лишь формально сказал «понимаю» и стал оправдываться. Основание — реплики #34, #42, #43.",
+          "evidence_turns": [
+            43
+          ]
+        },
+        {
+          "criterion_id": "dialogue",
+          "value": 7,
+          "rationale": "Управление диалогом — 7. Ответы в целом понятны, но имя пришлось переспрашивать, а #38 непонятна. Основание — реплики #13-#17, #38.",
+          "evidence_turns": [
+            14,
+            38
+          ]
+        },
+        {
+          "criterion_id": "closure",
+          "value": null,
+          "rationale": "Завершение — N/A. Клиент завершил звонок сразу после реплики #43, возможности завершить разговор не было. Основание — #43, #44.",
+          "evidence_turns": [
+            44
+          ]
+        },
+        {
+          "criterion_id": "critical",
+          "value": false,
+          "rationale": "Грубые ошибки — Нет. Оскорблений, предложения услуги в обход компании и раскрытия конфиденциальных данных нет. Основание — реплики оператора #13-#43.",
+          "evidence_turns": [
+            43
+          ]
+        }
+      ],
+      "score": {
+        "final_score": 59.17,
+        "critical_flag": false
+      }
+    },
+    {
+      "conversation_id": "p4-ru-002",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p4-ru-003",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p4-ru-004",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    },
+    {
+      "conversation_id": "p4-ru-005",
+      "status": "error",
+      "criteria": [],
+      "score": null,
+      "error": "Нет результата оценки для диалога."
+    }
+  ]
+}

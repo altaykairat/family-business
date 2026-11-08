@@ -1,0 +1,801 @@
+{
+  "run_id": "sa_v1",
+  "agent": "opus",
+  "conversation_id": "p1-ru-012",
+  "checklist": "default@v1",
+  "variant": "v1",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "tokens_in": 3631,
+      "tokens_out": 4652,
+      "exact": false,
+      "model": null,
+      "response_file": "runs/sa_v1/agents/opus/responses/p1-ru-012.json"
+    }
+  ],
+  "score": {
+    "total": 92.31,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 65.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 10,
+        "applicable": true,
+        "points": 10.0,
+        "effective_weight": 15.38,
+        "effective_points": 15.38
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "na",
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 30.77,
+        "effective_points": 30.77
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 10,
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 5,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 7.69,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "no",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 100.0,
+        "contribution": 15.38,
+        "max_contribution": 15.38
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 30.77,
+        "max_contribution": 30.77
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 85.71,
+        "contribution": 46.15,
+        "max_contribution": 53.85
+      }
+    ]
+  },
+  "answers": {
+    "c01": "yes",
+    "c02": "na",
+    "c03": "na",
+    "c04": 20,
+    "c05": "yes",
+    "c06": 10,
+    "c07": "no",
+    "c08": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён; оператор вступил в диалог."
+      },
+      "sub_questions": [
+        {
+          "question": "Поздоровался ли оператор на языке клиента в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "«Здравствуйте» на русском."
+        },
+        {
+          "question": "Представился ли оператор в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "«Я Илья»."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте. Я Илья.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Приветствие на русском и представление в первой реплике."
+        },
+        {
+          "idx": 2,
+          "quote": "Здравствуйте! Я AIM, AI-ассистент Freedom Broker.",
+          "role": "bot",
+          "supports": "context",
+          "interpretation": "Приветствие бота оператору не засчитывается."
+        }
+      ],
+      "rule_applied": "Да — оператор поздоровался на языке клиента и представился в первом ответе.",
+      "alternatives_rejected": "«Нет» не подходит: оба условия выполнены в #10.",
+      "ambiguities": [],
+      "reasoning": "Клиент пишет на русском. Первая реплика оператора #10 содержит приветствие на русском и имя.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте. Я Илья."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Установление контакта — Да. Оператор поздоровался на русском и представился в первом ответе. Основание — реплика оператора #10.",
+      "confidence": 0.95,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Вопрос клиента (язык формы 1042-S, есть ли русская версия) был сформулирован полностью; для ответа уточнения не требовались."
+      },
+      "sub_questions": [
+        {
+          "question": "Хватало ли данных для ответа с самого начала?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            5
+          ],
+          "note": "Вопрос конкретный и не зависит от данных клиента."
+        },
+        {
+          "question": "Учёл ли оператор известные детали?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Ответ касается именно формы 1042-S и её языка."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "На каком языке дают 1042-S?",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Запрос сформулирован однозначно."
+        },
+        {
+          "idx": 5,
+          "quote": "А на русском есть именно эта форма?",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Уточнение клиента понятно без дополнительных вопросов."
+        },
+        {
+          "idx": 10,
+          "quote": "Форма 1042-S предоставляется на английском языке.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Оператор ответил сразу, без уточнений, что уместно."
+        }
+      ],
+      "rule_applied": "N/A — данных для ответа хватало с самого начала.",
+      "alternatives_rejected": "«Нет» не подходит: уточнять было нечего. «Да» не ставится, так как оператор ничего не уточнял, а условие N/A выполнено.",
+      "ambiguities": [
+        "Можно было бы поставить «Да», так как оператор учёл детали запроса; выбрано N/A, поскольку уточнение не требовалось."
+      ],
+      "reasoning": "Запрос простой и полностью сформулирован клиентом до подключения оператора.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 5,
+          "quote": "А на русском есть именно эта форма?"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Выявление потребности — N/A. Клиент сразу чётко сформулировал вопрос о языке формы 1042-S, уточнений не требовалось. Основание — реплики клиента #1 и #5.",
+      "confidence": 0.7,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 5,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Общий вопрос о языке формы не требует раскрытия персональных данных или защищённого действия."
+      },
+      "sub_questions": [
+        {
+          "question": "Требовал ли запрос раскрытия данных или защищённого действия?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            5
+          ],
+          "note": "Справочный вопрос."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "На каком языке дают 1042-S?",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Общая информация, не связанная с данными счёта."
+        },
+        {
+          "idx": 10,
+          "quote": "Форма 1042-S предоставляется на английском языке.",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Оператор не раскрывал персональных данных."
+        }
+      ],
+      "rule_applied": "N/A — запрос не требовал идентификации.",
+      "alternatives_rejected": "«Нет» не подходит: защищённых действий не было; «Да» — проверка не проводилась и не требовалась.",
+      "ambiguities": [],
+      "reasoning": "Вопрос справочный, данные клиента не раскрывались.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "На каком языке дают 1042-S?"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Идентификация — N/A. Клиент задал общий вопрос о языке формы 1042-S, раскрытия данных не было. Основание — реплики #1, #5, #10.",
+      "confidence": 0.95,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент сформулировал запрос до подключения оператора."
+      },
+      "sub_questions": [
+        {
+          "question": "Ответил ли оператор, на каком языке предоставляется форма?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "На английском."
+        },
+        {
+          "question": "Ответил ли оператор, есть ли форма на русском?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Косвенно: форма предоставляется на английском, то есть русской версии нет; явного «нет» не прозвучало."
+        },
+        {
+          "question": "Остались ли у клиента вопросы?",
+          "answer": "нет",
+          "evidence_idx": [
+            11
+          ],
+          "note": "Клиент подтвердил, что узнал всё."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 5,
+          "quote": "А на русском есть именно эта форма?",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Ключевой вопрос к оператору."
+        },
+        {
+          "idx": 10,
+          "quote": "Форма 1042-S предоставляется на английском языке.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Корректный ответ: форма только на английском."
+        },
+        {
+          "idx": 11,
+          "quote": "Ок, это всё что хотел узнать.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Клиент удовлетворён ответом."
+        }
+      ],
+      "rule_applied": "20 — все существенные вопросы закрыты.",
+      "alternatives_rejected": "15 не выбрано: явное «на русском нет» можно было бы добавить, но ответ однозначно его подразумевает и клиент подтвердил, что вопрос закрыт.",
+      "ambiguities": [
+        "Оператор повторил ответ бота и не сказал прямо, что русской версии нет; принято, что ответ однозначен по смыслу."
+      ],
+      "reasoning": "Вопрос клиента о языке формы закрыт, клиент подтвердил, что получил нужную информацию.",
+      "answer": 20,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Форма 1042-S предоставляется на английском языке."
+        },
+        {
+          "idx": 11,
+          "quote": "Ок, это всё что хотел узнать."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Корректная и полная консультация — 20. Оператор сообщил, что форма 1042-S предоставляется на английском, клиент подтвердил, что вопрос закрыт. Основание — реплики #10 и #11.",
+      "confidence": 0.65,
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 11,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Был ли оператор вежлив?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Корректный нейтральный тон."
+        },
+        {
+          "question": "Выражал ли клиент недовольство или неудобство?",
+          "answer": "нет",
+          "evidence_idx": [],
+          "note": "Реагировать было не на что."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Вежливый ответ."
+        },
+        {
+          "idx": 11,
+          "quote": "Ок, это всё что хотел узнать.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Недовольства нет."
+        }
+      ],
+      "rule_applied": "Да — оператор вежлив, недовольства клиент не выражал.",
+      "alternatives_rejected": "«Нет» не подходит: грубости нет, жалоб клиента не было.",
+      "ambiguities": [],
+      "reasoning": "Тон оператора вежливый, вторая часть условия не активирована.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте. Я Илья."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Эмпатия и клиентоориентированность — Да. Оператор общался вежливо, клиент недовольства не выражал. Основание — реплики #10 и #11.",
+      "confidence": 0.85,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Ясны и связны ли ответы оператора?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Одна чёткая реплика."
+        },
+        {
+          "question": "Было ли явное ожидание без предупреждения?",
+          "answer": "нет",
+          "evidence_idx": [],
+          "note": "Пауз оператора после реплик клиента нет; время первой реакции в оценку не входит."
+        },
+        {
+          "question": "Пришлось ли клиенту переспрашивать?",
+          "answer": "нет",
+          "evidence_idx": [
+            11
+          ],
+          "note": "Клиент сразу закрыл вопрос."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Форма 1042-S предоставляется на английском языке.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Ясный ответ."
+        },
+        {
+          "idx": 11,
+          "quote": "Ок, это всё что хотел узнать.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Переспрашивать не потребовалось."
+        }
+      ],
+      "rule_applied": "10 — ответы ясные и связные, явного ожидания не было.",
+      "alternatives_rejected": "7 не выбрано: заметных сбоев нет.",
+      "ambiguities": [],
+      "reasoning": "Единственный ответ оператора ясен, клиент понял его без уточнений.",
+      "answer": 10,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Форма 1042-S предоставляется на английском языке."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Управление диалогом, скорость и грамотность — 10. Ответ оператора ясный, клиент не переспрашивал, явных ожиданий не было. Основание — реплики #10 и #11.",
+      "confidence": 0.85,
+      "answer_normalized": 10,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент явно сообщил, что вопрос закрыт (#11), и у оператора было 18 с до разрыва соединения, чтобы попрощаться — чат не оборвался внезапно."
+      },
+      "sub_questions": [
+        {
+          "question": "Подвёл ли оператор итог или предложил дальнейшую помощь?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "После #11 реплик оператора нет."
+        },
+        {
+          "question": "Попрощался ли оператор?",
+          "answer": "нет",
+          "evidence_idx": [
+            12
+          ],
+          "note": "Прощания нет, далее системное сообщение о разрыве."
+        },
+        {
+          "question": "Оборвался ли чат до возможности завершения?",
+          "answer": "нет",
+          "evidence_idx": [
+            11,
+            12
+          ],
+          "note": "Клиент сам обозначил конец разговора, у оператора было время ответить."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 11,
+          "quote": "Ок, это всё что хотел узнать.",
+          "role": "client",
+          "supports": "no",
+          "interpretation": "Явный сигнал завершения, на который оператор должен был ответить прощанием."
+        },
+        {
+          "idx": 12,
+          "quote": "Соединение с клиентом прервано.",
+          "role": "system",
+          "supports": "context",
+          "interpretation": "Разрыв через 18 с после реплики клиента; прощания оператора нет."
+        }
+      ],
+      "rule_applied": "Нет — оператор не предложил дальнейшую помощь и не попрощался.",
+      "alternatives_rejected": "N/A не выбрано: чат не оборвался внезапно, клиент сам завершил разговор и у оператора было время ответить. «Да» — нет ни итога, ни прощания.",
+      "ambiguities": [
+        "Разрыв соединения через 18 с можно трактовать как обрыв чата (N/A); выбрана трактовка, что возможность попрощаться была."
+      ],
+      "reasoning": "После реплики клиента #11 оператор ничего не написал, через 18 с соединение прервалось.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 11,
+          "quote": "Ок, это всё что хотел узнать."
+        },
+        {
+          "idx": 12,
+          "quote": "Соединение с клиентом прервано."
+        }
+      ],
+      "checked_range": [
+        11,
+        12
+      ],
+      "explanation": "Завершение — Нет. После того как клиент сообщил, что узнал всё, оператор не предложил дальнейшую помощь и не попрощался. Основание — реплика клиента #11 и системное сообщение #12 о разрыве соединения.",
+      "confidence": 0.55,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 11,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "system",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Было ли оскорбление клиента?",
+          "answer": "нет",
+          "evidence_idx": [
+            10
+          ],
+          "note": ""
+        },
+        {
+          "question": "Было ли предложение платной услуги в обход компании?",
+          "answer": "нет",
+          "evidence_idx": [
+            10
+          ],
+          "note": ""
+        },
+        {
+          "question": "Было ли раскрытие конфиденциальной информации?",
+          "answer": "нет",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Только общая справка."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Единственная реплика оператора без нарушений."
+        }
+      ],
+      "rule_applied": "Нет — ни одно из трёх грубых нарушений не выявлено.",
+      "alternatives_rejected": "«Да» не подходит: нарушений в реплике оператора нет.",
+      "ambiguities": [],
+      "reasoning": "Оператор дал одну корректную справочную реплику.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Форма 1042-S предоставляется на английском языке."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Грубые ошибки — Нет. Оскорблений, предложений услуг в обход компании и раскрытия конфиденциальной информации нет. Основание — реплика оператора #10.",
+      "confidence": 0.97,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    }
+  },
+  "issues": [],
+  "dialog_facts": {
+    "client_language": "RU",
+    "operator_language_first_reply": "RU",
+    "client_request_summary": "Клиент уточняет, на каком языке предоставляется форма 1042-S и есть ли она на русском.",
+    "client_questions": [
+      "На каком языке дают 1042-S?",
+      "А на русском есть именно эта форма?"
+    ],
+    "bot_answer_before_operator": "Бот ответил, что форма 1042-S предоставляется на английском языке, и по просьбе клиента перевёл на оператора.",
+    "first_operator_turn_idx": 10,
+    "protected_action_or_data_requested": {
+      "value": false,
+      "evidence_idx": [
+        1,
+        5
+      ],
+      "note": "Общий вопрос о языке налоговой формы, без раскрытия данных счёта и без защищённых действий."
+    },
+    "identity_verification": {
+      "performed": false,
+      "evidence_idx": [],
+      "note": "Не требовалась."
+    },
+    "client_dissatisfaction": {
+      "present": false,
+      "evidence_idx": [],
+      "note": "Недовольства или неудобства клиент не выражал."
+    },
+    "explicit_waits": [],
+    "ending": {
+      "type": "client_left",
+      "evidence_idx": [
+        11,
+        12
+      ],
+      "operator_offered_help_or_summary": false,
+      "operator_said_goodbye": false
+    },
+    "dialog_summary": "Клиент спросил о языке формы 1042-S, бот ответил, что она на английском, клиент уточнил про русскую версию и попросил оператора. Оператор поздоровался, представился и подтвердил, что форма предоставляется на английском. Клиент сказал, что узнал всё, что хотел, оператор не попрощался, соединение прервалось."
+  },
+  "model_total_estimate": {
+    "total": 92.3,
+    "calculation": "Применимые критерии: c01 10/10, c04 20/20, c05 15/15, c06 15/15, c07 0/5; c02 и c03 N/A исключены. Итого 60/65 = 92.3%."
+  },
+  "overall_comment": "Оператор корректно поздоровался, представился и дал верный ответ о языке формы 1042-S, клиент остался удовлетворён. Недочёт — отсутствие предложения дальнейшей помощи и прощания после того, как клиент обозначил завершение разговора.",
+  "meta": {
+    "model": "claude-opus-5-5",
+    "conversation_id": "p1-ru-012",
+    "prompt_id": "v1|default@v1|v1|all"
+  }
+}

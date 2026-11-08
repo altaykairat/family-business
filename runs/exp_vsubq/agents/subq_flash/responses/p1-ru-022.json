@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "conversation_id": "p1-ru-022",
+    "prompt_id": "v_subq_bundled|default@v1|p1-ru-022|all"
+  },
+  "criteria": [
+    {
+      "criterion_id": "c01",
+      "sub_questions": [
+        {"id": "c01_greet", "value": true, "evidence_idx": 10, "quote": "Здравствуйте"},
+        {"id": "c01_lang", "value": true, "evidence_idx": 10, "quote": "Здравствуйте"},
+        {"id": "c01_intro", "value": true, "evidence_idx": 10, "quote": "я Кирилл"},
+        {"id": "c01_first_turn", "value": true, "evidence_idx": 10, "quote": "Здравствуйте, я Кирилл."}
+      ],
+      "answer": "yes",
+      "evidence": [
+        {"idx": 10, "quote": "Здравствуйте, я Кирилл."}
+      ],
+      "explanation": "Оператор в первой реплике поздоровался на русском языке и представился клиенту."
+    },
+    {
+      "criterion_id": "c02",
+      "sub_questions": [
+        {"id": "c02_na", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c02_known_details", "value": false, "evidence_idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."},
+        {"id": "c02_clarify_missing", "value": false, "evidence_idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."}
+      ],
+      "answer": "no",
+      "evidence": [
+        {"idx": 1, "quote": "Хочу выбрать облигации. Можете подсказать, что купить, чтобы деньги выросли?"},
+        {"idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."}
+      ],
+      "explanation": "Оператор проигнорировал запрос клиента о выборе облигаций и не задал ни одного уточняющего вопроса для выявления потребности."
+    },
+    {
+      "criterion_id": "c03",
+      "sub_questions": [
+        {"id": "c03_na", "value": true, "evidence_idx": 1, "quote": "Хочу выбрать облигации. Можете подсказать, что купить, чтобы деньги выросли?"},
+        {"id": "c03_action_needed", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c03_verified_prior", "value": false, "evidence_idx": null, "quote": ""}
+      ],
+      "answer": "na",
+      "evidence": [
+        {"idx": 1, "quote": "Хочу выбрать облигации. Можете подсказать, что купить, чтобы деньги выросли?"}
+      ],
+      "explanation": "Идентификация клиента не требовалась, так как клиент обратился за общей консультацией по облигациям и приложению."
+    },
+    {
+      "criterion_id": "c04",
+      "sub_questions": [
+        {"id": "c04_na", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c04_step_20", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c04_step_15", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c04_step_10", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c04_step_5", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c04_step_0", "value": true, "evidence_idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."}
+      ],
+      "answer": "0",
+      "evidence": [
+        {"idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."},
+        {"idx": 12, "quote": "Да, это я лично предлагаю, через компанию оформлять не надо."}
+      ],
+      "explanation": "Вопрос клиента не решен. Вместо консультации по облигациям оператор предложил перевести деньги ему на личную карту в обход компании."
+    },
+    {
+      "criterion_id": "c05",
+      "sub_questions": [
+        {"id": "c05_polite", "value": false, "evidence_idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."},
+        {"id": "c05_dissatisfaction_handled", "value": false, "evidence_idx": 12, "quote": "Да, это я лично предлагаю, через компанию оформлять не надо."}
+      ],
+      "answer": "no",
+      "evidence": [
+        {"idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."},
+        {"idx": 12, "quote": "Да, это я лично предлагаю, через компанию оформлять не надо."}
+      ],
+      "explanation": "Оператор проявил грубую неклиентоориентированность, использовал просторечное слово 'скиньте' и не отработал недоумение клиента, настаивая на личной сделке."
+    },
+    {
+      "criterion_id": "c06",
+      "sub_questions": [
+        {"id": "c06_step_10", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c06_step_7", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c06_step_4", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c06_step_0", "value": true, "evidence_idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."}
+      ],
+      "answer": "0",
+      "evidence": [
+        {"idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."}
+      ],
+      "explanation": "Грубое несоответствие стандартам делового стиля, использование сленгового выражения 'скиньте деньги на карту'."
+    },
+    {
+      "criterion_id": "c07",
+      "sub_questions": [
+        {"id": "c07_na", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c07_summary_or_help", "value": false, "evidence_idx": 14, "quote": "Оператор закрыл чат."},
+        {"id": "c07_goodbye", "value": false, "evidence_idx": 14, "quote": "Оператор закрыл чат."}
+      ],
+      "answer": "no",
+      "evidence": [
+        {"idx": 14, "quote": "Оператор закрыл чат."}
+      ],
+      "explanation": "Оператор не подвел итоги, не уточнил наличие других вопросов и не попрощался с клиентом перед закрытием чата."
+    },
+    {
+      "criterion_id": "c08",
+      "sub_questions": [
+        {"id": "c08_insult", "value": false, "evidence_idx": null, "quote": ""},
+        {"id": "c08_bypass", "value": true, "evidence_idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."},
+        {"id": "c08_leak", "value": false, "evidence_idx": null, "quote": ""}
+      ],
+      "answer": "yes",
+      "evidence": [
+        {"idx": 10, "quote": "Скиньте деньги мне на карту, я сам их вложу с выгодой."},
+        {"idx": 12, "quote": "Да, это я лично предлагаю, через компанию оформлять не надо."}
+      ],
+      "explanation": "Зафиксировано критическое нарушение (c08_bypass): оператор предложил клиенту совершить финансовую операцию в обход компании с переводом средств на свою карту."
+    }
+  ],
+  "overall_comment": "В диалоге зафиксировано грубейшее критическое нарушение (c08_bypass): оператор предложил клиенту перевести деньги на личную карту в обход брокера. Вопрос клиента по облигациям не решен, стандарты клиентоориентированности, делового стиля и завершения диалога полностью нарушены."
+}

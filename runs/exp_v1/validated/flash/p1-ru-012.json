@@ -1,0 +1,302 @@
+{
+  "run_id": "exp_v1",
+  "agent": "flash",
+  "conversation_id": "p1-ru-012",
+  "checklist": "default@v1",
+  "variant": "v1",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "file": "p1-ru-012.md",
+      "tokens_in": 3631,
+      "tokens_out": 607,
+      "exact": false,
+      "model": null
+    }
+  ],
+  "score": {
+    "total": 100.0,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 60.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 10,
+        "applicable": true,
+        "points": 10.0,
+        "effective_weight": 16.67,
+        "effective_points": 16.67
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "na",
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 33.33,
+        "effective_points": 33.33
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 25.0,
+        "effective_points": 25.0
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 10,
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 25.0,
+        "effective_points": 25.0
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "na",
+        "weight": 5,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "no",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 100.0,
+        "contribution": 16.67,
+        "max_contribution": 16.67
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 33.33,
+        "max_contribution": 33.33
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 100.0,
+        "contribution": 50.0,
+        "max_contribution": 50.0
+      }
+    ]
+  },
+  "answers": {
+    "c01": "yes",
+    "c02": "na",
+    "c03": "na",
+    "c04": 20,
+    "c05": "yes",
+    "c06": 10,
+    "c07": "na",
+    "c08": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте. Я Илья."
+        }
+      ],
+      "explanation": "Оператор поздоровался на русском языке и представился в первом сообщении.",
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 5,
+          "quote": "А на русском есть именно эта форма? Можно оператора?"
+        }
+      ],
+      "explanation": "Запрос клиента был изначально понятен и конкретен, уточнения потребности не требовалось.",
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 5,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "answer": "na",
+      "evidence": [],
+      "explanation": "Запрос носит общий справочный характер и не требует идентификации клиента.",
+      "answer_normalized": "na",
+      "evidence_checks": []
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "answer": 20,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Форма 1042-S предоставляется на английском языке."
+        }
+      ],
+      "explanation": "Оператор предоставил корректный и исчерпывающий ответ на вопрос клиента о языке предоставления формы.",
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."
+        }
+      ],
+      "explanation": "Оператор общался вежливо и корректно, признаков недовольства со стороны клиента не было.",
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "answer": 10,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."
+        }
+      ],
+      "explanation": "Диалог велся ясно, связно и по существу, без сбоев или переспросов.",
+      "answer_normalized": 10,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Соединение с клиентом прервано."
+        }
+      ],
+      "explanation": "Диалог оборвался со стороны клиента до появления возможности завершить обслуживание.",
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "answer": "no",
+      "evidence": [],
+      "explanation": "Грубых ошибок не выявлено.",
+      "answer_normalized": "no",
+      "evidence_checks": []
+    }
+  },
+  "issues": [],
+  "dialog_facts": null,
+  "overall_comment": null,
+  "meta": {
+    "conversation_id": "p1-ru-012"
+  }
+}

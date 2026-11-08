@@ -1,0 +1,825 @@
+{
+  "run_id": "sa_v1",
+  "agent": "sonnet",
+  "conversation_id": "p4-ru-001",
+  "checklist": "default@v1",
+  "variant": "v1",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "tokens_in": 4843,
+      "tokens_out": 4947,
+      "exact": false,
+      "model": null,
+      "response_file": "runs/sa_v1/agents/sonnet/responses/p4-ru-001.json"
+    }
+  ],
+  "score": {
+    "total": 59.17,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 60.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 10,
+        "applicable": true,
+        "points": 10.0,
+        "effective_weight": 16.67,
+        "effective_points": 16.67
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "na",
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 15,
+        "weight": 20,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 33.33,
+        "effective_points": 25.0
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 15,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 25.0,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 7,
+        "weight": 15,
+        "applicable": true,
+        "points": 10.5,
+        "effective_weight": 25.0,
+        "effective_points": 17.5
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "na",
+        "weight": 5,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "no",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 100.0,
+        "contribution": 16.67,
+        "max_contribution": 16.67
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 75.0,
+        "contribution": 25.0,
+        "max_contribution": 33.33
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 35.0,
+        "contribution": 17.5,
+        "max_contribution": 50.0
+      }
+    ]
+  },
+  "answers": {
+    "c01": "yes",
+    "c02": "na",
+    "c03": "na",
+    "c04": 15,
+    "c05": "no",
+    "c06": 7,
+    "c07": "na",
+    "c08": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Поздоровался на языке клиента в первом ответе",
+          "answer": "да",
+          "evidence_idx": [
+            13
+          ],
+          "note": "Здравствуйте на русском."
+        },
+        {
+          "question": "Представился в первом ответе",
+          "answer": "да",
+          "evidence_idx": [
+            13
+          ],
+          "note": "Назвал имя (скрыто), хотя расшифровка искажена; клиент переспросил имя в #14."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 13,
+          "quote": "Компания в виду меня зовут [Имя скрыто] Здравствуйте, чем могу вам помочь.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Приветствие и представление в первом ответе."
+        },
+        {
+          "idx": 14,
+          "quote": "Здравствуйте, как тебя зовут?",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент не расслышал имя; это вопрос ясности речи, но представление было."
+        }
+      ],
+      "rule_applied": "Да: приветствие на языке клиента и представление в первом ответе.",
+      "alternatives_rejected": "Не «Нет»: оба элемента присутствуют в #13.",
+      "ambiguities": [
+        "Название компании в приветствии искажено расшифровкой; трактую как произнесённое."
+      ],
+      "reasoning": "В первой реплике оператор поздоровался по-русски и назвал имя.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 13,
+          "quote": "Здравствуйте, чем могу вам помочь."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Установление контакта — Да. Оператор поздоровался по-русски и представился в первом ответе. Основание — реплика #13.",
+      "confidence": 0.85,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 13,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Клиентка сразу чётко описала ситуацию и задала прямые вопросы (#20-#25); данных для ответа хватало с самого начала."
+      },
+      "sub_questions": [
+        {
+          "question": "Данных для ответа хватало с самого начала?",
+          "answer": "да",
+          "evidence_idx": [
+            20,
+            22,
+            23,
+            25
+          ],
+          "note": "Вопросы о формате обслуживания были ясны."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 25,
+          "quote": "Мне как как вы вообще вот помогаете?",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Прямой понятный вопрос, уточнения для ответа не нужны."
+        },
+        {
+          "idx": 27,
+          "quote": "Если вас не хватает активов для закрепления, то вам пока нужно будет самостоятельно совершать торги.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Оператор учёл упомянутый небольшой портфель."
+        }
+      ],
+      "rule_applied": "N/A: условие «данных хватало с самого начала» выполнено.",
+      "alternatives_rejected": "Не «Нет»: уточнять для ответа было нечего; хотя оператор мог уточнить, есть ли у клиента закреплённый менеджер, на ответ это не влияло.",
+      "ambiguities": [
+        "Можно трактовать как «Нет» (не выяснил, есть ли менеджер и какой порог активов); выбран N/A."
+      ],
+      "reasoning": "Вопросы клиента были достаточно определёнными.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 25,
+          "quote": "Мне как как вы вообще вот помогаете?"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Выявление потребности — N/A. Клиентка ясно изложила запрос в #20-#25, данных хватало с самого начала.",
+      "confidence": 0.55,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 25,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Запрос общий о формате обслуживания, раскрытия данных или защищённых действий не требовалось."
+      },
+      "sub_questions": [
+        {
+          "question": "Требовала ли идентификации просьба клиента?",
+          "answer": "нет",
+          "evidence_idx": [
+            25,
+            26
+          ],
+          "note": "Информация общего характера."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 26,
+          "quote": "Нет, вы сейчас обращаетесь в техническую поддержку клиентов.",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Общая информация, без данных счёта."
+        },
+        {
+          "idx": 28,
+          "quote": "И у нас нет возможности пользоваться вашим брокерским счётом.",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Доступ к счёту не раскрывался."
+        }
+      ],
+      "rule_applied": "N/A: запрос не требовал идентификации.",
+      "alternatives_rejected": "Не «Нет»: защищённых действий не было.",
+      "ambiguities": [],
+      "reasoning": "Никаких персональных данных счёта не запрашивалось и не раскрывалось.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 28,
+          "quote": "И у нас нет возможности пользоваться вашим брокерским счётом."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Идентификация — N/A. Запрос общий (формат обслуживания), защищённых данных или действий не было. Основание — реплики #25-#28.",
+      "confidence": 0.9,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 28,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент сформулировал запрос, N/A не применим."
+      },
+      "sub_questions": [
+        {
+          "question": "Объяснён формат помощи оператора?",
+          "answer": "да",
+          "evidence_idx": [
+            26,
+            36
+          ],
+          "note": "Техподдержка, без консультаций по ценным бумагам, примеры технической помощи."
+        },
+        {
+          "question": "Дан следующий шаг на вопрос «что теперь делать без менеджера»?",
+          "answer": "неясно",
+          "evidence_idx": [
+            27,
+            30
+          ],
+          "note": "Сказано торговать самостоятельно; не указан порог активов, как получить менеджера, куда ещё обратиться."
+        },
+        {
+          "question": "Все ответы связные и корректные?",
+          "answer": "нет",
+          "evidence_idx": [
+            38
+          ],
+          "note": "#38 неясная реплика."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 26,
+          "quote": "Мы со своей стороны помогаем вам отвечать на вопросы касательно брокерской части, но консультацию никакую по ценным бумагам.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Основной вопрос о формате помощи закрыт."
+        },
+        {
+          "idx": 27,
+          "quote": "Если вас не хватает активов для закрепления, то вам пока нужно будет самостоятельно совершать торги.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Объяснена причина отсутствия менеджера."
+        },
+        {
+          "idx": 29,
+          "quote": "Ну то есть, а у меня теперь нет персонального менеджера, который закреплён за мной тогда что?",
+          "role": "client",
+          "supports": "no",
+          "interpretation": "Клиентке неясен следующий шаг."
+        },
+        {
+          "idx": 30,
+          "quote": "Вы самостоятельно совершаете торги, никакую консультацию.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Повтор без альтернативного пути (порог, другие каналы)."
+        }
+      ],
+      "rule_applied": "Ступень 15: основной вопрос решён (что делает поддержка, консультаций нет, менеджер не закреплён из-за объёма активов), пропущены детали: порог активов и возможные альтернативные пути.",
+      "alternatives_rejected": "Не 20: следующий шаг для клиентки сформулирован слабо. Не 10: основной вопрос закрыт корректно по существу.",
+      "ambiguities": [
+        "Правильность утверждений о пороге активов по тексту проверить нельзя; считаю их корректными."
+      ],
+      "reasoning": "Оператор ответил по существу, но не дал конкретики о том, как получить менеджера и куда обращаться дальше.",
+      "answer": 15,
+      "evidence": [
+        {
+          "idx": 26,
+          "quote": "но консультацию никакую по ценным бумагам. К сожалению, мы не можем давать консультация вам дает только персональный менеджер."
+        },
+        {
+          "idx": 30,
+          "quote": "Вы самостоятельно совершаете торги, никакую консультацию."
+        }
+      ],
+      "checked_range": [
+        29,
+        43
+      ],
+      "explanation": "Консультация — 15. Основной вопрос решён, но не указан порог активов и альтернативные шаги. Основание — реплики #26, #27, #30, #36.",
+      "confidence": 0.6,
+      "answer_normalized": 15,
+      "evidence_checks": [
+        {
+          "idx": 26,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 30,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор вежлив?",
+          "answer": "да",
+          "evidence_idx": [
+            13,
+            30,
+            43
+          ],
+          "note": "Грубости нет."
+        },
+        {
+          "question": "Отреагировал на конкретную проблему недовольства (отфутболили, нет менеджера)?",
+          "answer": "нет",
+          "evidence_idx": [
+            43
+          ],
+          "note": "Формальное «я вас понимаю», затем перекладывание вины на информатора и вопрос о впечатлениях; извинений и помощи нет."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 34,
+          "quote": "Короче, у меня просто отфутболили выходит так.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Явное недовольство."
+        },
+        {
+          "idx": 41,
+          "quote": "Видно, у вас очень был тяжёлый день.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиентка пытается сгладить, но чувствует неудобство."
+        },
+        {
+          "idx": 43,
+          "quote": "Да я вас понимаю, но видимо вас неправильно проинформировали про нашу поддержку.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Оправдание вместо реакции на проблему."
+        },
+        {
+          "idx": 40,
+          "quote": "Нет, не делаем.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Сухой отказ без смягчения."
+        }
+      ],
+      "rule_applied": "Нет: клиент выразил недовольство, оператор на конкретную проблему не отреагировал (нет извинения, нет предложения решения).",
+      "alternatives_rejected": "Не «Да»: общего «я вас понимаю» недостаточно, далее оператор защищается.",
+      "ambiguities": [
+        "Вежливость соблюдена, но второе условие нарушено; решающим выбрано второе."
+      ],
+      "reasoning": "Недовольство выражено в #32-#34, #39, #42, реакция в #43 формальная и оправдывающаяся.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 43,
+          "quote": "Мы такими делами не занимаемся."
+        }
+      ],
+      "checked_range": [
+        32,
+        43
+      ],
+      "explanation": "Эмпатия — Нет. Клиентка выразила недовольство тем, что её отфутболили, а оператор лишь формально сказал «понимаю» и стал оправдываться. Основание — реплики #34, #42, #43.",
+      "confidence": 0.7,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 43,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Ответы ясные и связные?",
+          "answer": "нет",
+          "evidence_idx": [
+            13,
+            15,
+            17,
+            38
+          ],
+          "note": "Имя названо неясно, клиентка переспрашивала; #38 нечитаема."
+        },
+        {
+          "question": "Предупреждение об ожидании?",
+          "answer": "неясно",
+          "evidence_idx": [
+            36
+          ],
+          "note": "Явного ожидания не было, пауза 33 с после #32 — это время реплик клиентки."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 14,
+          "quote": "Здравствуйте, как тебя зовут?",
+          "role": "client",
+          "supports": "no",
+          "interpretation": "Пришлось переспрашивать имя."
+        },
+        {
+          "idx": 38,
+          "quote": "Мы откроем делаем.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Непонятная реплика."
+        },
+        {
+          "idx": 35,
+          "quote": "А что значит технические части?",
+          "role": "client",
+          "supports": "no",
+          "interpretation": "Клиентке пришлось уточнять после #30."
+        }
+      ],
+      "rule_applied": "Ступень 7: один заметный сбой (путаница с именем и неясные реплики), смысл понятен, диалог продолжается.",
+      "alternatives_rejected": "Не 10: есть заметные неясности. Не 4: основной ответ понятен, переспросы единичные.",
+      "ambiguities": [
+        "Часть шума может быть ошибками расшифровки звонка."
+      ],
+      "reasoning": "Общий смысл ответов ясен, но представление и #38 смазаны.",
+      "answer": 7,
+      "evidence": [
+        {
+          "idx": 38,
+          "quote": "Мы откроем делаем."
+        },
+        {
+          "idx": 14,
+          "quote": "Здравствуйте, как тебя зовут?"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Управление диалогом — 7. Ответы в целом понятны, но имя пришлось переспрашивать, а #38 непонятна. Основание — реплики #13-#17, #38.",
+      "confidence": 0.55,
+      "answer_normalized": 7,
+      "evidence_checks": [
+        {
+          "idx": 38,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 14,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Клиент завершил разговор (#44) сразу после реплики оператора #43; возможности завершить не было."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор подвёл итог/предложил помощь и попрощался?",
+          "answer": "нет",
+          "evidence_idx": [
+            43,
+            44
+          ],
+          "note": "Звонок оборвался клиентом."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 43,
+          "quote": "в связи с чем у вас остались такие впечатления об этом?",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Оператор задал вопрос, диалог ещё шёл."
+        },
+        {
+          "idx": 44,
+          "quote": "Клиент завершил разговор.",
+          "role": "system",
+          "supports": "na",
+          "interpretation": "Клиент положил трубку без возможности завершить."
+        }
+      ],
+      "rule_applied": "N/A: разговор оборвался до возможности завершить.",
+      "alternatives_rejected": "Не «Нет»: клиент ушёл сразу после реплики оператора, не дав шанса попрощаться.",
+      "ambiguities": [
+        "Оператор мог предложить помощь раньше (#30 частично), но формально завершение не наступало."
+      ],
+      "reasoning": "Клиент завершил звонок внезапно.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 44,
+          "quote": "Клиент завершил разговор."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Завершение — N/A. Клиент завершил звонок сразу после реплики #43, возможности завершить разговор не было. Основание — #43, #44.",
+      "confidence": 0.6,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 44,
+          "exists": true,
+          "speaker": "system",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Оскорбление клиента?",
+          "answer": "нет",
+          "evidence_idx": [
+            43
+          ],
+          "note": "Оператор говорит холодно, но не оскорбляет."
+        },
+        {
+          "question": "Услуга в обход компании?",
+          "answer": "нет",
+          "evidence_idx": [
+            26,
+            28
+          ],
+          "note": "Не предлагал."
+        },
+        {
+          "question": "Раскрытие конфиденциальной информации?",
+          "answer": "нет",
+          "evidence_idx": [
+            28
+          ],
+          "note": "Данные счёта не раскрыты."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 43,
+          "quote": "Мы такими делами не занимаемся.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Отказ, не оскорбление."
+        }
+      ],
+      "rule_applied": "Нет: ни одно из трёх нарушений не выявлено.",
+      "alternatives_rejected": "Не «Да»: нет оскорблений, обхода компании, раскрытия данных.",
+      "ambiguities": [],
+      "reasoning": "Реплики оператора нейтральные.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 43,
+          "quote": "Мы изначально были технической поддержкой и так и являемся."
+        }
+      ],
+      "checked_range": [
+        13,
+        43
+      ],
+      "explanation": "Грубые ошибки — Нет. Оскорблений, предложения услуги в обход компании и раскрытия конфиденциальных данных нет. Основание — реплики оператора #13-#43.",
+      "confidence": 0.9,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 43,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    }
+  },
+  "issues": [],
+  "dialog_facts": {
+    "client_language": "RU",
+    "operator_language_first_reply": "RU",
+    "client_request_summary": "Клиентка, ранее работавшая с брокером в Костанае, хочет понять, как оператор помогает (даёт ли рекомендации по покупке бумаг) и что ей делать без персонального менеджера.",
+    "client_questions": [
+      "Как тебя зовут?",
+      "Мне сказали, что теперь я могу обращаться только к вам, да?",
+      "Как вы помогаете, так же как прежний брокер, рекомендуете покупки?",
+      "У меня нет персонального менеджера, что тогда?",
+      "Что значит техническая часть?"
+    ],
+    "bot_answer_before_operator": "IVR-меню: бот предложил выбрать язык и раздел, клиент выбрал русский язык и услуги Фридом брокер (0); вопрос по существу бот не обсуждал.",
+    "first_operator_turn_idx": 13,
+    "protected_action_or_data_requested": {
+      "value": false,
+      "evidence_idx": [
+        25,
+        26
+      ],
+      "note": "Запрос общий (о формате обслуживания), доступа к данным счёта или защищённого действия не требовал."
+    },
+    "identity_verification": {
+      "performed": false,
+      "evidence_idx": [],
+      "note": "Идентификация не проводилась и не требовалась."
+    },
+    "client_dissatisfaction": {
+      "present": true,
+      "evidence_idx": [
+        32,
+        34,
+        39,
+        41,
+        42
+      ],
+      "note": "Клиентка считает, что её отфутболили, неприятно чувствует себя навязчивой."
+    },
+    "explicit_waits": [],
+    "ending": {
+      "type": "client_left",
+      "evidence_idx": [
+        43,
+        44,
+        45
+      ],
+      "operator_offered_help_or_summary": false,
+      "operator_said_goodbye": false
+    },
+    "dialog_summary": "Оператор объяснил, что это техническая поддержка, консультаций по ценным бумагам нет, а персональный менеджер есть только при достаточных активах. Клиентка осталась недовольна, ощущая, что её отфутболили; оператор в конце оправдывался и не отреагировал на её чувства, клиентка завершила звонок."
+  },
+  "model_total_estimate": {
+    "total": 59.2,
+    "calculation": "c01=10; c02 N/A; c03 N/A; c04=15/20*20=15; c05=0; c06=7/10*15=10.5; c07 N/A. Набрано 35.5 из применимых 60 (10+20+15+15) = 59.2%. c08 без баллов."
+  },
+  "overall_comment": "Оператор честно объяснил границы техподдержки, но не предложил клиентке конкретного следующего шага и не отреагировал на её недовольство; в конце защищался. Контакт установлен, ясность речи страдает, грубых нарушений нет.",
+  "meta": {
+    "model": "claude-sonnet-5-5",
+    "conversation_id": "p4-ru-001",
+    "prompt_id": "v1|default@v1|v1|all"
+  }
+}

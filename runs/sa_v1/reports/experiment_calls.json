@@ -1,0 +1,516 @@
+[
+  {
+    "spec": "sa_v1:haiku",
+    "run": "sa_v1",
+    "agent": "haiku",
+    "variant": "v1",
+    "calls_per_dialog": 1,
+    "model": "claude-haiku-5-5",
+    "dialogs": 5,
+    "tokens_in": 19433,
+    "tokens_out": 31969,
+    "usd": 0.017928,
+    "usd_per_dialog": 0.0035856,
+    "proxy_macro": 0.8,
+    "proxy_micro": 0.8,
+    "proxy_n": 40,
+    "proxy_ci": [
+      0.6,
+      0.95
+    ],
+    "quote_ok": 1.0,
+    "invalid": 0,
+    "missing_answers": 0,
+    "per_criterion": {
+      "c01": 1.0,
+      "c02": 0.6,
+      "c03": 1.0,
+      "c04": 0.8,
+      "c05": 0.6,
+      "c06": 0.6,
+      "c07": 0.8,
+      "c08": 1.0
+    },
+    "errors": [
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c05",
+        "gold": "no",
+        "pred": "yes"
+      },
+      {
+        "conversation_id": "p1-kz-008",
+        "criterion_id": "c02",
+        "gold": "no",
+        "pred": "na"
+      },
+      {
+        "conversation_id": "p1-ru-022",
+        "criterion_id": "c06",
+        "gold": "4",
+        "pred": "7"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c02",
+        "gold": "na",
+        "pred": "no"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c04",
+        "gold": "15",
+        "pred": "10"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c05",
+        "gold": "no",
+        "pred": "yes"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c06",
+        "gold": "7",
+        "pred": "4"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c07",
+        "gold": "na",
+        "pred": "no"
+      }
+    ]
+  },
+  {
+    "spec": "sa_v1:sonnet",
+    "run": "sa_v1",
+    "agent": "sonnet",
+    "variant": "v1",
+    "calls_per_dialog": 1,
+    "model": "claude-sonnet-5-5",
+    "dialogs": 5,
+    "tokens_in": 19433,
+    "tokens_out": 22037,
+    "usd": 0.259236,
+    "usd_per_dialog": 0.0518472,
+    "proxy_macro": 0.975,
+    "proxy_micro": 0.975,
+    "proxy_n": 40,
+    "proxy_ci": [
+      0.925,
+      1.0
+    ],
+    "quote_ok": 1.0,
+    "invalid": 0,
+    "missing_answers": 0,
+    "per_criterion": {
+      "c01": 1.0,
+      "c02": 1.0,
+      "c03": 1.0,
+      "c04": 1.0,
+      "c05": 1.0,
+      "c06": 0.8,
+      "c07": 1.0,
+      "c08": 1.0
+    },
+    "errors": [
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c06",
+        "gold": "4",
+        "pred": "7"
+      }
+    ]
+  },
+  {
+    "spec": "sa_v1:sonnet2",
+    "run": "sa_v1",
+    "agent": "sonnet2",
+    "variant": "v1",
+    "calls_per_dialog": 1,
+    "model": "claude-sonnet-5-5",
+    "dialogs": 5,
+    "tokens_in": 19433,
+    "tokens_out": 23453,
+    "usd": 0.273396,
+    "usd_per_dialog": 0.0546792,
+    "proxy_macro": 0.95,
+    "proxy_micro": 0.95,
+    "proxy_n": 40,
+    "proxy_ci": [
+      0.9,
+      1.0
+    ],
+    "quote_ok": 1.0,
+    "invalid": 0,
+    "missing_answers": 0,
+    "per_criterion": {
+      "c01": 1.0,
+      "c02": 1.0,
+      "c03": 1.0,
+      "c04": 1.0,
+      "c05": 1.0,
+      "c06": 0.8,
+      "c07": 0.8,
+      "c08": 1.0
+    },
+    "errors": [
+      {
+        "conversation_id": "p1-kz-008",
+        "criterion_id": "c07",
+        "gold": "no",
+        "pred": "na"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c06",
+        "gold": "4",
+        "pred": "7"
+      }
+    ]
+  },
+  {
+    "spec": "sa_v1:opus",
+    "run": "sa_v1",
+    "agent": "opus",
+    "variant": "v1",
+    "calls_per_dialog": 1,
+    "model": "claude-opus-5-5",
+    "dialogs": 5,
+    "tokens_in": 19433,
+    "tokens_out": 22732,
+    "usd": 0.532372,
+    "usd_per_dialog": 0.1064744,
+    "proxy_macro": 0.9,
+    "proxy_micro": 0.9,
+    "proxy_n": 40,
+    "proxy_ci": [
+      0.825,
+      0.975
+    ],
+    "quote_ok": 1.0,
+    "invalid": 0,
+    "missing_answers": 0,
+    "per_criterion": {
+      "c01": 1.0,
+      "c02": 1.0,
+      "c03": 1.0,
+      "c04": 0.6,
+      "c05": 1.0,
+      "c06": 0.6,
+      "c07": 1.0,
+      "c08": 1.0
+    },
+    "errors": [
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c04",
+        "gold": "15",
+        "pred": "20"
+      },
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c06",
+        "gold": "7",
+        "pred": "4"
+      },
+      {
+        "conversation_id": "p1-ru-012",
+        "criterion_id": "c04",
+        "gold": "15",
+        "pred": "20"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c06",
+        "gold": "4",
+        "pred": "7"
+      }
+    ]
+  },
+  {
+    "spec": "sa_v2:haiku",
+    "run": "sa_v2",
+    "agent": "haiku",
+    "variant": "v2",
+    "calls_per_dialog": 4,
+    "model": "claude-haiku-5-5",
+    "dialogs": 5,
+    "tokens_in": 63711,
+    "tokens_out": 61334,
+    "usd": 0.037038,
+    "usd_per_dialog": 0.0074076,
+    "proxy_macro": 0.75,
+    "proxy_micro": 0.75,
+    "proxy_n": 40,
+    "proxy_ci": [
+      0.6,
+      0.875
+    ],
+    "quote_ok": 1.0,
+    "invalid": 0,
+    "missing_answers": 0,
+    "per_criterion": {
+      "c01": 1.0,
+      "c02": 0.8,
+      "c03": 0.8,
+      "c04": 0.6,
+      "c05": 0.6,
+      "c06": 0.4,
+      "c07": 0.8,
+      "c08": 1.0
+    },
+    "errors": [
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c03",
+        "gold": "na",
+        "pred": "no"
+      },
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c04",
+        "gold": "15",
+        "pred": "20"
+      },
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c05",
+        "gold": "no",
+        "pred": "yes"
+      },
+      {
+        "conversation_id": "p1-kz-008",
+        "criterion_id": "c05",
+        "gold": "no",
+        "pred": "yes"
+      },
+      {
+        "conversation_id": "p1-ru-012",
+        "criterion_id": "c06",
+        "gold": "10",
+        "pred": "7"
+      },
+      {
+        "conversation_id": "p1-ru-022",
+        "criterion_id": "c06",
+        "gold": "4",
+        "pred": "7"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c02",
+        "gold": "na",
+        "pred": "no"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c04",
+        "gold": "15",
+        "pred": "10"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c06",
+        "gold": "7",
+        "pred": "4"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c07",
+        "gold": "na",
+        "pred": "no"
+      }
+    ]
+  },
+  {
+    "spec": "sa_v2:sonnet",
+    "run": "sa_v2",
+    "agent": "sonnet",
+    "variant": "v2",
+    "calls_per_dialog": 4,
+    "model": "claude-sonnet-5-5",
+    "dialogs": 5,
+    "tokens_in": 63711,
+    "tokens_out": 40173,
+    "usd": 0.529152,
+    "usd_per_dialog": 0.10583039999999999,
+    "proxy_macro": 0.925,
+    "proxy_micro": 0.925,
+    "proxy_n": 40,
+    "proxy_ci": [
+      0.875,
+      0.975
+    ],
+    "quote_ok": 1.0,
+    "invalid": 0,
+    "missing_answers": 0,
+    "per_criterion": {
+      "c01": 1.0,
+      "c02": 0.8,
+      "c03": 1.0,
+      "c04": 1.0,
+      "c05": 1.0,
+      "c06": 0.6,
+      "c07": 1.0,
+      "c08": 1.0
+    },
+    "errors": [
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c06",
+        "gold": "7",
+        "pred": "4"
+      },
+      {
+        "conversation_id": "p1-ru-012",
+        "criterion_id": "c02",
+        "gold": "na",
+        "pred": "no"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c06",
+        "gold": "7",
+        "pred": "4"
+      }
+    ]
+  },
+  {
+    "spec": "sa_v3:haiku",
+    "run": "sa_v3",
+    "agent": "haiku",
+    "variant": "v3",
+    "calls_per_dialog": 8,
+    "model": "claude-haiku-5-5",
+    "dialogs": 5,
+    "tokens_in": 122404,
+    "tokens_out": 86353,
+    "usd": 0.055417,
+    "usd_per_dialog": 0.0110834,
+    "proxy_macro": 0.8,
+    "proxy_micro": 0.8,
+    "proxy_n": 40,
+    "proxy_ci": [
+      0.75,
+      0.85
+    ],
+    "quote_ok": 1.0,
+    "invalid": 0,
+    "missing_answers": 0,
+    "per_criterion": {
+      "c01": 1.0,
+      "c02": 0.8,
+      "c03": 1.0,
+      "c04": 0.8,
+      "c05": 0.4,
+      "c06": 0.4,
+      "c07": 1.0,
+      "c08": 1.0
+    },
+    "errors": [
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c04",
+        "gold": "15",
+        "pred": "20"
+      },
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c05",
+        "gold": "no",
+        "pred": "yes"
+      },
+      {
+        "conversation_id": "p1-kz-008",
+        "criterion_id": "c05",
+        "gold": "no",
+        "pred": "yes"
+      },
+      {
+        "conversation_id": "p1-ru-012",
+        "criterion_id": "c05",
+        "gold": "yes",
+        "pred": "no"
+      },
+      {
+        "conversation_id": "p1-ru-012",
+        "criterion_id": "c06",
+        "gold": "10",
+        "pred": "7"
+      },
+      {
+        "conversation_id": "p1-ru-022",
+        "criterion_id": "c06",
+        "gold": "4",
+        "pred": "7"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c02",
+        "gold": "na",
+        "pred": "no"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c06",
+        "gold": "7",
+        "pred": "4"
+      }
+    ]
+  },
+  {
+    "spec": "sa_v3:sonnet",
+    "run": "sa_v3",
+    "agent": "sonnet",
+    "variant": "v3",
+    "calls_per_dialog": 8,
+    "model": "claude-sonnet-5-5",
+    "dialogs": 5,
+    "tokens_in": 122404,
+    "tokens_out": 59071,
+    "usd": 0.835518,
+    "usd_per_dialog": 0.1671036,
+    "proxy_macro": 0.925,
+    "proxy_micro": 0.925,
+    "proxy_n": 40,
+    "proxy_ci": [
+      0.875,
+      0.975
+    ],
+    "quote_ok": 1.0,
+    "invalid": 0,
+    "missing_answers": 0,
+    "per_criterion": {
+      "c01": 1.0,
+      "c02": 0.8,
+      "c03": 1.0,
+      "c04": 1.0,
+      "c05": 1.0,
+      "c06": 0.6,
+      "c07": 1.0,
+      "c08": 1.0
+    },
+    "errors": [
+      {
+        "conversation_id": "p1-en-015",
+        "criterion_id": "c06",
+        "gold": "7",
+        "pred": "4"
+      },
+      {
+        "conversation_id": "p1-ru-012",
+        "criterion_id": "c02",
+        "gold": "na",
+        "pred": "no"
+      },
+      {
+        "conversation_id": "p4-ru-001",
+        "criterion_id": "c06",
+        "gold": "4",
+        "pred": "7"
+      }
+    ]
+  }
+]
