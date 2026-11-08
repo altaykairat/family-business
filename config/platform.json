@@ -119,7 +119,7 @@
         "team_name": "family-business",
         "model": {
           "mode": "external_api",
-          "name": "Claude Sonnet 5.5"
+          "name": "GPT (Codex CLI, isolated session per dialog)"
         },
         "criteria_map": {
           "c01": "contact",
