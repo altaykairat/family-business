@@ -256,6 +256,7 @@ def dispatch(run_id: str, agent: str, provider: str = None, limit: int = 0, acto
     prov = providers.get(provider, agent=agent)
     box = common.RUNS / run_id / "agents" / agent
     results = Counter()
+    details = []
     sent = 0
     for cid, info in m["conversations"].items():
         for part in info["parts"]:
@@ -266,11 +267,12 @@ def dispatch(run_id: str, agent: str, provider: str = None, limit: int = 0, acto
                 break
             res = prov.complete(box / "prompts" / f"{name}.md", box / "responses" / f"{name}.md")
             results[res["status"]] += 1
+            details.append({"name": name, **res})
             sent += 1
             if prov.manual:
                 break
     log_event("run_dispatched", actor=actor, run_id=run_id, agent=agent, provider=prov.name, results=dict(results))
-    return {"provider": prov.describe(), "results": dict(results),
+    return {"provider": prov.describe(), "results": dict(results), "details": details,
             "note": "manual provider: paste responses (run.submit) — nothing was sent" if prov.manual else None}
 
 

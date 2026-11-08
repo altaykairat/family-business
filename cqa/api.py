@@ -639,9 +639,20 @@ def _analyze(actor, digest_id=None, provider=None, force=False, gold=None):
 
 
 @command("loop.patterns", "GET", summary="Patterns «criterion × was → became × situation» with confidence: ready "
-         "(above thresholds) and accumulating", params={"gold": P(help="only simulated decisions of this gold set + real")})
-def _patterns(actor, gold=None):
-    return loop.patterns([d for d in state.load().decisions.values() if not gold or loop.gold_matches(d, gold)])
+         "(above thresholds) and accumulating", params={"gold": P(help="only simulated decisions of this gold set + real"),
+                                                       "window": P(default="since_active_version",
+                                                                   help="since_active_version (what the orchestrator sees) | all")})
+def _patterns(actor, gold=None, window="since_active_version"):
+    st = state.load()
+    since = None
+    if window != "all":
+        ref = ck.ref_of(ck.load("default"))
+        acts = [e for e in st.checklist_events if e["type"] == "version_activated" and e.get("ref") == ref]
+        since = acts[-1]["ts"] if acts else None
+    out = loop.patterns([d for d in st.decisions.values() if (not gold or loop.gold_matches(d, gold))
+                         and (since is None or d["decided_at"] >= since)], st)
+    out["window"] = {"mode": window, "since": since, "active": ck.ref_of(ck.load("default"))}
+    return out
 
 
 @command("checklist.request_edit", summary="Change in plain words → orchestrator task → proposal (K.7)",
@@ -831,3 +842,74 @@ def _providers(actor):
     cfg = providers.config()
     return {"default": cfg.get("default"), "agents": cfg.get("agents"),
             "providers": [providers.get(n).describe() for n in cfg.get("providers", {})]}
+
+
+# --- background jobs, dataset fetch, saved reports (web UI: «Оценка и сдача», «Точность») ---------------------------
+
+@command("job.evaluate", mc="MC.3", summary="Background: prepare → isolated agent sessions in parallel → validate → import "
+         "→ publish → (export results)", params={
+             "dataset": P(default="dev"), "ids": P("list", help="conversations; empty = the whole dataset"),
+             "provider": P(default="codex-cli"), "template": P(default="v2"),
+             "checklist": P(default="default", help="default = the active version"),
+             "workers": P("int", default=4), "publish": P("bool", default=True),
+             "export_set": P(help="dev | prod — write results/<set>/results.json at the end"), "run_id": P()})
+def _job_evaluate(actor, dataset="dev", ids=None, provider="codex-cli", template="v2", checklist="default", workers=4,
+                  publish=True, export_set=None, run_id=None):
+    from . import jobs
+
+    return jobs.start_evaluate(actor, dataset, ids, provider, template, checklist, workers, publish, export_set, run_id)
+
+
+@command("job.status", "GET", summary="Progress of background jobs (all, or one by job_id)", params={"job_id": P()})
+def _job_status(actor, job_id=None):
+    from . import jobs
+
+    return jobs.status(job_id)
+
+
+@command("dataset.fetch", mc="MC.1", summary="Load a dataset from the organizers' API by group_id (CQA_API_URL in .env)",
+         params={"group_id": P(required=True), "dataset": P(help="local name; default = group_id")})
+def _dataset_fetch(actor, group_id, dataset=None):
+    from . import jobs
+
+    return jobs.fetch_dataset(actor, group_id, dataset)
+
+
+@command("dataset.names", "GET", summary="Datasets available locally (data/<name>/conversations)")
+def _dataset_names(actor):
+    out = []
+    for d in sorted(common.DATA.iterdir()) if common.DATA.exists() else []:
+        conv = d / "conversations"
+        if conv.is_dir():
+            out.append({"dataset": d.name, "conversations": len(list(conv.glob("*.json")))})
+    return out
+
+
+@command("reports.list", "GET", summary="Saved metric reports (metrics.compare / metrics.before_after)",
+         params={"kind": P(help="compare | before_after | regression")})
+def _reports_list(actor, kind=None):
+    out = []
+    for p in sorted(common.REPORTS.glob("*.json")) if common.REPORTS.exists() else []:
+        data = common.load_json(p)
+        k = ("regression" if p.stem.startswith("regression") else
+             "before_after" if "before" in data and "after" in data and "summary" in data else "compare")
+        if kind and k != kind:
+            continue
+        item = {"report_id": p.stem, "kind": k, "gold": data.get("gold"), "split": data.get("split")}
+        if k == "regression":
+            item.update({"candidate": data.get("candidate"), "baseline": data.get("baseline"),
+                         "checklist_ref": data.get("checklist_ref"), "passed": data.get("passed")})
+        elif k == "before_after":
+            item.update({"before": data.get("before"), "after": data.get("after"), "summary": data.get("summary")})
+        else:
+            item["sources"] = [s.get("source") for s in data.get("sources", [])]
+        out.append(item)
+    return out
+
+
+@command("reports.get", "GET", summary="One saved metric report", params={"report_id": P(required=True)})
+def _reports_get(actor, report_id):
+    p = common.REPORTS / f"{report_id}.json"
+    if not p.exists() or p.parent != common.REPORTS:
+        raise CQAError(f"report {report_id} not found", "not_found")
+    return common.load_json(p)

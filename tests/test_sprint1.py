@@ -19,11 +19,15 @@ def response(answers):
         for k, v in answers.items()]}, ensure_ascii=False) + "\n```"
 
 
+
+# Tests start from the organizers' checklist only: versions created by real work (v2…) must not leak in.
+ORGANIZER_V1_ONLY = lambda d, names: [n for n in names if n.endswith(".json") and n != "v1.json"]  # noqa: E731
+
 class Workspace(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp = Path(tempfile.mkdtemp(prefix="cqa-s1-"))
-        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists")
+        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists", ignore=ORGANIZER_V1_ONLY)
         common.use_workspace(cls.tmp)
         state._CACHE.clear()
         cfg = common.load_config()
@@ -212,7 +216,7 @@ class SimulationTest(unittest.TestCase):
         from cqa import groundtruth, people
 
         cls.tmp = Path(tempfile.mkdtemp(prefix="cqa-sim-"))
-        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists")
+        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists", ignore=ORGANIZER_V1_ONLY)
         shutil.copytree(common.ROOT / "data" / "ground_truth", cls.tmp / "data" / "ground_truth")
         common.use_workspace(cls.tmp)
         state._CACHE.clear()
@@ -364,7 +368,7 @@ class JuryScenariosTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp = Path(tempfile.mkdtemp(prefix="cqa-jury-"))
-        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists")
+        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists", ignore=ORGANIZER_V1_ONLY)
         common.use_workspace(cls.tmp)
         state._CACHE.clear()
 

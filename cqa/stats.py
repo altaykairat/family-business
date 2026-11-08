@@ -12,6 +12,7 @@ from typing import Callable, Optional, Sequence
 def wilson(k: int, n: int, z: float = 1.96) -> Optional[tuple]:
     if n == 0:
         return None
+    k = max(0, min(k, n))  # a share is a proportion of n: counts above n (e.g. several appeals per evaluation) are capped
     p = k / n
     den = 1 + z * z / n
     centre = (p + z * z / (2 * n)) / den

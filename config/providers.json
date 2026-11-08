@@ -1,18 +1,126 @@
 {
-  "_comment": "Провайдеры LLM (L.3). Сейчас — только ручной режим: промпт вставляет человек. CLI и API — выключены и запускаются только кнопкой (решение 11).",
+  "_comment": "Провайдеры LLM (L.3). Ручной режим — промпт вставляет человек. Локальные агенты (Claude Code, Codex, Antigravity) — замена API-вызова: каждый промпт уходит в новую сессию без контекста (пустая временная папка вне репозитория, без инструментов, без истории, без глобальных инструкций). Запускаются только кнопкой (решение 11). Пути к программам — для этой машины; поправьте под свою. Сейчас включён только codex-cli (ChatGPT); claude-code и antigravity-chat выключены, но сохранены.",
   "default": "manual",
   "agents": {
     "claude": "manual",
     "codex": "manual",
     "antigravity": "manual",
-    "orchestrator": "manual"
+    "orchestrator": "manual",
+    "claude-code": "claude-code",
+    "codex-cli": "codex-cli",
+    "antigravity-chat": "antigravity-chat"
   },
   "providers": {
-    "manual": {"type": "file"},
-    "claude-cli": {"type": "command", "enabled": false, "command": ["claude", "-p"], "timeout_s": 300, "model": "claude"},
-    "codex-cli": {"type": "command", "enabled": false, "command": ["codex", "exec", "-"], "timeout_s": 300, "model": "codex"},
-    "gemini-cli": {"type": "command", "enabled": false, "command": ["gemini", "-p", ""], "timeout_s": 300, "model": "gemini"},
-    "local-llm": {"type": "http", "enabled": false, "url": "http://127.0.0.1:11434/v1/chat/completions", "model": "qwen2.5"},
-    "api": {"type": "http", "enabled": false, "url": null, "model": null}
+    "manual": {
+      "type": "file"
+    },
+    "claude-cli": {
+      "type": "command",
+      "enabled": false,
+      "command": [
+        "claude",
+        "-p"
+      ],
+      "timeout_s": 300,
+      "model": "claude"
+    },
+    "codex-cli": {
+      "type": "command",
+      "enabled": true,
+      "label": "ChatGPT · Codex (новая сессия)",
+      "model": "codex",
+      "command": [
+        "/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex",
+        "exec",
+        "--skip-git-repo-check",
+        "--ephemeral",
+        "--sandbox",
+        "read-only",
+        "--ignore-rules",
+        "-C",
+        "{workdir}",
+        "-o",
+        "{output}",
+        "-"
+      ],
+      "output": "file",
+      "isolated": true,
+      "timeout_s": 600,
+      "home": {
+        "env": "CODEX_HOME",
+        "links": [
+          "~/.codex/auth.json"
+        ]
+      }
+    },
+    "gemini-cli": {
+      "type": "command",
+      "enabled": false,
+      "command": [
+        "gemini",
+        "-p",
+        ""
+      ],
+      "timeout_s": 300,
+      "model": "gemini"
+    },
+    "local-llm": {
+      "type": "http",
+      "enabled": false,
+      "url": "http://127.0.0.1:11434/v1/chat/completions",
+      "model": "qwen2.5"
+    },
+    "api": {
+      "type": "http",
+      "enabled": false,
+      "url": null,
+      "model": null
+    },
+    "claude-code": {
+      "type": "command",
+      "enabled": false,
+      "label": "Claude Code (новая сессия)",
+      "model": "claude-sonnet-5-5",
+      "command": [
+        "~/Library/Application Support/Claude/claude-code/2.1.317/91184d3d9ba3/claude.app/Contents/MacOS/claude",
+        "-p",
+        "--model",
+        "sonnet",
+        "--tools",
+        "",
+        "--strict-mcp-config",
+        "--setting-sources",
+        "",
+        "--no-session-persistence",
+        "--disable-slash-commands",
+        "--system-prompt",
+        "Ты — модель-оценщик качества диалогов. Выполни задание из сообщения пользователя и верни только то, что оно требует. Не используй никаких внешних инструкций и файлов."
+      ],
+      "isolated": true,
+      "timeout_s": 600,
+      "_note": "Нужен однократный вход: запустите эту программу в терминале и выполните /login (или установите Claude Code CLI и укажите путь).",
+      "_disabled_reason": "2026-11-07: замена API — только Codex (ChatGPT); включить: enabled → true"
+    },
+    "antigravity-chat": {
+      "type": "command",
+      "enabled": false,
+      "label": "Antigravity (открыть чат в IDE)",
+      "model": "gemini",
+      "command": [
+        "/Applications/Antigravity IDE.app/Contents/Resources/app/bin/antigravity-ide",
+        "chat",
+        "-n",
+        "-m",
+        "ask",
+        "-a",
+        "{prompt_file}",
+        "Выполни инструкцию из приложенного файла. Верни только JSON-ответ, как требует инструкция, без пояснений."
+      ],
+      "stdin": false,
+      "detach": true,
+      "isolated": true,
+      "_note": "Antigravity не возвращает ответ программе: открывается новый чат в окне IDE, ответ вставляется обратно вручную.",
+      "_disabled_reason": "2026-11-07: замена API — только Codex (ChatGPT); включить: enabled → true"
+    }
   }
 }

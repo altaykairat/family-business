@@ -21,6 +21,9 @@ from . import api, common
 from .common import CQAError
 
 STATUS = {"bad_request": 400, "forbidden": 403, "not_found": 404, "conflict": 409, "not_implemented": 501}
+STATIC_TYPES = {".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8",
+                ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png",
+                ".ico": "image/x-icon", ".json": "application/json; charset=utf-8"}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -52,10 +55,27 @@ class Handler(BaseHTTPRequestHandler):
         self._cors()
         self.end_headers()
 
+    def _static(self, path: str) -> bool:
+        """Web UI (web/): GET / → index.html, other files by name. Only files inside web/ are served."""
+        root = (common.ROOT / "web").resolve()
+        target = (root / ("index.html" if path in ("", "/") else path.lstrip("/"))).resolve()
+        if root not in target.parents or not target.is_file():
+            return False
+        raw = target.read_bytes()
+        self.send_response(200)
+        self.send_header("Content-Type", STATIC_TYPES.get(target.suffix, "application/octet-stream"))
+        self.send_header("Content-Length", str(len(raw)))
+        self.send_header("Cache-Control", "no-cache")
+        self.end_headers()
+        self.wfile.write(raw)
+        return True
+
     def _dispatch(self, method: str):
         url = urlparse(self.path)
-        if url.path in ("/", "/health"):
+        if url.path == "/health":
             return self._send(200, {"ok": True, "data": {"service": "cqa", "api": "/api/v1/commands"}})
+        if method == "GET" and not url.path.startswith("/api/") and self._static(url.path):
+            return None
         if not url.path.startswith("/api/v1/"):
             return self._send(404, {"ok": False, "error": {"code": "not_found", "message": "use /api/v1/<command>"}})
         name = url.path[len("/api/v1/"):]

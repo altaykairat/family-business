@@ -11,7 +11,9 @@ from __future__ import annotations
 
 import json
 import re
+import os
 import sqlite3
+import threading
 from typing import Optional
 
 from . import checklist as ck
@@ -184,35 +186,39 @@ def materialize(st: state.State, conn: sqlite3.Connection) -> None:
     conn.commit()
 
 
+_BUILD_LOCK = threading.Lock()
+
+
 def connect(until: Optional[str] = None) -> sqlite3.Connection:
     """A fresh projection: the cached file when the log has not changed, else rebuilt; in memory for `until`."""
     if until:
         conn = sqlite3.connect(":memory:")
         materialize(state.load(until), conn)
     else:
-        path = common.CACHE / "cqa.sqlite"
-        path.parent.mkdir(parents=True, exist_ok=True)
-        fp = events.fingerprint()
-        conn = None
-        if path.exists():
-            conn = sqlite3.connect(str(path))
-            try:
-                cur = conn.execute("SELECT value FROM meta WHERE key='fingerprint'").fetchone()
-            except sqlite3.DatabaseError:
-                cur = None
-            if not cur or cur[0] != fp:
-                conn.close()
-                path.unlink()
-                conn = None
-        if conn is None:
-            tmp = path.with_suffix(".tmp")
-            if tmp.exists():
-                tmp.unlink()
-            c = sqlite3.connect(str(tmp))
-            materialize(state.load(), c)
-            c.close()
-            tmp.replace(path)
-            conn = sqlite3.connect(str(path))
+        with _BUILD_LOCK:  # the HTTP server is threaded: one rebuild at a time, readers wait for it
+            path = common.CACHE / "cqa.sqlite"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            fp = events.fingerprint()
+            conn = None
+            if path.exists():
+                conn = sqlite3.connect(str(path))
+                try:
+                    cur = conn.execute("SELECT value FROM meta WHERE key='fingerprint'").fetchone()
+                except sqlite3.DatabaseError:
+                    cur = None
+                if not cur or cur[0] != fp:
+                    conn.close()
+                    path.unlink()
+                    conn = None
+            if conn is None:
+                tmp = path.with_suffix(f".{os.getpid()}.{threading.get_ident()}.tmp")
+                if tmp.exists():
+                    tmp.unlink()
+                c = sqlite3.connect(str(tmp))
+                materialize(state.load(), c)
+                c.close()
+                tmp.replace(path)
+                conn = sqlite3.connect(str(path))
     conn.row_factory = sqlite3.Row
     return conn
 

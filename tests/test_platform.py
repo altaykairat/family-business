@@ -32,11 +32,15 @@ def response(conv_id, answers):
         for k, v in answers.items()]}, ensure_ascii=False) + "\n```"
 
 
+
+# Tests start from the organizers' checklist only: versions created by real work (v2…) must not leak in.
+ORGANIZER_V1_ONLY = lambda d, names: [n for n in names if n.endswith(".json") and n != "v1.json"]  # noqa: E731
+
 class PlatformTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp = Path(tempfile.mkdtemp(prefix="cqa-test-"))
-        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists")
+        shutil.copytree(common.ROOT / "data" / "checklists", cls.tmp / "data" / "checklists", ignore=ORGANIZER_V1_ONLY)
         common.use_workspace(cls.tmp)
         state._CACHE.clear()
         cfg = common.load_config()
