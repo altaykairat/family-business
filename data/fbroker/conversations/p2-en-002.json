@@ -1,0 +1,134 @@
+{
+  "conversation_id": "p2-en-002",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "I’m in the mobile app. I need last year’s broker report and want to see where the pricing plan is printed in it.",
+      "idx": 1
+    },
+    {
+      "timestamp": "00:02",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team.",
+      "idx": 2
+    },
+    {
+      "timestamp": "00:02",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy.",
+      "idx": 3
+    },
+    {
+      "timestamp": "00:08",
+      "speaker": "bot",
+      "text": "The pricing plan is on the first page of the broker report.",
+      "idx": 4
+    },
+    {
+      "timestamp": "00:34",
+      "speaker": "client",
+      "text": "Could you connect me with an agent? I can't find the report menu.",
+      "idx": 5
+    },
+    {
+      "timestamp": "00:37",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?",
+      "idx": 6
+    },
+    {
+      "timestamp": "00:41",
+      "speaker": "client",
+      "text": "yes please",
+      "idx": 7
+    },
+    {
+      "timestamp": "00:42",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly.",
+      "idx": 8
+    },
+    {
+      "timestamp": "00:44",
+      "speaker": "system",
+      "text": "Chat transferred to an agent.",
+      "idx": 9
+    },
+    {
+      "timestamp": "02:34",
+      "speaker": "operator",
+      "text": "Hi, I'm Jordan. In the app, open Menu, then Reports and Documents, then Broker Report. Select last year's dates and download the report.",
+      "idx": 10
+    },
+    {
+      "timestamp": "03:04",
+      "speaker": "client",
+      "text": "Got it. Which part of the first page should I look at?",
+      "idx": 11
+    },
+    {
+      "timestamp": "03:47",
+      "speaker": "operator",
+      "text": "Look in Account Information on the first page. That's where the pricing plan is listed.",
+      "idx": 12
+    },
+    {
+      "timestamp": "03:58",
+      "speaker": "client",
+      "text": "Okay, and if I only want the current plan next time, can I see it without downloading anything?",
+      "idx": 13
+    },
+    {
+      "timestamp": "04:22",
+      "speaker": "operator",
+      "text": "Yes. In the web version, open the account area, labelled «Кабинет» in the Russian interface. The current plan is under your name.",
+      "idx": 14
+    },
+    {
+      "timestamp": "04:59",
+      "speaker": "client",
+      "text": "That answers both questions. Thank you.",
+      "idx": 15
+    },
+    {
+      "timestamp": "06:00",
+      "speaker": "client",
+      "text": "The report opened on my phone. I was looking at the balance page earlier, so I just want to make sure this is the right document.",
+      "idx": 16
+    },
+    {
+      "timestamp": "06:15",
+      "speaker": "operator",
+      "text": "Check the document title. If it says Broker Report, you're in the right document. The plan is in Account Information on page one.",
+      "idx": 17
+    },
+    {
+      "timestamp": "06:34",
+      "speaker": "client",
+      "text": "Yes, it says Broker Report. There are two downloads, though. I think one is from the wrong year.",
+      "idx": 18
+    },
+    {
+      "timestamp": "06:57",
+      "speaker": "operator",
+      "text": "Use the one for the dates you selected for last year. You can go back to Broker Report and generate it again if you're unsure which file you opened.",
+      "idx": 19
+    },
+    {
+      "timestamp": "07:24",
+      "speaker": "client",
+      "text": "Found it now. I was opening the wrong download.",
+      "idx": 20
+    },
+    {
+      "timestamp": "07:39",
+      "speaker": "operator",
+      "text": "You're welcome. You have the report and know where to check the current plan. Goodbye!",
+      "idx": 21
+    }
+  ],
+  "audio_url": null
+}

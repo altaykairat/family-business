@@ -1,0 +1,104 @@
+{
+  "conversation_id": "p3-en-001",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "I'm heading to a bank branch to fund my brokerage account. Where can I download the transfer details?",
+      "idx": 1
+    },
+    {
+      "timestamp": "00:02",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team.",
+      "idx": 2
+    },
+    {
+      "timestamp": "00:02",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy.",
+      "idx": 3
+    },
+    {
+      "timestamp": "00:09",
+      "speaker": "bot",
+      "text": "You can download the bank transfer details in the Freedom Broker app.",
+      "idx": 4
+    },
+    {
+      "timestamp": "00:47",
+      "speaker": "client",
+      "text": "Could you connect me with a support agent? I want to make sure I take the right details.",
+      "idx": 5
+    },
+    {
+      "timestamp": "00:49",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?",
+      "idx": 6
+    },
+    {
+      "timestamp": "00:55",
+      "speaker": "client",
+      "text": "yes please",
+      "idx": 7
+    },
+    {
+      "timestamp": "00:56",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly.",
+      "idx": 8
+    },
+    {
+      "timestamp": "00:58",
+      "speaker": "system",
+      "text": "Chat transferred to an agent.",
+      "idx": 9
+    },
+    {
+      "timestamp": "02:06",
+      "speaker": "operator",
+      "text": "Hi, I'm Nina from Freedom Broker support. Which currency are you sending?",
+      "idx": 10
+    },
+    {
+      "timestamp": "02:34",
+      "speaker": "client",
+      "text": "Euros.",
+      "idx": 11
+    },
+    {
+      "timestamp": "02:46",
+      "speaker": "operator",
+      "text": "The transfer details is available in the app. Open Menu, then Add Funds, and choose the bank transfer details option.",
+      "idx": 12
+    },
+    {
+      "timestamp": "03:05",
+      "speaker": "client",
+      "text": "I see a currency selector.",
+      "idx": 13
+    },
+    {
+      "timestamp": "03:31",
+      "speaker": "operator",
+      "text": "Select EUR and download the details for that currency. Take them with you to the branch.",
+      "idx": 14
+    },
+    {
+      "timestamp": "04:04",
+      "speaker": "client",
+      "text": "Got them. Thanks for checking.",
+      "idx": 15
+    },
+    {
+      "timestamp": "04:21",
+      "speaker": "operator",
+      "text": "You're welcome. You have the EUR transfer details now. Goodbye!",
+      "idx": 16
+    }
+  ],
+  "audio_url": null
+}

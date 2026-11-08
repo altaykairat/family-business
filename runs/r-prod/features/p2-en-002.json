@@ -1,0 +1,37 @@
+{
+  "conversation_id": "p2-en-002",
+  "operator_name_guess": "Jordan",
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12,
+    14,
+    17,
+    19,
+    21
+  ],
+  "time_to_first_operator_reply_s": 110,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 11,
+      "operator_idx": 12,
+      "seconds": 43
+    },
+    {
+      "client_idx": 15,
+      "operator_idx": 17,
+      "seconds": 76
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 21,
+    "speaker": "operator",
+    "text": "You're welcome. You have the report and know where to check the current plan. Goodbye!"
+  },
+  "last_client_idx": 20,
+  "seconds_from_last_client_to_end": 15,
+  "last_operator_idx": 21,
+  "duplicate_turn_idxs": []
+}

@@ -1,0 +1,29 @@
+{
+  "conversation_id": "p2-ru-004",
+  "operator_name_guess": null,
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12,
+    14
+  ],
+  "time_to_first_operator_reply_s": 87,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 13,
+      "operator_idx": 14,
+      "seconds": 48
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 15,
+    "speaker": "system",
+    "text": "Оператор закрыл чат."
+  },
+  "last_client_idx": 13,
+  "seconds_from_last_client_to_end": 64,
+  "last_operator_idx": 14,
+  "duplicate_turn_idxs": []
+}

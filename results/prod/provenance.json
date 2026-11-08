@@ -1,0 +1,389 @@
+{
+  "source": "published",
+  "checklist": "default@v1",
+  "blob": "907ff02e671c15aa846a92c0",
+  "conversations": {
+    "p1-en-001": {
+      "evaluation_id": "r-base:codex-cli:p1-en-001:ca7582b5",
+      "decisions": [
+        "d-0001"
+      ]
+    },
+    "p1-en-002": {
+      "evaluation_id": "r-base:codex-cli:p1-en-002:f50a7d0d",
+      "decisions": []
+    },
+    "p1-en-003": {
+      "evaluation_id": "r-base:codex-cli:p1-en-003:07ee48e8",
+      "decisions": [
+        "d-0002",
+        "d-0003"
+      ]
+    },
+    "p1-en-004": {
+      "evaluation_id": "r-base:codex-cli:p1-en-004:e8bebdb6",
+      "decisions": [
+        "d-0004"
+      ]
+    },
+    "p1-en-005": {
+      "evaluation_id": "r-base:codex-cli:p1-en-005:a0b3b2c2",
+      "decisions": [
+        "d-0005",
+        "d-0006"
+      ]
+    },
+    "p1-en-006": {
+      "evaluation_id": "r-base:codex-cli:p1-en-006:94acf4a0",
+      "decisions": [
+        "d-0007"
+      ]
+    },
+    "p1-en-007": {
+      "evaluation_id": "r-loop2:codex-cli:p1-en-007:9f2aad35",
+      "decisions": []
+    },
+    "p1-en-008": {
+      "evaluation_id": "r-loop2:codex-cli:p1-en-008:61410b86",
+      "decisions": []
+    },
+    "p1-en-009": {
+      "evaluation_id": "r-loop2:codex-cli:p1-en-009:6b9972a0",
+      "decisions": []
+    },
+    "p1-en-010": {
+      "evaluation_id": "r-base:codex-cli:p1-en-010:cc1c4279",
+      "decisions": [
+        "d-0008",
+        "d-0009"
+      ]
+    },
+    "p1-en-011": {
+      "evaluation_id": "r-base:codex-cli:p1-en-011:e7aca552",
+      "decisions": [
+        "d-0010"
+      ]
+    },
+    "p1-en-012": {
+      "evaluation_id": "r-base:codex-cli:p1-en-012:ca427168",
+      "decisions": [
+        "d-0011"
+      ]
+    },
+    "p1-en-013": {
+      "evaluation_id": "r-loop2:codex-cli:p1-en-013:28437fec",
+      "decisions": []
+    },
+    "p1-en-014": {
+      "evaluation_id": "r-loop2:codex-cli:p1-en-014:591bb895",
+      "decisions": []
+    },
+    "p1-en-015": {
+      "evaluation_id": "r-loop2:codex-cli:p1-en-015:25f07154",
+      "decisions": []
+    },
+    "p1-kz-001": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-001:cb8e10dc",
+      "decisions": [
+        "d-0012",
+        "d-0013"
+      ]
+    },
+    "p1-kz-002": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-002:ba4e049c",
+      "decisions": []
+    },
+    "p1-kz-003": {
+      "evaluation_id": "r-loop2:codex-cli:p1-kz-003:06829bce",
+      "decisions": []
+    },
+    "p1-kz-004": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-004:0a2e3957",
+      "decisions": [
+        "d-0014",
+        "d-0015"
+      ]
+    },
+    "p1-kz-005": {
+      "evaluation_id": "r-loop2:codex-cli:p1-kz-005:356ec330",
+      "decisions": []
+    },
+    "p1-kz-006": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-006:ba857d72",
+      "decisions": []
+    },
+    "p1-kz-007": {
+      "evaluation_id": "r-loop2:codex-cli:p1-kz-007:228a63fb",
+      "decisions": []
+    },
+    "p1-kz-008": {
+      "evaluation_id": "r-loop2:codex-cli:p1-kz-008:8cdf5a15",
+      "decisions": []
+    },
+    "p1-kz-009": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-009:2a037327",
+      "decisions": [
+        "d-0016"
+      ]
+    },
+    "p1-kz-010": {
+      "evaluation_id": "r-loop2:codex-cli:p1-kz-010:958d2e13",
+      "decisions": []
+    },
+    "p1-kz-011": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-011:1e34d9b9",
+      "decisions": [
+        "d-0017"
+      ]
+    },
+    "p1-kz-012": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-012:42c38f14",
+      "decisions": [
+        "d-0018"
+      ]
+    },
+    "p1-kz-013": {
+      "evaluation_id": "r-loop2:codex-cli:p1-kz-013:54d395e8",
+      "decisions": []
+    },
+    "p1-kz-014": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-014:26dd9f1e",
+      "decisions": [
+        "d-0019",
+        "d-0020"
+      ]
+    },
+    "p1-kz-015": {
+      "evaluation_id": "r-base:codex-cli:p1-kz-015:842d2574",
+      "decisions": [
+        "d-0021"
+      ]
+    },
+    "p1-ru-001": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-001:bdc4b871",
+      "decisions": [
+        "d-0022"
+      ]
+    },
+    "p1-ru-002": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-002:b492019e",
+      "decisions": [
+        "d-0023"
+      ]
+    },
+    "p1-ru-003": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-003:90cbfdd5",
+      "decisions": [
+        "d-0024"
+      ]
+    },
+    "p1-ru-004": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-004:b3b28523",
+      "decisions": [
+        "d-0025",
+        "d-0026"
+      ]
+    },
+    "p1-ru-005": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-005:6f476499",
+      "decisions": []
+    },
+    "p1-ru-006": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-006:e68b6e69",
+      "decisions": [
+        "d-0027",
+        "d-0028"
+      ]
+    },
+    "p1-ru-007": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-007:763a9e3d",
+      "decisions": [
+        "d-0029"
+      ]
+    },
+    "p1-ru-008": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-008:700c51f5",
+      "decisions": []
+    },
+    "p1-ru-009": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-009:f0b96798",
+      "decisions": [
+        "d-0030",
+        "d-0031"
+      ]
+    },
+    "p1-ru-010": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-010:19295767",
+      "decisions": []
+    },
+    "p1-ru-011": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-011:e41103c6",
+      "decisions": [
+        "d-0032"
+      ]
+    },
+    "p1-ru-012": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-012:0117971c",
+      "decisions": []
+    },
+    "p1-ru-013": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-013:28956c75",
+      "decisions": []
+    },
+    "p1-ru-014": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-014:587418e9",
+      "decisions": [
+        "d-0033",
+        "d-0034",
+        "d-0035"
+      ]
+    },
+    "p1-ru-015": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-015:9d354c48",
+      "decisions": []
+    },
+    "p1-ru-016": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-016:4c371375",
+      "decisions": []
+    },
+    "p1-ru-017": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-017:0d8fa6f1",
+      "decisions": []
+    },
+    "p1-ru-018": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-018:52a357da",
+      "decisions": []
+    },
+    "p1-ru-019": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-019:bd6ab924",
+      "decisions": [
+        "d-0036"
+      ]
+    },
+    "p1-ru-020": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-020:e4990657",
+      "decisions": []
+    },
+    "p1-ru-021": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-021:89f23c96",
+      "decisions": []
+    },
+    "p1-ru-022": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-022:3166aaae",
+      "decisions": []
+    },
+    "p1-ru-023": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-023:20971743",
+      "decisions": [
+        "d-0037",
+        "d-0038",
+        "d-0039"
+      ]
+    },
+    "p1-ru-024": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-024:9545686d",
+      "decisions": []
+    },
+    "p1-ru-025": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-025:53ac8275",
+      "decisions": []
+    },
+    "p1-ru-026": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-026:ba8b1e19",
+      "decisions": [
+        "d-0040"
+      ]
+    },
+    "p1-ru-027": {
+      "evaluation_id": "r-loop2:codex-cli:p1-ru-027:1fb496c3",
+      "decisions": []
+    },
+    "p1-ru-028": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-028:97fb4d68",
+      "decisions": [
+        "d-0041"
+      ]
+    },
+    "p1-ru-029": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-029:fbbd42cd",
+      "decisions": [
+        "d-0042"
+      ]
+    },
+    "p1-ru-030": {
+      "evaluation_id": "r-base:codex-cli:p1-ru-030:812a2376",
+      "decisions": [
+        "d-0043"
+      ]
+    },
+    "p4-ru-001": {
+      "evaluation_id": "r-loop2:codex-cli:p4-ru-001:41066b3b",
+      "decisions": []
+    },
+    "p4-ru-002": {
+      "evaluation_id": "r-loop2:codex-cli:p4-ru-002:5fb05fa3",
+      "decisions": []
+    },
+    "p4-ru-003": {
+      "evaluation_id": "r-base:codex-cli:p4-ru-003:c21d1d03",
+      "decisions": [
+        "d-0044"
+      ]
+    },
+    "p4-ru-004": {
+      "evaluation_id": "r-base:codex-cli:p4-ru-004:ffe40564",
+      "decisions": [
+        "d-0045",
+        "d-0046"
+      ]
+    },
+    "p4-ru-005": {
+      "evaluation_id": "r-base:codex-cli:p4-ru-005:1395e68b",
+      "decisions": [
+        "d-0047",
+        "d-0048",
+        "d-0049"
+      ]
+    },
+    "p2-en-001": {
+      "evaluation_id": "r-prod:codex-cli:p2-en-001:c7c1e9cf",
+      "decisions": []
+    },
+    "p2-en-002": {
+      "evaluation_id": "r-prod:codex-cli:p2-en-002:ef719711",
+      "decisions": []
+    },
+    "p2-kz-001": {
+      "evaluation_id": "r-prod:codex-cli:p2-kz-001:386b2b31",
+      "decisions": []
+    },
+    "p2-kz-002": {
+      "evaluation_id": "r-prod:codex-cli:p2-kz-002:5e0b443f",
+      "decisions": []
+    },
+    "p2-kz-003": {
+      "evaluation_id": "r-prod:codex-cli:p2-kz-003:bd8443b4",
+      "decisions": []
+    },
+    "p2-kz-004": {
+      "evaluation_id": "r-prod:codex-cli:p2-kz-004:cab9d43e",
+      "decisions": []
+    },
+    "p2-ru-001": {
+      "evaluation_id": "r-prod:codex-cli:p2-ru-001:bcdcbdcb",
+      "decisions": []
+    },
+    "p2-ru-002": {
+      "evaluation_id": "r-prod:codex-cli:p2-ru-002:0440ab66",
+      "decisions": []
+    },
+    "p2-ru-003": {
+      "evaluation_id": "r-prod:codex-cli:p2-ru-003:7c037cba",
+      "decisions": []
+    },
+    "p2-ru-004": {
+      "evaluation_id": "r-prod:codex-cli:p2-ru-004:cd49bcf1",
+      "decisions": []
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "conversation_id": "p2-ru-002",
+  "operator_name_guess": "Анна",
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12,
+    14
+  ],
+  "time_to_first_operator_reply_s": 53,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 11,
+      "operator_idx": 12,
+      "seconds": 45
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 14,
+    "speaker": "operator",
+    "text": "Если появятся ещё вопросы, напишите нам. До свидания."
+  },
+  "last_client_idx": 13,
+  "seconds_from_last_client_to_end": 26,
+  "last_operator_idx": 14,
+  "duplicate_turn_idxs": []
+}

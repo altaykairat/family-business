@@ -1,0 +1,104 @@
+{
+  "conversation_id": "p2-en-001",
+  "channel": "agent chat",
+  "language": "EN",
+  "transcript": [
+    {
+      "timestamp": "00:00",
+      "speaker": "client",
+      "text": "I can't find the sign-in button. Is the site down?",
+      "idx": 1
+    },
+    {
+      "timestamp": "00:04",
+      "speaker": "bot",
+      "text": "Hello! I'm AIM, the Freedom Broker AI assistant. I can answer questions about products and services, provide information about your accounts, assets and fees, compare information in a table, share your account manager's contact details, and pass your question to our support team.",
+      "idx": 2
+    },
+    {
+      "timestamp": "00:04",
+      "speaker": "bot",
+      "text": "By continuing this conversation, you agree to the collection and processing of your personal data and confirm that you have read the company's Privacy Policy.",
+      "idx": 3
+    },
+    {
+      "timestamp": "00:09",
+      "speaker": "bot",
+      "text": "Which website are you trying to sign in on?",
+      "idx": 4
+    },
+    {
+      "timestamp": "00:30",
+      "speaker": "client",
+      "text": "Can you put me through to an agent? I have a few tabs open.",
+      "idx": 5
+    },
+    {
+      "timestamp": "00:32",
+      "speaker": "bot",
+      "text": "Would you like me to connect you with an agent?",
+      "idx": 6
+    },
+    {
+      "timestamp": "00:46",
+      "speaker": "client",
+      "text": "yes please",
+      "idx": 7
+    },
+    {
+      "timestamp": "00:47",
+      "speaker": "bot",
+      "text": "Please wait. An agent will join the chat shortly.",
+      "idx": 8
+    },
+    {
+      "timestamp": "00:49",
+      "speaker": "system",
+      "text": "Chat transferred to an agent.",
+      "idx": 9
+    },
+    {
+      "timestamp": "02:22",
+      "speaker": "operator",
+      "text": "Hi, I'm Nora. Which site are you on right now?",
+      "idx": 10
+    },
+    {
+      "timestamp": "02:41",
+      "speaker": "client",
+      "text": "The Freedom Finance Global company site.",
+      "idx": 11
+    },
+    {
+      "timestamp": "03:13",
+      "speaker": "operator",
+      "text": "Go to the other one, not the one you're on. You can use it there.",
+      "idx": 12
+    },
+    {
+      "timestamp": "03:58",
+      "speaker": "client",
+      "text": "Which other one? What address should I open?",
+      "idx": 13
+    },
+    {
+      "timestamp": "04:11",
+      "speaker": "operator",
+      "text": "Sorry, let me be specific. The company site is informational. Open tradernet.global to sign in on the web, or use the Freedom Broker app.",
+      "idx": 14
+    },
+    {
+      "timestamp": "04:37",
+      "speaker": "client",
+      "text": "That worked. Thanks.",
+      "idx": 15
+    },
+    {
+      "timestamp": "05:16",
+      "speaker": "operator",
+      "text": "Glad you got in. Have a good day!",
+      "idx": 16
+    }
+  ],
+  "audio_url": null
+}

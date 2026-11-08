@@ -1,0 +1,1103 @@
+{
+  "run_id": "r-prod",
+  "agent": "codex-cli",
+  "conversation_id": "p2-en-002",
+  "checklist": "default@v8",
+  "variant": "v1",
+  "status": "ok",
+  "usage": [
+    {
+      "part": "all",
+      "tokens_in": 5022,
+      "tokens_out": 7768,
+      "exact": false,
+      "model": null,
+      "response_file": "runs/r-prod/agents/codex-cli/responses/p2-en-002.md"
+    }
+  ],
+  "score": {
+    "total": 100.0,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": true,
+    "missing_criteria": [],
+    "applicable_weight": 65.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 10,
+        "applicable": true,
+        "points": 10.0,
+        "effective_weight": 15.38,
+        "effective_points": 15.38
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "na",
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 30.77,
+        "effective_points": 30.77
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 10,
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 23.08,
+        "effective_points": 23.08
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 5,
+        "applicable": true,
+        "points": 5.0,
+        "effective_weight": 7.69,
+        "effective_points": 7.69
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": "no",
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 100.0,
+        "contribution": 15.38,
+        "max_contribution": 15.38
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 30.77,
+        "max_contribution": 30.77
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 100.0,
+        "contribution": 53.85,
+        "max_contribution": 53.85
+      }
+    ]
+  },
+  "answers": {
+    "c01": "yes",
+    "c02": "na",
+    "c03": "na",
+    "c04": 20,
+    "c05": "yes",
+    "c06": 10,
+    "c07": "yes",
+    "c08": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Приветствие и представление обязательны в первом ответе оператора."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор поздоровался на языке клиента в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            10
+          ],
+          "note": "Клиент пишет по-английски, оператор использует английское приветствие."
+        },
+        {
+          "question": "Оператор представился в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Назвал имя Jordan."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "I’m in the mobile app. I need last year’s broker report and want to see where the pricing plan is printed in it.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Язык клиента — английский."
+        },
+        {
+          "idx": 10,
+          "quote": "Hi, I'm Jordan.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Первый ответ содержит приветствие и представление на английском."
+        }
+      ],
+      "rule_applied": "Да — оператор поздоровался на языке клиента и представился в первом ответе.",
+      "alternatives_rejected": "Нет не подходит: оба условия выполнены в #10. N/A запрещён.",
+      "ambiguities": [],
+      "reasoning": "Язык клиента установлен по #1. В первом ответе #10 оператор приветствует клиента на том же языке и называет своё имя.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Hi, I'm Jordan."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Установление контакта — Да. Оператор поздоровался по-английски и представился в первом ответе #10.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "С самого начала известны платформа, нужный документ, период и цель поиска; дополнительных данных для инструкции не требовалось."
+      },
+      "sub_questions": [
+        {
+          "question": "Данных для ответа хватало с самого начала?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            5
+          ],
+          "note": "Клиент указал мобильное приложение, отчёт за прошлый год и затруднение с поиском меню."
+        },
+        {
+          "question": "Оператор учёл известные детали?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Инструкция относится к приложению, прошлому году и расположению тарифа."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "I’m in the mobile app. I need last year’s broker report and want to see where the pricing plan is printed in it.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Основные параметры запроса уже сообщены."
+        },
+        {
+          "idx": 5,
+          "quote": "Could you connect me with an agent? I can't find the report menu.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Конкретизирована необходимая помощь — найти меню отчёта."
+        },
+        {
+          "idx": 10,
+          "quote": "In the app, open Menu, then Reports and Documents, then Broker Report. Select last year's dates and download the report.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Оператор использовал известные платформу и период."
+        },
+        {
+          "idx": 12,
+          "quote": "Look in Account Information on the first page. That's where the pricing plan is listed.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Указано точное место поиска тарифа."
+        }
+      ],
+      "rule_applied": "N/A — данных для ответа хватало с самого начала.",
+      "alternatives_rejected": "Да и Нет не выбираются, поскольку выполнено прямое условие N/A; обязательной потребности в уточнениях не было.",
+      "ambiguities": [],
+      "reasoning": "В #1 и #5 клиент сообщил достаточно сведений для навигационной инструкции. Последующие вопросы добавляли задачи и проверяли открытый файл, но не свидетельствуют о нехватке исходных данных.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "I’m in the mobile app. I need last year’s broker report and want to see where the pricing plan is printed in it."
+        },
+        {
+          "idx": 5,
+          "quote": "Could you connect me with an agent? I can't find the report menu."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Выявление потребности — N/A. Данных для инструкции хватало из #1 и #5.",
+      "insufficient_data": false,
+      "confidence": 0.99,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 5,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Запрос касался общей навигации, а не раскрытия персональных данных или выполнения действия оператором."
+      },
+      "sub_questions": [
+        {
+          "question": "Запрос требовал идентификации?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            13
+          ],
+          "note": "Клиент самостоятельно получает отчёт и просматривает тариф по инструкции."
+        },
+        {
+          "question": "Оператор раскрывал защищённые данные или выполнял защищённое действие?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12,
+            14,
+            17,
+            19,
+            21
+          ],
+          "note": "Реплики содержат только инструкции и завершение."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "I’m in the mobile app. I need last year’s broker report and want to see where the pricing plan is printed in it.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Запрошена помощь с поиском документа и раздела."
+        },
+        {
+          "idx": 13,
+          "quote": "Okay, and if I only want the current plan next time, can I see it without downloading anything?",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Общий вопрос о способе просмотра тарифа."
+        },
+        {
+          "idx": 14,
+          "quote": "Yes. In the web version, open the account area, labelled «Кабинет» in the Russian interface. The current plan is under your name.",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Сообщён путь просмотра, конкретный тариф клиента не раскрыт."
+        }
+      ],
+      "rule_applied": "N/A — запрос не требовал идентификации.",
+      "alternatives_rejected": "Нет не подходит: проверка личности не была необходима. Да не подходит: проверка не проводилась, применяется N/A.",
+      "ambiguities": [],
+      "reasoning": "Оператор объясняет, где клиент может самостоятельно получить информацию. Защищённого действия и раскрытия индивидуальных данных в проверенном участке нет.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 13,
+          "quote": "Okay, and if I only want the current plan next time, can I see it without downloading anything?"
+        },
+        {
+          "idx": 14,
+          "quote": "Yes. In the web version, open the account area, labelled «Кабинет» in the Russian interface. The current plan is under your name."
+        }
+      ],
+      "checked_range": [
+        10,
+        21
+      ],
+      "explanation": "Идентификация — N/A. Оператор давал общие инструкции по самостоятельному просмотру отчёта и тарифа, в частности в #14.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 13,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 14,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент сформулировал запрос в #1, оператор дал консультацию."
+      },
+      "sub_questions": [
+        {
+          "question": "Объяснено получение отчёта за прошлый год?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            19,
+            20
+          ],
+          "note": "Указан путь, выбор периода и повторное формирование при сомнениях."
+        },
+        {
+          "question": "Указано расположение тарифа в отчёте?",
+          "answer": "да",
+          "evidence_idx": [
+            12,
+            17
+          ],
+          "note": "Раздел Account Information на первой странице."
+        },
+        {
+          "question": "Объяснён просмотр текущего тарифа без скачивания?",
+          "answer": "да",
+          "evidence_idx": [
+            14,
+            15
+          ],
+          "note": "Указано расположение в веб-версии; клиент подтвердил получение ответа."
+        },
+        {
+          "question": "Закрыты дополнительные вопросы о документе и нужном файле?",
+          "answer": "да",
+          "evidence_idx": [
+            17,
+            19,
+            20
+          ],
+          "note": "Оператор объяснил проверку названия и периода, клиент нашёл нужный файл."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "In the app, open Menu, then Reports and Documents, then Broker Report. Select last year's dates and download the report.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Пошаговая инструкция получения отчёта."
+        },
+        {
+          "idx": 12,
+          "quote": "Look in Account Information on the first page. That's where the pricing plan is listed.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Конкретное расположение тарифа."
+        },
+        {
+          "idx": 14,
+          "quote": "Yes. In the web version, open the account area, labelled «Кабинет» in the Russian interface. The current plan is under your name.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Дан способ просмотра текущего тарифа."
+        },
+        {
+          "idx": 15,
+          "quote": "That answers both questions. Thank you.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Клиент подтвердил ответы на основные вопросы."
+        },
+        {
+          "idx": 17,
+          "quote": "Check the document title. If it says Broker Report, you're in the right document. The plan is in Account Information on page one.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Объяснена проверка типа документа."
+        },
+        {
+          "idx": 19,
+          "quote": "Use the one for the dates you selected for last year. You can go back to Broker Report and generate it again if you're unsure which file you opened.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Дан следующий шаг при путанице с файлами."
+        },
+        {
+          "idx": 20,
+          "quote": "Found it now. I was opening the wrong download.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Подтверждено нахождение нужного файла."
+        }
+      ],
+      "rule_applied": "20 — все существенные вопросы закрыты или дан корректный следующий шаг.",
+      "alternatives_rejected": "Верхняя ступень выполнена: оснований спускаться к 15 и ниже нет. N/A исключён, поскольку запрос сформулирован.",
+      "ambiguities": [],
+      "reasoning": "Проверка начинается с 20: получение отчёта объяснено в #10, расположение тарифа — в #12, текущий тариф — в #14. Дополнительные затруднения разобраны в #17 и #19; результат подтверждён в #20.",
+      "answer": 20,
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Look in Account Information on the first page. That's where the pricing plan is listed."
+        },
+        {
+          "idx": 14,
+          "quote": "Yes. In the web version, open the account area, labelled «Кабинет» in the Russian interface. The current plan is under your name."
+        },
+        {
+          "idx": 20,
+          "quote": "Found it now. I was opening the wrong download."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Корректная и полная консультация — 20. Даны инструкции по всем вопросам, включая выбор нужного файла; клиент подтвердил решение в #20.",
+      "insufficient_data": false,
+      "confidence": 0.99,
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 14,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 20,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий обязателен."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор общался вежливо?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            21
+          ],
+          "note": "Корректные приветствие и завершение."
+        },
+        {
+          "question": "Оператор отреагировал на конкретные затруднения клиента?",
+          "answer": "да",
+          "evidence_idx": [
+            5,
+            10,
+            16,
+            17,
+            18,
+            19
+          ],
+          "note": "Дал инструкции по меню, проверке документа и выбору файла."
+        },
+        {
+          "question": "Клиент выразил явную жалобу, требующую словесного признания его переживаний?",
+          "answer": "нет",
+          "evidence_idx": [
+            5,
+            16,
+            18
+          ],
+          "note": "Описаны обычные затруднения без выраженного недовольства."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 5,
+          "quote": "Could you connect me with an agent? I can't find the report menu.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Обычное описание затруднения."
+        },
+        {
+          "idx": 10,
+          "quote": "Hi, I'm Jordan. In the app, open Menu, then Reports and Documents, then Broker Report. Select last year's dates and download the report.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Вежливая конкретная помощь."
+        },
+        {
+          "idx": 16,
+          "quote": "The report opened on my phone. I was looking at the balance page earlier, so I just want to make sure this is the right document.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Просьба проверить документ, без жалобы."
+        },
+        {
+          "idx": 17,
+          "quote": "Check the document title. If it says Broker Report, you're in the right document. The plan is in Account Information on page one.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Оператор отвечает на конкретное сомнение."
+        },
+        {
+          "idx": 18,
+          "quote": "Yes, it says Broker Report. There are two downloads, though. I think one is from the wrong year.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Затруднение с выбором файла."
+        },
+        {
+          "idx": 19,
+          "quote": "Use the one for the dates you selected for last year. You can go back to Broker Report and generate it again if you're unsure which file you opened.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Предложено конкретное решение."
+        },
+        {
+          "idx": 21,
+          "quote": "You're welcome. You have the report and know where to check the current plan. Goodbye!",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Вежливое завершение."
+        }
+      ],
+      "rule_applied": "Да — вежливое общение и конкретная помощь при обычном описании проблемы. По уточнению c05 отдельное словесное признание переживаний требуется при явной жалобе.",
+      "alternatives_rejected": "Нет не подходит: оператор вежлив и отвечает на затруднения; явной жалобы нет. N/A запрещён.",
+      "ambiguities": [],
+      "reasoning": "Клиент описывает проблемы с навигацией и файлами без раздражения. Оператор последовательно даёт конкретную помощь и вежливо завершает разговор.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 19,
+          "quote": "Use the one for the dates you selected for last year. You can go back to Broker Report and generate it again if you're unsure which file you opened."
+        },
+        {
+          "idx": 21,
+          "quote": "You're welcome. You have the report and know where to check the current plan. Goodbye!"
+        }
+      ],
+      "checked_range": [
+        10,
+        21
+      ],
+      "explanation": "Эмпатия и клиентоориентированность — Да. Оператор вежлив и помогает с конкретными затруднениями, в частности в #17 и #19.",
+      "insufficient_data": false,
+      "confidence": 0.99,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 19,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 21,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий обязателен."
+      },
+      "sub_questions": [
+        {
+          "question": "Ответы ясны и последовательны?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            12,
+            14,
+            17,
+            19
+          ],
+          "note": "Оператор даёт понятные пути и отвечает по порядку поступления вопросов."
+        },
+        {
+          "question": "Выявлено явное непредупреждённое ожидание?",
+          "answer": "нет",
+          "evidence_idx": [
+            11,
+            12,
+            15,
+            16,
+            17
+          ],
+          "note": "Пауза 43 секунды сама по себе не является сбоем. Интервал после #15 включает новую реплику клиента #16, на которую оператор ответил через 15 секунд."
+        },
+        {
+          "question": "Клиент переспрашивал из-за непонятных формулировок оператора?",
+          "answer": "нет",
+          "evidence_idx": [
+            11,
+            16,
+            18,
+            20
+          ],
+          "note": "Уточнения касались расположения раздела и самостоятельно открытых документов; клиент указал, что выбирал неверный файл."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "In the app, open Menu, then Reports and Documents, then Broker Report. Select last year's dates and download the report.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Последовательная инструкция."
+        },
+        {
+          "idx": 11,
+          "quote": "Got it. Which part of the first page should I look at?",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент понял инструкцию и уточняет место на странице."
+        },
+        {
+          "idx": 12,
+          "quote": "Look in Account Information on the first page. That's where the pricing plan is listed.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Ясный ответ через 43 секунды."
+        },
+        {
+          "idx": 14,
+          "quote": "Yes. In the web version, open the account area, labelled «Кабинет» in the Russian interface. The current plan is under your name.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Русское название интерфейса объяснено на языке клиента."
+        },
+        {
+          "idx": 15,
+          "quote": "That answers both questions. Thank you.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Нет незакрытого вопроса, требующего ожидания ответа в этот момент."
+        },
+        {
+          "idx": 16,
+          "quote": "The report opened on my phone. I was looking at the balance page earlier, so I just want to make sure this is the right document.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Поступил новый вопрос о самостоятельно открытом документе."
+        },
+        {
+          "idx": 17,
+          "quote": "Check the document title. If it says Broker Report, you're in the right document. The plan is in Account Information on page one.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Прямой ответ через 15 секунд после нового вопроса."
+        },
+        {
+          "idx": 19,
+          "quote": "Use the one for the dates you selected for last year. You can go back to Broker Report and generate it again if you're unsure which file you opened.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Понятный порядок действий."
+        },
+        {
+          "idx": 20,
+          "quote": "Found it now. I was opening the wrong download.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Причина затруднения — выбор файла, а не бессвязность ответа."
+        }
+      ],
+      "rule_applied": "10 — ответы ясные и связные, явного непредупреждённого ожидания не выявлено. По уточнению c06 само наличие паузы недостаточно для снижения.",
+      "alternatives_rejected": "Верхняя ступень выполнена. Для 7 нет конкретного заметного сбоя; для 4 и 0 нет вызванных формулировками переспросов или бессвязности. N/A запрещён.",
+      "ambiguities": [],
+      "reasoning": "Проверка верхней ступени не выявила нарушений. Дополнительные вопросы логично развивают запрос. Пауза после #15 не означает ожидание ответа на незакрытый вопрос: клиент уже подтвердил получение ответов, затем задал новый вопрос в #16.",
+      "answer": 10,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "In the app, open Menu, then Reports and Documents, then Broker Report. Select last year's dates and download the report."
+        },
+        {
+          "idx": 15,
+          "quote": "That answers both questions. Thank you."
+        },
+        {
+          "idx": 17,
+          "quote": "Check the document title. If it says Broker Report, you're in the right document. The plan is in Account Information on page one."
+        }
+      ],
+      "checked_range": [
+        10,
+        21
+      ],
+      "explanation": "Управление диалогом, скорость и грамотность — 10. Ответы понятны и последовательны; конкретного сбоя или явного непредупреждённого ожидания не выявлено.",
+      "insufficient_data": false,
+      "confidence": 0.99,
+      "answer_normalized": 10,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 15,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 17,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Диалог дошёл до подтверждения решения и прощания оператора."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор подвёл итог или предложил дальнейшую помощь?",
+          "answer": "да",
+          "evidence_idx": [
+            21
+          ],
+          "note": "Подытожил получение отчёта и знание места просмотра текущего тарифа."
+        },
+        {
+          "question": "Оператор попрощался?",
+          "answer": "да",
+          "evidence_idx": [
+            21
+          ],
+          "note": "Сказал Goodbye."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 20,
+          "quote": "Found it now. I was opening the wrong download.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент подтвердил решение последнего затруднения."
+        },
+        {
+          "idx": 21,
+          "quote": "You're welcome. You have the report and know where to check the current plan. Goodbye!",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Есть и итог, и прощание."
+        }
+      ],
+      "rule_applied": "Да — оператор подвёл итог и попрощался.",
+      "alternatives_rejected": "Нет исключён наличием обоих элементов в #21. N/A не подходит: возможность завершения реализована.",
+      "ambiguities": [],
+      "reasoning": "После подтверждения клиента в #20 оператор в #21 резюмировал результат и попрощался. Дополнительное предложение помощи не обязательно, поскольку итог уже дан.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 21,
+          "quote": "You're welcome. You have the report and know where to check the current plan. Goodbye!"
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Завершение — Да. В #21 оператор подвёл итог и попрощался.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 21,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Флаг грубых нарушений проверяется обязательно."
+      },
+      "sub_questions": [
+        {
+          "question": "Выявлено оскорбление клиента?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12,
+            14,
+            17,
+            19,
+            21
+          ],
+          "note": "Оскорблений в репликах оператора нет."
+        },
+        {
+          "question": "Выявлено предложение платной услуги в обход компании?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12,
+            14,
+            17,
+            19,
+            21
+          ],
+          "note": "Частные платные услуги не предлагались."
+        },
+        {
+          "question": "Выявлено раскрытие конфиденциальной информации?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12,
+            14,
+            17,
+            19,
+            21
+          ],
+          "note": "Сообщены общие навигационные инструкции."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Hi, I'm Jordan. In the app, open Menu, then Reports and Documents, then Broker Report. Select last year's dates and download the report.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Приветствие и общая инструкция без нарушения."
+        },
+        {
+          "idx": 12,
+          "quote": "Look in Account Information on the first page. That's where the pricing plan is listed.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Общая информация о структуре отчёта."
+        },
+        {
+          "idx": 14,
+          "quote": "Yes. In the web version, open the account area, labelled «Кабинет» in the Russian interface. The current plan is under your name.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Путь просмотра тарифа без раскрытия данных."
+        },
+        {
+          "idx": 17,
+          "quote": "Check the document title. If it says Broker Report, you're in the right document. The plan is in Account Information on page one.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Инструкция по проверке документа."
+        },
+        {
+          "idx": 19,
+          "quote": "Use the one for the dates you selected for last year. You can go back to Broker Report and generate it again if you're unsure which file you opened.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Помощь с выбором файла без запрещённых предложений."
+        },
+        {
+          "idx": 21,
+          "quote": "You're welcome. You have the report and know where to check the current plan. Goodbye!",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Последняя реплика оператора; нарушений нет."
+        }
+      ],
+      "rule_applied": "Нет — ни одно из трёх грубых нарушений не выявлено.",
+      "alternatives_rejected": "Да не подходит: отсутствует хотя бы одно из перечисленных нарушений. N/A запрещён.",
+      "ambiguities": [],
+      "reasoning": "Проверены все реплики оператора от #10 до #21. Они содержат инструкции и вежливое завершение; оскорблений, частных платных предложений и раскрытия конфиденциальных данных нет.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 21,
+          "quote": "You're welcome. You have the report and know where to check the current plan. Goodbye!"
+        }
+      ],
+      "checked_range": [
+        10,
+        21
+      ],
+      "explanation": "Грубые ошибки — Нет. На участке #10–#21 ни одно из трёх нарушений не выявлено; последняя реплика оператора — #21.",
+      "insufficient_data": false,
+      "confidence": 1.0,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 21,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    }
+  },
+  "issues": [],
+  "dialog_facts": {
+    "client_language": "EN",
+    "operator_language_first_reply": "EN",
+    "client_request_summary": "Получить брокерский отчёт за прошлый год, найти в нём тарифный план и узнать, где смотреть текущий тариф без скачивания отчёта.",
+    "client_questions": [
+      "Как найти и скачать брокерский отчёт за прошлый год в мобильном приложении?",
+      "В какой части первой страницы отчёта указан тарифный план?",
+      "Можно ли посмотреть текущий тариф без скачивания отчёта?",
+      "Как убедиться, что открыт именно брокерский отчёт?",
+      "Как выбрать отчёт за нужный год среди двух скачанных файлов?"
+    ],
+    "bot_answer_before_operator": "Бот сообщил, что тарифный план находится на первой странице брокерского отчёта, затем передал чат оператору.",
+    "first_operator_turn_idx": 10,
+    "protected_action_or_data_requested": {
+      "value": false,
+      "evidence_idx": [
+        1,
+        13,
+        16,
+        18
+      ],
+      "note": "Клиент запрашивал инструкции для самостоятельного просмотра документов и тарифа. Раскрытие оператором персональных данных или выполнение защищённого действия не требовалось."
+    },
+    "identity_verification": {
+      "performed": false,
+      "evidence_idx": [],
+      "note": "Проверка личности в тексте отсутствует и для такой консультации не требовалась."
+    },
+    "client_dissatisfaction": {
+      "present": false,
+      "evidence_idx": [
+        5,
+        16,
+        18,
+        20
+      ],
+      "note": "Клиент описывал затруднения с меню и выбором файла, но явного недовольства, раздражения или жалобы не выражал."
+    },
+    "explicit_waits": [],
+    "ending": {
+      "type": "operator_goodbye",
+      "evidence_idx": [
+        20,
+        21
+      ],
+      "operator_offered_help_or_summary": true,
+      "operator_said_goodbye": true
+    },
+    "dialog_summary": "Оператор объяснил, как скачать отчёт за прошлый год и найти тариф в разделе Account Information, затем указал путь к текущему тарифу в веб-версии. Дополнительно помог проверить название документа и выбрать файл за нужный период. Клиент подтвердил решение, оператор подвёл итог и попрощался."
+  },
+  "model_total_estimate": {
+    "total": 100.0,
+    "calculation": "При исключении N/A из знаменателя: c01 = 10, c04 = 20, c05 = 15, c06 = 15 × 10/10 = 15, c07 = 5. Получено 65 из 65 применимых баллов, то есть 100%. c02 и c03 исключены как N/A; c08 без баллов. Способ нормирования N/A отдельно не задан, поэтому использован расчёт по применимым весам."
+  },
+  "overall_comment": "Оператор вежливо и последовательно закрыл все вопросы, помог выбрать нужный отчёт и корректно завершил диалог. Оснований для снижения применимых критериев и флага грубых нарушений не выявлено.",
+  "meta": {
+    "model": "GPT-6",
+    "conversation_id": "p2-en-002",
+    "prompt_id": "v2|default@v8|v1|all|ctx:5549fc88"
+  }
+}
