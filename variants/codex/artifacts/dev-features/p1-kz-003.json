@@ -1,0 +1,62 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 11,
+  "operator_turn_idxs": [
+    11,
+    14,
+    17,
+    19,
+    22,
+    24,
+    26
+  ],
+  "time_to_first_operator_reply_s": 95,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 12,
+      "operator_idx": 14,
+      "seconds": 57
+    },
+    {
+      "client_idx": 15,
+      "operator_idx": 17,
+      "seconds": 66
+    },
+    {
+      "client_idx": 20,
+      "operator_idx": 22,
+      "seconds": 95
+    },
+    {
+      "client_idx": 23,
+      "operator_idx": 24,
+      "seconds": 34
+    },
+    {
+      "client_idx": 25,
+      "operator_idx": 26,
+      "seconds": 36
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 26,
+    "speaker": "operator",
+    "text": "Жақсы, аударымға қатысты жауапты осында жібереміз. Сау болыңыз!"
+  },
+  "last_client_idx": 25,
+  "seconds_from_last_client_to_end": 36,
+  "last_operator_idx": 26,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 11,
+        "quote": "Сәлеметсіз бе, мен Дана. Ақша көрінбей қалса, алаңдайтыныңыз түсінікті. Нақты төлемді тексеру үшін жеке басыңызды растау қажет."
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

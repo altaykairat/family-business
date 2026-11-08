@@ -1,0 +1,466 @@
+{
+  "p1-ru-001": {
+    "c01": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c02": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c03": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c04": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c05": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c06": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c07": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c08": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    }
+  },
+  "p1-ru-012": {
+    "c01": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c02": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c03": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c04": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c05": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c06": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c07": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c08": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    }
+  },
+  "p1-ru-022": {
+    "c01": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c02": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c03": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c04": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c05": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c06": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c07": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c08": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    }
+  },
+  "p1-ru-029": {
+    "c01": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c02": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c03": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c04": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c05": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c06": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c07": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c08": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    }
+  },
+  "p1-kz-001": {
+    "c01": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c02": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c03": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c04": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c05": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c06": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c07": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c08": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    }
+  },
+  "p1-kz-008": {
+    "c01": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c02": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c03": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c04": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c05": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c06": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c07": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c08": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    }
+  },
+  "p1-en-015": {
+    "c01": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c02": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c03": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c04": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c05": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c06": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c07": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c08": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    }
+  },
+  "p4-ru-001": {
+    "c01": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c02": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c03": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c04": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c05": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c06": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c07": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    },
+    "c08": {
+      "votes": {},
+      "proposal": null,
+      "agreement": null,
+      "n": 0,
+      "calibrated_probability": null
+    }
+  }
+}

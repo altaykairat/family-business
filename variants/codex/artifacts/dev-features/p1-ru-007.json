@@ -1,0 +1,31 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 11,
+  "operator_turn_idxs": [
+    11,
+    13
+  ],
+  "time_to_first_operator_reply_s": 105,
+  "operator_reply_gaps_s": [],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 13,
+    "speaker": "operator",
+    "text": "Путь к обновлению я указал. Хорошего дня!"
+  },
+  "last_client_idx": 12,
+  "seconds_from_last_client_to_end": 20,
+  "last_operator_idx": 13,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 11,
+        "quote": "Здравствуйте, я Дамир. В приложении откройте «Меню → Поручения → Персональные данные → Изменение сведений»."
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

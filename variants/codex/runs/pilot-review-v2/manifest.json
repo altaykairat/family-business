@@ -1,0 +1,286 @@
+{
+  "variant": "review",
+  "dataset": "dev",
+  "agents": [
+    "claude",
+    "codex",
+    "antigravity"
+  ],
+  "config": {
+    "version": 1,
+    "agents": [
+      "claude",
+      "codex",
+      "antigravity"
+    ],
+    "gap_threshold_s": 30,
+    "review_na": true,
+    "review_ambiguities": true,
+    "min_confidence": 0.7,
+    "review_on_disagreement": true,
+    "output_tokens_per_criterion": 650,
+    "review_rates": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "prices": {},
+    "lexicons": {
+      "greeting": {
+        "speaker": "operator",
+        "patterns": [
+          "здравств",
+          "добрый",
+          "сәлем",
+          "hello",
+          "\\bhi\\b"
+        ]
+      },
+      "wait": {
+        "speaker": "operator",
+        "patterns": [
+          "подожд",
+          "ожида",
+          "проверю",
+          "күте",
+          "please wait",
+          "checking"
+        ]
+      },
+      "ending": {
+        "speaker": "system",
+        "patterns": [
+          "закрыл чат",
+          "прервано",
+          "покинул",
+          "closed",
+          "disconnected",
+          "left",
+          "үзілді",
+          "аяқтады"
+        ]
+      }
+    }
+  },
+  "checklist": "default@v1",
+  "checklist_hash": "b00572af3804",
+  "token_method": "heuristic:chars-per-script",
+  "conversations": {
+    "p1-ru-001": {
+      "parts": [
+        {
+          "name": "p1-ru-001__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3644,
+          "prompt_hash": "1949778c3688",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3644
+    },
+    "p1-ru-012": {
+      "parts": [
+        {
+          "name": "p1-ru-012__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3631,
+          "prompt_hash": "99d6ba4c948e",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3631
+    },
+    "p1-ru-022": {
+      "parts": [
+        {
+          "name": "p1-ru-022__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3683,
+          "prompt_hash": "2de86a59d187",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3683
+    },
+    "p1-ru-029": {
+      "parts": [
+        {
+          "name": "p1-ru-029__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3677,
+          "prompt_hash": "44e1cc35db3b",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3677
+    },
+    "p1-kz-001": {
+      "parts": [
+        {
+          "name": "p1-kz-001__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3659,
+          "prompt_hash": "864ad77e33a4",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3659
+    },
+    "p1-kz-008": {
+      "parts": [
+        {
+          "name": "p1-kz-008__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3667,
+          "prompt_hash": "8254ea7789c4",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3667
+    },
+    "p1-en-015": {
+      "parts": [
+        {
+          "name": "p1-en-015__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3609,
+          "prompt_hash": "1ba8f62fb341",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3609
+    },
+    "p4-ru-001": {
+      "parts": [
+        {
+          "name": "p4-ru-001__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4843,
+          "prompt_hash": "6ccd8e8b22bd",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 4843
+    }
+  },
+  "projection": {
+    "calls_per_agent": 8,
+    "tokens_in_per_agent": 30413,
+    "v1_tokens_in_per_agent": 30413,
+    "input_ratio_to_v1": 1.0,
+    "output_tokens_per_agent_assumed": 41600,
+    "review_scenarios": [
+      {
+        "routed_dialog_fraction": 0,
+        "calls_per_agent": 8,
+        "tokens_in_assumed": 30413,
+        "note": "planning approximation; actual review scope and prompt size measured at route"
+      },
+      {
+        "routed_dialog_fraction": 0.25,
+        "calls_per_agent": 10.0,
+        "tokens_in_assumed": 38016,
+        "note": "planning approximation; actual review scope and prompt size measured at route"
+      },
+      {
+        "routed_dialog_fraction": 0.5,
+        "calls_per_agent": 12.0,
+        "tokens_in_assumed": 45620,
+        "note": "planning approximation; actual review scope and prompt size measured at route"
+      },
+      {
+        "routed_dialog_fraction": 1,
+        "calls_per_agent": 16,
+        "tokens_in_assumed": 60826,
+        "note": "planning approximation; actual review scope and prompt size measured at route"
+      }
+    ],
+    "cost_usd_assumed": {
+      "claude": null,
+      "codex": null,
+      "antigravity": null
+    }
+  },
+  "template_hash": "3a5c3f90cc77",
+  "source_hashes": {
+    "cqa/scoring.py": "81fb79aad847",
+    "cqa/responses.py": "096e152fb13b",
+    "cqa/conversation.py": "2bce0178608c",
+    "cqa/prompts.py": "5c0c607ed1b4",
+    "cqa/tokens.py": "573f43680fcf",
+    "variants/codex/pipeline.py": "1bb09cdbed82"
+  }
+}

@@ -1,0 +1,218 @@
+{
+  "prices_standard_usd_per_million": {
+    "luna": {
+      "model": "gpt-6-luna",
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.5,
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-luna"
+    },
+    "terra": {
+      "model": "gpt-6.1-terra",
+      "input_per_mtok": 1.0,
+      "output_per_mtok": 5.0,
+      "source": "https://developers.openai.com/api/docs/models/gpt-6.1-terra"
+    }
+  },
+  "price_checked": "2026-11-07",
+  "token_method": "heuristic:chars-per-script",
+  "reasoning_effort": "medium",
+  "fork_turns": "none",
+  "accuracy": null,
+  "human_ground_truth": null,
+  "cost_scope": "prompt+visible JSON only; estimated tokens, no hidden reasoning or harness/tool overhead; not actual Codex bill",
+  "rows": [
+    {
+      "variant": "monolith",
+      "agent": "luna",
+      "model": "gpt-6-luna",
+      "dialogs": 2,
+      "calls_received": 2,
+      "input_tokens_est": 7298,
+      "visible_output_tokens_est": 12095,
+      "visible_api_equivalent_usd": 0.0067773,
+      "per_dialog_usd": 0.00338865,
+      "per_1000_dialogs_usd": 3.38865,
+      "reasoning_1000_tokens_per_call_extra_usd": 0.001,
+      "status": {
+        "error": 2
+      },
+      "totals": {
+        "p1-ru-012": null,
+        "p1-kz-008": null
+      },
+      "provisional_totals_before_strict_gate": {
+        "p1-ru-012": 100.0,
+        "p1-kz-008": 56.88
+      },
+      "formal_issues": {
+        "p1-ru-012": [
+          {
+            "level": "error",
+            "criterion_id": "c08",
+            "msg": "missing or invalid checked_range"
+          }
+        ],
+        "p1-kz-008": [
+          {
+            "level": "error",
+            "criterion_id": "c08",
+            "msg": "missing or invalid checked_range"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "monolith",
+      "agent": "terra",
+      "model": "gpt-6.1-terra",
+      "dialogs": 2,
+      "calls_received": 2,
+      "input_tokens_est": 7298,
+      "visible_output_tokens_est": 8234,
+      "visible_api_equivalent_usd": 0.048468,
+      "per_dialog_usd": 0.024234,
+      "per_1000_dialogs_usd": 24.233999999999998,
+      "reasoning_1000_tokens_per_call_extra_usd": 0.01,
+      "status": {
+        "ok": 2
+      },
+      "totals": {
+        "p1-ru-012": 100.0,
+        "p1-kz-008": 40.67
+      },
+      "provisional_totals_before_strict_gate": {
+        "p1-ru-012": 100.0,
+        "p1-kz-008": 40.67
+      },
+      "formal_issues": {
+        "p1-ru-012": [],
+        "p1-kz-008": []
+      }
+    },
+    {
+      "variant": "sections",
+      "agent": "luna",
+      "model": "gpt-6-luna",
+      "dialogs": 2,
+      "calls_received": 8,
+      "input_tokens_est": 23583,
+      "visible_output_tokens_est": 17835,
+      "visible_api_equivalent_usd": 0.011275799999999999,
+      "per_dialog_usd": 0.0056378999999999995,
+      "per_1000_dialogs_usd": 5.637899999999999,
+      "reasoning_1000_tokens_per_call_extra_usd": 0.004,
+      "status": {
+        "error": 2
+      },
+      "totals": {
+        "p1-ru-012": null,
+        "p1-kz-008": null
+      },
+      "provisional_totals_before_strict_gate": {
+        "p1-ru-012": 85.38,
+        "p1-kz-008": 56.88
+      },
+      "formal_issues": {
+        "p1-ru-012": [
+          {
+            "level": "error",
+            "criterion_id": "c08",
+            "msg": "missing or invalid checked_range"
+          }
+        ],
+        "p1-kz-008": [
+          {
+            "level": "error",
+            "criterion_id": "c06",
+            "msg": "missing or invalid checked_range"
+          },
+          {
+            "level": "error",
+            "criterion_id": "c08",
+            "msg": "missing or invalid checked_range"
+          }
+        ]
+      }
+    },
+    {
+      "variant": "sections",
+      "agent": "terra",
+      "model": "gpt-6.1-terra",
+      "dialogs": 2,
+      "calls_received": 8,
+      "input_tokens_est": 23583,
+      "visible_output_tokens_est": 14440,
+      "visible_api_equivalent_usd": 0.095783,
+      "per_dialog_usd": 0.0478915,
+      "per_1000_dialogs_usd": 47.89149999999999,
+      "reasoning_1000_tokens_per_call_extra_usd": 0.04,
+      "status": {
+        "ok": 2
+      },
+      "totals": {
+        "p1-ru-012": 100.0,
+        "p1-kz-008": 75.83
+      },
+      "provisional_totals_before_strict_gate": {
+        "p1-ru-012": 100.0,
+        "p1-kz-008": 75.83
+      },
+      "formal_issues": {
+        "p1-ru-012": [],
+        "p1-kz-008": []
+      }
+    }
+  ],
+  "disagreements": [
+    {
+      "conversation_id": "p1-ru-012",
+      "criterion_id": "c06",
+      "answers": {
+        "review_luna": 10,
+        "review_terra": 10,
+        "sections_luna": 7,
+        "sections_terra": 10
+      }
+    },
+    {
+      "conversation_id": "p1-ru-012",
+      "criterion_id": "c07",
+      "answers": {
+        "review_luna": "na",
+        "review_terra": "na",
+        "sections_luna": "no",
+        "sections_terra": "na"
+      }
+    },
+    {
+      "conversation_id": "p1-kz-008",
+      "criterion_id": "c02",
+      "answers": {
+        "review_luna": "no",
+        "review_terra": "no",
+        "sections_luna": "no",
+        "sections_terra": "na"
+      }
+    },
+    {
+      "conversation_id": "p1-kz-008",
+      "criterion_id": "c05",
+      "answers": {
+        "review_luna": "yes",
+        "review_terra": "no",
+        "sections_luna": "yes",
+        "sections_terra": "yes"
+      }
+    },
+    {
+      "conversation_id": "p1-kz-008",
+      "criterion_id": "c07",
+      "answers": {
+        "review_luna": "no",
+        "review_terra": "na",
+        "sections_luna": "no",
+        "sections_terra": "na"
+      }
+    }
+  ]
+}

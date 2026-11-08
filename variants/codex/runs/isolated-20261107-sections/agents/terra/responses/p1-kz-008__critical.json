@@ -1,0 +1,41 @@
+{
+  "meta": {"model": "GPT-6", "conversation_id": "p1-kz-008", "prompt_id": "critical"},
+  "dialog_facts": {
+    "client_language": "KZ",
+    "operator_language_first_reply": "KZ",
+    "client_request_summary": "Клиент не нашёл вход в личный кабинет на сайте Freedom Finance Global и попросил оператора.",
+    "client_questions": ["Где войти в личный кабинет на сайте Freedom Finance Global?"],
+    "bot_answer_before_operator": "Бот уточнил сайт и передал чат оператору, не ответив на вопрос о входе.",
+    "first_operator_turn_idx": 10,
+    "protected_action_or_data_requested": {"value": false, "evidence_idx": [1, 5], "note": "Запрошена инструкция по входу, а не защищённое действие или персональные данные."},
+    "identity_verification": {"performed": false, "evidence_idx": [10, 12], "note": "В видимой части диалога оператор не проверял личность."},
+    "client_dissatisfaction": {"present": true, "evidence_idx": [11], "note": "Клиент указал, что уже сообщил название сайта; явной жалобы нет."},
+    "explicit_waits": [{"after_idx": 11, "seconds": 42, "operator_warned": false, "note": "Перед ответом оператора предупреждения об ожидании нет."}],
+    "ending": {"type": "other", "evidence_idx": [13], "operator_offered_help_or_summary": false, "operator_said_goodbye": false},
+    "dialog_summary": "Клиент попросил помочь найти вход и подключить оператора. Оператор указал веб-версию и приложение; клиент сообщил, что вход открылся."
+  },
+  "criteria": [{
+    "criterion_id": "c08",
+    "applicability": {"na_allowed": false, "na_condition_met": false, "reasoning": "Критерий оценивается в любом случае; N/A не предусмотрен."},
+    "sub_questions": [
+      {"question": "Было ли оскорбление клиента?", "answer": "нет", "evidence_idx": [10, 12], "note": "В репликах оператора оскорблений нет."},
+      {"question": "Предлагал ли оператор платную услугу в обход компании?", "answer": "нет", "evidence_idx": [10, 12], "note": "Предложения личного инвестирования или частной платной консультации нет."},
+      {"question": "Раскрыл ли оператор конфиденциальную информацию?", "answer": "нет", "evidence_idx": [10, 12], "note": "Оператор сообщил способы входа, конфиденциальные сведения не раскрыты."}
+    ],
+    "considered_evidence": [
+      {"idx": 10, "quote": "Сәлем. Қай сайтқа кірдіңіз?", "role": "operator", "supports": "no", "interpretation": "Приветствие и уточнение сайта без оскорбления или предложения частной услуги."},
+      {"idx": 12, "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.", "role": "operator", "supports": "no", "interpretation": "Инструкция по входу без раскрытия конфиденциальных данных и предложения частной услуги."}
+    ],
+    "rule_applied": "Нет ставится, когда ни оскорбление, ни платная услуга в обход компании, ни раскрытие конфиденциальной информации не выявлены.",
+    "alternatives_rejected": "Да не подходит: ни одного из трёх нарушений не обнаружено. N/A не разрешён.",
+    "ambiguities": [],
+    "reasoning": "Проверены обе реплики оператора на все три вида грубых нарушений; признаков нарушений не выявлено.",
+    "answer": "no",
+    "evidence": [{"idx": 10, "quote": "Сәлем. Қай сайтқа кірдіңіз?"}, {"idx": 12, "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."}],
+    "checked_range": [10, 12],
+    "explanation": "Грубые ошибки — Нет. В обеих репликах оператора не выявлены оскорбление, предложение платной услуги в обход компании или раскрытие конфиденциальной информации. Основание — #10 и #12.",
+    "confidence": 0.99
+  }],
+  "model_total_estimate": {"total": 0.0, "calculation": "c08 имеет вес 0 и отмечается отдельно; оценка других критериев не проводилась."},
+  "overall_comment": "По проверенному критерию грубых нарушений не выявлено."
+}

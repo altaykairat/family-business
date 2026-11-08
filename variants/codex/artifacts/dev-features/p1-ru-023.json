@@ -1,0 +1,38 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12,
+    14
+  ],
+  "time_to_first_operator_reply_s": 59,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 11,
+      "operator_idx": 12,
+      "seconds": 39
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 14,
+    "speaker": "operator",
+    "text": "Хорошо. Всего доброго."
+  },
+  "last_client_idx": 13,
+  "seconds_from_last_client_to_end": 27,
+  "last_operator_idx": 14,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Здравствуйте, я Марк. Откройте «Котировки». Если знаете название или тикер, введите его в строку поиска."
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

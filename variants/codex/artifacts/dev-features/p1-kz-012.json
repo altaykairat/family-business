@@ -1,0 +1,32 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12,
+    14
+  ],
+  "time_to_first_operator_reply_s": 114,
+  "operator_reply_gaps_s": [],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 14,
+    "speaker": "operator",
+    "text": "Жарайды, дайын болғанда осы мәліметтерді жіберіңіз. Сау болыңыз!"
+  },
+  "last_client_idx": 13,
+  "seconds_from_last_client_to_end": 24,
+  "last_operator_idx": 14,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Сәлеметсіз бе, мен Дидармын. Қай облигацияны таңдадыңыз? Тикері болса, жазыңыз."
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

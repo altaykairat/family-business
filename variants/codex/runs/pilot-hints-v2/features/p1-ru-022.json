@@ -1,0 +1,36 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12
+  ],
+  "time_to_first_operator_reply_s": 40,
+  "operator_reply_gaps_s": [],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 14,
+    "speaker": "system",
+    "text": "Оператор закрыл чат."
+  },
+  "last_client_idx": 13,
+  "seconds_from_last_client_to_end": 28,
+  "last_operator_idx": 12,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Здравствуйте, я Кирилл. Скиньте деньги мне на карту, я сам их вложу с выгодой."
+      }
+    ],
+    "wait": [],
+    "ending": [
+      {
+        "idx": 14,
+        "quote": "Оператор закрыл чат."
+      }
+    ]
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

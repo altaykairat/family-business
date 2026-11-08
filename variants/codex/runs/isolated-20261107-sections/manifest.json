@@ -1,0 +1,180 @@
+{
+  "variant": "sections",
+  "dataset": "dev",
+  "agents": [
+    "luna",
+    "terra"
+  ],
+  "config": {
+    "version": 1,
+    "agents": [
+      "luna",
+      "terra"
+    ],
+    "gap_threshold_s": 30,
+    "review_na": true,
+    "review_ambiguities": true,
+    "min_confidence": 0.7,
+    "review_on_disagreement": true,
+    "output_tokens_per_criterion": 650,
+    "review_rates": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "prices": {},
+    "lexicons": {
+      "greeting": {
+        "speaker": "operator",
+        "patterns": [
+          "здравств",
+          "добрый",
+          "сәлем",
+          "hello",
+          "\\bhi\\b"
+        ]
+      },
+      "wait": {
+        "speaker": "operator",
+        "patterns": [
+          "подожд",
+          "ожида",
+          "проверю",
+          "күте",
+          "please wait",
+          "checking"
+        ]
+      },
+      "ending": {
+        "speaker": "system",
+        "patterns": [
+          "закрыл чат",
+          "прервано",
+          "покинул",
+          "closed",
+          "disconnected",
+          "left",
+          "үзілді",
+          "аяқтады"
+        ]
+      }
+    }
+  },
+  "checklist": "default@v1",
+  "checklist_hash": "b00572af3804",
+  "token_method": "heuristic:chars-per-script",
+  "conversations": {
+    "p1-ru-012": {
+      "parts": [
+        {
+          "name": "p1-ru-012__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2857,
+          "prompt_hash": "e9d5964ae8b9",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-012__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 2996,
+          "prompt_hash": "68ec9338058d",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-012__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3069,
+          "prompt_hash": "2ac4287ff6ea",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-012__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2798,
+          "prompt_hash": "1fdb7e57f1ca",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3631
+    },
+    "p1-kz-008": {
+      "parts": [
+        {
+          "name": "p1-kz-008__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2893,
+          "prompt_hash": "f73bc8dd5877",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-008__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 3032,
+          "prompt_hash": "9d5ea6aeba42",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-008__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3105,
+          "prompt_hash": "813585cb94e7",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-008__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2833,
+          "prompt_hash": "778a96faa50e",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3667
+    }
+  },
+  "projection": {
+    "calls_per_agent": 8,
+    "tokens_in_per_agent": 23583,
+    "v1_tokens_in_per_agent": 7298,
+    "input_ratio_to_v1": 3.231433269388874,
+    "output_tokens_per_agent_assumed": 10400,
+    "review_scenarios": [],
+    "cost_usd_assumed": {
+      "luna": null,
+      "terra": null
+    }
+  },
+  "template_hash": "3a5c3f90cc77",
+  "source_hashes": {
+    "cqa/scoring.py": "81fb79aad847",
+    "cqa/responses.py": "096e152fb13b",
+    "cqa/conversation.py": "faeb0f9d0f0f",
+    "cqa/prompts.py": "5c0c607ed1b4",
+    "cqa/tokens.py": "573f43680fcf",
+    "variants/codex/pipeline.py": "1bb09cdbed82"
+  }
+}

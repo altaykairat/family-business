@@ -1,0 +1,35 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10
+  ],
+  "time_to_first_operator_reply_s": 97,
+  "operator_reply_gaps_s": [],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 11,
+    "speaker": "system",
+    "text": "Клиент покинул чат."
+  },
+  "last_client_idx": 7,
+  "seconds_from_last_client_to_end": 113,
+  "last_operator_idx": 10,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Здравствуйте! Меня зовут Валерия, поддержка Freedom Broker. С чем помочь?"
+      }
+    ],
+    "wait": [],
+    "ending": [
+      {
+        "idx": 11,
+        "quote": "Клиент покинул чат."
+      }
+    ]
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

@@ -1,0 +1,453 @@
+{
+  "variant": "sections",
+  "dataset": "dev",
+  "agents": [
+    "claude",
+    "codex",
+    "antigravity"
+  ],
+  "config": {
+    "version": 1,
+    "agents": [
+      "claude",
+      "codex",
+      "antigravity"
+    ],
+    "gap_threshold_s": 30,
+    "review_na": true,
+    "review_ambiguities": true,
+    "min_confidence": 0.7,
+    "review_on_disagreement": true,
+    "output_tokens_per_criterion": 650,
+    "review_rates": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "prices": {},
+    "lexicons": {
+      "greeting": {
+        "speaker": "operator",
+        "patterns": [
+          "здравств",
+          "добрый",
+          "сәлем",
+          "hello",
+          "\\bhi\\b"
+        ]
+      },
+      "wait": {
+        "speaker": "operator",
+        "patterns": [
+          "подожд",
+          "ожида",
+          "проверю",
+          "күте",
+          "please wait",
+          "checking"
+        ]
+      },
+      "ending": {
+        "speaker": "system",
+        "patterns": [
+          "закрыл чат",
+          "прервано",
+          "покинул",
+          "closed",
+          "disconnected",
+          "left",
+          "үзілді",
+          "аяқтады"
+        ]
+      }
+    }
+  },
+  "checklist": "default@v1",
+  "checklist_hash": "b00572af3804",
+  "token_method": "heuristic:chars-per-script",
+  "conversations": {
+    "p1-ru-001": {
+      "parts": [
+        {
+          "name": "p1-ru-001__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2870,
+          "prompt_hash": "f931bbec79f8",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-001__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 3009,
+          "prompt_hash": "4bbf6a905339",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-001__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3082,
+          "prompt_hash": "38a60d0b81dd",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-001__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2811,
+          "prompt_hash": "90f5dcc408c4",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3644
+    },
+    "p1-ru-012": {
+      "parts": [
+        {
+          "name": "p1-ru-012__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2857,
+          "prompt_hash": "e9d5964ae8b9",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-012__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 2996,
+          "prompt_hash": "68ec9338058d",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-012__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3069,
+          "prompt_hash": "2ac4287ff6ea",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-012__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2798,
+          "prompt_hash": "1fdb7e57f1ca",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3631
+    },
+    "p1-ru-022": {
+      "parts": [
+        {
+          "name": "p1-ru-022__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2909,
+          "prompt_hash": "13e1d46701ec",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-022__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 3048,
+          "prompt_hash": "acee32fd9a16",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-022__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3121,
+          "prompt_hash": "c3602191374f",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-022__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2849,
+          "prompt_hash": "725e368bd008",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3683
+    },
+    "p1-ru-029": {
+      "parts": [
+        {
+          "name": "p1-ru-029__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2903,
+          "prompt_hash": "d6b4ccffa00b",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-029__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 3042,
+          "prompt_hash": "6403aedf7ac4",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-029__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3115,
+          "prompt_hash": "c8ba46a7573e",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-ru-029__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2844,
+          "prompt_hash": "c3a270c0717c",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3677
+    },
+    "p1-kz-001": {
+      "parts": [
+        {
+          "name": "p1-kz-001__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2885,
+          "prompt_hash": "75b8d0979bff",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-001__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 3025,
+          "prompt_hash": "cc89fdb713ea",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-001__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3097,
+          "prompt_hash": "85f03bdb1d83",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-001__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2826,
+          "prompt_hash": "83fc254e2f9f",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3659
+    },
+    "p1-kz-008": {
+      "parts": [
+        {
+          "name": "p1-kz-008__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2893,
+          "prompt_hash": "f73bc8dd5877",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-008__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 3032,
+          "prompt_hash": "9d5ea6aeba42",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-008__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3105,
+          "prompt_hash": "813585cb94e7",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-kz-008__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2833,
+          "prompt_hash": "778a96faa50e",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3667
+    },
+    "p1-en-015": {
+      "parts": [
+        {
+          "name": "p1-en-015__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 2835,
+          "prompt_hash": "a3974c18cd3d",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-en-015__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 2975,
+          "prompt_hash": "ded3511f5cb6",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-en-015__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 3047,
+          "prompt_hash": "1abdb47dc85e",
+          "stage": "initial"
+        },
+        {
+          "name": "p1-en-015__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 2776,
+          "prompt_hash": "056bebfa23aa",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3609
+    },
+    "p4-ru-001": {
+      "parts": [
+        {
+          "name": "p4-ru-001__start",
+          "criteria_ids": [
+            "c01",
+            "c02"
+          ],
+          "tokens_in": 4069,
+          "prompt_hash": "5eb326ef472e",
+          "stage": "initial"
+        },
+        {
+          "name": "p4-ru-001__safety",
+          "criteria_ids": [
+            "c03",
+            "c04"
+          ],
+          "tokens_in": 4208,
+          "prompt_hash": "a66ef5e5adcb",
+          "stage": "initial"
+        },
+        {
+          "name": "p4-ru-001__conduct",
+          "criteria_ids": [
+            "c05",
+            "c06",
+            "c07"
+          ],
+          "tokens_in": 4281,
+          "prompt_hash": "106ea9d9f84b",
+          "stage": "initial"
+        },
+        {
+          "name": "p4-ru-001__critical",
+          "criteria_ids": [
+            "c08"
+          ],
+          "tokens_in": 4010,
+          "prompt_hash": "2a2f9fdc8fae",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 4843
+    }
+  },
+  "projection": {
+    "calls_per_agent": 32,
+    "tokens_in_per_agent": 99220,
+    "v1_tokens_in_per_agent": 30413,
+    "input_ratio_to_v1": 3.2624206753690856,
+    "output_tokens_per_agent_assumed": 41600,
+    "review_scenarios": [],
+    "cost_usd_assumed": {
+      "claude": null,
+      "codex": null,
+      "antigravity": null
+    }
+  },
+  "template_hash": "3a5c3f90cc77",
+  "source_hashes": {
+    "cqa/scoring.py": "81fb79aad847",
+    "cqa/responses.py": "096e152fb13b",
+    "cqa/conversation.py": "2bce0178608c",
+    "cqa/prompts.py": "5c0c607ed1b4",
+    "cqa/tokens.py": "573f43680fcf",
+    "variants/codex/pipeline.py": "1bb09cdbed82"
+  }
+}

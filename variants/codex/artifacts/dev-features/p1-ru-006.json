@@ -1,0 +1,48 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    13,
+    15
+  ],
+  "time_to_first_operator_reply_s": 132,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 11,
+      "operator_idx": 13,
+      "seconds": 45
+    },
+    {
+      "client_idx": 14,
+      "operator_idx": 15,
+      "seconds": 48
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 15,
+    "speaker": "operator",
+    "text": "Добавил. Когда по платежу будет ответ, мы сообщим вам в этом чате. Спасибо, что подождали. До свидания!"
+  },
+  "last_client_idx": 14,
+  "seconds_from_last_client_to_end": 48,
+  "last_operator_idx": 15,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Здравствуйте, меня зовут Роман. Понимаю, что вы переживаете из-за платежа. Сначала нужно подтвердить личность, чтобы проверить счёт."
+      }
+    ],
+    "wait": [
+      {
+        "idx": 15,
+        "quote": "Добавил. Когда по платежу будет ответ, мы сообщим вам в этом чате. Спасибо, что подождали. До свидания!"
+      }
+    ],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

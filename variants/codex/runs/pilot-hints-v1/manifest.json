@@ -1,0 +1,253 @@
+{
+  "variant": "hints",
+  "dataset": "dev",
+  "agents": [
+    "claude",
+    "codex",
+    "antigravity"
+  ],
+  "config": {
+    "version": 1,
+    "agents": [
+      "claude",
+      "codex",
+      "antigravity"
+    ],
+    "gap_threshold_s": 30,
+    "review_na": true,
+    "review_ambiguities": true,
+    "min_confidence": 0.7,
+    "review_on_disagreement": true,
+    "output_tokens_per_criterion": 650,
+    "review_rates": [
+      0,
+      0.25,
+      0.5,
+      1
+    ],
+    "prices": {},
+    "lexicons": {
+      "greeting": {
+        "speaker": "operator",
+        "patterns": [
+          "здравств",
+          "добрый",
+          "сәлем",
+          "hello",
+          "\\bhi\\b"
+        ]
+      },
+      "wait": {
+        "speaker": "operator",
+        "patterns": [
+          "подожд",
+          "ожида",
+          "проверю",
+          "күте",
+          "please wait",
+          "checking"
+        ]
+      },
+      "ending": {
+        "speaker": "system",
+        "patterns": [
+          "закрыл чат",
+          "прервано",
+          "покинул",
+          "closed",
+          "disconnected",
+          "left",
+          "үзілді",
+          "аяқтады"
+        ]
+      }
+    }
+  },
+  "checklist": "default@v1",
+  "checklist_hash": "b00572af3804",
+  "token_method": "heuristic:chars-per-script",
+  "conversations": {
+    "p1-ru-001": {
+      "parts": [
+        {
+          "name": "p1-ru-001__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3743,
+          "prompt_hash": "304c2d6b3141",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3644
+    },
+    "p1-ru-012": {
+      "parts": [
+        {
+          "name": "p1-ru-012__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3736,
+          "prompt_hash": "f99a7f0486b0",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3631
+    },
+    "p1-ru-022": {
+      "parts": [
+        {
+          "name": "p1-ru-022__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3786,
+          "prompt_hash": "4fe56eaba12a",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3683
+    },
+    "p1-ru-029": {
+      "parts": [
+        {
+          "name": "p1-ru-029__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3762,
+          "prompt_hash": "806e37f3a826",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3677
+    },
+    "p1-kz-001": {
+      "parts": [
+        {
+          "name": "p1-kz-001__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3759,
+          "prompt_hash": "f23d7cd7ab92",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3659
+    },
+    "p1-kz-008": {
+      "parts": [
+        {
+          "name": "p1-kz-008__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3740,
+          "prompt_hash": "6dc21a38949d",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3667
+    },
+    "p1-en-015": {
+      "parts": [
+        {
+          "name": "p1-en-015__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 3666,
+          "prompt_hash": "f1aa6438ca1d",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 3609
+    },
+    "p4-ru-001": {
+      "parts": [
+        {
+          "name": "p4-ru-001__all",
+          "criteria_ids": [
+            "c01",
+            "c02",
+            "c03",
+            "c04",
+            "c05",
+            "c06",
+            "c07",
+            "c08"
+          ],
+          "tokens_in": 4931,
+          "prompt_hash": "52330f7e314e",
+          "stage": "initial"
+        }
+      ],
+      "baseline_tokens_in": 4843
+    }
+  },
+  "projection": {
+    "calls_per_agent": 8,
+    "tokens_in_per_agent": 31123,
+    "v1_tokens_in_per_agent": 30413,
+    "input_ratio_to_v1": 1.0233452799789564,
+    "output_tokens_per_agent_assumed": 41600,
+    "review_scenarios": [],
+    "cost_usd_assumed": {
+      "claude": null,
+      "codex": null,
+      "antigravity": null
+    }
+  },
+  "template_hash": "3a5c3f90cc77"
+}

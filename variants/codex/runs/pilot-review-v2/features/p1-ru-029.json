@@ -1,0 +1,38 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12,
+    14
+  ],
+  "time_to_first_operator_reply_s": 41,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 13,
+      "operator_idx": 14,
+      "seconds": 32
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 14,
+    "speaker": "operator",
+    "text": "До свидания."
+  },
+  "last_client_idx": 13,
+  "seconds_from_last_client_to_end": 32,
+  "last_operator_idx": 14,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Здравствуйте, я Алексей. Вы вообще читать умеете? Бот всё написал."
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

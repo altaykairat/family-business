@@ -1,0 +1,63 @@
+{
+  "escalation_idx": 12,
+  "first_operator_turn_idx": 13,
+  "operator_turn_idxs": [
+    13,
+    19,
+    20,
+    22,
+    27,
+    31,
+    32,
+    38,
+    39,
+    40,
+    42,
+    45,
+    48,
+    49,
+    54,
+    59,
+    61,
+    65,
+    66,
+    68,
+    70,
+    71,
+    73,
+    75,
+    76
+  ],
+  "time_to_first_operator_reply_s": 8,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 14,
+      "operator_idx": 19,
+      "seconds": 33
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 78,
+    "speaker": "system",
+    "text": "Клиент завершил разговор."
+  },
+  "last_client_idx": 77,
+  "seconds_from_last_client_to_end": 2,
+  "last_operator_idx": 76,
+  "duplicate_turn_idxs": [
+    47,
+    63
+  ],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 13,
+        "quote": "Здравствуйте, Фридом брокер меня зовут [Имя скрыто], чем могу помочь?"
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

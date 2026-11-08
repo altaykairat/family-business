@@ -1,0 +1,50 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 11,
+  "operator_turn_idxs": [
+    11,
+    13,
+    16,
+    18,
+    20
+  ],
+  "time_to_first_operator_reply_s": 61,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 12,
+      "operator_idx": 13,
+      "seconds": 42
+    },
+    {
+      "client_idx": 14,
+      "operator_idx": 16,
+      "seconds": 61
+    },
+    {
+      "client_idx": 17,
+      "operator_idx": 18,
+      "seconds": 38
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 20,
+    "speaker": "operator",
+    "text": "Of course. Have a good day!"
+  },
+  "last_client_idx": 19,
+  "seconds_from_last_client_to_end": 29,
+  "last_operator_idx": 20,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 11,
+        "quote": "Hi, I'm Sofia. Enter the ticker in the search bar under Quotes. Check that the result shows the ticker you intended before opening an order."
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

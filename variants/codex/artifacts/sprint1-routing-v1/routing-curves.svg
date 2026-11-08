@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540" viewBox="0 0 1100 540">
+<rect width="1100" height="540" fill="white"/>
+<style>text{font-family:Arial,sans-serif;font-size:13px}</style>
+<text x="70" y="30">tune: error capture (repeated source-dialog observations)</text>
+<path d="M70,70 V400 H450" fill="none" stroke="black"/>
+<path d="M70,400 L450,70" stroke="#888" stroke-dasharray="5 5"/>
+<text x="63.0" y="422">0</text>
+<text x="38" y="404.0">0</text>
+<text x="139.0" y="422">20</text>
+<text x="38" y="338.0">20</text>
+<text x="215.0" y="422">40</text>
+<text x="38" y="272.0">40</text>
+<text x="291.0" y="422">60</text>
+<text x="38" y="206.0">60</text>
+<text x="367.0" y="422">80</text>
+<text x="38" y="140.0">80</text>
+<text x="443.0" y="422">100</text>
+<text x="38" y="74.0">100</text>
+<text x="130" y="445">Dialogs reviewed (%)</text>
+<polyline points="70.00,400.00 368.57,125.00 450.00,70.00" stroke="#1565c0" stroke-width="2" fill="none"/>
+<text x="70" y="460" fill="#1565c0">s2_length (n=14, AUC=0.52)</text>
+<polyline points="70.00,400.00 450.00,70.00" stroke="#c62828" stroke-width="2" fill="none"/>
+<text x="70" y="475" fill="#c62828">model_disagreement (n=12, AUC=0.50)</text>
+<polyline points="70.00,400.00 450.00,70.00" stroke="#2e7d32" stroke-width="2" fill="none"/>
+<text x="70" y="490" fill="#2e7d32">invalid_quote (n=14, AUC=0.50)</text>
+<polyline points="70.00,400.00 146.00,326.67 222.00,253.33 298.00,180.00 374.00,106.67 412.00,106.67 450.00,70.00" stroke="#6a1b9a" stroke-width="2" fill="none"/>
+<text x="70" y="505" fill="#6a1b9a">ambiguities (n=10, AUC=0.54)</text>
+<polyline points="70.00,400.00 108.00,363.33 146.00,326.67 260.00,216.67 298.00,180.00 374.00,106.67 412.00,106.67 450.00,70.00" stroke="#ef6c00" stroke-width="2" fill="none"/>
+<text x="70" y="520" fill="#ef6c00">confidence_risk (n=10, AUC=0.54)</text>
+<text x="610" y="30">test: error capture (repeated source-dialog observations)</text>
+<path d="M610,70 V400 H990" fill="none" stroke="black"/>
+<path d="M610,400 L990,70" stroke="#888" stroke-dasharray="5 5"/>
+<text x="603.0" y="422">0</text>
+<text x="578" y="404.0">0</text>
+<text x="679.0" y="422">20</text>
+<text x="578" y="338.0">20</text>
+<text x="755.0" y="422">40</text>
+<text x="578" y="272.0">40</text>
+<text x="831.0" y="422">60</text>
+<text x="578" y="206.0">60</text>
+<text x="907.0" y="422">80</text>
+<text x="578" y="140.0">80</text>
+<text x="983.0" y="422">100</text>
+<text x="578" y="74.0">100</text>
+<text x="670" y="445">Dialogs reviewed (%)</text>
+<polyline points="610.00,400.00 676.09,300.55 742.17,237.26 866.09,178.49 990.00,70.00" stroke="#1565c0" stroke-width="2" fill="none"/>
+<text x="610" y="460" fill="#1565c0">s2_length (n=46, AUC=0.56)</text>
+<polyline points="610.00,400.00 644.55,349.58 661.82,331.25 748.18,225.83 903.64,111.25 972.73,70.00 990.00,70.00" stroke="#c62828" stroke-width="2" fill="none"/>
+<text x="610" y="475" fill="#c62828">model_disagreement (n=44, AUC=0.60)</text>
+<polyline points="610.00,400.00 990.00,70.00" stroke="#2e7d32" stroke-width="2" fill="none"/>
+<text x="610" y="490" fill="#2e7d32">invalid_quote (n=46, AUC=0.50)</text>
+<polyline points="610.00,400.00 691.43,297.75 736.67,241.97 818.10,167.61 845.24,144.37 890.48,107.18 926.67,93.24 971.90,83.94 990.00,70.00" stroke="#6a1b9a" stroke-width="2" fill="none"/>
+<text x="610" y="505" fill="#6a1b9a">ambiguities (n=42, AUC=0.60)</text>
+<polyline points="610.00,400.00 628.10,367.46 736.67,251.27 863.33,135.07 899.52,121.13 908.57,116.48 917.62,107.18 926.67,93.24 935.71,93.24 953.81,88.59 962.86,83.94 971.90,83.94 990.00,70.00" stroke="#ef6c00" stroke-width="2" fill="none"/>
+<text x="610" y="520" fill="#ef6c00">confidence_risk (n=42, AUC=0.59)</text>
+</svg>

@@ -1,0 +1,36 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 11,
+  "operator_turn_idxs": [
+    11,
+    13,
+    15,
+    17,
+    20,
+    22,
+    24
+  ],
+  "time_to_first_operator_reply_s": 66,
+  "operator_reply_gaps_s": [],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 24,
+    "speaker": "operator",
+    "text": "Пожалуйста. Хорошего вечера!"
+  },
+  "last_client_idx": 23,
+  "seconds_from_last_client_to_end": 27,
+  "last_operator_idx": 24,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 11,
+        "quote": "Здравствуйте, меня зовут Инга. Откройте «Меню → Отчёты и документы → Отчёт брокера»."
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

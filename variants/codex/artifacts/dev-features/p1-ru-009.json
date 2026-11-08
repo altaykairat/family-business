@@ -1,0 +1,39 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12,
+    14,
+    16
+  ],
+  "time_to_first_operator_reply_s": 57,
+  "operator_reply_gaps_s": [
+    {
+      "client_idx": 13,
+      "operator_idx": 14,
+      "seconds": 40
+    }
+  ],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 16,
+    "speaker": "operator",
+    "text": "Передам вопрос на проверку. До свидания."
+  },
+  "last_client_idx": 15,
+  "seconds_from_last_client_to_end": 16,
+  "last_operator_idx": 16,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Здравствуйте, я Руслан. Какое сообщение вы видите в приложении?"
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

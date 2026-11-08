@@ -1,0 +1,31 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10,
+    12
+  ],
+  "time_to_first_operator_reply_s": 19,
+  "operator_reply_gaps_s": [],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 12,
+    "speaker": "operator",
+    "text": "That's where the profile request is. Thanks for contacting us. Bye."
+  },
+  "last_client_idx": 11,
+  "seconds_from_last_client_to_end": 20,
+  "last_operator_idx": 12,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Hi, I'm Chris. Go to Menu, Orders, Personal Details, then Change of Details."
+      }
+    ],
+    "wait": [],
+    "ending": []
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

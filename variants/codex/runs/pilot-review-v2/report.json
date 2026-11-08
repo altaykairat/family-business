@@ -1,0 +1,68 @@
+{
+  "projection": {
+    "calls_per_agent": 8,
+    "tokens_in_per_agent": 30413,
+    "v1_tokens_in_per_agent": 30413,
+    "input_ratio_to_v1": 1.0,
+    "output_tokens_per_agent_assumed": 41600,
+    "review_scenarios": [
+      {
+        "routed_dialog_fraction": 0,
+        "calls_per_agent": 8,
+        "tokens_in_assumed": 30413,
+        "note": "planning approximation; actual review scope and prompt size measured at route"
+      },
+      {
+        "routed_dialog_fraction": 0.25,
+        "calls_per_agent": 10.0,
+        "tokens_in_assumed": 38016,
+        "note": "planning approximation; actual review scope and prompt size measured at route"
+      },
+      {
+        "routed_dialog_fraction": 0.5,
+        "calls_per_agent": 12.0,
+        "tokens_in_assumed": 45620,
+        "note": "planning approximation; actual review scope and prompt size measured at route"
+      },
+      {
+        "routed_dialog_fraction": 1,
+        "calls_per_agent": 16,
+        "tokens_in_assumed": 60826,
+        "note": "planning approximation; actual review scope and prompt size measured at route"
+      }
+    ],
+    "cost_usd_assumed": {
+      "claude": null,
+      "codex": null,
+      "antigravity": null
+    }
+  },
+  "observed": {
+    "claude": {
+      "dialogs": 0,
+      "calls_received": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_usd": null,
+      "statuses": {}
+    },
+    "codex": {
+      "dialogs": 0,
+      "calls_received": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_usd": null,
+      "statuses": {}
+    },
+    "antigravity": {
+      "dialogs": 0,
+      "calls_received": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_usd": null,
+      "statuses": {}
+    }
+  },
+  "accuracy": null,
+  "note": "Нет человеческого эталона; согласие не равно точности."
+}

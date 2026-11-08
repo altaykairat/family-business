@@ -1,0 +1,845 @@
+{
+  "run_id": "isolated-20261107-review",
+  "agent": "luna",
+  "conversation_id": "p1-kz-008",
+  "variant": "review",
+  "checklist": "default@v1",
+  "status": "error",
+  "pending": [],
+  "usage": [
+    {
+      "part": "p1-kz-008__all",
+      "tokens_in": 3667,
+      "tokens_out": 6188,
+      "exact": false,
+      "model": null,
+      "response_hash": "397c467c2dee"
+    }
+  ],
+  "score": {
+    "total": null,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": false,
+    "missing_criteria": [
+      "c08"
+    ],
+    "applicable_weight": 80.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "no",
+        "weight": 10,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 12.5,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "no",
+        "weight": 15,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 18.75,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 25.0,
+        "effective_points": 25.0
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "yes",
+        "weight": 15,
+        "applicable": true,
+        "points": 15.0,
+        "effective_weight": 18.75,
+        "effective_points": 18.75
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": 7,
+        "weight": 15,
+        "applicable": true,
+        "points": 10.5,
+        "effective_weight": 18.75,
+        "effective_points": 13.13
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": "no",
+        "weight": 5,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 6.25,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": null,
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 0.0,
+        "contribution": 0.0,
+        "max_contribution": 31.25
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 25.0,
+        "max_contribution": 25.0
+      },
+      {
+        "section_id": "conduct",
+        "title": "Ведение и завершение диалога",
+        "score_pct": 72.86,
+        "contribution": 31.88,
+        "max_contribution": 43.75
+      }
+    ]
+  },
+  "answers": {
+    "c01": "no",
+    "c02": "no",
+    "c03": "na",
+    "c04": 20,
+    "c05": "yes",
+    "c06": 7,
+    "c07": "no"
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий применяется к первому ответу оператора; N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор поздоровался на языке клиента в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            10
+          ],
+          "note": "«Сәлем» — приветствие на казахском."
+        },
+        {
+          "question": "Оператор представился в первом ответе?",
+          "answer": "нет",
+          "evidence_idx": [
+            10
+          ],
+          "note": "В реплике есть только приветствие и вопрос о сайте, имени или должности оператора нет."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Оператор поздоровался на языке клиента, но не представился."
+        }
+      ],
+      "rule_applied": "Да ставится только если оператор и поздоровался на языке клиента, и представился в первом ответе.",
+      "alternatives_rejected": "Ответ «Да» исключён отсутствием представления; N/A не разрешён.",
+      "ambiguities": [],
+      "reasoning": "Первый ответ оператора #10 содержит казахское приветствие «Сәлем». Представления в этой реплике нет, поэтому составное условие не выполнено.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "checked_range": [
+        10,
+        10
+      ],
+      "explanation": "Установление контакта — Нет. Оператор поздоровался, но в первом ответе не представился. Основание — #10.",
+      "confidence": 0.99,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Для ответа недоставало уточнения о сайте, но клиент сообщил его в #5 до подключения оператора; N/A не подходит, поскольку оператору оставалось учесть уже известную деталь."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор учёл известную деталь — название сайта?",
+          "answer": "нет",
+          "evidence_idx": [
+            5,
+            10,
+            11
+          ],
+          "note": "Клиент уже назвал Freedom Finance Global; оператор снова спросил, на какой сайт он зашёл."
+        },
+        {
+          "question": "Оператор уточнил недостающее до ответа?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            11,
+            12
+          ],
+          "note": "Он переспросил сайт и после ответа клиента дал инструкцию, хотя это уточнение дублировало уже имеющуюся информацию."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 5,
+          "quote": "Freedom Finance Global сайты. Операторға қосыңызшы.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "До эскалации клиент назвал сайт."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Оператор повторно запросил уже сообщённую информацию."
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент напомнил, что сайт уже был назван."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Оператор дал ответ, учитывающий Global как информационный сайт."
+        }
+      ],
+      "rule_applied": "Да требует учитывать известные детали и уточнить недостающее до ответа; известную деталь нельзя запрашивать повторно как неизвестную.",
+      "alternatives_rejected": "N/A исключён: хотя исходно требовалось выяснить сайт, клиент уже предоставил его в #5. Да исключён повторным вопросом #10.",
+      "ambiguities": [],
+      "reasoning": "Для ответа важно было знать сайт. Клиент назвал Freedom Finance Global в #5. Оператор не учёл это и повторил вопрос в #10; после напоминания дал релевантное объяснение в #12. Условие учёта известных деталей не выполнено.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 5,
+          "quote": "Freedom Finance Global сайты. Операторға қосыңызшы."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "checked_range": [
+        5,
+        12
+      ],
+      "explanation": "Выявление потребности — Нет. Клиент уже назвал сайт до подключения, но оператор спросил его повторно. Основание — #5 и #10.",
+      "confidence": 0.98,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 5,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Клиент просил найти путь входа и получил публичную навигационную информацию; запрос не требовал идентификации."
+      },
+      "sub_questions": [
+        {
+          "question": "Требовал ли запрос идентификации?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            5,
+            12
+          ],
+          "note": "Речь только о поиске сайта/страницы входа."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Клиент просил указать место входа на сайте."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Оператор сообщил общедоступные каналы входа, не данные конкретного клиента."
+        }
+      ],
+      "rule_applied": "N/A допустим, если запрос не требовал идентификации.",
+      "alternatives_rejected": "«Нет» не подходит: до раскрытия персональных/защищённых данных или действия не дошло; личность для этой навигационной подсказки не требовалась.",
+      "ambiguities": [],
+      "reasoning": "Запрос касается расположения входа и общих каналов доступа. Оператор не раскрывал индивидуальную информацию и не выполнял защищённое действие, поэтому идентификация не нужна.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Идентификация — N/A. Запрос касался общедоступного способа входа и не требовал раскрытия данных клиента. Основание — #1 и #12.",
+      "confidence": 0.99,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент сформулировал запрос в #1 до завершения диалога."
+      },
+      "sub_questions": [
+        {
+          "question": "Все существенные вопросы закрыты или дан корректный следующий шаг?",
+          "answer": "да",
+          "evidence_idx": [
+            12,
+            13
+          ],
+          "note": "Оператор назвал веб-версию для торгового счёта и приложение; клиент подтвердил, что открылось."
+        },
+        {
+          "question": "Остался ли существенный вопрос открытым?",
+          "answer": "нет",
+          "evidence_idx": [
+            12,
+            13
+          ],
+          "note": "Подтверждение клиента показывает, что указанный путь помог."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Исходная проблема — не найден вход в личный кабинет."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Оператор объяснил назначение Global и указал альтернативные каналы входа."
+        },
+        {
+          "idx": 13,
+          "quote": "Ашылды, рақмет.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Клиент подтвердил, что страница/вход открылся, и поблагодарил."
+        }
+      ],
+      "rule_applied": "20 — все существенные вопросы закрыты или дан корректный следующий шаг.",
+      "alternatives_rejected": "15 не требуется: подтверждение клиента показывает, что проблема решена; 10 и ниже не подходят, поскольку существенный вопрос не остался открытым. N/A исключён: запрос был сформулирован.",
+      "ambiguities": [
+        "Клиент не уточнил, какой именно кабинет или услуга ему нужны, однако после рекомендации сообщил, что открылось; оценивается результат, подтверждённый в диалоге."
+      ],
+      "reasoning": "Оператор объяснил, что Global — информационный сайт, и направил клиента к веб-версии tradernet.global или приложению для доступа к торговому счёту. Клиент ответил, что открылось. Значит, основной запрос получил корректный следующий шаг и подтверждённое решение; оснований снижать балл за незакрытый существенный вопрос нет.",
+      "answer": 20,
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "idx": 13,
+          "quote": "Ашылды, рақмет."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Корректная и полная консультация — 20. Оператор указал путь входа, а клиент подтвердил, что открылось. Основание — #12–#13.",
+      "confidence": 0.88,
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 13,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c05": {
+      "criterion_id": "c05",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий применяется; N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор был вежлив?",
+          "answer": "да",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Формулировки нейтральны и содержат корректную подсказку."
+        },
+        {
+          "question": "Если клиент выразил неудобство, оператор отреагировал на конкретную проблему?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            12
+          ],
+          "note": "Клиент не нашёл вход, а оператор объяснил, что Global — информационный сайт, и назвал нужные каналы входа."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент описал конкретное затруднение."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Ответ относится к проблеме входа и указывает, куда перейти."
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент выразил лёгкое раздражение из-за повторного вопроса."
+        }
+      ],
+      "rule_applied": "Да — оператор вежлив и при выраженном неудобстве реагирует на конкретную проблему.",
+      "alternatives_rejected": "«Нет» не ставится: несмотря на повторный вопрос, оператор дал конкретный ответ по затруднению; в репликах нет грубости.",
+      "ambiguities": [
+        "Клиентское «Жоғарыда жаздым ғой» показывает недовольство повторным вопросом; оператор прямо не извинился, но критерий требует реакции на проблему, а ответ #12 решает исходное затруднение."
+      ],
+      "reasoning": "Оператор общался нейтрально и дал применимый совет, который клиент подтвердил. Хотя он не признал отдельно неудобство от повторного вопроса, критерий связывает реакцию с конкретной проблемой клиента — невозможностью найти вход — и она была адресована.",
+      "answer": "yes",
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Эмпатия и клиентоориентированность — Да. Оператор дал конкретный способ решить описанную проблему; грубости нет. Основание — #1 и #12.",
+      "confidence": 0.79,
+      "answer_normalized": "yes",
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c06": {
+      "criterion_id": "c06",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий применяется ко всему ведению диалога; N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Ответы ясные и связные?",
+          "answer": "да",
+          "evidence_idx": [
+            12
+          ],
+          "note": "Указаны конкретные веб-версия и приложение."
+        },
+        {
+          "question": "При явном ожидании оператор предупредил?",
+          "answer": "нет",
+          "evidence_idx": [
+            11,
+            12
+          ],
+          "note": "Между репликами 42 секунды, предупреждения нет."
+        },
+        {
+          "question": "Приходилось ли клиенту переспрашивать из-за формулировок или порядка ответов?",
+          "answer": "нет",
+          "evidence_idx": [
+            12,
+            13
+          ],
+          "note": "После понятного ответа клиент сообщил, что открылось; повторное уточнение сайта исходило от оператора."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Повторный вопрос о сайте вызвал напоминание клиента."
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиенту пришлось напомнить уже сообщённую деталь."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Итоговый ответ краткий и понятный; вместе с тем после ответа #11 было ожидание 42 секунды без предупреждения."
+        }
+      ],
+      "rule_applied": "7 — один заметный сбой, но клиент может понять ответ и продолжить. Сбой: оператор повторно спросил уже указанное и не предупредил о последующем ожидании.",
+      "alternatives_rejected": "10 исключён: явное ожидание после #11 не сопровождалось предупреждением и ранее был заметный сбой с повторным вопросом. 4 не подходит: клиенту не пришлось переспрашивать из-за неясного ответа; ответ #12 понятен. 0 не подходит, так как реплики связны.",
+      "ambiguities": [
+        "Два недостатка — повторный вопрос и неотмеченное ожидание — могут трактоваться как более одного сбоя; выбран уровень 7, поскольку сам ответ ясен и клиент смог продолжить."
+      ],
+      "reasoning": "Реплика #12 сформулирована ясно и даёт конкретные варианты входа. Однако оператор повторил уже разрешённое уточнение, после чего клиенту пришлось напомнить название сайта; затем ответ #12 последовал через 42 секунды без предупреждения. Это заметный сбой при сохранении понятного хода диалога, поэтому выбрана ступень 7.",
+      "answer": 7,
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "checked_range": [
+        11,
+        12
+      ],
+      "explanation": "Управление диалогом, скорость и грамотность — 7. Ответ понятен, но оператор повторно уточнил уже известное и не предупредил об ожидании 42 секунды. Основание — #10–#12.",
+      "confidence": 0.84,
+      "answer_normalized": 7,
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 11,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c07": {
+      "criterion_id": "c07",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Чат продолжался после ответа оператора: клиент успел подтвердить результат; это не внезапный обрыв до возможности завершить."
+      },
+      "sub_questions": [
+        {
+          "question": "Оператор подвёл итог или предложил дальнейшую помощь?",
+          "answer": "нет",
+          "evidence_idx": [
+            12,
+            13
+          ],
+          "note": "После благодарности/подтверждения клиента оператор больше не писал."
+        },
+        {
+          "question": "Оператор попрощался?",
+          "answer": "нет",
+          "evidence_idx": [
+            12,
+            13
+          ],
+          "note": "Прощания оператора в диалоге нет."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Ответ содержит инструкцию, но не итог, предложение дальнейшей помощи или прощание."
+        },
+        {
+          "idx": 13,
+          "quote": "Ашылды, рақмет.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент подтвердил результат и поблагодарил; возможность ответить и завершить оставалась."
+        }
+      ],
+      "rule_applied": "Да требует итог или предложение дальнейшей помощи и прощание; N/A допускается только при обрыве до возможности завершить.",
+      "alternatives_rejected": "N/A исключён, поскольку клиентская реплика #13 показывает, что диалог не оборвался до завершения; оператор не сделал ни одного из требуемых действий.",
+      "ambiguities": [],
+      "reasoning": "После ответа оператору поступило подтверждение клиента #13. В чате нет последующей реплики оператора с итогом/предложением помощи или прощанием, поэтому условие не выполнено.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "idx": 13,
+          "quote": "Ашылды, рақмет."
+        }
+      ],
+      "checked_range": [
+        12,
+        13
+      ],
+      "explanation": "Завершение — Нет. После подтверждения клиента оператор не подвёл итог, не предложил помощь и не попрощался. Основание — #12–#13.",
+      "confidence": 0.96,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 13,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c08": {
+      "criterion_id": "c08",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "Критерий проверяется всегда; N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Было ли оскорбление клиента?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Оскорблений нет."
+        },
+        {
+          "question": "Предлагал ли оператор платную услугу в обход компании?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Частная платная консультация или перевод денег оператору не предлагались."
+        },
+        {
+          "question": "Раскрывал ли оператор конфиденциальную информацию?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Сообщены только общие сведения о сайте и вариантах входа."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Оскорблений и предложений услуг нет."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "context",
+          "interpretation": "Общая навигационная подсказка не является раскрытием конфиденциальных сведений."
+        }
+      ],
+      "rule_applied": "Да — если выявлено хотя бы одно из трёх перечисленных грубых нарушений; иначе Нет.",
+      "alternatives_rejected": "«Да» не подходит: в репликах оператора нет оскорблений, обходного платного предложения или конфиденциальных данных.",
+      "ambiguities": [],
+      "reasoning": "В изученных репликах оператора содержатся приветствие, вопрос о сайте и общая инструкция. Ни одно из трёх грубых нарушений не выявлено.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Грубые ошибки — Нет. Оскорблений, обходной платной услуги и раскрытия конфиденциальной информации нет. Основание — #10 и #12.",
+      "confidence": 0.99,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    }
+  },
+  "issues": [
+    {
+      "level": "error",
+      "criterion_id": "c08",
+      "msg": "missing or invalid checked_range"
+    }
+  ]
+}

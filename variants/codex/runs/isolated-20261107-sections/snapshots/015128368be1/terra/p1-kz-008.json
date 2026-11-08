@@ -1,0 +1,547 @@
+{
+  "run_id": "isolated-20261107-sections",
+  "agent": "terra",
+  "conversation_id": "p1-kz-008",
+  "variant": "sections",
+  "checklist": "default@v1",
+  "status": "pending",
+  "pending": [
+    "p1-kz-008__conduct",
+    "p1-kz-008__critical"
+  ],
+  "usage": [
+    {
+      "part": "p1-kz-008__start",
+      "tokens_in": 2893,
+      "tokens_out": 1607,
+      "exact": false,
+      "model": null,
+      "response_hash": "65a6c8c4e8a0"
+    },
+    {
+      "part": "p1-kz-008__safety",
+      "tokens_in": 3032,
+      "tokens_out": 1825,
+      "exact": false,
+      "model": null,
+      "response_hash": "c49c561a7657"
+    }
+  ],
+  "score": {
+    "total": null,
+    "gross_error": false,
+    "gross_error_criteria": [],
+    "complete": false,
+    "missing_criteria": [
+      "c05",
+      "c06",
+      "c07",
+      "c08"
+    ],
+    "applicable_weight": 30.0,
+    "rows": [
+      {
+        "criterion_id": "c01",
+        "title": "Установление контакта",
+        "section": "start",
+        "type": "binary",
+        "answer": "no",
+        "weight": 10,
+        "applicable": true,
+        "points": 0.0,
+        "effective_weight": 33.33,
+        "effective_points": 0.0
+      },
+      {
+        "criterion_id": "c02",
+        "title": "Выявление потребности",
+        "section": "start",
+        "type": "binary",
+        "answer": "na",
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c03",
+        "title": "Идентификация",
+        "section": "safety",
+        "type": "binary",
+        "answer": "na",
+        "weight": 20,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c04",
+        "title": "Корректная и полная консультация",
+        "section": "safety",
+        "type": "scale",
+        "answer": 20,
+        "weight": 20,
+        "applicable": true,
+        "points": 20.0,
+        "effective_weight": 66.67,
+        "effective_points": 66.67
+      },
+      {
+        "criterion_id": "c05",
+        "title": "Эмпатия и клиентоориентированность",
+        "section": "conduct",
+        "type": "binary",
+        "answer": null,
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c06",
+        "title": "Управление диалогом, скорость и грамотность",
+        "section": "conduct",
+        "type": "scale",
+        "answer": null,
+        "weight": 15,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c07",
+        "title": "Завершение",
+        "section": "conduct",
+        "type": "binary",
+        "answer": null,
+        "weight": 5,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null
+      },
+      {
+        "criterion_id": "c08",
+        "title": "Грубые ошибки",
+        "section": "critical",
+        "type": "flag",
+        "answer": null,
+        "weight": 0,
+        "applicable": false,
+        "points": null,
+        "effective_weight": null,
+        "effective_points": null,
+        "flag_raised": false
+      }
+    ],
+    "sections": [
+      {
+        "section_id": "start",
+        "title": "Начало и понимание запроса",
+        "score_pct": 0.0,
+        "contribution": 0.0,
+        "max_contribution": 33.33
+      },
+      {
+        "section_id": "safety",
+        "title": "Безопасность и решение",
+        "score_pct": 100.0,
+        "contribution": 66.67,
+        "max_contribution": 66.67
+      }
+    ]
+  },
+  "answers": {
+    "c01": "no",
+    "c02": "na",
+    "c03": "na",
+    "c04": 20
+  },
+  "criteria": {
+    "c01": {
+      "criterion_id": "c01",
+      "applicability": {
+        "na_allowed": false,
+        "na_condition_met": false,
+        "reasoning": "N/A не разрешён."
+      },
+      "sub_questions": [
+        {
+          "question": "Поздоровался ли оператор на языке клиента в первом ответе?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            10
+          ],
+          "note": "Приветствие на казахском."
+        },
+        {
+          "question": "Представился ли оператор в первом ответе?",
+          "answer": "нет",
+          "evidence_idx": [
+            10
+          ],
+          "note": "Представления нет."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Язык клиента — казахский."
+        },
+        {
+          "idx": 2,
+          "quote": "Сәлеметсіз бе! Мен AIM, Freedom Broker компаниясының жасанды интеллект көмекшісімін.",
+          "role": "bot",
+          "supports": "context",
+          "interpretation": "Представление бота не засчитывается оператору."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Есть приветствие, но нет представления."
+        }
+      ],
+      "rule_applied": "Для «Да» нужны приветствие на языке клиента и представление в первом ответе.",
+      "alternatives_rejected": "«Да» не подходит из-за отсутствия представления; N/A не разрешён.",
+      "ambiguities": [],
+      "reasoning": "Оператор поздоровался по-казахски, но не представился.",
+      "answer": "no",
+      "evidence": [
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?"
+        }
+      ],
+      "checked_range": [
+        10,
+        10
+      ],
+      "explanation": "Установление контакта — Нет. Оператор поздоровался на языке клиента, но не представился в первом ответе #10.",
+      "confidence": 1.0,
+      "answer_normalized": "no",
+      "evidence_checks": [
+        {
+          "idx": 10,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c02": {
+      "criterion_id": "c02",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Проблема и сайт были известны до подключения оператора; этих данных хватало для ответа."
+      },
+      "sub_questions": [
+        {
+          "question": "Хватало ли исходных данных для ответа?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            5,
+            12
+          ],
+          "note": "Клиент назвал проблему и сайт; ответ дан на основе этих сведений."
+        },
+        {
+          "question": "Учёл ли оператор известное название сайта?",
+          "answer": "нет",
+          "evidence_idx": [
+            5,
+            10,
+            11
+          ],
+          "note": "Оператор повторно спросил уже указанный сайт."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Клиент описал проблему."
+        },
+        {
+          "idx": 5,
+          "quote": "Freedom Finance Global сайты. Операторға қосыңызшы.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Клиент назвал сайт до передачи оператору."
+        },
+        {
+          "idx": 10,
+          "quote": "Сәлем. Қай сайтқа кірдіңіз?",
+          "role": "operator",
+          "supports": "no",
+          "interpretation": "Оператор повторно спросил известную информацию."
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Клиент повторил сайт без новой существенной детали."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Ответ дан после повторения известных сведений."
+        }
+      ],
+      "rule_applied": "N/A разрешён, если данных для ответа хватало с самого начала.",
+      "alternatives_rejected": "«Да» и «Нет» не применяются, поскольку недостающих данных для ответа не выявлено.",
+      "ambiguities": [
+        "Повторный вопрос показывает, что оператор не учёл известную деталь; выбрана N/A по условию достаточности исходных данных."
+      ],
+      "reasoning": "Клиент описал проблему и указал сайт до передачи. Повторное уточнение не добавило существенных данных.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым."
+        },
+        {
+          "idx": 5,
+          "quote": "Freedom Finance Global сайты. Операторға қосыңызшы."
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Выявление потребности — N/A. Клиент заранее сообщил проблему и сайт (#1, #5); в #11 он повторил название сайта.",
+      "confidence": 0.93,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 5,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 11,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c03": {
+      "criterion_id": "c03",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": true,
+        "reasoning": "Для общих указаний по входу идентификация не требовалась."
+      },
+      "sub_questions": [
+        {
+          "question": "Запрос требовал раскрытия защищённых данных или защищённого действия?",
+          "answer": "нет",
+          "evidence_idx": [
+            1,
+            5,
+            12
+          ],
+          "note": "Запрошено и дано общее направление для входа."
+        },
+        {
+          "question": "Подтверждена ли проверка личности?",
+          "answer": "нет",
+          "evidence_idx": [
+            10,
+            12
+          ],
+          "note": "Проверки в репликах оператора нет, но она не требовалась."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Клиент ищет место входа."
+        },
+        {
+          "idx": 5,
+          "quote": "Freedom Finance Global сайты. Операторға қосыңызшы.",
+          "role": "client",
+          "supports": "na",
+          "interpretation": "Уточняет сайт и просит оператора."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "na",
+          "interpretation": "Оператор даёт общие способы входа без раскрытия данных."
+        }
+      ],
+      "rule_applied": "N/A: запрос не требовал идентификации.",
+      "alternatives_rejected": "Да и Нет неприменимы: потребности в проверке личности перед ответом не было.",
+      "ambiguities": [],
+      "reasoning": "Клиент искал вход; оператор сообщил общедоступные способы входа. Защищённое действие или раскрытие данных не запрошены.",
+      "answer": "na",
+      "evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Идентификация — N/A. Клиенту нужны были общие указания по входу, а оператор не раскрывал данные счёта и не выполнял защищённое действие (#1, #12).",
+      "confidence": 0.99,
+      "answer_normalized": "na",
+      "evidence_checks": [
+        {
+          "idx": 1,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    },
+    "c04": {
+      "criterion_id": "c04",
+      "applicability": {
+        "na_allowed": true,
+        "na_condition_met": false,
+        "reasoning": "Клиент сформулировал запрос до завершения чата."
+      },
+      "sub_questions": [
+        {
+          "question": "Дан ли корректный следующий шаг по существенному запросу?",
+          "answer": "да",
+          "evidence_idx": [
+            1,
+            12,
+            13
+          ],
+          "note": "Оператор назвал способы входа; клиент сообщил, что открылось."
+        },
+        {
+          "question": "Остались ли существенные вопросы открытыми?",
+          "answer": "нет",
+          "evidence_idx": [
+            12,
+            13
+          ],
+          "note": "Клиент подтвердил результат и не задал дальнейших вопросов."
+        }
+      ],
+      "considered_evidence": [
+        {
+          "idx": 1,
+          "quote": "Сайттан жеке кабинетке кіретін жерді таппадым.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент ищет вход в кабинет."
+        },
+        {
+          "idx": 5,
+          "quote": "Freedom Finance Global сайты. Операторға қосыңызшы.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Указан сайт и запрошен оператор."
+        },
+        {
+          "idx": 11,
+          "quote": "Жоғарыда жаздым ғой, Global сайты.",
+          "role": "client",
+          "supports": "context",
+          "interpretation": "Клиент повторно уточняет сайт."
+        },
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз.",
+          "role": "operator",
+          "supports": "yes",
+          "interpretation": "Предложены способы входа в торговый счёт."
+        },
+        {
+          "idx": 13,
+          "quote": "Ашылды, рақмет.",
+          "role": "client",
+          "supports": "yes",
+          "interpretation": "Клиент сообщил, что открылось."
+        }
+      ],
+      "rule_applied": "20: все существенные вопросы закрыты или дан корректный следующий шаг.",
+      "alternatives_rejected": "15 не применяется: пропущенной второстепенной детали в запросе не видно. N/A исключён, поскольку запрос сформулирован.",
+      "ambiguities": [],
+      "reasoning": "Оператор указал два способа входа, после чего клиент подтвердил, что открылось. Существенных незакрытых вопросов не видно.",
+      "answer": 20,
+      "evidence": [
+        {
+          "idx": 12,
+          "quote": "Ол ақпараттық сайт. Сауда шотына tradernet.global веб-нұсқасы немесе Freedom Broker қосымшасы арқылы кіресіз."
+        },
+        {
+          "idx": 13,
+          "quote": "Ашылды, рақмет."
+        }
+      ],
+      "checked_range": null,
+      "explanation": "Консультация — 20. Оператор указал способы входа, а клиент сообщил, что открылось (#12–13).",
+      "confidence": 0.98,
+      "answer_normalized": 20,
+      "evidence_checks": [
+        {
+          "idx": 12,
+          "exists": true,
+          "speaker": "operator",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        },
+        {
+          "idx": 13,
+          "exists": true,
+          "speaker": "client",
+          "quote_coverage": 1.0,
+          "quote_ok": true
+        }
+      ]
+    }
+  },
+  "issues": []
+}

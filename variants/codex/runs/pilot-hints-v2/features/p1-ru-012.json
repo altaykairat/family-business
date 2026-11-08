@@ -1,0 +1,35 @@
+{
+  "escalation_idx": 9,
+  "first_operator_turn_idx": 10,
+  "operator_turn_idxs": [
+    10
+  ],
+  "time_to_first_operator_reply_s": 114,
+  "operator_reply_gaps_s": [],
+  "gap_threshold_s": 30,
+  "last_turn": {
+    "idx": 12,
+    "speaker": "system",
+    "text": "Соединение с клиентом прервано."
+  },
+  "last_client_idx": 11,
+  "seconds_from_last_client_to_end": 18,
+  "last_operator_idx": 10,
+  "duplicate_turn_idxs": [],
+  "lexical_hints": {
+    "greeting": [
+      {
+        "idx": 10,
+        "quote": "Здравствуйте. Я Илья. Форма 1042-S предоставляется на английском языке."
+      }
+    ],
+    "wait": [],
+    "ending": [
+      {
+        "idx": 12,
+        "quote": "Соединение с клиентом прервано."
+      }
+    ]
+  },
+  "warning": "Совпадение словаря — только подсказка, отсутствие совпадения не доказывает отсутствие действия."
+}

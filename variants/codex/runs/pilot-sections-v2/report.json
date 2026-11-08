@@ -1,0 +1,43 @@
+{
+  "projection": {
+    "calls_per_agent": 32,
+    "tokens_in_per_agent": 99220,
+    "v1_tokens_in_per_agent": 30413,
+    "input_ratio_to_v1": 3.2624206753690856,
+    "output_tokens_per_agent_assumed": 41600,
+    "review_scenarios": [],
+    "cost_usd_assumed": {
+      "claude": null,
+      "codex": null,
+      "antigravity": null
+    }
+  },
+  "observed": {
+    "claude": {
+      "dialogs": 0,
+      "calls_received": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_usd": null,
+      "statuses": {}
+    },
+    "codex": {
+      "dialogs": 0,
+      "calls_received": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_usd": null,
+      "statuses": {}
+    },
+    "antigravity": {
+      "dialogs": 0,
+      "calls_received": 0,
+      "tokens_in": 0,
+      "tokens_out": 0,
+      "cost_usd": null,
+      "statuses": {}
+    }
+  },
+  "accuracy": null,
+  "note": "Нет человеческого эталона; согласие не равно точности."
+}

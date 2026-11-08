@@ -1,0 +1,202 @@
+[
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "review",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__all",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-review/agents/luna/prompts/p1-ru-012__all.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-review/agents/luna/responses/p1-ru-012__all.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "review",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__all",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-review/agents/luna/prompts/p1-kz-008__all.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-review/agents/luna/responses/p1-kz-008__all.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "review",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__all",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-review/agents/terra/prompts/p1-ru-012__all.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-review/agents/terra/responses/p1-ru-012__all.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "review",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__all",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-review/agents/terra/prompts/p1-kz-008__all.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-review/agents/terra/responses/p1-kz-008__all.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__start",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/prompts/p1-ru-012__start.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/responses/p1-ru-012__start.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__safety",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/prompts/p1-ru-012__safety.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/responses/p1-ru-012__safety.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__conduct",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/prompts/p1-ru-012__conduct.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/responses/p1-ru-012__conduct.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__critical",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/prompts/p1-ru-012__critical.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/responses/p1-ru-012__critical.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__start",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/prompts/p1-kz-008__start.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/responses/p1-kz-008__start.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__safety",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/prompts/p1-kz-008__safety.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/responses/p1-kz-008__safety.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__conduct",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/prompts/p1-kz-008__conduct.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/responses/p1-kz-008__conduct.json"
+  },
+  {
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__critical",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/prompts/p1-kz-008__critical.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/luna/responses/p1-kz-008__critical.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__start",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/prompts/p1-ru-012__start.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/responses/p1-ru-012__start.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__safety",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/prompts/p1-ru-012__safety.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/responses/p1-ru-012__safety.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__conduct",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/prompts/p1-ru-012__conduct.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/responses/p1-ru-012__conduct.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-ru-012",
+    "part": "p1-ru-012__critical",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/prompts/p1-ru-012__critical.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/responses/p1-ru-012__critical.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__start",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/prompts/p1-kz-008__start.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/responses/p1-kz-008__start.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__safety",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/prompts/p1-kz-008__safety.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/responses/p1-kz-008__safety.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__conduct",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/prompts/p1-kz-008__conduct.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/responses/p1-kz-008__conduct.json"
+  },
+  {
+    "model": "gpt-6.1-terra",
+    "effort": "medium",
+    "fork_turns": "none",
+    "variant": "sections",
+    "conversation_id": "p1-kz-008",
+    "part": "p1-kz-008__critical",
+    "prompt": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/prompts/p1-kz-008__critical.md",
+    "response": "/Users/altaykairat/Documents/SWE-Projects/family-business/variants/codex/runs/isolated-20261107-sections/agents/terra/responses/p1-kz-008__critical.json"
+  }
+]
